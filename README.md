@@ -1,5 +1,7 @@
 # Universe 25 ABM
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23111283.svg)](https://doi.org/10.5281/zenodo.23111283)
+
 Code, simulation outputs and manuscripts of
 
 > **An Agent-Based Model for the Social Collapse of Calhoun's Universe 25 Experiment**
@@ -8,11 +10,13 @@ Code, simulation outputs and manuscripts of
 
 In Universe 25, J. B. Calhoun (1973) let a colony of mice grow in an enclosure with unlimited food, water and
 nesting material. The population grew, stagnated, lost its social and reproductive behaviour (the "beautiful
-ones") and went extinct. This repository contains a minimal agent-based model that reproduces those
-observations *qualitatively*: mice on a lattice with a social state that is damaged by crowding, a critical
-window for social learning (R1), learning from neighbours (R2), crowd aversion (AV) and refuges of hard capacity
-(R7). The paper calibrates the model, analyses a mean-field reduction, and tests seven preregistered hypotheses on
-about 51 800 production runs.
+ones") and went extinct. This repository contains an agent-based model that asks which *local* interaction rules
+suffice to reproduce that collapse qualitatively: mice on a lattice with a social state that is damaged by
+crowding, a juvenile plasticity window (R1), social learning from neighbours (R2), crowd aversion (AV) and refuges
+of limited capacity (R7). Crowding and a long-lived demography alone already produce the envelope of the collapse;
+the rules add coexisting crowded and isolated deteriorated classes. The simulated dynamics is a boom of one or two
+generations rather than Calhoun's multi-generational sequence. The paper evaluates seventeen observed patterns run
+by run against null models and tests seven preregistered hypotheses on about 51 800 production runs.
 
 The paper comes in two versions, both built from the same data:
 
@@ -180,3 +184,8 @@ Every deviation from the preregistered plan is listed in the manuscripts.
   [`LICENSE-CC-BY-4.0.txt`](LICENSE-CC-BY-4.0.txt).
 
 © 2026 Julián Fernández Bonder. If you use this work, please cite it as in [`CITATION.cff`](CITATION.cff).
+
+## How to cite
+
+Release v1.0 is archived in Zenodo: Fernández Bonder, J. (2026). *An Agent-Based Model for the Social Collapse of
+Calhoun's Universe 25 Experiment* (v1.0). Zenodo. https://doi.org/10.5281/zenodo.23111283 (see also `CITATION.cff`).
