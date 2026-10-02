@@ -1,0 +1,37 @@
+{
+ "stage": "p6",
+ "kind": "sweep",
+ "reps": 30,
+ "T": 900,
+ "crn": false,
+ "series_every": 0,
+ "full_series": false,
+ "preset": null,
+ "priority": 3,
+ "c_cpu": 1.458,
+ "analysis": "p6",
+ "q": "",
+ "base_seed": 25319,
+ "axes": [
+  "initial_s",
+  "a_max"
+ ],
+ "layer": "move_substeps",
+ "n_points": 12,
+ "runs": 360,
+ "columns": [
+  "n_males",
+  "n_females",
+  "initial_age",
+  "founders_same_cell",
+  "mate_radius",
+  "initial_s",
+  "move_substeps",
+  "a_max",
+  "repro_age_max"
+ ],
+ "preset_main": "calhoun_C1",
+ "tag": "C1",
+ "primary": "O17p",
+ "reps_run": 30
+}

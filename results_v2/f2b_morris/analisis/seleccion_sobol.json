@@ -1,0 +1,45 @@
+{
+ "factores": [
+  "m_c",
+  "crowd_aversion",
+  "alpha",
+  "refuge_capacity",
+  "gamma",
+  "inherit_weight",
+  "eta",
+  "rec",
+  "crowd_power",
+  "p0",
+  "refuge_frac",
+  "plast_age_max",
+  "refuge_pref",
+  "a_max",
+  "delta"
+ ],
+ "mu_star_rel_medio": {
+  "m_c": 0.7494,
+  "crowd_aversion": 0.7182,
+  "alpha": 0.4469,
+  "refuge_capacity": 0.4396,
+  "gamma": 0.3876,
+  "inherit_weight": 0.3684,
+  "eta": 0.3675,
+  "rec": 0.357,
+  "crowd_power": 0.3542,
+  "p0": 0.3314,
+  "refuge_frac": 0.2814,
+  "plast_age_max": 0.2282,
+  "refuge_pref": 0.1687,
+  "a_max": 0.1323,
+  "delta": 0.0445
+ },
+ "metricas": [
+  "f_PRIMARIO",
+  "f_O13",
+  "f_O13p",
+  "x_rho_pk_mean",
+  "x_f0_pk_mean",
+  "P_ext",
+  "f_O11"
+ ]
+}

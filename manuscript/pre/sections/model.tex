@@ -1,0 +1,155 @@
+\section{Model}
+\label{sec:model}
+
+The model is an individual-based, discrete-time stochastic process on a lattice, with one step per week. Each
+individual has a position, an age, a sex, a sparse affinity memory and a \emph{social state} $s_i\in[0,1]$, its
+capacity for normal social and reproductive behavior. All rules are local: no individual knows the population size. The \emph{core model}
+(lattice, affinity, movement with attraction, crowding damage, reproduction and senescent mortality) is extended by
+four rules, R1, R2, AV and R7, each with a neutral value that switches it off and recovers the core model
+(Fig.~\ref{fig:model-schematic}, Table~\ref{tab:params}; ODD in the Supplemental Material).
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{model_schematic_pre.pdf}
+  \caption{Schematic of the model.
+  (a)~A focal agent (ringed) chooses a cell of its Moore neighborhood (dashed) with the weight of
+  Eq.~\eqref{eq:model-move}, whose three factors are shown below the lattice; arrow width is proportional to the
+  weight. Deteriorated individuals gather in pools ($m>m_c$) or occupy refuges (hatched, capacity $c_R=2$).
+  (b)~Illustrative trajectories of $s$ versus age, from Eqs.~\eqref{eq:model-social} and~\eqref{eq:model-learning}
+  with fixed environments (not a simulation). A pup starts at $w\,s_{\rm mother}$ and gains competence only inside
+  the window $a\le a_w$ (R1), at a rate set by its neighbors (R2); afterwards crowding can only lower $s$.}
+  \label{fig:model-schematic}
+\end{figure}
+
+\subsection{Core model}
+\label{sec:model-baseline}
+
+\paragraph*{Space, affinity and movement.}
+Individuals live on an $L\times L$ lattice $G$ ($L=30$, $|G|=900$) with hard walls and no occupancy limit; $m_i$ is
+the occupancy of the cell of $i$, itself included. Pairs at Chebyshev distance $\le1$ reinforce their affinity,
+$F_{ij}\leftarrow(1-\eta)F_{ij}+\eta$, and the others decay, $F_{ij}\leftarrow(1-\delta)F_{ij}$: the memory,
+$1/\delta=100$ weeks, is long and built only by proximity. Every week all individuals move simultaneously to one of
+the nine cells $y$ of their Moore neighborhood, own cell included, with probability proportional to
+\begin{equation}
+  \begin{split}
+  W_i(y)={}&\bigl[1+\alpha A_i(y)\bigr]\,e^{-\kappa(1-s_i)^{p}n_y}\\
+           &\times\bigl[1+\pi(1-b_i)^{q}\,\mathbf 1_{\mathcal R}(y)\bigr],
+  \end{split}
+  \label{eq:model-move}
+\end{equation}
+where $A_i(y)=\sum_{j\in y}F_{ij}$, $n_y$ is the number of \emph{other} individuals in $y$, $\mathcal R$ is the set
+of non-full refuges (refuge cells with $n_y<c_R$), and $\mathbf 1_{\mathcal R}(y)=1$ if $y$ is a non-full refuge and 0
+otherwise; full refuges cannot be entered (R7, below). The core model has only the first factor, the attraction $\alpha$ towards acquaintances; the
+other two are the rules AV and R7.
+
+\paragraph*{Social state.}
+After moving,
+\begin{equation}
+  s_i\leftarrow\min\bigl\{1,\max\bigl[0,\;s_i+\varrho_i-\gamma\,(m_i-m_c)_+\bigr]\bigr\},
+  \label{eq:model-social}
+\end{equation}
+where $\gamma(m_i-m_c)_+$ is the damage inflicted by each occupant in excess of the community size $m_c$, and in the
+core model recovery is a constant, $\varrho_i=r$. Deterioration is local, density-triggered and, being convex in the
+occupancy, acts as a switch.
+
+\paragraph*{Demography.}
+A reproductive female ($a_{\min}\le a\le a_{\rm rep}$) sharing her cell with a reproductive male conceives with
+probability $p_{\rm conc}=p_0\,s_f\,s_m$; each pup of the litter (mean 6.55) survives birth with probability $q_0\,s_f$
+and is born with $s_{\rm nb}=w\,s_f+(1-w)\,s_0$ (full inheritance, $w=1$, in the core model). Death is senescent, with
+weekly probability $\{1+\exp[-k(a-a_{\max})]\}^{-1}$, independent of $s$ (an optional social advance of
+senescence, $\mu_s$, is zero in every model): the beautiful ones were ``physically
+healthy''~\cite{Calhoun1973}, so the absence of social deaths (A4) and the senescent decline (O8) hold by
+construction. The long-lived demography of the candidates ($a_{\max}=120$, $a_{\rm rep}=80$ weeks) matches the menopause at about 560
+days and the longevity of about 800 days in Universe~25~\cite{Calhoun1973}. With no mortality before senescence the
+population sits on a plateau once natality stops. Initially $200+200$ individuals of age 4 weeks with $s=1$ are placed at random.
+
+\paragraph*{Controls.}
+A rule is switched off by its neutral value: $a_w=\infty$ (R1); $\lambda=0$ with $w=1$ and individual recovery at
+$r=0.01$ (R2); $\kappa=0$ (AV); no refuges (R7). The \emph{short-lived control} is the core model with all four rules
+switched off, attraction $\alpha=1.4$ and a short life span, $a_{\max}=60$ and $a_{\rm rep}=50$ weeks; the
+\emph{long-lived control} is the same with $a_{\max}=120$ and $a_{\rm rep}=80$ (Table~\ref{tab:params}). The null
+models are defined relative to \textsf{C1} in Sec.~\ref{sec:methods}.
+
+\subsection{Minimal additional rules}
+\label{sec:model-rules}
+
+With the long-lived demography and $\alpha=4$, crowding alone already produces the envelope of the collapse, but not
+coexisting classes of deteriorated animals (Sec.~\ref{sec:results}). Each rule is motivated by an observation of the
+original report~\cite{Calhoun1973}; R7 (five parameters and a hard capacity) was designed after a candidate without
+refuges had failed to produce a persistent isolated class.
+
+\paragraph*{R1: juvenile plasticity window ($a_w$).}
+Recovery is possible only for $a\le a_w=12$ weeks ($\varrho_i=0$ otherwise), while crowding damage acts at every age: an adult
+is a ratchet, $\dot s_i\le0$, and recovery becomes a lineage process. Since $p_{\rm conc}\propto s_fs_m$, an adult with
+$s\simeq0$ can neither recover nor reproduce, whatever its partner. \emph{Motivation:} mice moved in mid-phase~D to
+uncrowded universes, even with partners matured without crowding, never recovered reproductive behavior (Marsden's
+work~\cite{Calhoun1973,Marsden1972}); the failure of phase-D transplants (O12) is thus a
+consistency check of R1. \emph{Mechanism:} refuges are pockets of low density in which, without R1, deteriorated
+animals recover and breed again (natality resumes and the primary outcome falls to 0.21), whereas without refuges the
+collapse stays irreversible in most runs even without R1 (O6 and O7 in 0.85 of 40 runs). R1 is what lets a persistent isolated class
+coexist with an irreversible collapse.
+
+\paragraph*{R2: social learning ($\lambda$, with partial inheritance $w$).}
+Recovery is \emph{learned} from the neighbors,
+\begin{equation}
+  \varrho_i=r\bigl[(1-\lambda)+\lambda\,\bar s_{V(i)}\bigr],
+  \label{eq:model-learning}
+\end{equation}
+with $\bar s_{V(i)}$ the mean state of the other individuals of the $3\times3$ block centred on $i$ (0 if none).
+With R1 it acts only on juveniles, which start with a fifth of their mother's competence ($w=0.2$, $s_0=0$) and can
+gain at most $r\,a_w=1.2$ from competent neighbors. For $\lambda=1$, $s=0$ is absorbing for the population, not only
+for the individual: without competent adults pups have nobody to learn from.
+\emph{Motivation:} ``by midway in phase~C essentially all young were prematurely rejected by their
+mothers''~\cite{Calhoun1973}. Pups are born at $s_{\rm nb}\le0.2$, the patterns' threshold for ``deteriorated,'' so
+part of the failure of crowded-born cohorts is definitional (Sec.~\ref{sec:results}); the essential part of R2 is
+learning, not inheritance ($w=0$ with $r=0.15$ passes in all 120 runs).
+
+\paragraph*{AV: crowd aversion of the deteriorated ($\kappa$).}
+The factor $e^{-\kappa(1-s_i)^{p}n_y}$ of Eq.~\eqref{eq:model-move}, with $p=4$, acts only for $s\lesssim0.3$.
+Facing a cell of $n$ acquaintances ($A\simeq n$), a deteriorated individual maximizes $(1+\alpha n)e^{-\kappa n}$ at
+$n^*=1/\kappa-1/\alpha\approx6.4\approx0.8\,m_c$ and avoids cells of strangers, so the deteriorated split between
+pools, where damage continues, and nearly empty cells. \emph{Motivation:} withdrawn males pooled and wounded each other; the beautiful ones ``never engaged in
+fighting''~\cite{Calhoun1973}. Without refuges AV alone generates the isolated class; with refuges it is not needed for
+the primary outcome and instead shapes the use of space, \emph{reducing} the empty fraction of cells at the peak
+(Sec.~\ref{sec:results}).
+
+\paragraph*{R7: refuges of hard capacity ($\pi$).}
+A fixed random fraction $f_R$ of the cells are refuges that hold at most $c_R=2$ individuals (a hard capacity:
+residents keep their place, rejected entrants return). The deteriorated prefer refuges through the factor $1+\pi(1-b_i)^{q}$ of Eq.~\eqref{eq:model-move}, with $b_i=s_i$. The total capacity,
+$f_Rc_R|G|=540$ places or about 20\% of the adults at the peak, bounds the persistently isolated fraction. The hard
+capacity remedies the stampedes of synchronous moves (Sec.~\ref{sec:results}). \emph{Motivation:} withdrawn females retreated to the high, less preferred nest
+boxes~\cite{Calhoun1973}, the analogue of the refuges if a cell is a nest box; but $c_R=2$ is the isolation threshold
+$m\le2$ of O13, a design choice that makes the persistence of the isolated class (O13p) hold by construction.
+
+\paragraph*{Candidates and time scales.}
+\label{sec:model-candidates}
+Rules and parameters were chosen to maximize the number of patterns reproduced with the fewest rules, not by fitting a curve,
+and with the evaluator later used to report them, so calibration is not validation (Sec.~\ref{sec:methods}). The reference candidate \textsf{C1} has the four rules. \textsf{C1$'$} omits AV
+and is the minimal set for the preregistered primary outcome O17p (each single ablation gives O17p $=0$ in 40 runs),
+but only at the evaluation thresholds: it passes in 0.835 [0.78, 0.88] of the runs, against 0.995 for \textsf{C1}.
+Deterioration takes about one
+generation: the animals past the window lose half of their competence $t_{\rm det}\approx10$ weeks after crowding sets
+in, and $\Gamma=t_{\rm det}/T_{\rm gen}\approx1.1$ (0.7 with the mean age of the mothers at birth as $T_{\rm gen}$), a
+heuristic of scales against $\Gamma\approx3.5$ for Universe~25 (our estimate, with a different operational
+definition) that does not set the depth of the boom.
+
+\begin{table}[t]
+  \caption{Parameters of the reference candidate \textsf{C1} and of the short-lived control (SL); \textsf{C1$'$}
+  is \textsf{C1} with $\kappa=0$, and the long-lived control is SL with $a_{\max}=120$ and $a_{\rm rep}=80$. Time in weeks; a dash means that the rule is inactive. The $N_0$ initial individuals
+  have age 4 weeks and $s=1$. Presets \texttt{calhoun\_C1} and \texttt{calhoun\_C1p} of the \texttt{u25} package.}
+  \label{tab:params}
+  \begin{ruledtabular}
+  \begin{tabular}{lcclcc}
+    Symbol & \textsf{C1} & SL & Symbol & \textsf{C1} & SL \\
+    \hline
+    $L$ & 30 & 30 & $a_w$ (R1) & 12 & $\infty$ \\
+    $N_0$ & 400 & 400 & $\lambda$ (R2) & 1 & 0 \\
+    $\alpha$ & 4 & 1.4 & $w,\ s_0$ (R2) & 0.2, 0 & 1, -- \\
+    $\eta,\ \delta$ & 0.2, 0.01 & 0.2, 0.01 & $\kappa,\ p$ (AV) & 0.15, 4 & -- \\
+    $m_c,\ \gamma$ & 8, 0.1 & 8, 0.1 & $f_R,\ c_R$ (R7) & 0.3, 2 & -- \\
+    $r$ & 0.1 & 0.01 & $\pi,\ q,\ b_i$ (R7) & 100, 4, $s_i$ & -- \\
+    $p_0,\ q_0$ & 0.3, 0.95 & 0.3, 0.95 & $a_{\min},\ a_{\rm rep}$ & 6, 80 & 6, 50 \\
+    $\mu_s$ & 0 & 0 & $a_{\max},\ k$ & 120, 0.15 & 60, 0.15 \\
+  \end{tabular}
+  \end{ruledtabular}
+\end{table}

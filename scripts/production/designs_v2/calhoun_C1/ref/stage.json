@@ -1,0 +1,24 @@
+{
+ "stage": "ref",
+ "kind": "sweep",
+ "reps": 100,
+ "T": 1000,
+ "crn": false,
+ "series_every": 1,
+ "full_series": false,
+ "preset": "notebook",
+ "priority": 0,
+ "c_cpu": 2.333,
+ "analysis": "ref",
+ "q": "Q3",
+ "base_seed": 25302,
+ "n_points": 2,
+ "runs": 200,
+ "columns": [
+  "a_max",
+  "repro_age_max"
+ ],
+ "preset_main": "calhoun_C1",
+ "tag": "C1",
+ "primary": "O17p"
+}

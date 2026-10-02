@@ -1,0 +1,31 @@
+{
+ "stage": "p2",
+ "kind": "sweep",
+ "reps": 30,
+ "T": 600,
+ "crn": false,
+ "series_every": 0,
+ "full_series": false,
+ "preset": null,
+ "priority": 1,
+ "c_cpu": 0.875,
+ "analysis": "p2",
+ "q": "Q5",
+ "base_seed": 25308,
+ "axes": [
+  "alpha",
+  "crowd_aversion"
+ ],
+ "layer": "crowd_power",
+ "n_points": 72,
+ "runs": 2160,
+ "columns": [
+  "alpha",
+  "crowd_aversion",
+  "crowd_power"
+ ],
+ "preset_main": "calhoun_C1",
+ "tag": "C1",
+ "primary": "O17p",
+ "reps_run": 30
+}

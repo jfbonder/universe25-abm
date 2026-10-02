@@ -1,0 +1,29 @@
+{
+ "stage": "rob",
+ "kind": "sweep",
+ "reps": 200,
+ "T": 700,
+ "crn": false,
+ "series_every": 0,
+ "full_series": false,
+ "preset": null,
+ "priority": 0,
+ "c_cpu": 1.4,
+ "analysis": "rob",
+ "q": "V2-rob",
+ "base_seed": 25331,
+ "n_points": 16,
+ "runs": 3200,
+ "columns": [
+  "refuge_hard",
+  "mu_bg",
+  "nest_period",
+  "async_move",
+  "s_newborn_base",
+  "crowd_aversion"
+ ],
+ "preset_main": "calhoun_C1",
+ "tag": "C1",
+ "primary": "O17p",
+ "reps_run": 200
+}

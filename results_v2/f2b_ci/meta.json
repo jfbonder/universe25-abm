@@ -1,0 +1,29 @@
+{
+ "n_reps": 200,
+ "T": 700,
+ "base_seed": 25333,
+ "n_jobs": 4,
+ "crn": false,
+ "n_points": 4,
+ "design_columns": [
+  "initial_age_dist",
+  "initial_age",
+  "initial_age_hi",
+  "crowd_aversion"
+ ],
+ "ties": {},
+ "series_every": 1,
+ "record_every": 1,
+ "runner": "u25.sweep",
+ "model_cls": "f2b_model_v2.U2v2",
+ "u25_version": 2,
+ "refuge_hard_modes": [
+  "strict"
+ ],
+ "eval_kw": {
+  "peak_time": "plateau_start",
+  "o5_birth_ref": "B99",
+  "o4_version": "v2",
+  "crowd_class_threshold": 8
+ }
+}

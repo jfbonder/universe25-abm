@@ -1,0 +1,24 @@
+[2026-10-02 06:19:09] inicio: 0/1080 hechas, 1080 por correr, n_jobs=4, T=600, out=results_v2/f2b_q7aw
+[2026-10-02 06:19:54] 50/1080 hechas | 0.7 min | 0.89 s/corrida (pared) 3.44 s/corrida (CPU) | ETA 15.3 min | último p=2 r=9 N_max=10290 t_ext=263.0
+[2026-10-02 06:20:44] 100/1080 hechas | 1.6 min | 0.95 s/corrida (pared) 3.72 s/corrida (CPU) | ETA 15.5 min | último p=4 r=19 N_max=9269 t_ext=254.0
+[2026-10-02 06:22:04] 150/1080 hechas | 2.9 min | 1.17 s/corrida (pared) 4.57 s/corrida (CPU) | ETA 18.1 min | último p=7 r=10 N_max=11510 t_ext=303.0
+[2026-10-02 06:23:01] 200/1080 hechas | 3.9 min | 1.16 s/corrida (pared) 4.59 s/corrida (CPU) | ETA 17.0 min | último p=9 r=19 N_max=10224 t_ext=275.0
+[2026-10-02 06:23:34] 250/1080 hechas | 4.4 min | 1.06 s/corrida (pared) 4.22 s/corrida (CPU) | ETA 14.6 min | último p=12 r=9 N_max=15307 t_ext=nan
+[2026-10-02 06:23:52] 300/1080 hechas | 4.7 min | 0.94 s/corrida (pared) 3.76 s/corrida (CPU) | ETA 12.3 min | último p=14 r=19 N_max=15210 t_ext=nan
+[2026-10-02 06:24:01] 350/1080 hechas | 4.9 min | 0.83 s/corrida (pared) 3.33 s/corrida (CPU) | ETA 10.1 min | último p=17 r=9 N_max=16577 t_ext=nan
+[2026-10-02 06:24:30] 400/1080 hechas | 5.3 min | 0.80 s/corrida (pared) 3.20 s/corrida (CPU) | ETA 9.1 min | último p=19 r=19 N_max=7461 t_ext=264.0
+[2026-10-02 06:25:18] 450/1080 hechas | 6.1 min | 0.82 s/corrida (pared) 3.26 s/corrida (CPU) | ETA 8.6 min | último p=22 r=9 N_max=8471 t_ext=255.0
+[2026-10-02 06:26:19] 500/1080 hechas | 7.2 min | 0.86 s/corrida (pared) 3.42 s/corrida (CPU) | ETA 8.3 min | último p=24 r=19 N_max=7901 t_ext=251.0
+[2026-10-02 06:27:45] 550/1080 hechas | 8.6 min | 0.94 s/corrida (pared) 3.74 s/corrida (CPU) | ETA 8.3 min | último p=27 r=9 N_max=9100 t_ext=265.0
+[2026-10-02 06:28:52] 600/1080 hechas | 9.7 min | 0.97 s/corrida (pared) 3.87 s/corrida (CPU) | ETA 7.8 min | último p=29 r=19 N_max=15153 t_ext=nan
+[2026-10-02 06:30:00] 650/1080 hechas | 10.8 min | 1.00 s/corrida (pared) 4.00 s/corrida (CPU) | ETA 7.2 min | último p=32 r=9 N_max=15322 t_ext=nan
+[2026-10-02 06:30:16] 700/1080 hechas | 11.1 min | 0.95 s/corrida (pared) 3.80 s/corrida (CPU) | ETA 6.0 min | último p=34 r=19 N_max=15752 t_ext=nan
+[2026-10-02 06:30:41] 750/1080 hechas | 11.5 min | 0.92 s/corrida (pared) 3.68 s/corrida (CPU) | ETA 5.1 min | último p=37 r=10 N_max=7548 t_ext=258.0
+[2026-10-02 06:31:26] 800/1080 hechas | 12.3 min | 0.92 s/corrida (pared) 3.67 s/corrida (CPU) | ETA 4.3 min | último p=39 r=19 N_max=6663 t_ext=230.0
+[2026-10-02 06:32:21] 850/1080 hechas | 13.2 min | 0.93 s/corrida (pared) 3.72 s/corrida (CPU) | ETA 3.6 min | último p=42 r=9 N_max=7098 t_ext=240.0
+[2026-10-02 06:33:32] 900/1080 hechas | 14.4 min | 0.96 s/corrida (pared) 3.82 s/corrida (CPU) | ETA 2.9 min | último p=45 r=0 N_max=7937 t_ext=264.0
+[2026-10-02 06:34:34] 950/1080 hechas | 15.4 min | 0.97 s/corrida (pared) 3.88 s/corrida (CPU) | ETA 2.1 min | último p=47 r=10 N_max=15038 t_ext=nan
+[2026-10-02 06:35:33] 1000/1080 hechas | 16.4 min | 0.98 s/corrida (pared) 3.93 s/corrida (CPU) | ETA 1.3 min | último p=49 r=18 N_max=15070 t_ext=nan
+[2026-10-02 06:36:00] 1050/1080 hechas | 16.8 min | 0.96 s/corrida (pared) 3.85 s/corrida (CPU) | ETA 0.5 min | último p=52 r=9 N_max=15106 t_ext=nan
+[2026-10-02 06:36:11] 1080/1080 hechas | 17.0 min | 0.95 s/corrida (pared) 3.78 s/corrida (CPU) | ETA 0.0 min | último p=53 r=19 N_max=15006 t_ext=nan
+[2026-10-02 06:36:11] fin de la invocación: 1080/1080 hechas, 0 fallas, 17.0 min

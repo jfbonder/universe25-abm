@@ -1,0 +1,31 @@
+{
+ "stage": "p1",
+ "kind": "sweep",
+ "reps": 30,
+ "T": 600,
+ "crn": false,
+ "series_every": 0,
+ "full_series": false,
+ "preset": null,
+ "priority": 1,
+ "c_cpu": 1.05,
+ "analysis": "p1",
+ "q": "Q7",
+ "base_seed": 25309,
+ "axes": [
+  "rec",
+  "inherit_weight"
+ ],
+ "layer": "gamma",
+ "n_points": 112,
+ "runs": 3360,
+ "columns": [
+  "rec",
+  "inherit_weight",
+  "gamma"
+ ],
+ "preset_main": "calhoun_C1",
+ "tag": "C1",
+ "primary": "O17p",
+ "reps_run": 30
+}

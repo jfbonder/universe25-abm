@@ -1,0 +1,6 @@
+[
+"C1 gamma=0 (sin hacinamiento)",
+"C1 -R2 (w=1, sin aprendizaje social)",
+"longevo (notebook a_max=120, CI de C1)",
+"C1 sin reglas (-R1 -R2 -AV -R7)"
+]

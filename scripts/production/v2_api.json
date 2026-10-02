@@ -1,0 +1,94 @@
+{
+ "_doc": [
+  "Mapa entre los conceptos de la V2 y la API de u25/.",
+  "gen_designs_v2.py verifica que cada campo exista en Params y que el valor sobreviva el viaje",
+  "design.csv -> design_to_params; los brazos cuyo campo falta quedan como 'pendiente_api' y se omiten",
+  "del diseño (se anotan en manifest.json). f2b_model_v2.py lee la sección 'evaluador'.",
+  "Para actualizar: editar este archivo y regenerar con REGEN=1 bash scripts/production/run_2b_v2.sh."
+ ],
+ "estado": "API de u25: evaluate_run(peak_time, crowd_class_threshold, o5_birth_ref, o4_version), validate_eval_kw, O13p/O17p estricto, frac_crowded_low_m{6,8,10,12}. Evaluador primario de la V2 (plateau_start, B99, O4 v2, O10/O11 v2, m > 8).",
+ "R7_strict": {
+  "refuge_hard": true
+ },
+ "R7_legacy": {
+  "refuge_hard": "legacy"
+ },
+ "R7_soft": {
+  "refuge_hard": false
+ },
+ "mu_bg": {
+  "field": "mu_bg",
+  "rob": [
+   0.003,
+   0.008
+  ],
+  "barrido": [
+   0.001,
+   0.002,
+   0.003,
+   0.005,
+   0.008,
+   0.01
+  ]
+ },
+ "nido": {
+  "nest_period": 3
+ },
+ "async": {
+  "async_move": true
+ },
+ "ci_variantes": {
+  "edades 4-52": {
+   "initial_age_dist": "uniform",
+   "initial_age": 4,
+   "initial_age_hi": 52
+  },
+  "edades 4-80": {
+   "initial_age_dist": "uniform",
+   "initial_age": 4,
+   "initial_age_hi": 80
+  }
+ },
+ "evaluador": {
+  "_doc": "primario: kwargs de u25.objectives.evaluate_run con que el barrido escribe las columnas obj_* (eval_kw de u25.sweep). variantes: {prefijo: kwargs} que f2b_model_v2 agrega como obj_<prefijo>_*; '_base': 'primario' (default) parte del primario y cambia sólo lo indicado; '_base': 'ninguno' parte de los defaults de u25; '_criterios_v1': true reemplaza O10 y O11 por eval_O10_v1/eval_O11_v1 (el evaluador v1 completo, para la tabla de desvíos). m_fijo_col: columna de la serie con la clase hacinada m > 8.",
+  "primario": {
+   "peak_time": "plateau_start",
+   "o5_birth_ref": "B99",
+   "o4_version": "v2",
+   "crowd_class_threshold": 8
+  },
+  "variantes": {
+   "v1": {
+    "_base": "ninguno",
+    "peak_time": "argmax",
+    "o5_birth_ref": "last",
+    "o4_version": "v1",
+    "crowd_class_threshold": null,
+    "_criterios_v1": true
+   },
+   "ta": {
+    "peak_time": "argmax"
+   },
+   "te": {
+    "peak_time": "plateau_end"
+   },
+   "mc": {
+    "crowd_class_threshold": null
+   },
+   "l5": {
+    "o5_birth_ref": "last"
+   },
+   "o4a": {
+    "o4_version": "v1"
+   }
+  },
+  "o17p_key": "O17p",
+  "o13p_key": "O13p",
+  "m_fijo": 8,
+  "m_fijo_col": "frac_crowded_low_m8"
+ },
+ "s0_valores": [
+  0.25,
+  0.5
+ ]
+}

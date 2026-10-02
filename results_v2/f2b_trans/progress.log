@@ -1,0 +1,17 @@
+[05:52:09] brazo 0 (madre 0): 60 réplicas
+   O12 Result(status='PASS', value=np.float64(0.0), detail='P_T(B)=0.87 (n=60) P_T(D)=0.00 (n=60) p=7.65e-26')  O12fix Result(status='PASS', value=np.float64(0.0), detail='P_T(B)=0.87 (n=60) P_T(D)=0.00 (n=60) p=7.65e-26')  (27 s)
+[05:52:36] brazo 1 (madre 1): 60 réplicas
+   O12 Result(status='PASS', value=np.float64(0.0), detail='P_T(B)=0.97 (n=60) P_T(D)=0.00 (n=60) p=1.96e-32')  O12fix Result(status='PASS', value=np.float64(0.0), detail='P_T(B)=0.97 (n=60) P_T(D)=0.00 (n=60) p=1.96e-32')  (36 s)
+[05:53:13] brazo 2 (madre 2): 60 réplicas
+   O12 Result(status='PASS', value=np.float64(0.0), detail='P_T(B)=0.83 (n=60) P_T(D)=0.00 (n=60) p=4.11e-24')  O12fix Result(status='PASS', value=np.float64(0.0), detail='P_T(B)=0.83 (n=60) P_T(D)=0.00 (n=60) p=4.11e-24')  (28 s)
+[05:53:40] brazo 3 (madre 3): 60 réplicas
+   O12 Result(status='PASS', value=np.float64(0.0), detail='P_T(B)=0.97 (n=60) P_T(D)=0.00 (n=60) p=1.96e-32')  O12fix Result(status='PASS', value=np.float64(0.016666666666666666), detail='P_T(B)=0.97 (n=60) P_T(D)=0.02 (n=60) p=1.12e-30')  (34 s)
+[05:54:15] brazo 4 (madre 0): 60 réplicas
+   O12 Result(status='FAIL', value=np.float64(0.85), detail='P_T(B)=0.98 (n=60) P_T(D)=0.85 (n=60) p=0.00829')  O12fix Result(status='PASS', value=np.float64(0.08333333333333333), detail='P_T(B)=0.98 (n=60) P_T(D)=0.08 (n=60) p=4.43e-27')  (23 s)
+[05:54:38] brazo 5 (madre 5): 60 réplicas
+   O12 Result(status='PASS', value=np.float64(0.0), detail='P_T(B)=0.78 (n=60) P_T(D)=0.00 (n=60) p=8.93e-22')  O12fix Result(status='PASS', value=np.float64(0.0), detail='P_T(B)=0.78 (n=60) P_T(D)=0.00 (n=60) p=8.93e-22')  (27 s)
+[05:55:05] brazo 6 (madre 6): 60 réplicas
+   O12 Result(status='PASS', value=np.float64(0.0), detail='P_T(B)=0.82 (n=60) P_T(D)=0.00 (n=60) p=2.65e-23')  O12fix Result(status='PASS', value=np.float64(0.0), detail='P_T(B)=0.82 (n=60) P_T(D)=0.00 (n=60) p=2.65e-23')  (32 s)
+[05:55:37] brazo 7 (madre 7): 60 réplicas
+   O12 Result(status='PASS', value=np.float64(0.0), detail='P_T(B)=0.77 (n=60) P_T(D)=0.00 (n=60) p=4.72e-21')  O12fix Result(status='PASS', value=np.float64(0.0), detail='P_T(B)=0.77 (n=60) P_T(D)=0.00 (n=60) p=4.72e-21')  (23 s)
+[05:56:01] fin: 8/8 brazos, 0 fallas

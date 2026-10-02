@@ -1,0 +1,11 @@
+[
+"C1",
+"C1 -R1",
+"C1 -R2",
+"C1 -AV",
+"C1 -R7",
+"C1 -R1 alpha=6",
+"C1 w=0 rec=0.15",
+"C1 -pref (refugios sin preferencia)",
+"C1 -hard (capacidad blanda)"
+]

@@ -1,0 +1,11 @@
+{
+ "n_reps": 100,
+ "T": 2000,
+ "base_seed": 2026,
+ "n_jobs": 4,
+ "crn": false,
+ "record_every": 1,
+ "n_points": 1,
+ "wall_time_s": 108.87096897699985,
+ "model_cls": "u25.model.Universe"
+}

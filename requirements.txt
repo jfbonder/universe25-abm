@@ -1,0 +1,10 @@
+# Versiones con las que se generaron los resultados del manuscrito (Python 3.11.15, Linux x86-64).
+numpy==2.4.6
+scipy==1.17.1
+pandas==3.0.6
+numba==0.68.0
+llvmlite==0.50.0
+pyarrow==25.0.1
+SALib==1.6.0
+matplotlib==3.11.2
+pytest==9.1.1

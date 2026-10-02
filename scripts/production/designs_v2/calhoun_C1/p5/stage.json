@@ -1,0 +1,31 @@
+{
+ "stage": "p5",
+ "kind": "sweep",
+ "reps": 30,
+ "T": 600,
+ "crn": false,
+ "series_every": 0,
+ "full_series": false,
+ "preset": null,
+ "priority": 1,
+ "c_cpu": 0.758,
+ "analysis": "p5",
+ "q": "",
+ "base_seed": 25311,
+ "axes": [
+  "refuge_frac",
+  "refuge_pref"
+ ],
+ "layer": "refuge_capacity",
+ "n_points": 50,
+ "runs": 1500,
+ "columns": [
+  "refuge_frac",
+  "refuge_capacity",
+  "refuge_pref",
+  "refuge_hard"
+ ],
+ "preset_main": "calhoun_C1",
+ "tag": "C1",
+ "primary": "O17p"
+}

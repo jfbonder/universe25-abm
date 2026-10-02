@@ -1,0 +1,461 @@
+\section{Model}
+\label{sec:model}
+
+The model is an individual-based, discrete-time stochastic process on a finite lattice. One time step
+represents one week. Each individual carries four state variables: a position, an age, a sex and a
+\emph{social state} $s_i\in[0,1]$, which summarises its capacity for normal social and reproductive
+behaviour ($s=1$ fully competent, $s=0$ completely deteriorated). Individuals also keep a memory of
+past contacts through a sparse affinity matrix. All rules are \emph{local}: no individual has access
+to the population size or to any global statistic.
+
+We first describe the \emph{core model} (Section~\ref{sec:model-baseline}): the lattice, the affinity matrix,
+movement with attraction towards acquaintances, crowding damage to the social state, reproduction and senescent
+mortality. Section~\ref{sec:model-rules} introduces four additional rules, R1, R2, AV and R7; each has a neutral
+value that switches it off and leaves the core model unchanged. Section~\ref{sec:model-candidates} defines the four
+calibrated candidates \textsf{C0}, \textsf{C1$'$}, \textsf{C1} and \textsf{C2} and the controls against which they are
+compared, and Section~\ref{sec:model-groups} the dimensionless groups, the scales and the regimes we expect. The full
+ODD description is in Appendix~\ref{app:odd}. Fig.~\ref{fig:model-schematic} summarises the ingredients and
+Table~\ref{tab:params} lists all parameters.
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{model_schematic.pdf}
+  \caption{Schematic of the model.
+  \textbf{(a)}~A focal agent (ringed) chooses a cell of its Moore neighbourhood (dashed) with the weight of
+  Eq.~\eqref{eq:model-move}; arrow width is proportional to the weight. Deteriorated individuals gather in pools
+  ($m>m_c$) or occupy refuges (hatched, capacity $c_R=2$).
+  \textbf{(b)}~Illustrative trajectories of $s$ versus age, from
+  Eqs.~\eqref{eq:model-social}--\eqref{eq:model-learning} with fixed environments (not a simulation). A pup
+  starts at $w\,s_{\rm mother}$ and gains competence only inside the window $a\le a_w$ (R1), at a rate set by
+  its neighbours (R2).
+  \textbf{(c)}~Phase diagram expected for \textsf{C0} (no refuges). Crowded and isolated classes coexist in
+  the shaded band, $5.5\lesssim n^*=1/\kappa-1/\alpha\lesssim10$ with $\alpha\gtrsim3.5$. Points are
+  calibration ensembles of \textsf{C0} labelled with $f_{\rm O17}$; filled markers have $f\ge0.8$. With
+  refuges the band disappears (Q5, refuted; Section~\ref{sec:results}).}
+  \label{fig:model-schematic}
+\end{figure*}
+
+\subsection{Core model}
+\label{sec:model-baseline}
+
+\paragraph{Space and affinity.}
+Individuals live on an $L\times L$ lattice $G$ ($L=30$, $|G|=900$) with hard boundaries. Any number of
+individuals may share a cell; $m_i$ denotes the number of occupants of the cell of $i$, itself included.
+Every pair of individuals at Chebyshev distance $\le1$ at the end of a week reinforces its affinity,
+$F_{ij}\leftarrow(1-\eta)F_{ij}+\eta$. All other pairs decay, $F_{ij}\leftarrow(1-\delta)F_{ij}$, and pairs
+with $F_{ij}<\varepsilon$ are forgotten ($\eta=0.2$, $\delta=0.01$, $\varepsilon=10^{-6}$). The affinity
+memory is therefore long, $1/\delta=100$ weeks, and is built only by proximity.
+
+\paragraph{Movement.}
+Every week each individual moves to one of the nine cells $y$ of its Moore neighbourhood, its own cell
+included, cells outside $G$ excluded. All individuals move simultaneously, using the positions at the
+start of the week. The probability of choosing $y$ is proportional to
+\begin{equation}
+  W_i(y)=\bigl[1+\alpha A_i(y)\bigr]\;
+         \underbrace{e^{-\kappa(1-s_i)^{p}n_y}}_{\text{aversion}}\;
+         \underbrace{\bigl[1+\pi(1-b_i)^{q}\,\mathbf 1_{\mathcal R}(y)\bigr]\;
+         \bigl[1-\mathbf 1_{\mathcal F}(y)\bigr]}_{\text{refuges}},
+  \qquad A_i(y)=\sum_{j\in y}F_{ij},
+  \label{eq:model-move}
+\end{equation}
+where $n_y$ is the number of \emph{other} individuals in $y$. A refuge cell is \emph{full} if it already holds
+$n_y\ge c_R$ other individuals; $\mathcal R$ is the set of non-full refuges and $\mathcal F$ the set of full ones, so
+that $\mathbf 1_{\mathcal R}(y)=1$ if $y$ is a non-full refuge and 0 otherwise, and $\mathbf 1_{\mathcal F}(y)=1$ if
+$y$ is a full refuge and 0 otherwise.
+In the core model only the first factor is present ($\kappa=0$, no refuges, $\mathcal R=\mathcal F=\emptyset$): the parameter
+$\alpha\ge0$ sets the attraction towards acquaintances. The aversion and refuge factors are the
+additional rules of Section~\ref{sec:model-rules}.
+
+\paragraph{Social state.}
+After moving, the social state is updated with the local occupancy,
+\begin{equation}
+  s_i\leftarrow\min\Bigl\{1,\max\bigl\{0,\;s_i+\varrho_i-\gamma\,(m_i-m_c)_+\bigr\}\Bigr\},
+  \label{eq:model-social}
+\end{equation}
+where $\gamma(m_i-m_c)_+$ is the damage inflicted by each occupant in excess of the community size
+$m_c=8$ ($\gamma=0.1$). In the core model the recovery term is a constant, $\varrho_i=r$ ($r=0.01$).
+Deterioration is thus a purely local, density-triggered process, and its convexity in the local
+occupancy makes it act as a switch (Section~\ref{sec:meanfield}).
+
+\paragraph{Reproduction.}
+Every reproductive female ($a_{\min}\le a\le a_{\rm rep}$) that shares her cell with at least one
+reproductive male chooses one of them uniformly at random, and conceives with probability
+\begin{equation}
+  p_{\rm conc}=p_0\,s_f\,s_m,\qquad p_0=0.3 .
+  \label{eq:model-repro}
+\end{equation}
+The litter size $\ell\in\{3,\dots,10\}$ is drawn from a fixed distribution with mean $\bar\ell=6.55$.
+Each pup survives birth with probability $q_0\,s_f$ ($q_0=0.95$), so deteriorated mothers lose their
+young. Newborns are placed in the mother's cell, have a 1:1 sex ratio, and inherit
+$s_{\rm nb}=w\,s_f+(1-w)\,s_0$. The core model has full inheritance, $w=1$; this is its central
+hypothesis, that the lack of maternal care propagates to the offspring.
+There is no gestation delay, and a female may give birth every week.
+
+\paragraph{Mortality.}
+Every individual dies at the end of the week with probability
+\begin{equation}
+  p_{\rm death}(a,s)=\Bigl[1+e^{-k\,(a-a_{\max}[1-\mu_s(1-s)])}\Bigr]^{-1},\qquad k=0.15 .
+  \label{eq:model-mort}
+\end{equation}
+The factor $\mu_s\ge0$ would advance the senescence of deteriorated individuals. Every model in this paper,
+candidates and controls, has $\mu_s=0$, so adult death is purely senescent. Calhoun attributes the decline to senescence and describes the beautiful ones as
+``physically healthy''~\cite{Calhoun1973}. Anti-pattern A4 and the senescent character of the decline (O8) therefore
+hold by construction: they are consistency checks of the design, not results.
+There is no mortality before senescence. The population therefore cannot decrease before the first senescent deaths:
+once natality stops it sits on a plateau, and $t_{\rm pk}=\arg\max N$ falls on the last birth that precedes the first
+death (exactly so in 69\% of the runs of \textsf{C1}). A constant background hazard $\mu_{\rm bg}$, independent of age
+and $s$, is a reported variant; it acts at every age, pups included. With $\mu_{\rm bg}=0.003$ per week the plateau
+shrinks from 51 to 17 weeks and the primary outcome falls to 0.55 [0.48, 0.62], through O5 alone, which becomes
+MARGINAL rather than failing (83 MARGINAL and 7 FAIL among the 90 runs that do not pass). Natality still ends at the
+population maximum, $N(t_{B99})\approx0.99\,N_{\rm pk}$. What moves is the start of the plateau: deaths now balance the
+last births, so $t'_{\rm pk}$ comes earlier and the last 1\% of the births falls more than $0.5\,t'_{\rm pk}$ after
+it. The coexisting classes (O13, O13p), the patterns that discriminate against the null models, pass in every
+run, and so does O11, also with $\mu_{\rm bg}=0.008$, where O5 fails in 70 of 200 runs
+(Section~\ref{sec:res-robustness}).
+
+\paragraph{Longevity, order of events, initial condition.}
+The candidates use $a_{\max}=120$ and $a_{\rm rep}=80$ weeks (the short-lived control below uses 60 and 50). These
+values match the menopause at about 560 days and the frequent longevity of about 800 days in Universe~25~\cite{Calhoun1973},
+and they allow a decline governed by ageing (O8). Each week the order is: movement, affinities, update of
+$s$, reproduction, ageing, mortality. The initial condition is dispersed: $N_0=200+200$
+individuals of age 4 weeks with $s=1$, at random positions. Non-synchronous variants draw the initial ages
+uniformly over 4--52 or 4--80 weeks; the primary outcome is then 0.93 and 0.63, again through O5 alone and by the
+same mechanism (with 4--80 weeks, 73 of the 74 runs that do not pass are MARGINAL, with
+$N(t_{B99})\ge0.97\,N_{\rm pk}$; Section~\ref{sec:res-robustness}). The founder protocol is in Appendix~\ref{sec:calib-founders}.
+
+\subsection{Minimal additional rules}
+\label{sec:model-rules}
+
+The core model reproduces the explosive growth and a density-triggered loss of social state, and with the long
+life span nearly every colony dies too (Section~\ref{sec:results}). With a short life span ($a_{\max}=60$) it
+does not reproduce three facts of Universe~25: the irreversibility of the collapse, the failure of the young born
+during the crowded phase, and the coexistence of distinct classes of deteriorated animals. With the long-lived
+demography used as a null model the first two are largely there: the colony does not rebound (O6 and O7 in 0.99,
+1.00 without the rules at $\alpha=4$) and, scored at the end of the plasticity window, its late cohorts fail too
+(O11 in 0.81, and in 0.755 without the rules; Section~\ref{sec:res-null}). Only the coexistence of classes is missing. R1 is still needed
+once refuges exist, because refuges create pockets of low density in which, without an irreversible window,
+deteriorated animals recover and breed again: without R1 natality resumes (O6 and O7 in 0.22, O17p 0.21), and
+\textsf{C1} without R1 and R2 also fails them (0.35, with O13p in 0.05), whereas without R1 and without refuges
+the collapse stays irreversible in most runs (O6 and O7 in 0.85 of 40 runs without R1 and R7; 1.00 without any rule; Appendix~\ref{app:res-ablations}). R1 is
+what lets a persistent isolated class coexist with an irreversible collapse. A fourth fact, the low peak with free space, needs no new rule. With the
+weak attraction $\alpha=1.4$ of the long-lived control (Section~\ref{sec:model-candidates}) the peak reaches 0.85 of $K_\gamma$, with 59\% of the cells
+empty, so O4 fails only through the peak density. With the calibrated $\alpha=4$ and none of the rules below, the peak
+stays at 0.45 with 74\% of the cells empty, and the primary O4 passes in every run (Table~\ref{tab:res-null}). The
+low peak with free space is therefore a property of strong attraction with crowding damage, not of the rules. We add one rule for each of the three facts (R1, R2, and AV or R7 for the classes),
+justified by an observation of the original report~\cite{Calhoun1973}. Each rule has one
+principal parameter, but not only one: R2 also fixes the partial inheritance $(w,s_0)$, and R7 has five parameters
+($f_R$, $c_R$, $\pi$, $q$ and the basis $b$) plus the choice of a hard capacity, and was designed after \textsf{C0} had
+failed to produce a persistent isolated class (Section~\ref{sec:circularity}). Whether a rule is \emph{necessary} depends on
+the others. In \textsf{C0} each of R1, R2 and AV is necessary (Section~\ref{sec:calib-ablations}). With
+refuges (R7), AV is no longer necessary for the primary outcome; it then only shapes the spatial
+organisation (Section~\ref{sec:results} and the paragraph on AV below). The minimal set for the primary
+outcome is therefore R1 + R2 + R7, which defines the candidate \textsf{C1$'$} (Section~\ref{sec:model-candidates}).
+This minimality is conditional on the evaluation thresholds (class threshold 0.10, isolation $m\le2$, persistence
+$\ge4$ weeks, ensemble threshold 0.8; Section~\ref{sec:res-ablations}): \textsf{C1$'$} passes the primary outcome in
+0.835 [0.78, 0.88] of the runs, with a lower bound below the threshold.
+
+\paragraph{R1: critical window ($a_w$).}
+Recovery is only possible for $a\le a_w=12$ weeks: $\varrho_i=0$ for older individuals, while crowding
+damage acts at every age. An adult is therefore a ratchet, $\dot s_i\le0$.
+\emph{Motivation.} Behaviours that failed to develop in youth were not acquired later. Animals moved from
+the mid-third of phase~D to new universes at very low density, ``even placing them with adequate sex
+partners \dots\ that had matured in uncrowded conditions'', showed no recovery of reproductive behaviour
+(H.~Marsden's work reported in~\cite{Calhoun1973}; see also~\cite{Marsden1972}). R1 makes a deteriorated
+cohort unable to recover by individual means. Since conception scales as $s_fs_m$, an adult with $s\simeq0$ can
+neither recover nor reproduce, whatever its partner. The failure of phase-D transplants (O12) is therefore a
+consistency check of R1, which was motivated by the same observation, and not an independent result.
+
+\paragraph{R2: juvenile socialisation by neighbours ($\lambda$, with partial inheritance $w$).}
+Recovery is \emph{learned} from the social environment:
+\begin{equation}
+  \varrho_i=r\bigl[(1-\lambda)+\lambda\,\bar s_{V(i)}\bigr],\qquad
+  \bar s_{V(i)}=\frac{1}{|V(i)|}\sum_{j\in V(i)}s_j ,
+  \label{eq:model-learning}
+\end{equation}
+where $V(i)$ contains the other individuals of the $3\times3$ block centred on $i$, and
+$\bar s_{V(i)}=0$ for an isolated individual. We use $\lambda=1$, $r=0.1$, and partial inheritance
+$s_{\rm nb}=w\,s_f$ with $w=0.2$, $s_0=0$. With R1, Eq.~\eqref{eq:model-learning} acts only on juveniles:
+a pup starts with a fraction of its mother's competence and must acquire the rest from competent
+neighbours before age $a_w$.
+\emph{Motivation.} ``By midway in phase~C essentially all young were prematurely rejected by their
+mothers. They started independent life without having developed adequate affective
+bonds''~\cite{Calhoun1973}. Competence is transmitted socially. Once competent adults become scarce,
+pups have nobody to learn from, and the state $s=0$ is absorbing for the population, not just for an
+individual. In \textsf{C1} this transmission is shallow: it fails in a single step. Crowding deteriorates the
+founders during their own adult life, within about one generation time. Their offspring, about 70\% of all births,
+are born below the threshold and learn little, because their neighbours are mostly other pups and founders that are
+already deteriorating. The net reproductive number falls from 3.8 daughters per founder female to 0.4 in the first
+generation born, and 97\% of the births belong to the first two generations (Appendix~\ref{app:calib-generations}). R2 does not
+produce a cascade over many generations; it makes the failure of the first generations born during the boom
+irreversible for the colony.
+With $w=0.2$ and $s_0=0$ every pup is born with $s_{\rm nb}\le0.2$, that is, at or below the threshold that the
+patterns use for ``deteriorated''. Part of the failure of the crowded-born cohorts is therefore definitional: with
+$s_0=0.25$ pups are born at $s_{\rm nb}\approx0.4$, and O11, which reads the state at the age of maturity
+($a_{\min}=6$ weeks), passes in only 8\% of the runs, so that the primary outcome falls to 0.08
+(Section~\ref{sec:res-robustness}). The essential part of R2 is social
+learning, not inheritance. With refuges, $w=0$ and $r=0.15$ give the primary outcome in every run
+(Section~\ref{sec:results}). We keep $w=0.2$ for continuity with the inheritance hypothesis of the core model.
+
+\paragraph{AV: aversion of the deteriorated ($\kappa$).}
+Deteriorated individuals avoid occupied cells through the factor $e^{-\kappa(1-s_i)^{p}n_y}$ of
+Eq.~\eqref{eq:model-move}, with $\kappa=0.15$. The exponent $p=4$ is fixed, so that the aversion only
+matters for $s\lesssim0.3$. The attraction $\alpha$ does \emph{not} depend on $s$. For a deteriorated
+individual facing a cell with $n$ acquaintances ($A\simeq n$), the product $(1+\alpha n)e^{-\kappa n}$ is
+maximal at
+\begin{equation}
+  n^*=\frac{1}{\kappa}-\frac{1}{\alpha},
+  \label{eq:model-nstar}
+\end{equation}
+which is $6.4$ for the calibrated values, while cells of strangers are always avoided. Deteriorated
+individuals therefore split between groups of a few times $m_c$, where crowding damage continues, and
+almost empty cells.
+\emph{Motivation.} Calhoun distinguishes withdrawn males, ``aggregated in large pools near the centre of
+the floor'' and wounded ``as a result of attacks by other withdrawn males'', from the beautiful ones,
+which ``never engaged in fighting'', carried ``no wound or scar tissue'' and ``never attempted to
+enter'' social life~\cite{Calhoun1973}. In the model the damage term $\gamma(m-m_c)_+$ inside a pool is
+damage inflicted by other deteriorated individuals, and isolated individuals receive none (objective
+O13). Making $\alpha$ itself decrease with $s$ instead homogenises the population and raises the peak
+(Section~\ref{sec:calib}).
+\emph{Status.} AV is necessary in \textsf{C0}, where it alone generates the isolated class. With refuges it
+is not necessary for the primary outcome: without AV it passes in 0.835 [0.78, 0.88] of the runs, against
+0.995 [0.97, 1.00] (Section~\ref{sec:calib-ablations}). AV then controls the use of space and the decline. It
+\emph{reduces} the free space: without it the deteriorated animals gather in a few pools and half of the lattice is
+empty at the peak ($f_0=0.52$), with it $f_0=0.16$ (Universe~25: about 20\% of nest boxes). It also makes the
+decline senescent (O8 0.625 against 0.21). Neither enters the preregistered outcome, which is why the minimal
+candidate \textsf{C1$'$} omits AV. The low peak with free space itself needs no rule (see above).
+
+\paragraph{R7: refuges with preference and hard capacity ($\pi$).}
+A fixed random fraction $f_R=0.3$ of the cells are refuges of capacity $c_R=2$. Nobody may enter, or
+stay in, a refuge that already holds $c_R$ other individuals. The capacity is \emph{hard}: after each
+movement step residents keep their place, entrants are admitted in random order up to the capacity, and the
+rejected ones return to their previous cell; admission is iterated until no refuge exceeds its capacity, and pups
+that would be born in a full refuge are placed in a neighbouring cell that is not a refuge. A simpler
+single-pass admission, which does not count returning animals and newborns and lets a refuge hold up to 11
+individuals, is a reported variant; it leaves the primary outcome unchanged (0.995 with either rule;
+Section~\ref{sec:res-robustness}).
+Deteriorated individuals prefer refuges through the factor $1+\pi(1-b_i)^{q}$ of
+Eq.~\eqref{eq:model-move}, where $b_i$ is the state that drives the retreat. In \textsf{C1}, $b_i=s_i$ with
+$q=4$ and $\pi=100$. The total refuge capacity is $f_Rc_R|G|=540$ places, about 20\% of the
+adult population at the peak.
+\emph{Motivation.} The Universe~25 enclosure offered 256 nest boxes, each holding about 15 mice, and
+would not have limited shelter below 3840 animals. At the peak about 20\% of the nest boxes were
+usually unoccupied, because many mice chose to crowd together. Withdrawn females retreated to the high,
+less preferred nests~\cite{Calhoun1973}.
+\emph{Mapping.} We use a single mapping. Every cell is a resting site, the analogue of a nest box, and $m_c$
+plays the role of the comfortable occupancy (15 per box in Universe~25, $m_c=8$ in the model), so that
+$K_\gamma=m_c|G|$ is the analogue of the 3840 places and $f_0$ of the fraction of empty boxes. The refuges are the
+analogue of the high, less preferred boxes (the upper one or two of the four levels of each tunnel, 25--50\% of the
+boxes, against $f_R=0.3$). Their capacity $c_R=2$ is \emph{not} that of a nest box: it is the isolation threshold
+$m\le2$ of O13, a design choice (Section~\ref{sec:circularity}). Neither $|G|$ nor $m_c$ was calibrated to
+Universe~25, so densities are compared with Calhoun's only in sign (Appendix~\ref{app:calib-scales}).
+
+Both the preference and the hard capacity are necessary with synchronous moves. Without a preference ($\pi=0$) the
+refuges stay empty, because a deteriorated individual surrounded by acquaintances prefers an occupied neighbouring
+cell. With a soft capacity, simultaneous moves produce stampedes (Appendix~\ref{sec:calib-classes}). The hard
+capacity is a remedy for the collisions of the synchronous update: with a random sequential update a soft capacity
+also produces a persistent isolated class (O17p 0.995, $\rho_{\rm pk}=0.43$ against 0.36;
+Section~\ref{sec:res-robustness}).
+
+\paragraph{Variant of R7 in \textsf{C2}: retreat driven by maternal socialisation.}
+In \textsf{C2} the retreat is driven by the competence of the mother at birth, $b_i=h_i\equiv s_{f}(t_{\rm birth})$,
+with $h_i=1$ for founders, $q=1$ and $\pi=1000$. Pups of deteriorated mothers retreat, and
+socialised adults that later deteriorate do not, so they end up crowded.
+\emph{Motivation.} The beautiful ones belonged to ``the last half of the population born''; they were
+young animals that never entered social life, not adults that withdrew~\cite{Calhoun1973}.
+Basing the retreat on juvenile competence (the value of $s$ at age $a_w$) fails. Under R2 almost every
+cohort born after the first ends the window with $s<0.1$, so there is no gradient between cohorts.
+
+\paragraph{Rules tested and rejected.}
+Several rules were unnecessary or destroyed some pattern, and are not part of any candidate:
+\begin{itemize}
+  \item long-range jumps;
+  \item an attraction that decreases with $s$;
+  \item territoriality and defeat of males;
+  \item social mortality;
+  \item bonds restricted to competent pairs;
+  \item movement sub-steps.
+\end{itemize}
+Mating in the Moore neighbourhood (\texttt{mate\_radius}${}=1$) only matters for the founder protocol.
+
+\subsection{Calibrated candidates}
+\label{sec:model-candidates}
+
+We consider four candidates:
+\begin{description}
+  \item[\textsf{C0}] core model + longevity + R1 + R2 + AV. This is the minimal model that satisfies the essential
+    patterns evaluable with $N_0=400$ when O13 is read instantaneously (O17 in 0.92 of the runs).
+  \item[\textsf{C1$'$}] core model + longevity + R1 + R2 + R7 ($b=s$), without AV. This is the minimal set
+    of rules for the preregistered primary outcome O17p (all essential patterns and a \emph{persistent}
+    isolated class). See Section~\ref{sec:calib-ablations}.
+  \item[\textsf{C1}] \textsf{C1$'$} + AV, equivalently \textsf{C0} + R7. AV adds the spatial organisation: it spreads
+    the deteriorated animals over the lattice (the empty fraction at the peak falls from 0.52 to 0.16) and makes the
+    decline senescent. \textsf{C1} is the reference of the production design.
+  \item[\textsf{C2}] \textsf{C0} + R7 with the retreat driven by maternal socialisation ($b=h$). It makes the isolated
+    class a later-born cohort.
+\end{description}
+The presets are \texttt{calhoun\_C0}, \texttt{calhoun\_C1p}, \texttt{calhoun\_C1} and \texttt{calhoun\_C2},
+and Table~\ref{tab:params} lists their parameters.
+
+\paragraph{Controls.}
+A rule is switched off by its neutral value: $a_w=\infty$ for R1; $\lambda=0$ with full inheritance ($w=1$) and
+individual recovery at the core rate $r=0.01$ for R2; $\kappa=0$ for AV; no refuge cells ($f_R=0$) for R7. Two
+controls are the core model alone, with all four rules switched off, attraction $\alpha=1.4$ and the dispersed
+initial condition:
+\begin{description}
+  \item[Short-lived control] a short life span, $a_{\max}=60$ and $a_{\rm rep}=50$ weeks;
+  \item[Long-lived control] the life span of the candidates, $a_{\max}=120$ and $a_{\rm rep}=80$ weeks.
+\end{description}
+Table~\ref{tab:params} gives both in full. The null models of Section~\ref{sec:res-null} are run in a separate
+ensemble and are defined relative to \textsf{C1}: no crowding damage ($\gamma=0$); $-$R2$^*$, \textsf{C1} with R2
+switched off; the long-lived control; and ``no rules'', \textsf{C1} with all four rules switched off, which is the
+long-lived control with the calibrated attraction $\alpha=4$. Two partial ablations of \textsf{C1} complete the
+comparison: $\alpha=0$ (no attraction) and \textsf{C0} (no refuges).
+
+\begin{table}[t]
+  \centering
+  \caption{Parameters of the short-lived (SL) and long-lived (LL) controls, which are the core model with the
+  four rules switched off, and of the calibrated candidates \textsf{C0}, \textsf{C1$'$}, \textsf{C1} and \textsf{C2}.
+  Time in weeks. A dash means that the rule is inactive. The code name is the field of \texttt{Params} in
+  the \texttt{u25} package.}
+  \label{tab:params}
+  \small
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{@{}lllcccccc@{}}
+    \toprule
+    Symbol & Meaning & Code name & SL & LL & \textsf{C0} & \textsf{C1$'$} & \textsf{C1} & \textsf{C2} \\
+    \midrule
+    \multicolumn{9}{@{}l}{\emph{Space, motion and affinity}}\\
+    $L$ & lattice side (hard walls) & \texttt{grid\_size} & 30 & 30 & 30 & 30 & 30 & 30 \\
+    $\alpha$ & attraction to acquaintances & \texttt{alpha} & 1.4 & 1.4 & 4.0 & 4.0 & 4.0 & 4.0 \\
+    $\eta,\ \delta$ & affinity reinforcement, decay & \texttt{eta}, \texttt{delta} & 0.2, 0.01 & 0.2, 0.01 & 0.2, 0.01 & 0.2, 0.01 & 0.2, 0.01 & 0.2, 0.01 \\
+    $\kappa,\ p$ & aversion of the deteriorated & \texttt{crowd\_aversion}, \texttt{\_power} & -- & -- & 0.15, 4 & -- & 0.15, 4 & 0.15, 4 \\
+    \midrule
+    \multicolumn{9}{@{}l}{\emph{Social state}}\\
+    $m_c$ & community size & \texttt{m\_c} & 8 & 8 & 8 & 8 & 8 & 8 \\
+    $\gamma$ & damage per excess occupant & \texttt{gamma} & 0.1 & 0.1 & 0.1 & 0.1 & 0.1 & 0.1 \\
+    $r$ & recovery / learning rate & \texttt{rec} & 0.01 & 0.01 & 0.1 & 0.1 & 0.1 & 0.1 \\
+    $a_w$ & R1 critical window & \texttt{plast\_age\_max} & $\infty$ & $\infty$ & 12 & 12 & 12 & 12 \\
+    $\lambda$ & R2 weight of neighbours & \texttt{social\_rec\_lambda} & 0 & 0 & 1 & 1 & 1 & 1 \\
+    $w,\ s_0$ & inheritance $s_{\rm nb}=w s_f+(1-w)s_0$ & \texttt{inherit\_weight}, \texttt{s\_newborn\_base} & 1, -- & 1, -- & 0.2, 0 & 0.2, 0 & 0.2, 0 & 0.2, 0 \\
+    \midrule
+    \multicolumn{9}{@{}l}{\emph{Refuges}}\\
+    $f_R,\ c_R$ & refuge fraction, capacity (hard) & \texttt{refuge\_frac}, \texttt{\_capacity} & -- & -- & -- & 0.3, 2 & 0.3, 2 & 0.3, 2 \\
+    $\pi,\ q$ & refuge preference & \texttt{refuge\_pref}, \texttt{\_power} & -- & -- & -- & 100, 4 & 100, 4 & 1000, 1 \\
+    $b_i$ & state driving the retreat & \texttt{refuge\_pref\_basis} & -- & -- & -- & $s_i$ & $s_i$ & $h_i$ (mother) \\
+    \midrule
+    \multicolumn{9}{@{}l}{\emph{Demography}}\\
+    $N_0$ & initial individuals (age 4, $s=1$) & \texttt{n\_males}+\texttt{n\_females} & 400 & 400 & 400 & 400 & 400 & 400 \\
+    $p_0$ & conception probability & \texttt{p0} & 0.3 & 0.3 & 0.3 & 0.3 & 0.3 & 0.3 \\
+    $q_0,\ \bar\ell$ & neonatal survival, mean litter & \texttt{neonatal\_survival} & 0.95, 6.55 & 0.95, 6.55 & 0.95, 6.55 & 0.95, 6.55 & 0.95, 6.55 & 0.95, 6.55 \\
+    $a_{\min},\ a_{\rm rep}$ & reproductive ages & \texttt{repro\_age\_min}, \texttt{\_max} & 6, 50 & 6, 80 & 6, 80 & 6, 80 & 6, 80 & 6, 80 \\
+    $a_{\max},\ k$ & senescence age, steepness & \texttt{a\_max}, \texttt{k\_mort} & 60, 0.15 & 120, 0.15 & 120, 0.15 & 120, 0.15 & 120, 0.15 & 120, 0.15 \\
+    $\mu_s$ & social advance of senescence & \texttt{social\_mortality\_factor} & 0 & 0 & 0 & 0 & 0 & 0 \\
+    \bottomrule
+  \end{tabular}}
+\end{table}
+
+\subsection{Dimensionless groups, scales and expected regimes}
+\label{sec:model-groups}
+
+The qualitative behaviour depends on a few combinations of parameters; the values quoted are for \textsf{C1}. The
+scales of the model and their counterparts in Universe~25 are listed in Appendix~\ref{app:calib-scales}.
+
+\begin{itemize}
+  \item $\Pi_\gamma=\gamma/r=1$: crowding damage per excess neighbour relative to the weekly learning rate.
+  \item $\Lambda=r\,a_w=1.2$: the largest competence a juvenile can learn inside the window. A socialised
+    lineage sustains itself only if $w+\Lambda\langle\bar s_V\rangle\gtrsim1$. Fast growth lowers the
+    competence of the neighbours $\langle\bar s_V\rangle$, because novices outnumber teachers (a
+    \emph{learning dilution}). Without crowding the colony goes extinct below a boundary in $(w,\Lambda)$ and grows
+    without bound at the calibrated values (Q7). When $a_w$ is varied as well, $r$ and $a_w$ do not act through
+    their product alone: the extinction transition is located only to within the spacing of the grid, and the local
+    weight of $a_w$ relative to $r$ is about one half between $a_w=6$ and 12 weeks and about one between 12 and 24
+    (Section~\ref{sec:res-Q}). Crowding is the trigger and R2 the amplifier.
+  \item $n^*/m_c\approx0.8$ (Eq.~\eqref{eq:model-nstar}): the preferred group size of a deteriorated individual
+    relative to the damage threshold. Without refuges it decides between pools, isolation, or both; with
+    refuges it only marks the onset of homogenisation, near $n^*\approx3$--$4$ (Q5).
+  \item $\phi_R=f_Rc_R|G|/N_{\rm ad}(t_{\rm pk})\approx0.2$: refuge capacity per adult at the peak. It bounds the
+    persistently isolated fraction, $\Phi_{\rm BO}^{\rm pers}\le\phi_R$. The bound holds at all 50 points of the
+    refuge plane, so a class of $\ge10\%$ needs $f_Rc_R\gtrsim0.3$; in that plane a persistent class appears only for
+    $f_Rc_R\ge0.4$ and a strong preference (Section~\ref{sec:res-robustness}).
+  \item $n_0=N_0/|G|=0.44$ and the Damk\"ohler number $\mathrm{Da}=t_{\rm mix}/t_{\rm det}$. Here
+    $t_{\rm mix}=L^2/(4D_{\rm eff})$ is the time an individual needs to move across the lattice, with $D_{\rm eff}$ the
+    mean squared displacement over 16 weeks divided by $4\times16$, and $t_{\rm det}=t_{1/2}-t_{\rm on}$ is the time
+    the animals past the critical window (age $\ge a_w$) need to lose half of their competence ($t_{1/2}$, the first
+    week with their mean $s<0.5$) after crowding sets in ($t_{\rm on}$, the first week with 5\% of the individuals in
+    cells with $m>m_c$). These animals no longer learn, and newborns do not enter their mean until they leave the
+    window, so $t_{\rm det}$ measures deterioration and not the dilution by pups born with $s\le0.2$. In \textsf{C1}
+    $D_{\rm eff}\approx0.13$ cells$^2$ per week (8 exploratory runs), $t_{\rm mix}\approx1.7\times10^3$ weeks and
+    $t_{\rm det}\approx10$ weeks ($t_{\rm on}=6$, $t_{1/2}=16$; reference ensemble), so
+    $\mathrm{Da}\approx1.7\times10^2$. Deterioration is correlated over
+    $\xi=(4D_{\rm eff}t_{\rm det})^{1/2}\approx2$ cells, the size of the contact neighbourhood. In founder colonies the
+    relevant transport is the colonisation front: the filling time $t_{\rm fill}\approx t_{\rm pk}\approx170$--215
+    weeks against $t_{\rm det}\approx20$--30 gives $\mathrm{Da}_{\rm fill}\approx10$
+    (Appendix~\ref{sec:calib-founders}). In Universe~25 mice crossed the enclosure daily and the social organisation
+    took a whole phase~C, about 35 weeks, to die, so $\mathrm{Da}\lesssim4\times10^{-3}$. The spatial structure of the
+    model therefore emerges among animals that are almost sessile on the time scale of deterioration, which is not
+    Calhoun's regime. Colonies grow from local nuclei, so $\rho_{\rm pk}$ falls with $n_0$, from 0.40 at $N_0=400$ to
+    0.03 for eight founders.
+  \item $\Gamma=t_{\rm det}/T_{\rm gen}\approx1.1$: deterioration time relative to the generation time,
+    $T_{\rm gen}\approx9$ weeks (the interval between the median birth weeks of the first and second generations);
+    the interquartile range over runs is 1.0--1.29, and the founders, a closed cohort, give 1.2. The mean over all
+    animals of age $\ge a_{\min}=6$ would give 0.8, but that mean is diluted by the first generation, which
+    enters it with $s\le0.2$ while still inside the window: when it falls below 0.5, in week 13, the founders still
+    have $\bar s=0.66$ and are 39\% of those adults. Deterioration therefore takes of the order of one generation.
+    The value depends on how $T_{\rm gen}$ is defined: with overlapping cohorts the interval between median birth
+    weeks is not a demographic generation time, and in the null models it drops to 5 weeks (4 in some runs), below
+    the age of first reproduction, which inflates their $\Gamma$ (1.4--1.6). With the standard demographic
+    definition, the mean age of the mothers at birth ($T_{\rm gen}=14.3$ weeks in \textsf{C1}), $\Gamma\approx0.7$
+    in \textsf{C1} and 0.60--0.85 in the other arms where it was computed; $\Gamma$ is of order one under either
+    definition (Appendix~\ref{app:calib-generations}).
+    $\Gamma$ does not set the depth of the boom. With five times less crowding damage ($\gamma=0.02$) $\Gamma=1.6$
+    (1.8 on the founders), and the boom is still one to two generations deep: the mean generation of the births is
+    1.42 against 1.35, $R_{\rm net}$ of the first generation is 0.52, and O17p passes in 17 of 20 runs. Pups born
+    at $s_{\rm nb}\approx0.4$ ($s_0=0.25$) deepen the boom more at about the same $\Gamma$ (1.3): the mean
+    generation is 1.51 and $R_{\rm net}=0.62$ (20 runs per point;
+    Appendix~\ref{app:calib-generations}). The depth is set in the first step, from the founders to their offspring:
+    pups are born below the deterioration threshold, conception and pup survival scale with the parents' state, and
+    pups learn from neighbourhoods made mostly of other pups and of founders that are already deteriorating. In
+    Universe~25 the deterioration took the whole phase~C, about 35 weeks, with $T_{\rm gen}\approx10$ weeks, so
+    $\Gamma\approx3.5$ (our estimate). With a different operational definition, that is an order-of-magnitude
+    comparison, not a test.
+  \item \emph{Extinction time.} Without mortality before senescence, $T_{\rm ext}=\max_i(b_i+\ell_i)\simeq
+    t_{\rm last}+\ell_{\max}$: the time of the last birth plus the longest residual lifetime. In \textsf{C1}
+    $\ell_{\max}\approx110$ weeks with an interquartile range of a few weeks, of the order of the inverse slope of the
+    logistic hazard, $1/k\approx7$ weeks. The spread of $T_{\rm ext}$ is therefore that of $t_{\rm last}$, the
+    extreme of a sparse tail of births whose rate decays over $\tau_B=(t_{B99}-t_{B90})/\ln10\approx7$ weeks
+    ($t_{Bq}$ is the week by which a fraction $q$ of all births has occurred). At fixed density the median of
+    $T_{\rm ext}$ grows with the logarithm of the system size, from 162 weeks at $L=15$ to 184 at $L=60$, and its
+    interquartile range over the median is 0.15 for $L\le20$ and about 0.08 for $L\ge30$
+    (Appendix~\ref{app:calib-evs}). A small dispersion of $T_{\rm ext}$ is a property of how abruptly natality stops
+    and of the size of the system, not a signature of the rules. In the same way
+    $(T_{\rm ext}-t_{\rm pk})/t_{\rm pk}\approx2.1$ (Universe~25: $\ge1.84$) depends on where $t_{\rm pk}$ falls on the
+    plateau: it is 4.0 if the peak time is the start of the plateau, $t'_{\rm pk}$, and the plateau itself shrinks
+    from 51 to 17 weeks with a background mortality of 0.003 per week. Similarly $t_{\rm pk}/a_{\max}\approx0.45$
+    (0.28 with $t'_{\rm pk}$), against 0.7 in Universe~25.
+\end{itemize}
+
+\paragraph{Expected regimes and their test.}
+Before the production sweeps, the mean field (Section~\ref{sec:meanfield}) and the calibration suggested four
+regimes. The production planes test them (Section~\ref{sec:results}). The planes report the fraction of runs that
+pass a composite classifier (O17p). That fraction is not an order parameter, and its boundaries mix the mechanism
+with the thresholds of the definitions. We therefore also report continuous order parameters: $\rho_{\rm pk}$, the
+empty fraction $f_0$, the class order parameter $\Psi=\min(\Phi_{\rm BO}^{\rm pers},\Phi_{\rm CR})$ (O13p is
+$\Psi\ge0.1$), the net reproductive number of the first generation and $\tau_B$ (Section~\ref{sec:res-robustness}; the widths of the
+transitions could not be resolved with 20--30 runs per point).
+\begin{enumerate}
+  \item \emph{Recurrent growth} (A2), when recovery is individual and reversible. \emph{Confirmed}: without
+    the window $P_{\rm ext}$ falls from 1 at $r=0.02$ to 0 for $r\ge0.2$.
+  \item \emph{Unbounded growth} (A1), when crowding damage is weak or the population is homogenised.
+    \emph{Confirmed} for $\gamma=0$.
+  \item \emph{A single collapse without recovery}, the Calhoun-like regime. Extinction alone does not
+    identify it, since the long-lived demography without new rules also goes extinct. What identifies it is
+    the structure of the collapse, which requires R1 and R2. In \textsf{C0} the classes are set by
+    $(\alpha,\kappa)$, inside the band of Fig.~\ref{fig:model-schematic}(c). With refuges the band
+    disappears (Q5, refuted). No recovery appears in larger systems either: at fixed density, A2 is cleared in all
+    150 exploratory runs with $L$ from 20 to 84 (30 per size, with the single-pass refuge admission), up to about
+    21\,000 animals (Appendix~\ref{app:calib-evs}).
+  \item \emph{Trivial early collapse}: founders in one cell, where local nuclei deteriorate before the colony
+    spreads ($\mathrm{Da}_{\rm fill}\approx10$), or very strong aggregation.
+\end{enumerate}
+Persistence of the isolated class is a separate axis: it requires $\phi_R\gtrsim0.1$ and $\pi\gtrsim100$, and
+its cohort structure depends on the basis $b$ of the retreat.

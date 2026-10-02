@@ -1,0 +1,218 @@
+\section{Introduction}
+
+Beginning in July 1968, John B.~Calhoun followed a population of house mice in a closed enclosure that he called
+\emph{Universe~25} \cite{Calhoun1973}.
+Food, water and nest space were in excess, predators and epidemic disease were excluded, and emigration was
+impossible.
+From four founding pairs the colony grew roughly exponentially.
+It stopped growing at about 2200 animals, well below the 3840 the nest boxes could shelter.
+The last young to survive weaning were born shortly after the peak, and the population then aged out without ever
+recovering.
+Along the way Calhoun described a breakdown of social behaviour:
+\begin{itemize}
+\item withdrawn males gathered in pools at the centre of the floor;
+\item nursing females attacked and abandoned their young;
+\item there appeared the unwounded, non-reproducing ``beautiful ones''.
+\end{itemize}
+Small groups moved to uncrowded enclosures during the decline did not reproduce, even with partners raised without
+crowding (Marsden's work, reported in \cite{Calhoun1973}; see also \cite{Marsden1972}).
+Calhoun read the collapse as a failure of social roles and of the maturation of complex behaviour, not of resources:
+``density per se was not the major factor'' \cite{Calhoun1973}.
+Section~\ref{sec:observations} lists the reported facts with page references.
+
+The interpretation of the experiment has always been contested.
+Its popular message, ``density causes pathology'', departed from Calhoun's own emphasis on social roles and design
+\cite{RamsdenAdams2009,Ramsden2009,AdamsRamsden2024}.
+Studies of human crowding found weak or no effects of density per se \cite{Galle1972,Freedman1975}.
+For modelling, the decisive limitation is that Universe~25 was a single realization.
+Calhoun himself called the study ``observation and reconstruction of a process; it was historical''
+\cite{Calhoun1973}.
+A model tuned to the published curve therefore risks fitting one sample path of a strongly stochastic process
+\cite{GwizdallaDus2026}.
+
+We ask instead:
+\begin{quote}
+Which \emph{local} interaction rules, with unlimited resources and no rule that depends on the total population,
+generate robustly across stochastic realizations the part of Calhoun's sequence that runs from rapid growth to
+extinction?
+That part includes deceleration with social deterioration, cessation of reproduction near the peak, a decline
+without recovery, and differentiated classes of deteriorated animals.
+\end{quote}
+The latency phase and the growth from four founding pairs are part of Calhoun's sequence, but we do not claim them:
+our founder protocol reproduces them only partially (Section~\ref{sec:discussion}).
+Our core model is a lattice model in which each mouse carries an age, a sex and a continuous social state $s_i\in[0,1]$.
+The social state deteriorates under local crowding, scales conception and pup survival, and is partly inherited.
+Movement is biased towards acquaintances.
+We then add a few local rules, each with a neutral value that switches it off and recovers the core model, and each motivated by an
+observation of the original report (Section~\ref{sec:model-rules}). Most have one principal parameter; the refuge
+rule R7 has five and was designed after seeing the first candidate (Section~\ref{sec:limitations}):
+\begin{itemize}
+\item a juvenile window for social plasticity (R1);
+\item social learning of competence (R2);
+\item crowd aversion of deteriorated animals (AV);
+\item refuges of limited capacity preferred by deteriorated animals (R7).
+\end{itemize}
+Rule names follow the simulation code; rules tested and discarded are listed in Section~\ref{sec:model-rules}.
+
+Our contributions are the following. We separate throughout what is preregistered from what is post hoc, and what
+the rules \emph{produce} from what they \emph{encode}.
+\begin{enumerate}
+\item We translate Calhoun's report, checked against the original, into seventeen falsifiable patterns, five
+  refinements and four anti-patterns. Each has an operational criterion evaluated run by run, following
+  pattern-oriented modelling \cite{Grimm2005}. We report the discriminating power of every essential criterion
+  against four null models (no crowding damage; full inheritance without social learning; the long-lived demography
+  without new rules; and the calibrated candidate without its four rules) and two partial ablations (no attraction,
+  and the candidate without refuges) (Table~\ref{tab:res-null}). The preregistered forms of three criteria (O4, O10, O11) pass in null models; the primary evaluator,
+  not preregistered, redefines them. O4 and O10 remain generic. O11 discriminates when the late cohorts are scored at six weeks
+  of age, but not when they are scored at the end of the plasticity window. An additional
+  desirable pattern (O10b, not preregistered) asks for a growth phase with socially competent adults.
+\item We show that the core model without the rules, with a short life span (the short-lived control), is not
+  Calhoun-like.
+  About half of its colonies die in the first collapse, and the others oscillate with recovering natality.
+  The mean-field analysis of that model traces the oscillations to spatial pockets of healthy individuals and to
+  unconditional recovery.
+  Removing the plasticity window from the calibrated model brings back recovery and recurrent natality at fast
+  learning rates.
+\item We separate what the rules add from what the demography, the crowding damage and the design of the rules
+  already imply.
+  \begin{itemize}
+  \item \emph{The generic envelope.} A long-lived demography alone already drives every colony to extinction, so
+    extinction is \emph{not} a result of the rules. With crowding damage and the calibrated attraction, the
+    candidate without its four rules also has a low peak with free space (it passes the primary O4 in 200 of 200
+    runs, with a peak at 0.45 of the damage-threshold capacity and 74\% of the cells empty), an end of natality and
+    no rebound. Scored at the end of the plasticity window, its late-born cohorts also fail to acquire social
+    competence (O11 in 0.755 of the runs, and 0.81 in the long-lived control), through accumulated crowding damage.
+    These patterns verify that the model has a boom and its end; they are not evidence for the rules.
+  \item \emph{Consistency checks of the design.} Some patterns follow from the rules by construction, and we report
+    them as checks of the implementation, not as findings. Transplanted late-phase animals never found a colony
+    (O12), because under the plasticity window R1 an adult cannot recover and conception is proportional to the
+    social state of both partners, which is essentially zero in these animals. The isolated class is persistent
+    (O13p) because the refuge capacity equals the isolation threshold. There are no social deaths (A4) and the decline
+    is senescent (O8) because social mortality is switched off.
+  \item \emph{What the rules add and the null models lack.} Two patterns: the coexistence of crowded and
+    isolated deteriorated classes (O13), which needs crowd aversion or refuges and is a calibrated property of a
+    nearly sessile regime; and the persistence of the isolated class (O13p), which is a design property. Both
+    discriminate against three of the four null models, not against full inheritance without social learning. The
+    failure of the late cohorts (O11) is not counted here. Scored at six weeks of age, as in the primary
+    evaluator, it discriminates against all four null models, but that is partly definitional: pups are born
+    below the deterioration threshold and are still inside the plasticity window. Scored at the end of the window,
+    \textsf{C1} still passes (0.995), the dependence on the birth state disappears, and O11 discriminates against
+    neither the long-lived nor the rule-free null model (0.81 and 0.755), whose late cohorts end even lower than
+    those of \textsf{C1} (median $\bar s$ 0.07 and 0.06 against 0.13). The failure of the late cohorts is therefore mostly crowding damage.
+\item \emph{What the dynamics is.} A boom of one or two generations, followed by a plateau without births or
+    deaths and extinction by senescence. About 70\% of the births are to the founding animals, and the net
+    reproductive number falls from 3.8 to 0.4 in a single generation (reference ensemble, 200 runs,
+    Appendix~\ref{app:calib-generations}): pups are born below the deterioration threshold and learn from adults
+    who have already deteriorated. The phases appear in Calhoun's order, but B and C are compressed, and we do not
+    claim a cascade over many generations. The ratio of the deterioration time to the generation time, measured
+    on animals past the plasticity window so that newborns do not dilute it, is $\Gamma=t_{\rm det}/T_{\rm gen}$
+    $\approx1.1$ (1.2 on the founders), against about 3.5 in Universe~25 with a different operational definition; it is a heuristic
+    comparison of time scales, not the cause of the shallow boom. With
+    initial ages spread over 4--52 or 4--80 weeks the classes, the low peak and the failure of the late cohorts
+    survive, but the timing of the end of natality relative to the peak (O5) does not (item~6).
+  \end{itemize}
+\item We identify which rules are needed, conditionally on the evaluation thresholds.
+  With the class threshold of 10\%, isolation at $m\le2$, persistence of four weeks and the ensemble threshold of 0.8,
+  the minimal set for the primary outcome is R1, R2 and R7 (candidate \textsf{C1}$'$, primary outcome in
+  0.835 [0.78, 0.88] of 200 runs, borderline because the lower Wilson bound is below 0.8). With a class threshold of
+  15\% it falls to 0.33, so minimality is not a property of the rules alone. Crowd aversion (AV) is a contributing
+  rule: adding it (candidate \textsf{C1}) makes the primary outcome more reliable, through the generic criterion
+  O5, and the decline senescent (O8); it \emph{reduces} the free space at the peak (16\% of the cells empty with
+  AV, 52\% without). The contrast between \textsf{C1} and \textsf{C1}$'$ was not preregistered.
+\item We test seven preregistered hypotheses (plan fixed on 1 October 2026, before the production runs; \texttt{docs/preregistered\_plan.md}).
+  With the primary criteria the null hypothesis is rejected for six after Holm correction and the quantitative
+  prediction holds for four (Q1, Q3, Q4, Q7); with the preregistered criteria the counts are five and four, and Q2 is
+  not rejected. The only change that produces the rejection of Q2 is the post hoc choice of the end of natality in
+  O5 (the 99th percentile of the births instead of the last birth), made after exploratory runs in which the
+  alternative lowered the primary outcome of \textsf{C1} to about one half (Table~\ref{tab:deviations}). Two of the
+  four predictions that hold are consistency checks, Q1 of R1 (above) and Q4 of the demography, and the
+  preregistered contrast of Q3 is confounded by the demography. Q7 is confirmed only in the restricted sense stated
+  in Section~\ref{sec:res-Q}. Removing crowd aversion lowers the primary outcome significantly with the primary criteria, but by much less than predicted; the predicted dependence on the length of the plasticity window (Q6)
+  is not supported, because with the primary O11 the window has little or no effect on the boundary; and a
+  predicted coexistence band (Q5) is refuted. Every deviation from the preregistered plan is listed in
+  Table~\ref{tab:deviations}.
+\item We report robustness in four senses. Against stochasticity it is high. Locally around \textsf{C1} it holds
+  in most of the phase planes, with a nest period for pups (0.835 [0.78, 0.88], borderline) and with an
+  asynchronous update (1.00). Globally it is limited and relative to the sampled box: the mean primary outcome over
+  two 15-factor Latin hypercubes is 0.040 [0.026, 0.059], with 2.0\% of the points Calhoun-like, and the Sobol'
+  indices are conditional on the factors fixed after screening. Demographically the primary outcome falls to 0.55
+  with a background mortality of 0.003 per week and to 0.63 with initial ages spread over 4--80 weeks. Natality
+  still ends with the population near its maximum, but the plateau starts earlier, so the last births fall more
+  than half a peak time after its start and O5 becomes marginal (in 83 and 73 of the 90 and 74 runs that fail; the
+  others fail it by the same timing clause). O5 is generic, and the patterns that the rules add (O13, O13p), as well as
+  O11, pass in every one of these runs (Section~\ref{sec:limitations}).
+\end{enumerate}
+The model is documented with the ODD protocol \cite{Grimm2020} (Appendix~\ref{app:odd}), and the code is available in the repository \repourl.
+
+\section{Related work}
+
+\paragraph{Calhoun's experiments and their reception.}
+Calhoun's programme of crowding experiments began with wild Norway rats in an outdoor enclosure.
+There the population stabilized at about 150 adults, far below what adult survival would have allowed, because
+of very high infant mortality \cite{Calhoun1962,Calhoun1963}.
+It continued with laboratory ``universes'' for rats and mice, of which Universe~25 is the best known
+\cite{Calhoun1973}.
+His theoretical writings stress optimal group size and the saturation of social roles rather than physical density
+\cite{Calhoun1971}.
+The scientific and cultural history of these experiments, including the gap between Calhoun's interpretation and its
+popular uptake, is treated in detail in \cite{RamsdenAdams2009,Ramsden2009,AdamsRamsden2024,Dugatkin2024}.
+Earlier confined-population studies of house mice and other rodents had already reported that, with abundant food,
+population growth stops through reduced litter survival and reproduction mediated by social interference
+\cite{Southwick1955,Lidicker1965}.
+This is the empirical basis of the coupling between social state and newborn survival in our model.
+
+\paragraph{Models of Universe~25.}
+Quantitative modelling of the experiment is very recent.
+Gwizdałła and Duś \cite{GwizdallaDus2026} proposed an agent-based simulation with a daily time step and
+empirically motivated life tables and litter-size distributions.
+They calibrate the growth phase against the reported population and number of adults at day 315.
+The decline is produced by deviation factors that are triggered when the total population exceeds critical values,
+together with prescribed probabilities of litter abandonment and of becoming a ``beautiful one''.
+They obtain the qualitative shape of the curve and approximate the timing of the peak.
+They also emphasize the large dispersion across replicates and the lack of a methodological basis for the choice of
+rules.
+Mantzaris \cite{Mantzaris2025} attributes the collapse to the progressive loss of uncertainty about the social
+hierarchy in a fully visible enclosure, implemented through a game-theoretic payoff matrix whose parameters change
+across generations.
+Roman \cite{Roman2025} fits maximum-entropy unimodal curves to the population time series without a mechanistic model.
+
+Our approach differs from these in three respects:
+\begin{enumerate}
+\item all rules are local in space and use no global population thresholds;
+\item the deterioration and its maternal transmission are dynamical variables rather than prescribed
+  probabilities;
+\item validation is based on multiple qualitative patterns evaluated as distributions over stochastic replicates,
+  not on curve fitting.
+\end{enumerate}
+
+\paragraph{Social stress, maternal effects and population cycles.}
+The idea that crowding acts through physiological stress on reproduction goes back to Christian's
+adreno-pituitary hypothesis \cite{Christian1950}.
+In the population-cycle literature, the transmission of individual quality from mother to offspring---the
+\emph{maternal effect hypothesis}---produces delayed density dependence and cycles in simple two-variable models of
+density and mean quality \cite{GinzburgTaneyhill1994,InchaustiGinzburg1998}.
+Field evidence shows that maternal stress reduces reproduction and is carried over to the offspring
+\cite{Sheriff2009}.
+Our inherited social state is a spatially explicit, individual-based version of this mechanism.
+Consistent with that theory, its mean-field limit has an oscillatory regime, which we show is not the one realized
+in Universe~25.
+
+\paragraph{Allee effects and stochastic extinction.}
+Because reproduction requires that partners meet in the same cell, the model has a component Allee effect at low
+density \cite{StephensSutherland1999,Courchamp2008}.
+This has to be distinguished from social deterioration as an explanation for the absence of recovery.
+Extinction is ultimately driven by demographic stochasticity acting on an absorbing state.
+Mean times to extinction and their scaling with population size, quasi-stationary behaviour and extinction from the
+troughs of cycles are reviewed in \cite{Ovaskainen2010}.
+These provide the reference for our survival analysis of extinction times.
+
+\paragraph{Methodology for agent-based models.}
+We describe the model with the ODD protocol \cite{Grimm2020} and validate it in the spirit of pattern-oriented
+modelling \cite{Grimm2005}.
+For sensitivity analysis of stochastic agent-based models we follow the recommendations of ten Broeke et al.\
+\cite{tenBroeke2016}: exploratory one-factor-at-a-time analysis to uncover mechanisms, followed by variance-based
+global indices \cite{Saltelli2010}.
+The number of replicates is chosen by the stability of output statistics \cite{Lorscheid2012}.
+Although our aim is qualitative, the region of parameter space compatible with the reported patterns can be
+characterized with approximate Bayesian computation using pattern-based summary statistics
+\cite{Hartig2011,vanderVaart2015}.

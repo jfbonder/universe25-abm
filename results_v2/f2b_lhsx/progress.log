@@ -1,0 +1,17 @@
+[2026-10-02 07:43:02] inicio: 0/720 hechas, 720 por correr, n_jobs=4, T=400, out=results_v2/f2b_lhsx
+[2026-10-02 07:43:13] 50/720 hechas | 0.2 min | 0.22 s/corrida (pared) 0.87 s/corrida (CPU) | ETA 2.5 min | último p=1 r=9 N_max=1737 t_ext=180.0
+[2026-10-02 07:43:24] 100/720 hechas | 0.4 min | 0.22 s/corrida (pared) 0.86 s/corrida (CPU) | ETA 2.3 min | último p=2 r=19 N_max=4052 t_ext=175.0
+[2026-10-02 07:43:37] 150/720 hechas | 0.6 min | 0.24 s/corrida (pared) 0.94 s/corrida (CPU) | ETA 2.3 min | último p=3 r=29 N_max=2803 t_ext=238.0
+[2026-10-02 07:43:47] 200/720 hechas | 0.7 min | 0.22 s/corrida (pared) 0.89 s/corrida (CPU) | ETA 1.9 min | último p=4 r=39 N_max=1943 t_ext=207.0
+[2026-10-02 07:43:56] 250/720 hechas | 0.9 min | 0.22 s/corrida (pared) 0.86 s/corrida (CPU) | ETA 1.7 min | último p=6 r=9 N_max=2558 t_ext=239.0
+[2026-10-02 07:44:06] 300/720 hechas | 1.1 min | 0.21 s/corrida (pared) 0.86 s/corrida (CPU) | ETA 1.5 min | último p=7 r=18 N_max=1288 t_ext=173.0
+[2026-10-02 07:44:11] 350/720 hechas | 1.2 min | 0.20 s/corrida (pared) 0.79 s/corrida (CPU) | ETA 1.2 min | último p=8 r=29 N_max=1048 t_ext=146.0
+[2026-10-02 07:44:16] 400/720 hechas | 1.2 min | 0.19 s/corrida (pared) 0.74 s/corrida (CPU) | ETA 1.0 min | último p=9 r=39 N_max=1357 t_ext=153.0
+[2026-10-02 07:44:32] 450/720 hechas | 1.5 min | 0.20 s/corrida (pared) 0.79 s/corrida (CPU) | ETA 0.9 min | último p=11 r=9 N_max=2891 t_ext=194.0
+[2026-10-02 07:44:43] 500/720 hechas | 1.7 min | 0.20 s/corrida (pared) 0.81 s/corrida (CPU) | ETA 0.7 min | último p=12 r=19 N_max=1832 t_ext=136.0
+[2026-10-02 07:44:50] 550/720 hechas | 1.8 min | 0.20 s/corrida (pared) 0.79 s/corrida (CPU) | ETA 0.6 min | último p=13 r=29 N_max=1944 t_ext=184.0
+[2026-10-02 07:44:57] 600/720 hechas | 1.9 min | 0.19 s/corrida (pared) 0.77 s/corrida (CPU) | ETA 0.4 min | último p=14 r=38 N_max=1996 t_ext=158.0
+[2026-10-02 07:45:06] 650/720 hechas | 2.1 min | 0.19 s/corrida (pared) 0.76 s/corrida (CPU) | ETA 0.2 min | último p=16 r=9 N_max=2673 t_ext=223.0
+[2026-10-02 07:45:15] 700/720 hechas | 2.2 min | 0.19 s/corrida (pared) 0.76 s/corrida (CPU) | ETA 0.1 min | último p=17 r=19 N_max=1748 t_ext=161.0
+[2026-10-02 07:45:18] 720/720 hechas | 2.3 min | 0.19 s/corrida (pared) 0.76 s/corrida (CPU) | ETA 0.0 min | último p=17 r=39 N_max=1713 t_ext=163.0
+[2026-10-02 07:45:18] fin de la invocación: 720/720 hechas, 0 fallas, 2.3 min

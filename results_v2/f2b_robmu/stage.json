@@ -1,0 +1,29 @@
+{
+ "stage": "robmu",
+ "kind": "sweep",
+ "reps": 60,
+ "T": 700,
+ "crn": false,
+ "series_every": 0,
+ "full_series": false,
+ "preset": null,
+ "priority": 2,
+ "c_cpu": 0.933,
+ "analysis": "robmu",
+ "q": "V2-rob",
+ "base_seed": 25332,
+ "axes": [
+  "mu_bg",
+  "crowd_aversion"
+ ],
+ "n_points": 12,
+ "runs": 720,
+ "columns": [
+  "mu_bg",
+  "crowd_aversion"
+ ],
+ "preset_main": "calhoun_C1",
+ "tag": "C1",
+ "primary": "O17p",
+ "reps_run": 60
+}

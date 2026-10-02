@@ -1,0 +1,109 @@
+
+\section{Mean-field analysis}
+\label{sec:meanfield}
+
+The macroscopic behaviour of the agent-based model is governed by two slow variables: the population size $N(t)$
+and the mean social state $S(t)=N^{-1}\sum_i s_i$. A hierarchy of mean-field descriptions explains the regimes of
+the core model without the rules, extracts the mechanism and the thresholds of the irreversibility rules R1 and R2, and gives the
+quantitative predictions tested in Section~\ref{sec:res-Q}. The analysis itself is in
+Appendices~\ref{app:meanfield} and~\ref{app:mf-supp}; here we state its scope and its predictions, with their
+outcome.
+
+\subsection{Scope}
+\label{sec:mf-scope}
+
+Most of the mean-field analysis describes the \emph{short-lived control} and the long-lived control (the core
+model without the four rules: $a_{\max}=60$ or 120, $\alpha=1.4$, $r=0.01$, $\gamma=0.1$;
+Section~\ref{sec:model-candidates}), not the calibrated candidates. In that model
+reproduction is limited by mate encounter, which gives a built-in Allee effect, and deterioration is driven by the
+Poisson tail of the local occupancy, which makes the social state a switch between recovery and loss at a
+population $N^*$; a two-variable mean field then has a superstable limit cycle, the oscillations of the spatial
+model are sustained by \emph{healthy pockets} of uncrowded individuals, and extinction is a mixture of an early
+deterministic-like mode and a rare late mode, without secular drift of the peaks. Its correspondence with
+\textsf{C1} is limited: the switch point ($N^*\approx6200$ with Poisson occupancy, 3900--4600 with negative-binomial
+occupancy of dispersion $\xi=1$--2, 5300 for $\xi=5$) lies close to the damage-threshold capacity $K_\gamma=7200$ and
+far above the peak of \textsf{C1}
+($\approx2600$), which is set by aggregation and refuges; under R1 adults do not recover, so the limit cycle does not
+exist in \textsf{C1}; and the first-moment closure fails where it matters (at $N=1600$ the effective weekly loss of
+social state is 0.75, against 0.001 predicted with Poisson occupancy). What carries over to \textsf{C1} is the demographic law of phase D, Eq.~\eqref{eq:phaseD}, which uses only the
+mortality; the capacity bound $\Phi_{\rm BO}^{\rm pers}\le\phi_R$ of Section~\ref{sec:model-groups}; and two
+heuristic statements about R2 with the parameters of \textsf{C1}, the elasticity $\theta$ of Q6 and the
+generational map of Q7. Under R1 recovery becomes a \emph{lineage} process, whose bottleneck is the fecundity
+$s_f^2s_m$ of deteriorated parents (Table~\ref{tab:lineage}); under R2 the recovery time grows with the
+social-learning weight $\lambda$ and is a lower bound for the irreversibility threshold (Eq.~\eqref{eq:trec}). A
+kinetic mean field with persistent cell disorder confirms both rules in the long-lived scenario for the two rates
+it was run with, $r\in\{0.01,0.03\}$: R1 gives certain extinction for every window $a_w\le24$, and R2 alone needs a
+weight $\lambda$ above a threshold that grows with $r$ (defining the threshold as the first value of the grid
+$\{0,0.3,0.5,0.7,0.9,1\}$ at which at least half of the 10 seeds go extinct: $\lambda_c\le0.3$ at $r=0.01$, with
+8/10 seeds already at 0.3, and $\lambda_c\in(0.7,0.9]$ at $r=0.03$). These are bounds and orders of magnitude, not
+predictions for \textsf{C1}.
+
+\subsection{Predictions for the calibrated candidate and their outcome}
+\label{sec:mf-predictions}
+
+Before the production sweeps, the analysis was turned into quantitative predictions for \textsf{C1} (Q1--Q7,
+Section~\ref{sec:stats}). Q2 (necessity of each rule) comes from the calibration; the other six have a mean-field
+origin, and only Q3--Q4, Q6 and Q7 rest on pieces that carry over to \textsf{C1}. The outcomes below are those of
+the production runs with the primary evaluator; where the preregistered evaluator gives a different verdict it is stated
+(Section~\ref{sec:res-Q}).
+
+\begin{description}
+\item[Q1, transplant.] Under R1, phase-D animals ($s\approx0$) cannot found a colony, because their recovery must
+  pass through reproduction (Table~\ref{tab:lineage}); with individual recovery at $r=0.1$ the time to viability,
+  about 3 weeks, is shorter than the fertile time left, so they can, up to an age ceiling.
+  \emph{Outcome:} the null hypothesis is rejected (0/60 against 51/60 at $1.75\,t'_{\rm pk}$) and the predicted rate
+  in the enclosure without R1 and R2 ($\ge0.25$) is reached (0.85); at the later sampling time of the preregistered
+  protocol the same animals give 12/60, because of the age ceiling. Since the transplanted animals have $s\approx0$
+  and fecundity scales as $s_f^2s_m$, the 0/60 follows from R1 by construction: Q1 is a consistency check of R1, as
+  Q4 is of the demography. Transplants of intermediate animals confirm the bottleneck (8\% found a colony under R1
+  against 95\% without it) but not the collapse of the lineage: their offspring settle at the parents' level.
+\item[Q3, Q4, the phase-D law.] Once births stop, extinction is the death of the last survivor of a closed, ageing
+  population. With $n$ animals born at the last birth event,
+  \begin{equation}
+    \mathbb E[T_{\rm ext}-t_{\rm last}]\simeq\sum_{a\ge1}\Bigl[1-\bigl(1-S(a)\bigr)^n\Bigr],\qquad
+    S(a)=\prod_{b=1}^{a}\bigl[1-h(b)\bigr],\qquad
+    h(b)=\bigl[1+e^{-k(b-a_{\max})}\bigr]^{-1},
+    \label{eq:phaseD}
+  \end{equation}
+  where $S(a)$ is the probability that an animal born at $t_{\rm last}$ is still alive $a-1$ weeks later (the
+  product starts at $b=1$ because the first mortality draw happens at age one, in the week of birth). The
+  expectation grows one-to-one with $a_{\max}$ and only logarithmically with $n$.
+  \emph{Outcome:} confirmed (slope $0.996\pm0.014$); the logarithmic dependence on $n$ appears in the lattice-size
+  stage. Since this follows from the demography alone, it is a consistency check rather than a test of the rules.
+\item[Q5, preferred occupancy.] A deteriorated individual weighs a cell with $n$ acquaintances by
+  $(1+\alpha n)e^{-\kappa n}$, maximal at $n^*=1/\kappa-1/\alpha$ (Eq.~\eqref{eq:model-nstar}); pools above $m_c$
+  and isolated animals were predicted to coexist only if $n^*\approx m_c$. The prediction was derived and calibrated
+  on \textsf{C0}, which has no refuges, and the preregistration should have anticipated that R7 decouples the
+  isolated class from this balance. \emph{Outcome:} refuted in \textsf{C1}.
+\item[Q6, window against rate.] Under R2 with $\lambda=1$ a juvenile ends the window with
+  $s(a_w)=w\,s_f+r\int_0^{a_w}\bar s_V(a)\,da$; the elasticity of the learned part is one with respect to $r$ and
+  $\theta=\bar s_V(a_w)/\langle\bar s_V\rangle_{[0,a_w]}<1$ with respect to $a_w$, if the competence of the
+  neighbours decreases with age.
+  \emph{Outcome:} the prediction $0<\theta<1$ is not supported with the primary evaluator: the Calhoun-like boundary
+  of the plane is set by the learning rate and the window has little or no effect ($\hat\theta=-0.15$
+  [$-0.20$, $-0.05$] in a single-index model that an additive model beats, $\Delta{\rm QAIC}=28$); with the
+  preregistered evaluator the single-index model is the preferred one and gives $\hat\theta=0.30$ [0.15, 0.50], as in
+  the runs of the preregistered design. The difference is the criterion O11: measured on the matured late cohorts, the boundary is set by their
+  socialisation at fast learning, where a longer window fails less often, so the weak dependence on $a_w$ runs
+  against the predicted sign without amounting to a reversal. The elasticity argument describes the learned
+  competence at the end of the window, not which cohorts end up below the threshold.
+\item[Q7, generational map.] Without crowding, the mean competence at maturity obeys
+  \begin{equation}
+    S_{g+1}=w\,\tilde S_g+\varphi\,\Lambda\,S_g,\qquad \Lambda=r\,a_w,\qquad
+    \tilde S_g=\frac{\mathbb E[s^3]}{\mathbb E[s^2]}\equiv\sigma S_g,
+    \label{eq:genmap}
+  \end{equation}
+  where $\sigma\ge1$ is the selection factor of the birth flux and $\varphi$ the competence of a pup's neighbours
+  relative to $S$. Competence dies out if $\sigma w+\varphi\Lambda<1$, and since the reproduction number
+  $R_0(S)\approx70\,S^3$ of the long-lived demography falls below one for $S<0.24$, the colony then goes extinct
+  \emph{without} crowding; at the \textsf{C1} values ($w=0.2$, $\Lambda=1.2$) the map is supercritical.
+  \emph{Outcome:} the test confirms an endogenous collapse without crowding in the subcritical corner, which is not
+  Calhoun-like because the colonies first overshoot the capacity. With $a_w$ varied, the transition in
+  $\Lambda=r\,a_w$ falls in the same grid bracket for $a_w=12$ and 24 and one grid step lower for $a_w=6$, so the
+  exponent of $a_w$ relative to $r$ lies in $(0,1)$ between 6 and 12 weeks and is compatible with 1 between 12 and
+  24; the grid resolves neither the preregistered equivalence margin $[2/3,3/2]$ nor a single exponent (51 of 54
+  points have $P_{\rm ext}\in\{0,1\}$), so the product form holds only approximately and short windows are less
+  effective than it predicts. The linearity of the boundary in $(w,\Lambda)$ is imposed by the logistic predictor,
+  and the fitted $\hat\varphi\approx1.1$--1.2, above the preregistered $\varphi\le1$, has no valid interval.
+\end{description}
+The status of the exploratory mean-field statements is listed in Appendix~\ref{app:mf-supp}.

@@ -1,0 +1,5 @@
+point,crowd_aversion,refuge_capacity,refuge_frac,refuge_hard,refuge_pref,alpha
+0,0.15,2,0.3,strict,100.0,4.0
+1,0.0,2,0.3,strict,100.0,4.0
+2,0.15,1,0.0,False,0.0,4.0
+3,0.15,2,0.3,strict,100.0,0.0

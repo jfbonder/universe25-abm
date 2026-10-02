@@ -1,0 +1,40 @@
+{
+ "stage": "abl2",
+ "kind": "sweep",
+ "reps": 40,
+ "T": 600,
+ "crn": false,
+ "series_every": 0,
+ "full_series": false,
+ "preset": null,
+ "priority": 0,
+ "c_cpu": 2.333,
+ "analysis": "abl2",
+ "q": "Q2",
+ "base_seed": 25304,
+ "rules": [
+  "R1",
+  "R2",
+  "AV",
+  "R7"
+ ],
+ "n_points": 12,
+ "runs": 480,
+ "columns": [
+  "plast_age_max",
+  "plast_outside_rec",
+  "social_rec_lambda",
+  "inherit_weight",
+  "s_newborn_base",
+  "rec",
+  "crowd_aversion",
+  "refuge_frac",
+  "refuge_pref",
+  "refuge_hard",
+  "gamma"
+ ],
+ "preset_main": "calhoun_C1",
+ "tag": "C1",
+ "primary": "O17p",
+ "reps_run": 40
+}

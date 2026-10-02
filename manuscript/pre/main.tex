@@ -1,0 +1,71 @@
+\documentclass[pre,twocolumn,superscriptaddress,showpacs]{revtex4-2}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{dcolumn}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\graphicspath{{figs/}}
+\providecommand{\todo}[1]{{\color{red}\textbf{[TODO}\ifx\relax#1\relax\else: #1\fi\textbf{]}}}
+\newcommand{\repourl}{\url{https://github.com/jfbonder/universe25-abm}}
+\newcommand{\zenododoi}[1]{\href{https://doi.org/#1}{doi:#1}}
+\newcommand{\extended}{the extended version in the repository}
+
+\begin{document}
+
+\title{An Agent-Based Model for the Social Collapse of Calhoun's Universe~25 Experiment}
+
+\author{Julián Fernández Bonder}
+\email{jfbonder@dm.uba.ar}
+\affiliation{Departamento de Matemática, FCEN, Universidad de Buenos Aires, Buenos Aires, Argentina}
+\affiliation{Instituto de Cálculo, UBA--CONICET, Buenos Aires, Argentina}
+
+\date{\today}
+
+\begin{abstract}
+We ask which \emph{local} interaction rules suffice to reproduce, qualitatively, the social collapse of Calhoun's
+Universe~25, where a mouse colony with unlimited resources stopped reproducing and died out.
+In a lattice agent-based model each individual carries a partly inherited social state that deteriorates under
+crowding; seventeen observed patterns are evaluated run by run against null models.
+Crowding and a long-lived demography alone produce the envelope of the collapse: a peak well below
+capacity, the end of natality, largely the social failure of late-born cohorts, and extinction.
+Four local rules (a juvenile plasticity window, social learning, crowd aversion and refuges of limited capacity) add
+coexisting crowded and isolated deteriorated classes, absent from most null models; the persistence of the isolated
+class follows from the refuge design.
+The full set of patterns holds in 99.5\% of the runs; with a small background mortality or spread initial ages it
+falls to 55--63\%, only through a generic timing criterion.
+The dynamics is a boom of one or two generations, not Calhoun's multi-generational sequence.
+\end{abstract}
+
+\maketitle
+
+\input{sections/intro}
+\input{sections/model}
+\input{sections/methods}
+\input{sections/results}
+\input{sections/discussion}
+
+\section*{Data availability}
+All code, simulation outputs and analysis scripts are available in the repository \repourl; the archived
+version will be deposited in Zenodo (\zenododoi{TBD}). The model is implemented in the Python package
+\texttt{u25}, and the candidates of this paper are the presets \texttt{calhoun\_C1p} (\textsf{C1}$'$) and
+\texttt{calhoun\_C1} (\textsf{C1}). The numbers quoted here are taken from the extended version, whose results are
+dumped, with their ensembles, to \texttt{results\_v2/results\_numbers.json}, and all figures are regenerated from the scripts of the
+repository, as described in its README. An extended version with all analyses (the calibration, the mean-field analysis and the complete
+results), the full ODD description, the code and the data is available in the repository \repourl.
+
+\section*{Declaration of generative AI use}
+This work was carried out with Claude (Anthropic), used through Claude Code in a multi-agent setting: agents with
+the roles of mathematician, physicist, programmer and literature reviewer, coordinated by a principal agent. Claude
+took part in implementing the code, running the simulations, the statistical analysis, the literature review and the
+writing of the manuscript. An independent system of Claude agents carried out an internal review in three rounds. The
+author designed and supervised the project, reviewed all of its content and takes full responsibility for it.
+
+\bibliographystyle{apsrev4-2}
+\bibliography{refs}
+
+\end{document}

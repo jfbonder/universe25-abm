@@ -1,0 +1,110 @@
+\providecommand{\extended}{the extended version in the repository}
+\section{Patterns, null models and statistical design}
+\label{sec:methods}
+
+\paragraph{Patterns.}
+Universe~25 is a single realization, so we do not fit its population curve. We extract from Calhoun's report
+\cite{Calhoun1973} seventeen qualitative, falsifiable patterns (O1--O17) and four anti-patterns (A1--A4), each
+translated into an operational criterion on simulated time series, and evaluate every criterion as a
+\emph{distribution over stochastic replicates}, in the spirit of pattern-oriented modelling \cite{Grimm2005}. A
+criterion returns PASS, MARGINAL, FAIL or NOT APPLICABLE (NA) for each run; for an ensemble we report the fraction
+$f$ of PASS runs with a 95\% Wilson interval. An essential (E) pattern is reproduced if $f\ge0.8$, a desirable (D)
+pattern if $f\ge0.5$. One model step is one week, and Calhoun's dates enter only through dimensionless ratios of
+the peak time $t_{\rm pk}$, the peak size $N_{\rm pk}$ and the end of surviving births $t_{B0}$.
+Table~\ref{tab:observations} summarizes the patterns; the full operational definitions and the numbers taken from
+the report are in the Supplemental Material (SM), Tables~S1 and~S2. Patterns that follow from the rules by
+construction are marked $^\ddagger$ and reported as consistency checks, not as findings: O12 from R1 together with
+$p_{\rm conc}\propto s_fs_m$, O13p from R7 with $c_R=2$, and O8 and A4 from the absence of social mortality
+(Sec.~\ref{sec:model}).
+
+\begin{table*}[t]
+\centering
+\caption{Qualitative patterns (O) and anti-patterns (A) of Universe~25 \cite{Calhoun1973}, with their operational
+criteria in short form (full definitions in the SM, Table~S1). E = essential, D = desirable, X = exploratory.
+$^\S$Not preregistered: the preregistered form also passes in null models (SM, Table~S5).
+$^\ddagger$Holds by construction (consistency check). $^\dagger$Not preregistered (defined after calibration).
+$t_{\rm pk}$, $N_{\rm pk}$: time and size of the peak; $t_{B0}$: end of surviving births; $K_\gamma=m_c|G|$ is
+the population at which every cell would sit at the damage threshold, not a physical capacity; $\bar s_{\rm ad}$:
+mean social state of the adults (age $\ge6$ weeks); $m$: cell occupancy. The primary evaluator replaces
+$t_{\rm pk}$ by the start of the plateau $t'_{\rm pk}$ and, in O5, $t_{B0}$ by $t_{B99}$ (text).}
+\label{tab:observations}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabular}{@{}p{1.0cm}p{7.3cm}p{8.6cm}@{}}
+\toprule
+ID & Observation (page in \cite{Calhoun1973}) & Criterion \\
+\midrule
+O1 E & 104 days of ``social turmoil'' before the first litters (82) & founders only: $t_{\rm lag}/t_{\rm pk}\in[0.10,0.35]$ \\
+O2 E & exponential growth, doubling time ${\approx}55$ days (83) & $R^2\ge0.90$ for $\log N$ in the growth window \\
+O3 E & doubling time rises to ${\approx}145$ days from $N=620$ (83--84) & growth rate ratio $r_B/r_C\ge2$; phase C $\ge0.1\,t_{\rm pk}$ \\
+O4 E$^\S$ & peak of 2200 against shelter for 3840; 20\% of nest boxes empty (82) & $N_{\rm pk}/K_\gamma\le0.8$ and empty-cell fraction $f_0\ge0.10$ at the peak \\
+O5 E & growth ``abruptly ceased'' on day 560; last surviving young ${\approx}$day 600 (85) & $N(t_{B0})/N_{\rm pk}\ge0.7$ and $(t_{B0}-t_{\rm pk})/t_{\rm pk}\le0.5$ \\
+O6 E & no recovery of the remnant groups (85) & no rebound $\ge0.1\,N_{\rm pk}$; birth-rate hysteresis $A_H\le0.1$ \\
+O7 E & total demise; last male projected on day 1780 (85) & run extinct by $T$; ensemble $P_{\rm ext}(T)\ge0.9$ (Kaplan--Meier) \\
+O8 D$^\ddagger$ & decline through senescence (85); slow at first, $N=2056$ on day 736 (83) & $(T_{\rm ext}-t_{\rm pk})/t_{\rm pk}\ge1$; O8b: $N(1.31\,t_{\rm pk})/N_{\rm pk}\ge0.8$ \\
+O9 D & 27 survivors (23 F, 4 M), all old (83) & no young in the remnant; female fraction $>0.5$ \\
+O10 E$^\S$ & ``death of societal organization'' by the end of phase C (85); 14 functional groups during growth (83--84) & $\bar s_{\rm ad}<0.5$ before and at the peak; O10b (D$^\S$): $\bar s_{\rm ad}\ge0.5$ until $0.5\,t_{\rm pk}$ \\
+O11 E$^\S$ & young ``prematurely rejected by their mothers''; behaviours fail to mature (85); 18\% of late females ever conceived & $s$ at maturity decreasing across cohorts and $<0.2$ for the cohorts born in the second half of natality (NA below 30 animals); O11b (D): fraction ever conceived $\le0.3$ \\
+O12 E$^\ddagger$ & mid-phase-D animals moved to empty universes failed to reproduce, even with healthy partners (85--86) & transplant in silico: $P_T(\mathrm D)\le0.1$, $P_T(\mathrm B)\ge0.5$ \\
+O13 E & withdrawn males pooled and wounded; ``beautiful ones'' isolated, unwounded (84--85, 88) & crowded ($m>8$) and isolated ($m\le2$) deteriorated classes coexist, each $\ge10\%$ of adults; O13p (E$^{\dagger\ddagger}$): isolated class persists $\ge4$ weeks; O13b (D): isolated class later-born, $\ge50\%$ after $0.8\,t_{\rm pk}$ \\
+O14 D & ``behavioural sink''; births from 13 to 111 per brood group (81, 83--84) & dispersion index $\ge2$ at the peak; birth Gini above the $\alpha=0$ control \\
+O15 D & resorption and pre-weaning loss rise; conceptions until ${\approx}$day 920 (85) & infant mortality increasing, $\ge0.9$ after $t_{B0}$; O15b: $(t_{C0}-t_{B0})/t_{\rm pk}\ge0.1$ \\
+O16 X & aggression of nursing females and withdrawn males (84--85) & not modelled \\
+O17 -- & robustness: ``it was historical'' (88) & all applicable E patterns pass and no anti-pattern; strict form O17p $=$ O17 $\wedge$ O13p (text) \\
+\midrule
+A1--A4 & logistic saturation; cycles with recovery of births; demographic before social collapse; deaths from deterioration$^\ddagger$ & plateau within 10\% of $N_{\rm pk}$ for $\ge100$ weeks; births resume to $\ge10\%$ of their maximum or $\ge2$ rebounds; per-capita fecundity halves only after $t_{\rm pk}$; social share of deaths $\ge0.5$ \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\paragraph{Null models.}
+A criterion is informative only if it can fail. For every essential pattern we therefore also report its pass
+rate in four null models run from the initial condition of \textsf{C1} ($n=200$ each): no crowding damage
+($\gamma=0$); full inheritance without social learning ($-$R2$^*$: $w=1$, individual recovery at $r=0.01$); the
+long-lived control (``long'', Sec.~\ref{sec:model}); and \textsf{C1} without its four rules (``none'', the long-lived
+control with $\alpha=4$); and in two
+partial ablations of the reference ensemble, no attraction ($\alpha=0$) and the candidate without refuges
+(\textsf{C0}). By a rule fixed before the runs, a criterion is \emph{generic} if it passes ($f\ge0.8$) in at least
+two of the four null models, and it \emph{discriminates} against a model if the upper Wilson bound of its pass rate
+there is below 0.8 and the Newcombe interval of the difference with \textsf{C1} excludes zero. A generic criterion
+is not counted as evidence for the rules.
+
+\paragraph{Primary outcome and the two evaluators.}
+The per-run primary outcome is \emph{O17p}: every applicable essential pattern passes, no anti-pattern is
+triggered, and the isolated class of O13 is persistent. NA counts as a failure, so that no pattern is passed
+vacuously; with the default initial condition ($N_0=400$) O1--O3 are not applicable and are excluded by design, and
+are studied separately with a founder protocol. Every run is scored with two evaluators. The \emph{preregistered}
+evaluator takes $t_{\rm pk}=\arg\max N$. Without mortality before senescence the maximum falls on the
+last birth before the first death, 21 weeks after the population has reached its plateau, and every criterion
+normalized by $t_{\rm pk}$ inherits this ambiguity; moreover the preregistered forms of O10 and O11 passed in null
+models, O10 because pups born with $s\le w\,s_f\le0.2$ dilute the mean in any growing colony and O11 vacuously when
+no animal is born in its window. The \emph{primary} evaluator, not preregistered but fixed before the production runs, therefore takes the peak time at the start of the plateau
+($t'_{\rm pk}$, the first week with $N\ge0.98\,N_{\max}$), the end of natality in O5 at the week $t_{B99}$ by which
+99\% of the births have occurred, O4 with free space at the peak ($f_0\ge0.10$, which had been an informal
+calibration target), O10 on the adults, O11 on the cohorts born in the second half of natality, scored at sexual
+maturity (six weeks), and the crowded class at $m>8$. One option, $t_{B99}$, was adopted after exploratory runs had
+shown that the alternative (the last sustained birth) fails O5 in half of the \textsf{C1} runs; it is a choice
+informed by the result and the only one on which a confirmatory decision (Q2) depends, so both options are
+reported (Sec.~\ref{sec:res-Q}). Every deviation from the preregistered plan is listed in the SM (Table~S12).
+
+\paragraph{Statistical design.}
+The unit of analysis is the independent stochastic replicate (seeds derived from a base seed, the design point and
+the replicate; common random numbers across design points in the screening and variance-based designs). The design
+comprises production ensembles of the candidates, controls and null models ($n=200$; 95\% Wilson half-width at most
+$0.07$), a $2^4$ factorial ablation of the rules (single ablations $n=120$, multiple $n=40$), transplant experiments
+(60 replicates per arm), phase planes around \textsf{C1} (30 runs per point, 100 at the 40 points nearest to a
+boundary), robustness variants ($n=200$) and a global sensitivity analysis: Morris screening over 15 factors, two
+independent 15-factor Latin hypercubes (200 points each, 10 runs per point, plus 40 runs at 18 boundary points) and
+Sobol' indices with the Saltelli design and Jansen estimators \cite{Saltelli2010} over 11 factors ($N=256$, 6
+runs per point), reported with bootstrap intervals and an empirical noise floor (the same estimators applied to
+the split-half contrast of the replicate means). Seven confirmatory hypotheses (Q1--Q7; Sec.~\ref{sec:res-Q}) with
+quantitative predictions were fixed before the production runs and form one family with Holm correction
+\cite{Holm1979} at $\alpha=0.05$; a second family compares \textsf{C1} with \textsf{C2} on 29 rows. Rejection of
+a null hypothesis and fulfilment of the prediction are reported separately; exploratory contrasts are controlled
+with Benjamini--Hochberg at 10\%, and analyses not fixed before the production runs are labelled post hoc. Intervals are 95\%
+intervals (Wilson for proportions, Newcombe for their differences, percentile bootstrap over runs or design
+points, profile likelihood for exponents). Extinction times are right-censored at the horizon $T$ and summarized
+by Kaplan--Meier estimates and log-rank comparisons, their spread by the interquartile range over the median of
+the Kaplan--Meier estimate; means over extinct runs only are never reported. The production program comprises 51\,828
+simulations and 960 transplant replicates in 26 stages (SM, Table~S11).

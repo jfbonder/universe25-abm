@@ -1,0 +1,390 @@
+\section{Results}
+\label{sec:results}
+
+All results come from the production design of Section~\ref{sec:stats}: the preregistered stages, with the
+exact refuge capacity and the primary evaluator ($t'_{\rm pk}$, $t_{B99}$, free space in O4, O10
+on adults, O11 on the second half of the births, crowded class at $m>8$; Table~\ref{tab:deviations}), plus seven
+stages not in the preregistered plan; 51\,828 simulations and 960 transplant replicates. Every run was also scored with the preregistered
+evaluator and with each option changed separately (Appendix~\ref{app:res-rescoring}). Unless stated otherwise, the
+numbers for \textsf{C1}, \textsf{C1}$'$, \textsf{C0} and the $\alpha=0$ control come from one reference ensemble
+($n=200$, $T=600$), those of \textsf{C2} from its production ensemble ($n=200$, $T=700$), and the null models, among them the long-lived
+control (the core model with the four rules switched off, $\alpha=1.4$ and $a_{\max}=120$ weeks;
+Section~\ref{sec:model-candidates}), start from the initial condition of \textsf{C1} (Appendix~\ref{app:res-ensembles}). $f$ denotes the
+fraction of runs that pass a pattern; intervals are 95\% Wilson intervals unless another kind is named. Pass
+fractions are rounded to two decimals in the tables; in the text, O17p of the $n=200$ ensembles is quoted with three
+(199/200 $=0.995$, 167/200 $=0.835$, 141/200 $=0.705$), because the third decimal is exact there and separates 0.995
+from 1.00.
+
+\subsection{Production ensembles}
+\label{sec:res-production}
+
+\paragraph{\textsf{C1} reproduces every applicable essential pattern.}
+Each applicable essential pattern passes in at least 99\% of the 200 runs, and the primary outcome O17p in
+$f=0.995$ [0.97, 1.00]; the independent ensemble at $T=700$ gives 0.98 [0.95, 0.99], the preregistered evaluator 0.98
+and the single-pass refuge admission, run as a variant, 0.995: neither the admission rule nor the
+seeds change the primary outcome.
+The time course (Fig.~\ref{fig:res-trajectories}) is a single boom, a plateau and an extinction by old age. The
+mean social state of the adults (age $\ge6$ weeks, which includes the maturing pups of the first cohort) falls below
+0.5 at week 13 [13, 14], while the population is still growing. Part of this fall is demographic dilution by pups
+born at $s=0$: measured on the animals past the plasticity window ($a\ge a_w=12$), or on the founders alone, the
+crossing comes at week 16, so that deterioration takes of the order of one generation, $\Gamma=t_{\rm det}/T_{\rm gen}\approx1.1$
+($t_{\rm det}\approx10$ weeks, $T_{\rm gen}\approx9$; 1.2 on the founders; Section~\ref{sec:model}). The socially
+functional growth phase is short either way: O10b passes in 0.02 of the runs with the adult mean of the primary
+evaluator and in 0.28 (marginal in the rest) when measured on the animals past the window, a phase B of 13 weeks
+that holds two thirds of the births, against 30 weeks in Universe~25. The population comes within 2\% of
+its maximum at $t'_{\rm pk}=34$ [32, 36] weeks, 99\% of the births have occurred by week 40, the last surviving
+birth is at week 59, the plateau lasts 51 [49, 53] weeks, and the colony then ages at one week per week and dies
+out at week 169 [167, 171] (Kaplan--Meier median). The peak uses $\rho_{\rm pk}=0.36$ of the damage-threshold
+capacity $K_\gamma=m_c|G|$ and leaves 16\% of the cells empty (Universe~25: 0.57 and about 20\%; an agreement in
+sign only, and $f_0$ was used in the calibration); 17\% of the adults form a persistent isolated class (0.6\% in
+\textsf{C0}). The desirable patterns are only partly reproduced: O8 passes in 0.62 [0.56, 0.69] of the runs, O9 in
+0.45 and O13b in none (Table~\ref{tab:res-production-si}).
+Without mortality before senescence the maximum $t_{\rm pk}=\arg\max N$, at week 55 [50, 60], falls on the last
+birth before it in 69\% of the runs, 21 weeks after the plateau begins; every criterion normalised by the peak
+time inherits this ambiguity, which is why the primary evaluator uses $t'_{\rm pk}$ and $t_{B99}$. The decline
+lasts $(T_{\rm ext}-t_{\rm pk})/t_{\rm pk}=2.07$ peak times with $\arg\max N$, close to Calhoun's 1.84--2.2, but
+3.97 with $t'_{\rm pk}$: this agreement is not a robust result.
+
+\paragraph{\textsf{C1}$'$, controls and \textsf{C2}.}
+\label{sec:res-c1c2}
+\textsf{C1}$'$ (R1 + R2 + R7, without AV) passes O17p in 0.835 [0.78, 0.88] of the runs (0.93 with the preregistered
+evaluator). What fails is O5: in 15\% of its runs the 99th percentile of the births comes when the population has
+already fallen below $0.7\,N_{\rm pk}$ or later than $1.5\,t'_{\rm pk}$, because its tail of births is longer
+($\tau_B=8.7$ against 6.9 weeks). Without AV the deteriorated animals gather in pools that leave half of the lattice
+empty at the peak ($f_0=0.52$ against 0.16) and the senescent decline O8 passes in 0.21 instead of 0.62.
+\textsf{C0} passes every instantaneous essential pattern (O17 in 0.92) but its isolated class is never persistent
+(O17p $=0$): persistence is what refuges add. Without attraction ($\alpha=0$) the colony fills 71\% of $K_\gamma$
+with 3\% of empty cells and fails the primary O4 and O14. The short-lived control, the core model with the four rules switched off, $\alpha=1.4$ and a short life
+($a_{\max}=60$, $a_{\rm rep}=50$ weeks), fails O11 and O13 in every run, and 53\% of
+its colonies survive the first collapse and oscillate; the long-lived control, identical except for $a_{\max}=120$
+and $a_{\rm rep}=80$, goes extinct in
+0.98 of the runs, with a peak at 0.85 of $K_\gamma$ and no failure of the late cohorts scored at six weeks of age
+(scored at the end of the plasticity window they fail in 0.81 of the runs from the initial condition of \textsf{C1};
+Section~\ref{sec:res-null}). Near-certain extinction is
+therefore not specific to the new rules; what they add is the structure of the collapse.
+\textsf{C2}, which ties the retreat to maternal socialisation, makes its isolated class a later-born cohort (O13b at
+least marginal in 200/200 runs against 0/200 in the \textsf{C1} ensemble of the same stage and 2/200 in the
+reference ensemble) but pays with its demography: O8 fails in every run, O5
+falls to 0.815 and O4 to 0.90, and O17p is 0.705 [0.64, 0.76] against 0.98 in the independent \textsf{C1}
+ensemble of the same stage ($T=700$; Holm $p=4\times10^{-14}$ over the 29 rows of the \textsf{C1}--\textsf{C2}
+family, 27 distinct tests; 0.88 with the preregistered evaluator), whereas the calibration had predicted no difference
+(Appendix~\ref{app:res-c1c2}).
+
+\begin{table}[t]
+\centering
+\caption{Production ensembles: fraction of runs that pass each essential pattern, primary evaluator.
+\textsf{C1}, \textsf{C1}$'$, \textsf{C0} and the $\alpha=0$ control: the reference ensemble ($n=200$, $T=600$);
+\textsf{C2}: $n=200$, $T=700$; short-lived control ($\alpha=1.4$, $a_{\max}=60$) and long-lived control ($\alpha=1.4$, $a_{\max}=120$), both
+without the four rules and from the dispersed initial condition: $n=100$, $T=1000$. Patterns are evaluated over the applicable runs; O17 and O17p over
+all runs. The 95\% Wilson half-width is at most 0.07 for $n=200$ and 0.10 for $n=100$, and at most 0.02 and 0.04
+for fractions of 0 or 1. No anti-pattern is triggered in the candidates; A2 (recovery of natality) is triggered in
+0.02 of the \textsf{C2} runs, 0.55 of the short-lived runs and 0.03 of the long-lived runs. Magnitudes are ensemble
+means, except the Kaplan--Meier median and the spread of the extinction time (interquartile range over the median
+of the Kaplan--Meier estimate). Transplants: Table~\ref{tab:res-trans}.}
+\label{tab:res-production}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}llccccccc@{}}
+\toprule
+ID & Pattern & \textsf{C1} & \textsf{C1}$'$ & \textsf{C0} & $\alpha{=}0$ & \textsf{C2} & short-lived & long-lived \\
+\midrule
+\input{tables/tab_res_production}
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\textwidth]{fig_res_trajectories.pdf}
+  \caption{Time course of the reference ensemble ($n=200$ each).
+  \textbf{(a)}~Population relative to the damage-threshold capacity $K_\gamma=m_c|G|$: median and 10--90\% band for
+  \textsf{C1} (thin lines are 12 individual runs), and medians for \textsf{C1}$'$, \textsf{C0} and the $\alpha=0$
+  control.
+  \textbf{(b)}~Weekly births (median).
+  \textbf{(c)}~Mean social state $\bar s$ of the adults (age $\ge6$ weeks; solid and dashed coloured lines as in a),
+  median over living colonies, shown while at least half of the colonies are alive, on a linear scale; for
+  \textsf{C1} also the mean over the animals past the plasticity window (age $\ge a_w$, dotted) and over the
+  founders (dashed), which are not diluted by the newborn pups. The dotted grey lines mark the 0.5 level of O10 and
+  the 0.2 deterioration threshold.
+  \textbf{(d)}~Mean age, with a reference line of slope one: after natality stops, the colony simply ages.}
+  \label{fig:res-trajectories}
+\end{figure}
+
+\subsection{Which patterns carry evidence: null models}
+\label{sec:res-null}
+
+A criterion is informative only if it can fail. Table~\ref{tab:res-null} gives the pass rate of every essential
+pattern in four null models run from the initial condition of \textsf{C1} ($n=200$): no crowding damage
+($\gamma=0$), full inheritance without social learning ($-$R2$^*$: $w=1$, individual recovery at $r=0.01$), the
+long-lived demography without new rules, and \textsf{C1} without its four rules; and in the two partial ablations of
+the reference ensemble ($\alpha=0$ and \textsf{C0}); Table~\ref{tab:res-null-full} (appendix) adds the desirable
+patterns. NA counts as a failure. By the rule fixed before the runs, a criterion is \emph{generic} if it passes
+($f\ge0.8$) in at least two of the four null models, and it \emph{discriminates} against a model if the upper
+Wilson bound of its pass rate there is below 0.8 and the Newcombe interval of the difference with \textsf{C1}
+excludes zero.
+O5, O6, O7 and O10 are generic (they pass in three or four null models), and so is the primary O4, which still
+passes in $-$R2$^*$ and without rules (the free space at the peak needs no rule: $f_0=0.74$ without rules, 0.59 in
+the long-lived control; and $f_0$, part of the primary O4, was an informal target of the calibration): these five criteria
+carry no evidence for the rules; they verify that the model has a boom, an end of natality and an extinction. Scored at six weeks, as in the primary evaluator, the
+primary O11 discriminates against every null model, but not at the end of the plasticity window (below); O13 and
+O13p discriminate against three of the four, but not
+against $-$R2$^*$, where both deteriorated classes form by full inheritance without social learning (O13p 1.00
+there), and O13p also discriminates against both partial ablations. O17p fails in every null model and in both
+partial ablations; which criteria carry that evidence depends on the age at which O11 is scored (below). With the preregistered evaluator O10 passed in every null model
+and O11 passed vacuously without crowding damage, which is why both were redefined (Table~\ref{tab:res-null-v1}).
+O11 is in part definitional, because pups are born at $s=0$ and are scored at six weeks of age, inside the
+plasticity window. Re-scoring the same runs with the late cohorts measured at the age $a_w=12$ instead (same
+thresholds; \texttt{results\_v2/o11\_aw}), \textsf{C1} and \textsf{C1}$'$ barely change (O11 0.995 and 0.935, O17p
+0.990 and 0.815), but O11 then also passes in 0.81 of the long-lived runs and in 0.755 of the runs without rules,
+whose late cohorts fall below 0.2 through accumulated crowding damage, so it no longer discriminates against those
+two null models; against $-$R2$^*$ it passes in 0.21 (O17p 0.205), and without crowding damage it stays NA. Their late cohorts even end lower than those of \textsf{C1} (median $\bar s$ 0.074 in the long-lived runs and
+0.055 without rules, against 0.130). The dependence on $s_{\rm base}$ almost disappears at that age (below). At six
+weeks, then, O11 separates \textsf{C1} from the null models largely through the birth state of the pups
+($w=0.2$, $s_{\rm base}=0$; with $s_{\rm base}=0.25$ it falls to 0.08), not through a failure that the rules add to
+the crowding damage, and the evidence of O17p against the long-lived
+demography and the model without rules rests on O13 and O13p; against $-$R2$^*$ it rests on O11 at six weeks and is
+weaker at $a_w$. O10b, the functional growth phase, passes only where crowding is absent or weak and fails in
+\textsf{C1} with the adult mean (0.28 when measured on the animals past the window).
+
+\begin{table}[t]
+\centering
+\caption{Discriminating power of the essential criteria (primary evaluator; fraction of all runs that pass, NA
+counting as failure). Columns: the reference ensemble (\textsf{C1}, \textsf{C1}$'$, $\alpha=0$, \textsf{C0}), the
+four null models with the initial condition of \textsf{C1} ($\gamma=0$; $-$R2$^*$: $w=1$ without social learning;
+long-lived control; no rules: \textsf{C1} without its four rules), $n=200$ each, and the short-lived control
+($n=100$). ``Generic'': passes in at least two of
+the four null models. ``Discriminates'': upper Wilson bound below 0.8 and Newcombe interval of the difference with
+\textsf{C1} excluding zero (long: long-lived control; none: no rules; short: short-lived control). O10b (functional growth phase) is
+listed because its failure in \textsf{C1} is discussed in the text. O11 is scored at six weeks of age, as in the
+primary evaluator. Scored at the end of the plasticity window ($a_w=12$; same runs, \texttt{results\_v2/o11\_aw}) it
+passes in \textsf{C1} 0.995, \textsf{C1}$'$ 0.935, $\gamma{=}0$ 0.00 (NA), $\alpha{=}0$ 1.00, \textsf{C0} 0.99,
+$-$R2$^*$ 0.21, long 0.81 [0.75, 0.86] and none 0.755 [0.69, 0.81] (short-lived control not re-scored): it is then not
+generic (it passes in one null model) and discriminates only against $\gamma{=}0$ and $-$R2$^*$. The desirable
+patterns are in Table~\ref{tab:res-null-full}.}
+\label{tab:res-null}
+\footnotesize
+\setlength{\tabcolsep}{3.2pt}
+\begin{tabular}{@{}lccccccccccl@{}}
+\toprule
+& \textsf{C1} & \textsf{C1}$'$ & $\gamma{=}0$ & $\alpha{=}0$ & \textsf{C0} & $-$R2$^*$ & long & none & short & generic & discriminates against \\
+\midrule
+\input{tables/tab_res_null}
+\end{tabular}
+\end{table}
+
+
+\subsection{Rule ablations and the minimal candidate}
+\label{sec:res-ablations}
+
+Fig.~\ref{fig:res-ablations} (appendix) removes the rules of \textsf{C1} singly, in pairs, in triples and all
+together; each single ablation fails in a specific way. \emph{Without R7} the colony is Calhoun-like in the
+instantaneous sense (O17 in 0.94), but the isolated class is never persistent (O17p $=0$). \emph{Without R2} (full
+inheritance and individual recovery) the late cohorts do not fail at six weeks (O11 and O17p in 0.00 [0, 0.03]; 0.17 with the
+preregistered O11, which passed when the late cohorts were empty). \emph{Without R1} adults recover when the colony
+thins: natality resumes, only 23\% of the colonies go extinct by week 600, and O17p is 0.21 [0.15, 0.29].
+\emph{Without AV} O17p falls to 0.79 [0.71, 0.85], through O5. Every double, triple or quadruple ablation has O17p
+$=0$, and without crowding damage ($\gamma=0$) every colony grows to the cap of 15\,000 individuals. Inheritance is
+not needed: with $w=0$ and a faster learning rate $r=0.15$, O17p is 1.00, so social learning is the essential part of
+R2. R7 depends on its implementation and on the update scheme: without a preference ($\pi=0$) the refuges stay empty
+and O17p is 0; with a soft capacity under synchronous moves O17p is also 0, because simultaneous moves send many
+deteriorated animals into the same refuge, whereas under a random sequential update a soft capacity gives the same
+result as the hard one (0.995 against 1.00): the hard capacity is a remedy for the collisions of the synchronous
+update, not a mechanism of its own (Appendix~\ref{app:res-ablations}).
+
+\paragraph{Q2 and the minimal candidate \textsf{C1}$'$.}
+The preregistered intersection--union test is the largest of the four one-sided Fisher $p$-values, and it comes
+from AV. With the primary evaluator $p_{\rm IUT}=1.1\times10^{-7}$, $p_{\rm Holm}=2.2\times10^{-7}$, so the null
+hypothesis that some rule can be removed without loss is rejected; with the preregistered evaluator the
+same runs give $f(-{\rm AV})=0.90$ and $p_{\rm Holm}=0.067$, not rejected, which replicates the borderline result of
+the runs of the preregistered design ($p_{\rm Holm}=0.0503$). The rejection is therefore a consequence of the primary O5 alone, and specifically
+of its birth reference $t_{B99}$: that option was adopted after exploratory runs with the primary evaluator had
+shown that the alternative, the last sustained birth combined with $t'_{\rm pk}$, fails O5 in half of the
+\textsf{C1} runs (0.48 in the production runs, Table~\ref{tab:res-rescoring}); it is a choice informed by the result
+(Table~\ref{tab:deviations}), and O5 is a generic criterion (Section~\ref{sec:res-null}). The rejection of Q2 thus
+shows an effect of AV on a generic criterion, significant but smaller than predicted: with either evaluator the
+prediction $f(\textsf{C1}-r)\le0.5$ fails for AV (0.79), and the necessity of AV, as defined in the plan, is refuted.
+The difference with \textsf{C1} is 0.20 [0.13, 0.28] in the factorial ($n=120$ per arm) and 0.16 [0.11, 0.22] in
+the reference ensemble (Newcombe intervals). AV is a contributing rule: it makes the end of natality sharper (O5,
+through a shorter tail of births) and supplies the senescent decline (O8 0.62 against 0.21), while it \emph{reduces}
+the empty space at the peak ($f_0=0.16$ against 0.52), which is present without any rule. In \textsf{C1}$'$, R1, R2
+and R7 remain necessary (O17p of 0 without each, $n=40$; Table~\ref{tab:res-c1p}).
+\textsf{C1}$'$ is the minimal set \emph{conditional} on the evaluation thresholds. Re-scoring the stored class
+fractions (Fig.~\ref{fig:res-theta}), O17p of \textsf{C1}$'$ is 0.83 for class thresholds $\theta\le0.125$ and 0.33
+at $\theta=0.15$ (0.31 in the $-$AV arm of the factorial, $n=120$); that of \textsf{C2} falls from 0.70 to 0.01 at
+0.125; \textsf{C1} holds 0.96 at 0.15. On the grid of
+class and ensemble thresholds $(\theta,\tau)$, AV is ``necessary'' exactly when $\tau\ge0.8$ at $\theta\le0.125$ (0.79
+lies below 0.8, with an interval that contains it) or when $\theta\ge0.15$; R1, R2 and R7 are necessary everywhere.
+The necessity of R7 is necessity for O13p, a criterion designed together with R7 after \textsf{C0} had been seen;
+for O11, O6 and O7 removing R7 changes nothing (O17 in 0.94).
+
+\subsection{Confirmatory tests Q1--Q7}
+\label{sec:res-Q}
+
+Table~\ref{tab:res-Q} summarises the confirmatory family with the primary evaluator; Table~\ref{tab:res-Qcmp}
+repeats it with the preregistered evaluator. With the primary evaluator six
+of the seven null hypotheses are rejected after Holm adjustment and the quantitative predictions are met for Q1, Q3,
+Q4 and Q7 and not for Q2, Q5 and Q6; with the preregistered evaluator five are rejected and four predictions hold
+(Q3, Q4, Q6 and Q7). The two counts differ in three places: Q2 is rejected only with the primary O5 (below), the
+prediction of Q1 holds only at the earlier transplant time $1.75\,t'_{\rm pk}$, and the prediction of Q6 holds only
+with the preregistered O11. Q5 is refuted in the opposite direction with both. Of the predictions that hold, Q1 is a
+consistency check of R1 and Q4 of the demography, and the contrast of Q3 with the short-lived control is confounded by the
+demography. A rejected null hypothesis is not the same as a Calhoun-like outcome, as Q7 shows.
+
+\begin{table}[t]
+  \centering
+  \caption{Preregistered confirmatory family with the primary evaluator (hypotheses and tests in
+  Section~\ref{sec:stats}; Holm correction at $\alpha=0.05$ over seven tests; the $p$ of Q6 is the quasi-binomial
+  one). ``Rejected'' refers to the null hypothesis after Holm adjustment; ``Met'' to the quantitative prediction
+  fixed before the runs. $X$ is the cross-transplant arm. The same family with the preregistered evaluator is in
+  Table~\ref{tab:res-Qcmp}.}
+  \label{tab:res-Q}
+  \footnotesize
+  \setlength{\tabcolsep}{4pt}
+  \begin{tabular}{@{}lp{4.0cm}p{5.4cm}llcc@{}}
+    \toprule
+    & Prediction & Estimate & $p$ & $p_{\rm Holm}$ & Rejected & Met \\
+    \midrule
+    \input{tables/tab_res_Q}
+  \end{tabular}
+\end{table}
+
+\paragraph{Q1 and the transplants.}
+Four males and four females of each \textsf{C1} colony, taken at $1.75\,t'_{\rm pk}$ (week 60; ages 37--64), never
+found a colony in a \textsf{C1} enclosure (0/60), but do in 51/60 trials in an enclosure without R1 and R2 with
+$r=0.1$ (arm $X$; exact McNemar $p=4\times10^{-16}$); the prediction ($\ge0.25$ in $X$) holds. The same animals have
+$s\approx0$ (median 0.000, maximum 0.36) and fecundity scales as $s_f^2s_m$, so under R1 they cannot found a colony
+with any partner (0/120 with healthy partners): a consistency check of R1, not a finding about the mechanism. The
+rate in arm $X$ is a matter of age: at $1.75\,t_{\rm pk}=$ week 97 (preregistered protocol; ages 59--80) the same
+colonies give 12/60, and at week 95 in every arm, the common time that removes the confound between rule and
+sampling time, 5/60 (Appendix~\ref{sec:res-transplant}). An additional arm samples adults past the plasticity window with
+$0.2\le s\le0.5$ (median 0.36, weeks 8--11): under R1 they found a colony in 5/60 trials, against 57/60 for the same
+animals in arm $X$ and 50/60 without R1, and in the colonies they do found the adult descendants settle at the
+social state of their parents (0.28--0.45 in \textsf{C1}, 0.33--0.37 in $X$). By the rule fixed in advance they
+recover partly: the irreversibility of R1 + R2 is strict only for $s\approx0$, and for intermediate animals R1
+acts through fecundity, not through the lineage.
+
+\paragraph{Q3 and Q4.}
+\textsf{C1} went extinct in 200 of 200 runs by $T=600$, against 47 of 100 runs of the short-lived control by $T=1000$ (one-sided
+Fisher $p<10^{-16}$), with a coefficient of variation of $T_{\rm ext}$ of 0.066 [0.059, 0.071], as predicted. The
+contrast that isolates the rules is the long-lived demography alone, which goes extinct in 0.98--1.00 of the runs
+($p=0.11$): extinction does not discriminate. The Kaplan--Meier interquartile range over the median of
+$T_{\rm ext}$ is 0.089 [0.071, 0.105] in \textsf{C1}, 0.160 [0.144, 0.180] in the long-lived control with the same
+initial condition and 0.121 [0.106, 0.148] in \textsf{C1}$'$, whose difference from the control, $-0.040$
+[$-0.065$, $-0.006$] (percentile bootstrap over runs), is \emph{not} within the preregistered equivalence margin of $\pm0.05$, which the runs of the preregistered design had met. A narrow
+spread is not a signature of the rules (0.045 without attraction, 0.084 in \textsf{C0}): it is set by how abruptly
+natality stops and by the lattice size (below). The time from the last birth to extinction grows one-to-one with
+$a_{\max}$ (slope $0.996\pm0.014$ over 300 runs, TOST $p<10^{-16}$), as the demography requires
+(Eq.~\eqref{eq:phaseD}; Appendix~\ref{app:res-Q}).
+
+\paragraph{Q5 and Q6.}
+The coexistence band predicted at $n^*=1/\kappa-1/\alpha\approx m_c$ (Eq.~\eqref{eq:model-nstar}) is refuted:
+O13 passes in at least 95\% of the runs at 46 of the 49 points of the $(\alpha,\kappa)$ plane with $n^*>0.5$, and
+the fitted quadratic in $\log n^*$ is convex; with refuges the isolated class no longer depends on the balance
+between attraction and aversion. The prediction of Q6, $0<\theta<1$ for the Calhoun-like boundary in
+$\log r+\theta\log a_w$ on the plane $(r,a_w)$, is not supported with the primary evaluator. The boundary is nearly
+vertical in $r$: O17p is at least 0.67 for $r\le0.10$ and at most 0.60 for $r\ge0.2$ at every window, so the window
+has little or no effect, and the single-index fit gives $\hat\theta=-0.15$ [$-0.20$, $-0.05$] (profile likelihood,
+quasi-binomial correction $\phi=3.1$) in a model that an additive one beats ($\Delta{\rm QAIC}=28$); with the
+preregistered evaluator the single-index model is the preferred one ($\Delta{\rm QAIC}=11$ in its favour) and gives
+$\hat\theta=0.30$ [0.15, 0.50], as in the runs of the preregistered design (0.35). The small negative value should not be read as a reversal of
+the predicted dependence: it comes from the primary O11, which at fast learning ($r\ge0.2$) fails more often the
+shorter the window (O11 passes in 0.10 of the runs at $r=0.2$ with $a_w=4$ and in 0.87 with $a_w=24$), and the
+change of criterion also changes which model fits the plane. The elasticity argument of
+Section~\ref{sec:meanfield} does not describe this plane.
+
+\paragraph{Q7: endogenous collapse without crowding, and the dependence on $\Lambda=r\,a_w$.}
+With crowding damage switched off ($\gamma=0$), the four subcritical points ($w\le0.1$, $r\le0.03$) went extinct in
+120/120 runs, while all 30 \textsf{C1} colonies exploded (one-sided Fisher $p<10^{-16}$); the colonies of the corner
+first overshoot the damage-threshold capacity ($\rho_{\rm pk}=0.91$--$1.60$), so none is Calhoun-like. With
+$a_w\in\{6,12,24\}$ varied at $\gamma=0$ (54 points, 20 runs each; Fig.~\ref{fig:res-q7aw},
+Table~\ref{tab:res-q7aw}), 51 of the 54 points have $P_{\rm ext}=0$ or 1, so the logistic model in
+$\log r+\theta\log a_w$ fixed before the production runs is separated: its profile intervals and likelihood ratio measure the
+geometry of the grid, not sampling error, and the planned equivalence test of the two exponents (TOST, margin
+$[2/3,3/2]$) cannot be carried out as inference (Appendix~\ref{app:res-Q}). What the design does establish is
+non-parametric. The transition in $\Lambda=r\,a_w$ is bracketed by two adjacent grid points, a factor 1.25--1.5
+apart; at every inheritance weight the curves for $a_w=12$ and 24 lie in the same bracket and the curve for $a_w=6$
+one grid step below ($\Lambda_{1/2}\in(0.60,0.84)$ against $(0.84,1.2)$ at $w=0$; log-linear interpolation 0.71,
+0.99 and 1.00). The exponent implied between windows is therefore in $(0,1)$ between 6 and 12 weeks (interpolated
+0.5--0.7 over the three $w$) and compatible with 1 between 12 and 24 weeks (interpolated 0.88--1.00), where the grid
+bounds it only within about $(0.5,1.5)$. The firm result is qualitative: at equal product $r\,a_w$ the six-week
+window is less effective, so a single exponent does not describe the three windows and the effective learning grows
+less than linearly with the window at short windows. The boundary fitted as $\sigma w+\varphi\Lambda=1$ gives
+$\hat\varphi\approx1.1$--1.2 in both planes, above the preregistered $\varphi\le1$, but it is an extrapolation of the
+same separated predictor and carries no valid interval.
+
+\subsection{Robustness}
+\label{sec:res-robustness}
+
+\paragraph{Demographic and update variants, and the initial condition.}
+Fig.~\ref{fig:res-rob} and Table~\ref{tab:res-rob} report \textsf{C1} and \textsf{C1}$'$ under the robustness variants
+($n=200$ each), scored with both evaluators and also with O17p restricted to the criteria
+that discriminate against the null models (O11 scored at six weeks, O13, O13p and the anti-patterns); by the rule fixed before the runs, a
+variant preserves the result if O17p $\ge0.8$. With a constant background hazard $\mu_{\rm bg}$ at all ages the
+plateau shrinks (51 weeks at 0, 35 at 0.001, 17 at 0.003 and 10 at 0.008 per week) and O17p falls to 0.83, 0.63,
+0.55 [0.48, 0.62] and 0.06 in \textsf{C1} (0.67, 0.38, 0.28 and 0.04 in \textsf{C1}$'$; 0.45 at 0.003 with the
+preregistered evaluator). The only criterion that fails is O5, and it fails through its timing clause, not through its
+level: at $\mu_{\rm bg}=0.003$ O5 is marginal in 83 of the 200 runs and fails in 7, because the start of the plateau
+$t'_{\rm pk}$ moves from week 34 to 29 while $t_{B99}$ moves from 40 to 43, so $(t_{B99}-t'_{\rm pk})/t'_{\rm pk}$
+crosses the 0.5 threshold of O5 while natality still ends with the population near its maximum; at
+$\mu_{\rm bg}=0.008$ O5 fails outright in 70 runs (marginal in 118). The classes, O11 and the low peak are
+unchanged, and the restricted outcome is 1.00 at every $\mu_{\rm bg}$. Since O5 is generic (Section~\ref{sec:res-null}),
+what the background mortality removes is the generic part of the primary outcome, not the part that carries
+evidence for the rules; the primary outcome as defined nevertheless holds only without, or with very weak,
+background mortality, which is stated as a limitation (Section~\ref{sec:limitations}). With initial ages drawn
+uniformly from 4--52 weeks instead of all equal, O17p is 0.93 [0.89, 0.96]; from 4--80 weeks, which includes
+post-reproductive founders, 0.63 [0.56, 0.69] (0.68 and 0.31 in \textsf{C1}$'$), again through the timing clause of
+O5 (73 marginal and 1 failed of 200; plateau 28 and 22 weeks, $t'_{\rm pk}$ at weeks 30 and 29) and with the
+restricted outcome at 1.00. The timing of the end of natality relative to the start of the plateau is therefore a
+property of the synchronous initial condition and of the absence of background mortality, not of the rules; the end
+of natality near the maximum itself persists. The other variants preserve the result: a nest period of three weeks
+gives 0.835 [0.78, 0.88], borderline because the interval contains 0.8 (0.60 in \textsf{C1}$'$; O11 0.90,
+$\rho_{\rm pk}=0.31$); a random sequential update gives 1.00
+with the hard and 0.995 with the soft capacity, with $\rho_{\rm pk}=0.43$; and the exact
+refuge capacity gives 0.995 against 0.995 with the single-pass admission. Pups born above the
+deterioration threshold ($s_{\rm base}=0.25$ or 0.5 instead of 0) give O17p of 0.08 and 0.00 (0.64 and 0.36 with
+the preregistered O11), entirely through O11 scored at six weeks of age: the failure of the late cohorts at that age is
+partly definitional, tied to $s_{\rm base}=0$. Scored at the age $a_w$, the same runs give O11 of 0.975 and 0.785
+and O17p of 0.965 and 0.76 (0.755 and 0.77 in \textsf{C1}$'$): by the end of the window the late cohorts are below
+0.2 whatever their birth state, through crowding damage and learning from deteriorated neighbours.
+
+\paragraph{Lattice size, seeding density and phase planes.}
+Over $L=15$--60 at fixed density $N_0/L^2=0.44$ ($n=60$; Table~\ref{tab:res-size}), the peak density (0.35--0.37)
+and the persistent fraction (0.17--0.18) do not change, the empty fraction decreases slightly (0.18 to 0.15), and
+O17p rises from 0.82 [0.70, 0.89] at $L=15$ to 1.00 at $L\ge45$; the losses at $L\le20$ come from O5 (5 of 60 runs
+at each size: a relatively longer tail of births with $N_0=100$--178), from O11 (1 of 60 at each) and, at $L=15$
+only, from the anti-pattern A2, a recovery of natality in 6 of 60 runs, and the interval at $L=15$ contains 0.8.
+The spread of the extinction time falls from 0.15
+at $L=15$ to 0.08 at $L\ge30$ together with the relative spread of the last birth (0.58 to 0.18), while
+$T_{\rm ext}-t_{\rm last}$ stays at 110--112 weeks: the spread of $T_{\rm ext}$ is that of the end of natality, as
+Eq.~\eqref{eq:phaseD} implies, and its value is a property of the system size. Over seeding densities from 0.02 to
+3.6 animals per cell the peak density is monotone in $N_0/L^2$ and O17p reaches 0.8 only for
+$0.2\lesssim N_0/L^2\lesssim0.9$; with Calhoun's four founding pairs no run is Calhoun-like, and the best point of
+the founder plane reproduces O1--O3 with O17p in 0.43 [0.27, 0.61] of the runs (Appendix~\ref{app:res-p4p6}).
+Around \textsf{C1} the primary outcome holds over part of the explored planes (Appendix~\ref{sec:res-planes}): with
+crowding damage every point of the $(r,w)$ plane goes extinct and O17p is at least 0.83 for $w\le0.3$ and
+$r\le0.10$, falling at $w\ge0.5$ and $r\ge0.2$ through O11; every finite window $a_w\le24$ gives certain
+extinction; in the $(\alpha,\kappa)$ plane O17p is at least 0.8 at 34 of the 48 points with $\alpha\ge2$, failing
+where the free space of the primary O4 is lost; and a persistent isolated class requires a strong preference and a
+total refuge capacity $f_Rc_R\ge0.4$. These are point estimates with 30 runs per cell (Wilson half-width up to
+$\pm0.17$); re-running the 40 points nearest to a boundary with 100 runs changed them by 0.07 on average.
+
+\paragraph{Global: Latin hypercubes and variance decomposition.}
+Over two independent 15-factor Latin hypercubes (400 points, 10 runs each, plus 40 runs at the 18 points near the
+boundary), 2.0\% [0.7, 3.6] of the points are Calhoun-like with the primary evaluator ($k/n\ge0.8$; bootstrap
+interval over points); the mean of O17p over the box, an unbiased estimate of the volume weighted by the
+probability of being Calhoun-like, is 4.0\% [2.6, 5.9], and the empirical-Bayes fraction of points with $p\ge0.8$,
+which shrinks each point towards a logistic emulator, is 1.8\% [0.7, 3.2], with 8 points still uncertain
+(Table~\ref{tab:res-region}, Fig.~\ref{fig:res-region}). With the preregistered evaluator the same runs give 7.2\%,
+11.0\% and 6.9\% [4.8, 9.2], the values of the runs of the preregistered design; the drop comes mostly from O5 with $t'_{\rm pk}$ and from the
+free-space condition of O4. Every such fraction is relative to the box and to the sampling scales of
+Table~\ref{tab:params}. Part of the small fraction is definitional and part is mechanism: with $c_R=3$ refuge
+residents exceed the isolation threshold and none of the 100 such points is Calhoun-like; restricting successively
+to $c_R\le2$, $m_c\le10$, $f_Rc_R\ge0.3$ and $\pi\ge100$ (chosen after the runs) raises the fraction to 2.7\%, 3.1\%,
+5.6\% and 10.8\% [2.7, 21.6] (4 of 37 points; 46\% with the preregistered evaluator), and even then 33 of the 37 points
+fail, through O11 (16), the persistence of the class (14), O5 (9) and O4 (9); with class thresholds of 5\%, 10\% and
+15\% the fraction is 5.5\%, 2.3\% and 0.5\%. The Sobol' decomposition uses 11 factors (the 8 selected by the Morris
+screening plus $w$, $r$ and $a_w$; Saltelli design, $N=256$, 6 runs per point), so its indices are conditional on
+four factors held at their \textsf{C1} values ($f_R$, $\pi$, $a_{\max}$, $\delta$). O17p is zero at 78\% of its
+points; its total indices are led by $c_R$ ($0.49\pm0.16$), $w$ (0.43), $\kappa$ (0.41), $r$ (0.32) and $m_c$ (0.31),
+which cannot be ordered, and its first-order indices add up to only 0.15, so it is almost entirely interactions;
+the continuous outputs are nearly additive ($\rho_{\rm pk}$: $r$, $\kappa$, $\eta$, $\gamma$; $f_0$: $\kappa$, $m_c$;
+$\Phi^{\rm pers}_{\rm BO}$: $c_R$, $m_c$). Appendix~\ref{sec:res-sensitivity} gives the full decomposition.

@@ -1,0 +1,122 @@
+{
+ "kind": "lhs",
+ "problem": {
+  "names": [
+   "alpha",
+   "crowd_aversion",
+   "crowd_power",
+   "rec",
+   "inherit_weight",
+   "plast_age_max",
+   "gamma",
+   "a_max",
+   "p0",
+   "delta",
+   "m_c",
+   "eta",
+   "refuge_frac",
+   "refuge_pref",
+   "refuge_capacity"
+  ],
+  "bounds": [
+   [
+    2.0,
+    8.0
+   ],
+   [
+    0.05,
+    0.3
+   ],
+   [
+    1.0,
+    8.0
+   ],
+   [
+    0.03,
+    0.3
+   ],
+   [
+    0.0,
+    0.6
+   ],
+   [
+    4.0,
+    24.0
+   ],
+   [
+    0.03,
+    0.3
+   ],
+   [
+    90.0,
+    150.0
+   ],
+   [
+    0.15,
+    0.45
+   ],
+   [
+    0.003,
+    0.05
+   ],
+   [
+    4,
+    16
+   ],
+   [
+    0.05,
+    0.5
+   ],
+   [
+    0.05,
+    0.4
+   ],
+   [
+    3.0,
+    1000.0
+   ],
+   [
+    1,
+    3
+   ]
+  ],
+  "scale": [
+   "lin",
+   "lin",
+   "log",
+   "log",
+   "lin",
+   "log",
+   "log",
+   "lin",
+   "lin",
+   "log",
+   "lin",
+   "lin",
+   "lin",
+   "log",
+   "lin"
+  ],
+  "type": [
+   "float",
+   "float",
+   "float",
+   "float",
+   "float",
+   "float",
+   "float",
+   "float",
+   "float",
+   "float",
+   "int",
+   "float",
+   "float",
+   "float",
+   "int"
+  ],
+  "fixed": {}
+ },
+ "n_points": 200,
+ "n": 200,
+ "seed": 3
+}

@@ -1,0 +1,8 @@
+{
+ "names": ["alpha", "rec", "gamma", "m_c", "p0", "delta", "eta", "a_max", "repro_age_max", "plast_age_max", "crowd_aversion", "n_males"],
+ "bounds": [[0.0, 4.0], [0.002, 0.05], [0.02, 0.5], [4, 16], [0.1, 0.6], [0.002, 0.05], [0.05, 0.5], [40, 130], [30, 90], [6, 200], [0.0, 0.3], [20, 200]],
+ "scale": ["lin", "log", "log", "lin", "lin", "log", "lin", "lin", "lin", "log", "lin", "log"],
+ "type": ["float", "float", "float", "int", "float", "float", "float", "float", "int", "float", "float", "int"],
+ "fixed": {"plast_outside_rec": 0.0, "alpha_s_mode": "power", "alpha_s_power": 1.0},
+ "nota": "n_females se fija igual a n_males con un hook (ver README); plast_age_max=200 equivale a sin R1 para a_max<=130"
+}

@@ -1,0 +1,26 @@
+{
+ "stage": "trgrid",
+ "kind": "transplant",
+ "reps": 40,
+ "T": 300,
+ "crn": false,
+ "series_every": 0,
+ "full_series": false,
+ "preset": null,
+ "priority": 2,
+ "c_cpu": 2.333,
+ "analysis": "trgrid",
+ "q": "",
+ "base_seed": 25316,
+ "T_main": 300,
+ "T_after": 150,
+ "n_points": 12,
+ "runs": 480,
+ "columns": [
+  "alpha",
+  "crowd_aversion"
+ ],
+ "preset_main": "calhoun_C1",
+ "tag": "C1",
+ "primary": "O17p"
+}

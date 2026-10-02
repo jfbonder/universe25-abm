@@ -1,0 +1,5 @@
+point,refuge_hard,mu_bg,nest_period,async_move,s_newborn_base,crowd_aversion
+6,strict,0.0,0,False,0.25,0.15
+7,strict,0.0,0,False,0.5,0.15
+14,strict,0.0,0,False,0.25,0.0
+15,strict,0.0,0,False,0.5,0.0

@@ -1,0 +1,8 @@
+[2026-10-02 05:56:14] inicio: 0/300 hechas, 300 por correr, n_jobs=4, T=600, out=results_v2/f2b_amax
+[2026-10-02 05:56:21] 50/300 hechas | 0.1 min | 0.14 s/corrida (pared) 0.54 s/corrida (CPU) | ETA 0.6 min | último p=0 r=49 N_max=2621 t_ext=127.0
+[2026-10-02 05:56:29] 100/300 hechas | 0.2 min | 0.14 s/corrida (pared) 0.57 s/corrida (CPU) | ETA 0.5 min | último p=1 r=39 N_max=2485 t_ext=158.0
+[2026-10-02 05:56:37] 150/300 hechas | 0.4 min | 0.15 s/corrida (pared) 0.61 s/corrida (CPU) | ETA 0.4 min | último p=2 r=29 N_max=2721 t_ext=163.0
+[2026-10-02 05:56:47] 200/300 hechas | 0.5 min | 0.16 s/corrida (pared) 0.64 s/corrida (CPU) | ETA 0.3 min | último p=3 r=19 N_max=2798 t_ext=181.0
+[2026-10-02 05:56:57] 250/300 hechas | 0.7 min | 0.17 s/corrida (pared) 0.68 s/corrida (CPU) | ETA 0.1 min | último p=4 r=9 N_max=2423 t_ext=219.0
+[2026-10-02 05:57:09] 300/300 hechas | 0.9 min | 0.18 s/corrida (pared) 0.72 s/corrida (CPU) | ETA 0.0 min | último p=4 r=59 N_max=2688 t_ext=204.0
+[2026-10-02 05:57:09] fin de la invocación: 300/300 hechas, 0 fallas, 0.9 min

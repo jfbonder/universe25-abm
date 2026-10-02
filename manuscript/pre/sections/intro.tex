@@ -1,0 +1,64 @@
+\section{Introduction}
+\label{sec:intro}
+
+Beginning in July 1968, John B.~Calhoun followed a population of house mice in a closed enclosure that he called
+\emph{Universe~25}, in which food, water and nest space were in excess, predators and epidemic disease were
+excluded, and emigration was impossible \cite{Calhoun1973}. From four founding pairs the colony grew roughly
+exponentially and stopped growing at about 2200 animals, well below the 3840 that the nest boxes could shelter. The
+last young to survive weaning were born shortly after the peak, and the population then aged out without ever
+recovering. Along the way Calhoun described a breakdown of social behaviour: withdrawn males gathered in pools at
+the centre of the floor, nursing females attacked and abandoned their young, and there appeared the unwounded,
+non-reproducing ``beautiful ones.'' Small groups moved to uncrowded enclosures during the decline did not reproduce,
+even with partners raised without crowding (Marsden's work, reported in Ref.~\cite{Calhoun1973}; see also
+Ref.~\cite{Marsden1972}). Calhoun read the collapse as a failure of social roles, not of resources: ``density per se was not the major factor'' \cite{Calhoun1973}.
+
+The interpretation of the experiment has always been contested. Its popular message, ``density causes pathology,''
+departed from Calhoun's own emphasis on social roles and design \cite{RamsdenAdams2009,Ramsden2009,AdamsRamsden2024},
+and studies of human crowding found weak or no effects of density per se \cite{Galle1972,Freedman1975}. In earlier
+confined rodent populations with abundant food, growth stopped through reduced litter survival mediated by social
+interference \cite{Southwick1955,Lidicker1965}, and the maternal transmission of individual quality produces
+delayed density dependence in models of population cycles \cite{GinzburgTaneyhill1994,InchaustiGinzburg1998}. For modelling, the decisive limitation is
+that Universe~25 was a single realization; Calhoun himself called the study ``observation and reconstruction of a
+process; it was historical'' \cite{Calhoun1973}. A model tuned to the published curve therefore risks fitting one
+sample path of a strongly stochastic process \cite{GwizdallaDus2026}. The recent agent-based simulation of
+Gwizdałła and Duś \cite{GwizdallaDus2026} calibrates the growth phase against
+the reported counts and produces the decline through deviation factors that switch on when the \emph{total}
+population exceeds critical values; other accounts invoke the loss of uncertainty about the social hierarchy in a
+game-theoretic setting \cite{Mantzaris2025} or fit maximum-entropy unimodal curves without a mechanistic model
+\cite{Roman2025}.
+
+We ask instead which \emph{local} interaction rules, with unlimited resources and no rule that depends on the total
+population, generate robustly across stochastic realizations the part of Calhoun's sequence that runs from rapid
+growth to extinction: deceleration with social deterioration, cessation of reproduction near the peak, a decline
+without recovery, and differentiated classes of deteriorated animals. The latency phase and the growth from four
+founding pairs are part of that sequence, but we do not claim them (Sec.~\ref{sec:discussion}).
+
+Our core model is a lattice model in which each mouse carries an age, a sex and a continuous social state
+$s_i\in[0,1]$. The social state deteriorates under local crowding, scales conception and pup survival, and is partly
+inherited; movement is biased towards acquaintances. We add four local rules, each with a neutral value that
+switches it off and recovers the core model, and each motivated by an observation of the original report (Sec.~\ref{sec:model}): a
+juvenile window of social plasticity (R1), social learning of competence (R2), crowd aversion of deteriorated
+animals (AV), and refuges of limited capacity preferred by deteriorated animals (R7). Following pattern-oriented
+modelling \cite{Grimm2005}, we translate Calhoun's report into seventeen falsifiable patterns, each with an
+operational criterion evaluated run by run, and we measure the discriminating power of every essential criterion
+against four null models: no crowding damage; full inheritance without social learning; the long-lived demography
+without the new rules; and the calibrated candidate without its four rules (Sec.~\ref{sec:methods}). Seven
+hypotheses were preregistered before the production runs, and every deviation from that plan is reported.
+
+Our main result is negative, and it is controlled by the null models: \emph{the envelope is generic; the rules add
+the classes}. Crowding damage and a long-lived demography alone already produce the envelope of the collapse---a
+peak well below capacity with free space, the end of natality near the maximum, the social failure of late-born
+cohorts when they are scored at the end of the plasticity window, and extinction. These patterns verify that the
+model has a boom and its end; they are not evidence for the rules. What the rules add, and most null models lack,
+is the coexistence of crowded and isolated deteriorated classes. The persistence of the isolated class follows from
+the refuge design, and the failure of transplanted late-phase animals to found a colony from the plasticity window;
+we report both as consistency checks, not findings. Second, the simulated dynamics is a boom of one or two generations, not Calhoun's
+multi-generational cascade: about 70\% of the births are to the founding animals, and the net reproductive number
+falls from 3.8 to 0.4 in a single generation. Third, the full set of patterns holds in 99.5\% of the runs of the
+reference candidate, but this overstates its robustness: with a small background mortality or with spread initial
+ages it falls to 55--63\%, only through a generic criterion on the timing of the end of natality, while the patterns
+that the rules add pass in every run (Sec.~\ref{sec:results}). The minimal set of rules (R1, R2 and R7) is minimal
+only at the evaluation thresholds used.
+
+The ODD description, the full tables of patterns and null models, and the robustness analyses are given in the
+Supplemental Material; the calibration, the mean-field analysis and the remaining results are in an extended version, available with the full ODD description, the code and the data in the repository \repourl.

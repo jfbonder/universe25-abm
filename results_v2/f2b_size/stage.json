@@ -1,0 +1,31 @@
+{
+ "stage": "size",
+ "kind": "sweep",
+ "reps": 60,
+ "T": 600,
+ "crn": false,
+ "series_every": 0,
+ "full_series": false,
+ "preset": null,
+ "priority": 1,
+ "c_cpu": 2.917,
+ "analysis": "size",
+ "q": "V2-size",
+ "base_seed": 25334,
+ "axes": [
+  "grid_size",
+  "n_males"
+ ],
+ "n_points": 5,
+ "runs": 300,
+ "columns": [
+  "grid_size",
+  "n_males",
+  "n_females",
+  "max_pop"
+ ],
+ "preset_main": "calhoun_C1",
+ "tag": "C1",
+ "primary": "O17p",
+ "reps_run": 60
+}

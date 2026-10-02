@@ -1,0 +1,25 @@
+[09:11:52] brazo 0: 40 réplicas
+   O12 Result(status='PASS', value=np.float64(0.0), detail='P_T(B)=0.78 (n=40) P_T(D)=0.00 (n=40) p=1.91e-14')  O12b Result(status='PASS', value=0.0, detail='P_T(mixto)=0.00 (n=80)')  (18 s)
+[09:12:10] brazo 1: 40 réplicas
+   O12 Result(status='PASS', value=np.float64(0.0), detail='P_T(B)=0.93 (n=40) P_T(D)=0.00 (n=40) p=1.15e-19')  O12b Result(status='PASS', value=0.0, detail='P_T(mixto)=0.00 (n=80)')  (18 s)
+[09:12:28] brazo 2: 40 réplicas
+   O12 Result(status='PASS', value=np.float64(0.0), detail='P_T(B)=0.88 (n=40) P_T(D)=0.00 (n=40) p=1.14e-17')  O12b Result(status='PASS', value=0.0, detail='P_T(mixto)=0.00 (n=80)')  (19 s)
+[09:12:47] brazo 3: 40 réplicas
+   O12 Result(status='PASS', value=np.float64(0.0), detail='P_T(B)=0.93 (n=40) P_T(D)=0.00 (n=40) p=1.15e-19')  O12b Result(status='PASS', value=0.0, detail='P_T(mixto)=0.00 (n=80)')  (13 s)
+[09:13:00] brazo 4: 40 réplicas
+   O12 Result(status='PASS', value=np.float64(0.0), detail='P_T(B)=1.00 (n=40) P_T(D)=0.00 (n=40) p=9.3e-24')  O12b Result(status='PASS', value=0.0, detail='P_T(mixto)=0.00 (n=80)')  (14 s)
+[09:13:15] brazo 5: 40 réplicas
+   O12 Result(status='PASS', value=np.float64(0.0), detail='P_T(B)=0.97 (n=40) P_T(D)=0.00 (n=40) p=3.81e-22')  O12b Result(status='PASS', value=0.0, detail='P_T(mixto)=0.00 (n=80)')  (15 s)
+[09:13:29] brazo 6: 40 réplicas
+   O12 Result(status='PASS', value=np.float64(0.0), detail='P_T(B)=0.70 (n=40) P_T(D)=0.00 (n=40) p=1.92e-12')  O12b Result(status='PASS', value=0.0, detail='P_T(mixto)=0.00 (n=80)')  (13 s)
+[09:13:42] brazo 7: 40 réplicas
+   O12 Result(status='PASS', value=np.float64(0.0), detail='P_T(B)=0.70 (n=40) P_T(D)=0.00 (n=40) p=1.92e-12')  O12b Result(status='PASS', value=0.0, detail='P_T(mixto)=0.00 (n=80)')  (13 s)
+[09:13:55] brazo 8: 40 réplicas
+   O12 Result(status='PASS', value=np.float64(0.0), detail='P_T(B)=0.82 (n=40) P_T(D)=0.00 (n=40) p=5.85e-16')  O12b Result(status='PASS', value=0.0, detail='P_T(mixto)=0.00 (n=80)')  (14 s)
+[09:14:09] brazo 9: 40 réplicas
+   O12 Result(status='PASS', value=np.float64(0.0), detail='P_T(B)=0.70 (n=40) P_T(D)=0.00 (n=40) p=1.92e-12')  O12b Result(status='PASS', value=0.0, detail='P_T(mixto)=0.00 (n=80)')  (12 s)
+[09:14:22] brazo 10: 40 réplicas
+   O12 Result(status='PASS', value=np.float64(0.0), detail='P_T(B)=0.62 (n=40) P_T(D)=0.00 (n=40) p=1.11e-10')  O12b Result(status='PASS', value=0.0, detail='P_T(mixto)=0.00 (n=80)')  (12 s)
+[09:14:33] brazo 11: 40 réplicas
+   O12 Result(status='PASS', value=np.float64(0.0), detail='P_T(B)=0.80 (n=40) P_T(D)=0.00 (n=40) p=3.51e-15')  O12b Result(status='PASS', value=0.0, detail='P_T(mixto)=0.00 (n=80)')  (12 s)
+[09:14:46] fin: 12/12 brazos, 0 fallas

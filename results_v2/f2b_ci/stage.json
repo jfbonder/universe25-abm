@@ -1,0 +1,27 @@
+{
+ "stage": "ci",
+ "kind": "sweep",
+ "reps": 200,
+ "T": 700,
+ "crn": false,
+ "series_every": 1,
+ "full_series": false,
+ "preset": null,
+ "priority": 0,
+ "c_cpu": 1.05,
+ "analysis": "ci",
+ "q": "V2-ci",
+ "base_seed": 25333,
+ "n_points": 4,
+ "runs": 800,
+ "columns": [
+  "initial_age_dist",
+  "initial_age",
+  "initial_age_hi",
+  "crowd_aversion"
+ ],
+ "preset_main": "calhoun_C1",
+ "tag": "C1",
+ "primary": "O17p",
+ "reps_run": 200
+}

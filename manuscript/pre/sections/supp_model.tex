@@ -1,0 +1,129 @@
+This section complements the model section of the main text and the ODD description above with the details that
+the main text leaves out: the refuge capacity and the update scheme, the dimensionless groups and time scales, and
+the candidates and rules that are not used in the main text.
+
+\subsection{Hard capacity of the refuges and update scheme}
+\label{sm:model-capacity}
+
+The admission rule of the refuges, iterated to a fixed point, is given in the ODD description above. A single-pass
+admission that does not count returning animals and newborns, so that a refuge can hold up to 11 individuals, is a
+robustness variant; it leaves the primary outcome unchanged (0.995 with either rule).
+
+Both the preference and the hard capacity are necessary with synchronous moves. Without a preference ($\pi=0$) the
+refuges stay empty, because a deteriorated individual surrounded by acquaintances prefers an occupied neighboring
+cell; with a soft capacity, simultaneous moves produce stampedes of deteriorated animals into the same refuge. With a
+random sequential update a soft capacity also produces a persistent isolated class (O17p 1.00 and 0.995 with hard and
+soft capacity), with a higher peak density ($\rho_{\rm pk}=0.43$ against 0.36). The hard capacity is therefore a
+remedy for the collisions of the synchronous update, not a mechanism of its own. The total refuge capacity,
+$f_Rc_R|G|=540$ places, is about 20\% of the adults at the peak, $\phi_R=f_Rc_R|G|/N_{\rm ad}(t_{\rm pk})\approx0.2$,
+and bounds the persistently isolated fraction, $\Phi_{\rm BO}^{\rm pers}\le\phi_R$. The bound holds at all 50 points
+of the refuge plane, so a class of $\ge10\%$ needs $f_Rc_R\gtrsim0.3$; in that plane a persistent class appears only
+for $f_Rc_R\ge0.4$ and a strong preference.
+
+\subsection{Dimensionless groups and time scales}
+\label{sm:model-scales}
+
+The values are for \textsf{C1}; Table~\ref{tab:sm-model-scales} compares the scales with Universe~25.
+\begin{itemize}
+  \item $\Pi_\gamma=\gamma/r=1$: crowding damage per excess neighbor relative to the weekly learning rate.
+  \item $\Lambda=r\,a_w=1.2$: the largest competence a juvenile can learn inside the window. A socialized lineage
+    sustains itself only if $w+\Lambda\langle\bar s_V\rangle\gtrsim1$; fast growth lowers $\langle\bar s_V\rangle$,
+    because novices outnumber teachers (a \emph{learning dilution}). When $a_w$ is varied as well, $r$ and $a_w$ do not
+    act through their product alone: the local weight of $a_w$ relative to $r$ is about one half between $a_w=6$ and
+    12 weeks and about one between 12 and 24.
+  \item $n^*/m_c\approx0.8$, with $n^*=1/\kappa-1/\alpha$ the preferred group size of a deteriorated individual.
+    Without refuges it decides between pools, isolation, or both; with refuges it only marks the onset of
+    homogenization, near $n^*\approx3$--4.
+  \item $\phi_R\approx0.2$, the refuge capacity per adult at the peak (Sec.~\ref{sm:model-capacity}).
+  \item $n_0=N_0/|G|=0.44$ and the Damk\"ohler number $\mathrm{Da}=t_{\rm mix}/t_{\rm det}$. Here
+    $t_{\rm mix}=L^2/(4D_{\rm eff})$, with $D_{\rm eff}\approx0.13$ cells$^2$ per week the mean squared displacement
+    over 16 weeks divided by $4\times16$ (8 exploratory runs), so $t_{\rm mix}\approx1.7\times10^3$ weeks; and
+    $t_{\rm det}=t_{1/2}-t_{\rm on}\approx10$ weeks is the time the animals past the window (age $\ge a_w$) need to
+    lose half of their competence ($t_{1/2}=16$, the first week with their mean $s<0.5$) after crowding sets in
+    ($t_{\rm on}=6$, the first week with 5\% of the individuals in cells with $m>m_c$). These animals no longer learn,
+    and newborns do not enter their mean until they leave the window, so $t_{\rm det}$ measures deterioration and not
+    the dilution by pups born with $s\le0.2$. Thus $\mathrm{Da}\approx1.7\times10^2$, and deterioration is correlated
+    over $\xi=(4D_{\rm eff}t_{\rm det})^{1/2}\approx2$ cells, the size of the contact neighborhood. In founder colonies
+    the relevant transport is the colonization front, and $t_{\rm fill}\approx t_{\rm pk}\approx170$--215 weeks against
+    $t_{\rm det}\approx20$--30 gives $\mathrm{Da}_{\rm fill}\approx10$. In Universe~25 mice crossed the enclosure
+    daily and the social organization took a whole phase~C, about 35 weeks, to die, so
+    $\mathrm{Da}\lesssim4\times10^{-3}$: the spatial structure of the model emerges among animals that are almost
+    sessile on the time scale of deterioration, which is not Calhoun's regime. Colonies grow from local nuclei, so the
+    peak density falls with $n_0$, from 0.40 at $N_0=400$ to 0.03 for eight founders.
+  \item $\Gamma=t_{\rm det}/T_{\rm gen}\approx1.1$, with $T_{\rm gen}\approx9$ weeks the interval between the median
+    birth weeks of the first and second generations; the interquartile range over runs is 1.0--1.29, and the
+    founders, a closed cohort, give 1.2. The mean over all adults (age $\ge a_{\min}$) would give 0.8
+    because it is diluted by the first generation, which enters it with $s\le0.2$ while still inside the window. With
+    overlapping cohorts the interval between median birth weeks is not a demographic generation time; in the null
+    models it drops to 5 weeks, below the age of first reproduction, which inflates their $\Gamma$ (1.4--1.6). With the
+    mean age of the mothers at birth ($T_{\rm gen}=14.3$ weeks in \textsf{C1}) $\Gamma\approx0.7$, and 0.60--0.85 in
+    the other arms where it was computed: $\Gamma$ is of order one under either definition. It does not set the depth
+    of the boom: with five times less crowding damage ($\gamma=0.02$) $\Gamma=1.6$ and the boom is still one to two
+    generations deep (mean generation of the births 1.42 against 1.35, net reproductive number of the first generation
+    0.52, O17p in 17 of 20 runs), whereas pups born at $s_{\rm nb}\approx0.4$ ($s_0=0.25$) deepen it more at about the
+    same $\Gamma$ (1.3; mean generation 1.51, net reproductive number 0.62). In Universe~25 the deterioration took the
+    whole phase~C, about 35 weeks, with $T_{\rm gen}\approx10$ weeks, so $\Gamma\approx3.5$ (our estimate, with a
+    different operational definition): an order-of-magnitude comparison, not a test.
+  \item \emph{Extinction time.} Without mortality before senescence $T_{\rm ext}=\max_i(b_i+\ell_i)\simeq
+    t_{\rm last}+\ell_{\max}$, the last birth plus the longest residual lifetime. In \textsf{C1} $\ell_{\max}\approx110$
+    weeks, with an interquartile range of a few weeks, of the order of $1/k\approx7$ weeks, so the spread of
+    $T_{\rm ext}$ is that of $t_{\rm last}$, set by how abruptly natality stops,
+    $\tau_B=(t_{B99}-t_{B90})/\ln10\approx7$ weeks. At fixed density the median of $T_{\rm ext}$ grows with the
+    logarithm of the system size, from 162 weeks at $L=15$ to 184 at $L=60$, and its interquartile range over the
+    median is 0.15 for $L\le20$ and about 0.08 for $L\ge30$. Ratios normalized by the peak time depend on where it falls
+    on the plateau: $(T_{\rm ext}-t_{\rm pk})/t_{\rm pk}\approx2.1$ (Universe~25: $\ge1.84$) becomes 4.0 with the start
+    of the plateau as peak time, and $t_{\rm pk}/a_{\max}\approx0.45$ (0.28), against 0.7 in Universe~25.
+\end{itemize}
+
+\begin{table}[t]
+  \caption{Scales of \textsf{C1} and of Universe~25~\cite{Calhoun1973}. $^\dagger$Our estimate. The model's
+  $t_{\rm det}$ is measured on the animals past the window; for Universe~25 it is the duration of phase~C, so the two
+  values of $\Gamma$ compare only in order of magnitude. Neither $|G|$ nor $m_c$ was calibrated to Universe~25, so
+  densities are compared only in sign.}
+  \label{tab:sm-model-scales}
+  \begin{ruledtabular}
+  \begin{tabular}{lll}
+    Quantity & Model (\textsf{C1}) & Universe~25 \\
+    \hline
+    Resting sites & 900 cells & 256 nest boxes \\
+    Comfortable occupancy & $m_c=8$ & 15 per box \\
+    $K_\gamma$ (sites $\times$ occupancy) & 7200 & 3840 \\
+    Isolation sites & 270 refuges, 540 places & high boxes, 25--50\%$^\dagger$ \\
+    Peak; $N_{\rm pk}/K_\gamma$ & 2600; 0.36 & 2200; 0.57 \\
+    Empty sites at the peak & 16\% & 20\% \\
+    Movement & $D_{\rm eff}\approx0.13$ cells$^2$/week & enclosure crossed daily \\
+    Maturity / menopause / life & 6 / 80 / 120 weeks & 6--7 / 80 / 114 weeks \\
+    Generation time $T_{\rm gen}$ & $\approx9$ weeks & $\approx10$ weeks$^\dagger$ \\
+    Deterioration time $t_{\rm det}$ & 10 weeks & $\approx35$ weeks (phase C)$^\dagger$ \\
+    $\mathrm{Da}=t_{\rm mix}/t_{\rm det}$ & $\approx1.7\times10^2$ & $\lesssim4\times10^{-3}$ \\
+    $\Gamma=t_{\rm det}/T_{\rm gen}$ & 1.1 & $\approx3.5^\dagger$ \\
+  \end{tabular}
+  \end{ruledtabular}
+\end{table}
+
+\subsection{Other candidates and rejected rules}
+\label{sm:model-other}
+
+\emph{Mortality.} The full form is
+$p_{\rm death}(a,s)=\bigl[1+e^{-k(a-a_{\max}[1-\mu_s(1-s)])}\bigr]^{-1}$, where $\mu_s\ge0$ would advance the
+senescence of deteriorated individuals; every model, candidates and controls, has $\mu_s=0$, so adult death is purely
+senescent. There is no gestation
+delay, and a female may give birth every week.
+
+\textsf{C0} is the core model with the long-lived demography and R1, R2 and AV, without refuges
+(\texttt{calhoun\_C0}). It is the minimal model that satisfies the essential patterns evaluable with $N_0=400$ when
+O13 is read instantaneously (O17 in 0.92 of the runs), but its isolated class is transient (O17p in 0). In
+\textsf{C0} each of R1, R2 and AV is necessary: without R2, O11 and O13 are never reproduced; without AV the
+deteriorated animals collapse into a few pools, 76\% of the lattice is empty and the isolated class disappears; without
+R1 adults recover when the colony thins and O17 falls to 0.40. \textsf{C2} (\texttt{calhoun\_C2}) is \textsf{C0} plus
+R7 with the retreat driven by the competence of the mother at birth, $b_i=h_i$, with $q=1$ and $\pi=1000$: pups of
+deteriorated mothers retreat, and socialized adults that later deteriorate do not. It is motivated by the beautiful
+ones belonging to ``the last half of the population born''~\cite{Calhoun1973}; it makes the isolated class younger
+than the crowded one, but the late-cohort pattern O13b only reaches MARGINAL, and O17p falls to 0.705 [0.64, 0.76].
+Basing the retreat on juvenile competence (the value of $s$ at age $a_w$) fails, because under R2 almost every cohort
+born after the first ends the window with $s<0.1$.
+
+Several rules were unnecessary or destroyed some pattern, and are not part of any candidate: long-range jumps, an
+attraction that decreases with $s$ (it homogenizes the population and raises the peak), territoriality and defeat of
+males, social mortality, bonds restricted to competent pairs, and movement sub-steps (with more sub-steps the
+coexistence of classes is lost).

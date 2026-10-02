@@ -1,0 +1,100 @@
+etapa,brazo,n,T,semilla_base
+f2b_abl1,C1,120,600,25303
+f2b_abl1,C1 -R1,120,600,25303
+f2b_abl1,C1 -R2,120,600,25303
+f2b_abl1,C1 -AV,120,600,25303
+f2b_abl1,C1 -R7,120,600,25303
+f2b_abl1,C1 -R1 alpha=6,120,600,25303
+f2b_abl1,C1 w=0 rec=0.15,120,600,25303
+f2b_abl1,C1 -pref (refugios sin preferencia),120,600,25303
+f2b_abl1,C1 -hard (capacidad blanda),120,600,25303
+f2b_abl2,C1 -R1 -R2,40,600,25304
+f2b_abl2,C1 -R1 -AV,40,600,25304
+f2b_abl2,C1 -R1 -R7,40,600,25304
+f2b_abl2,C1 -R2 -AV,40,600,25304
+f2b_abl2,C1 -R2 -R7,40,600,25304
+f2b_abl2,C1 -AV -R7,40,600,25304
+f2b_abl2,C1 -R1 -R2 -AV,40,600,25304
+f2b_abl2,C1 -R1 -R2 -R7,40,600,25304
+f2b_abl2,C1 -R1 -AV -R7,40,600,25304
+f2b_abl2,C1 -R2 -AV -R7,40,600,25304
+f2b_abl2,C1 -R1 -R2 -AV -R7,40,600,25304
+f2b_abl2,C1 gamma=0 (sin hacinamiento),40,600,25304
+f2b_amax,a_max=90,60,600,25305
+f2b_amax,a_max=105,60,600,25305
+f2b_amax,a_max=120,60,600,25305
+f2b_amax,a_max=135,60,600,25305
+f2b_amax,a_max=150,60,600,25305
+f2b_base,C1,200,600,25301
+f2b_base,C1p,200,600,25301
+f2b_base,C0 (control),200,600,25301
+f2b_base,C1 alpha=0 (control O14),200,600,25301
+f2b_c1c2,C1,200,700,25318
+f2b_c1c2,C2,200,700,25318
+f2b_ci,C1 CI edades 4-52,200,700,25333
+f2b_ci,C1 CI edades 4-80,200,700,25333
+f2b_ci,C1p CI edades 4-52,200,700,25333
+f2b_ci,C1p CI edades 4-80,200,700,25333
+f2b_lhs,200 puntos,2000,400,25312
+f2b_lhs2,200 puntos,2000,400,25313
+f2b_lhsx,18 puntos,720,400,25336
+f2b_morris,320 puntos,3200,400,25307
+f2b_nulos,C1 gamma=0 (sin hacinamiento),200,600,25330
+f2b_nulos,"C1 -R2 (w=1, sin aprendizaje social)",200,600,25330
+f2b_nulos,"longevo (notebook a_max=120, CI de C1)",200,600,25330
+f2b_nulos,C1 sin reglas (-R1 -R2 -AV -R7),200,600,25330
+f2b_p1,112 puntos,3360,600,25309
+f2b_p1aw,56 puntos,1680,600,25310
+f2b_p2,72 puntos,2160,600,25308
+f2b_p4,24 puntos,720,600,25315
+f2b_p5,50 puntos,1500,600,25311
+f2b_p6,F s0=0.2 k=1 a_max=120,30,900,25319
+f2b_p6,F s0=0.2 k=1 a_max=200,30,900,25319
+f2b_p6,F s0=0.2 k=2 a_max=120,30,900,25319
+f2b_p6,F s0=0.2 k=2 a_max=200,30,900,25319
+f2b_p6,F s0=0.3 k=1 a_max=120,30,900,25319
+f2b_p6,F s0=0.3 k=1 a_max=200,30,900,25319
+f2b_p6,F s0=0.3 k=2 a_max=120,30,900,25319
+f2b_p6,F s0=0.3 k=2 a_max=200,30,900,25319
+f2b_p6,F s0=0.5 k=1 a_max=120,30,900,25319
+f2b_p6,F s0=0.5 k=1 a_max=200,30,900,25319
+f2b_p6,F s0=0.5 k=2 a_max=120,30,900,25319
+f2b_p6,F s0=0.5 k=2 a_max=200,30,900,25319
+f2b_q7aw,54 puntos,1080,600,25335
+f2b_ref,notebook alpha=1.4,100,1000,25302
+f2b_ref,longevo,100,1000,25302
+f2b_refine,40 puntos,4000,600,25317
+f2b_rob,C1 R7 legacy (v1),200,700,25331
+f2b_rob,C1 mu_bg=0.003,200,700,25331
+f2b_rob,C1 mu_bg=0.008,200,700,25331
+f2b_rob,C1 nido=3,200,700,25331
+f2b_rob,C1 async,200,700,25331
+f2b_rob,C1 async blanda,200,700,25331
+f2b_rob,C1 s0=0.25,200,700,25331
+f2b_rob,C1 s0=0.5,200,700,25331
+f2b_rob,C1p R7 legacy (v1),200,700,25331
+f2b_rob,C1p mu_bg=0.003,200,700,25331
+f2b_rob,C1p mu_bg=0.008,200,700,25331
+f2b_rob,C1p nido=3,200,700,25331
+f2b_rob,C1p async,200,700,25331
+f2b_rob,C1p async blanda,200,700,25331
+f2b_rob,C1p s0=0.25,200,700,25331
+f2b_rob,C1p s0=0.5,200,700,25331
+f2b_robmu,C1 mu_bg=0.001,60,700,25332
+f2b_robmu,C1 mu_bg=0.002,60,700,25332
+f2b_robmu,C1 mu_bg=0.003,60,700,25332
+f2b_robmu,C1 mu_bg=0.005,60,700,25332
+f2b_robmu,C1 mu_bg=0.008,60,700,25332
+f2b_robmu,C1 mu_bg=0.01,60,700,25332
+f2b_robmu,C1p mu_bg=0.001,60,700,25332
+f2b_robmu,C1p mu_bg=0.002,60,700,25332
+f2b_robmu,C1p mu_bg=0.003,60,700,25332
+f2b_robmu,C1p mu_bg=0.005,60,700,25332
+f2b_robmu,C1p mu_bg=0.008,60,700,25332
+f2b_robmu,C1p mu_bg=0.01,60,700,25332
+f2b_size,L=15 N0=100,60,600,25334
+f2b_size,L=20 N0=178,60,600,25334
+f2b_size,L=30 N0=400,60,600,25334
+f2b_size,L=45 N0=900,60,600,25334
+f2b_size,L=60 N0=1600,60,600,25334
+f2b_sobol,3328 puntos,19968,400,25314

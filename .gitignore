@@ -1,0 +1,43 @@
+# Python / numba / pytest
+__pycache__/
+*.py[cod]
+*.nbi
+*.nbc
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+.ipynb_checkpoints/
+.DS_Store
+
+# LaTeX auxiliaries (the PDFs are versioned)
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+*.synctex.gz
+manuscript/pre/*Notes.bib
+# ... except the logs that are inputs of figures or of the run-cost table
+!results/meanfield/kin_sweep_*.log
+!results_v2/**/progress.log
+
+# Uncompressed working copies of results_v2/**/{summary.csv,params.json}: versioned as *.gz
+# (make data restores them; scripts/figures/fig_inputs.py --pack re-compresses after a re-run)
+results_v2/**/summary.csv
+results_v2/**/params.json
+
+# Full time series of the ensembles (tens of MB). Only the reduced series_figs.parquet is versioned.
+results/**/series.parquet
+results/**/series.csv.gz
+results/**/series/
+results_v2/**/series.parquet
+results_v2/**/series.csv.gz
+results_v2/**/series/
+
+# Run-time state of the sweep runners and of the orchestrator
+.lock
+results*/**/runner.log
+results*/f2b_estado*/
+results_new/

@@ -1,0 +1,669 @@
+\section{Calibration details}
+\label{app:calib}
+
+This appendix collects the development ensembles of Section~\ref{sec:calib}. They used independent seeds and
+smaller samples than the production ensembles of Section~\ref{sec:results}, which supersede them wherever the two
+overlap.
+
+\subsection{Procedure}
+\label{app:calib-procedure}
+
+\paragraph{Transplants.}
+The transplant patterns O12 and O12b are ensemble experiments.
+\begin{itemize}
+  \item From each replicate colony, four reproductive males and four reproductive females are moved to an
+    empty lattice: either from the middle of the growth window (control, phase~B) or at
+    $t=1.75\,t_{\rm pk}$ (mid-phase~D).
+  \item In O12b, four phase-D animals of one sex are paired with four healthy animals ($s=1$) of the other.
+  \item A transplant ``founds'' a colony if it reaches 80 individuals within 150 weeks.
+\end{itemize}
+
+\paragraph{Ensembles.}
+The calibration proceeded in stages:
+\begin{enumerate}
+  \item screening of rule families: 23 points $\times$ 10 replicates, then 24 points (initial condition
+    $\times\,\alpha\times\kappa$) $\times$ 10 replicates;
+  \item ablations of the selected rules: 10 points $\times$ 40 replicates;
+  \item one-at-a-time sensitivity around the selected point: 17 points $\times$ 30 replicates;
+  \item final ensembles: \textsf{C0} with 120 replicates, 100 transplants and an $\alpha=0$ control;
+    \textsf{C1} and \textsf{C2} with 60 replicates and 60 transplants each;
+  \item exploratory tests of the founder protocol: 30--60 replicates per point.
+\end{enumerate}
+Further details:
+\begin{itemize}
+  \item replicates use independent seeds, \texttt{SeedSequence([base\_seed, point, replicate])};
+  \item the horizon is $T=600$ weeks, and every run of the final ensembles of \textsf{C0} and \textsf{C1}
+    went extinct before week 220;
+  \item a run of \textsf{C0} costs about 1~s of CPU;
+  \item the whole calibration used about 45~min on four cores.
+\end{itemize}
+
+\subsection{Development ensembles of the candidates}
+\label{app:calib-dev}
+
+Table~\ref{tab:calib-dev} reports every pattern in the development ensembles of \textsf{C0}, \textsf{C1} and
+\textsf{C2}. Two development estimates were optimistic: O9 in \textsf{C1} (0.57 here, 0.45 in production) and
+O17 in \textsf{C2} (0.95 here, 0.83 in production, where 7.5\% of the colonies recover natality).
+
+\begin{table}[t]
+  \centering
+  \caption{Development ensembles of \textsf{C0}, \textsf{C1} and \textsf{C2}: pattern pass fractions (fraction of
+  PASS runs, 95\% Wilson interval; superseded by Table~\ref{tab:res-production}). $N_0=400$, $T=600$ weeks. Transplants: $P_T(\cdot)$ is the fraction of transplants that found a
+  colony. ``Persistent O13'' requires the isolated class to stay isolated for $\ge4$ consecutive weeks
+  ($\Phi_{\rm BO}^{\rm pers}\ge0.1$ and $\Phi_{\rm CR}\ge0.1$). ``Last half'' is the fraction of runs in
+  which the median birth time of the persistent isolated class is later than the median birth time of all
+  births. A dash means not measured. The O13b entries for \textsf{C1} come from an independent 60-run
+  ensemble.}
+  \label{tab:calib-dev}
+  \small
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{@{}llccc@{}}
+    \toprule
+    Pattern & & \textsf{C0} ($n=120$) & \textsf{C1} ($n=60$) & \textsf{C2} ($n=60$) \\
+    \midrule
+    O4 peak below capacity & E & 1.00 [0.97, 1] & 1.00 [0.94, 1] & 1.00 [0.94, 1] \\
+    \quad $N_{\rm pk}/K$; empty cells at peak & & 0.42; 0.18 & 0.37; 0.16 & 0.40; 0.13 \\
+    O5 natality collapses at high $N$ & E & 1.00 [0.97, 1] & 1.00 [0.94, 1] & 0.98 [0.91, 1] \\
+    O6 no rebound & E & 1.00 [0.97, 1] & 1.00 [0.94, 1] & 0.97 [0.89, 0.99] \\
+    O7 extinction & E & 1.00 [0.97, 1] & 1.00 [0.94, 1] & 0.97 [0.89, 0.99] \\
+    O10 deterioration before peak & E & 1.00 [0.97, 1] & 1.00 [0.94, 1] & 1.00 [0.94, 1] \\
+    O11 crowded-born cohorts fail & E & 1.00 [0.97, 1] & 1.00 [0.94, 1] & 1.00 [0.94, 1] \\
+    O12 transplant: $P_T(\mathrm{B})$ & E & 0.82 [0.73, 0.88] & 0.83 [0.72, 0.91] & 0.87 [0.76, 0.93] \\
+    \quad $P_T(\mathrm{D})$ & & 0/100 [0, 0.04] & 0/60 [0, 0.06] & 0/60 [0, 0.06] \\
+    O13 two deteriorated classes & E & 0.98 [0.93, 0.99] & 1.00 [0.94, 1] & 1.00 [0.94, 1] \\
+    \quad persistent O13 & & 0 ($\Phi^{\rm pers}_{\rm BO}=0.006$) & 1.00 [0.94, 1] & 1.00 [0.94, 1] \\
+    \textbf{O17 Calhoun-like runs} & E & \textbf{0.98 [0.93, 0.99]} & \textbf{1.00 [0.94, 1]} & \textbf{0.95 [0.86, 0.98]} \\
+    \midrule
+    O8 senescent decline & D & 0.75 [0.67, 0.82] & 0.72 [0.59, 0.82] & 0.00 [0, 0.06] \\
+    O8b slow initial decline & D & 1.00 [0.97, 1] & 1.00 [0.94, 1] & 0.92 [0.82, 0.96] \\
+    O9 old, female-biased remnant & D & 0.35 [0.27, 0.44] & 0.57 [0.44, 0.68] & 0.17 [0.09, 0.28] \\
+    O11b few late-born females conceive & D & 0.99 [0.95, 1] & 0.96 [0.88, 0.99] & 1.00 [0.94, 1] \\
+    O12b mixed transplant & D & 0/200 [0, 0.02] & 0/120 [0, 0.03] & 0.07 [0.03, 0.13] \\
+    O13b isolated class is later-born & D & -- & 0 [0, 0.06] & 0 [0, 0.06] (MARG 60/60) \\
+    \quad $\Delta b/t_{\rm pk}$; last half & & -- & $-0.02$; 0/60 & $+0.13$; 58/60 [0.89, 0.99] \\
+    O14 aggregation with free space & D & 0.95 [0.90, 0.98] & 1.00 [0.94, 1] & 1.00 [0.94, 1] \\
+    O15 infant mortality $\to$ 100\% & D & 0.02 [0.00, 0.06] & 0 [0, 0.06] & 0.03 [0.01, 0.11] \\
+    O15b conceptions without viable young & D & 0.33 [0.25, 0.41] & 0.58 [0.46, 0.70] & 0.63 [0.50, 0.74] \\
+    \midrule
+    A1--A4 anti-patterns triggered & & 0/120 [0, 0.03] & 0/60 [0, 0.06] & A2: 2/60; others 0 \\
+    \bottomrule
+  \end{tabular}}
+\end{table}
+
+\paragraph{Magnitudes in the development ensemble of \textsf{C0}.}
+The candidates also approach several magnitudes of Universe~25, none of which is a test (Section~\ref{sec:circularity}).
+Values are medians over the 120 runs of
+\textsf{C0}, with bootstrap intervals; the corresponding figure for Universe~25 is in parentheses.
+\begin{itemize}
+  \item The peak lies at $N_{\rm pk}/K_\gamma=0.416$ [0.411, 0.420] of the damage-threshold capacity
+    $K_\gamma=m_c|G|$, which is not a physical capacity (Universe~25: 2200/3840 $=0.57$, comparable only in sign).
+  \item At the peak 18\% of the cells are empty (20\% of nest boxes).
+  \item The population is still at $\nu_{8b}=0.998$ of its peak $0.31\,t_{\rm pk}$ later (0.93). This is the
+    plateau, a consequence of the absence of mortality before senescence.
+  \item The decline lasts $(T_{\rm ext}-t_{\rm pk})/t_{\rm pk}=2.13$ [2.00, 2.18] (2.2 projected, $\ge1.84$
+    observed). It reaches at least the observed value in 78\% [69, 84] of the runs. The agreement is not robust:
+    the ratio depends on where $t_{\rm pk}$ falls on the plateau (Appendix~\ref{app:calib-evs}).
+\end{itemize}
+The adult social state falls below $0.5$ at $0.28\,t_{\rm pk}$, long before the peak. In the $\alpha=0$
+control the clustering of births is weaker: the Gini coefficient of births over $4\times4$ blocks is 0.075,
+against 0.168 in \textsf{C0} ($p=2\cdot10^{-17}$; O14).
+
+\subsection{Ablations of \textsf{C0}}
+\label{app:calib-ablations}
+
+Table~\ref{tab:calib-ablations} removes the rules of \textsf{C0} one at a time. Without refuges, each of the
+three rules is necessary.
+\begin{itemize}
+  \item \emph{R2}, switched off (full inheritance and individual recovery at $r=0.01$). Without it,
+    neither O11 nor O13 is ever reproduced. Viable pups come from the healthiest mothers and inherit their
+    state, so the late cohorts are competent.
+  \item \emph{AV}. Without it the population collapses into a few huge pools that leave 76\% of the
+    lattice empty, which is the [$\ne$ORIG] picture of ``half the colony empty'', and the isolated class
+    disappears.
+  \item \emph{R1}. Without it, adults recover when the population thins, and extinction (O7) and O13 drop
+    to 0.75 and 0.50 at $\alpha=4$. Removing R1 is tolerable only at $\alpha=6$, with lower robustness.
+\end{itemize}
+The long-lived control (last row; no rules, $\alpha=1.4$) fails O4: the peak reaches 0.83 of the capacity.
+They also fail O11 and O13.
+
+\begin{table}[t]
+  \centering
+  \caption{Ablations of \textsf{C0} (40 replicates per row; $N_0=400$, longevity preset). Fractions of PASS
+  runs; O17 with its 95\% Wilson interval. $\rho_{\rm pk}=N_{\rm pk}/K$; $f_0$ = fraction of empty cells at
+  the peak; $\Phi_{\rm BO}$, $\Phi_{\rm CR}$ = isolated and crowded deteriorated adults (maximum over
+  $t_{\rm pk}$, $t_{\rm pk}+10$, $t_{\rm pk}+20$).}
+  \label{tab:calib-ablations}
+  \small
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{@{}lcccccccc@{}}
+    \toprule
+    Variant & O4 & O7 & O11 & O13 & O17 & $\rho_{\rm pk}$ & $f_0$ & $\Phi_{\rm BO}$ / $\Phi_{\rm CR}$ \\
+    \midrule
+    \textsf{C0} ($\alpha=4$, $\kappa=0.15$, R1, R2) & 1.00 & 1.00 & 0.98 & 0.98 & 0.95 [0.83, 0.99] & 0.42 & 0.19 & 0.12 / 0.15 \\
+    \textsf{C0}, $\alpha=6$ & 1.00 & 1.00 & 0.95 & 1.00 & 0.95 [0.83, 0.99] & 0.35 & 0.32 & 0.13 / 0.17 \\
+    \textsf{C0}, $\kappa=0.10$ & 1.00 & 1.00 & 0.95 & 0.98 & 0.93 [0.80, 0.97] & 0.37 & 0.33 & 0.11 / 0.31 \\
+    \textsf{C0} without R2 & 1.00 & 0.95 & 0.00 & 0.05 & 0.00 [0, 0.09] & 0.51 & 0.12 & 0.08 / 0.18 \\
+    \textsf{C0} without AV & 1.00 & 1.00 & 0.68 & 0.00 & 0.00 [0, 0.09] & 0.32 & 0.76 & 0.05 / 0.87 \\
+    \textsf{C0} without R1 & 1.00 & 0.75 & 1.00 & 0.50 & 0.40 [0.26, 0.55] & 0.46 & 0.16 & 0.10 / 0.18 \\
+    \textsf{C0}, $\alpha=6$, without R1 & 1.00 & 0.98 & 1.00 & 0.85 & 0.82 [0.68, 0.91] & 0.38 & 0.30 & 0.11 / 0.21 \\
+    \textsf{C0}, no inheritance ($w=0$, $r=0.15$) & 1.00 & 1.00 & 1.00 & 0.68 & 0.68 [0.52, 0.80] & 0.46 & 0.15 & 0.11 / 0.16 \\
+    Long-lived control ($\alpha=1.4$) & 0.25 & 1.00 & 0.10 & 0.00 & 0.00 [0, 0.09] & 0.83 & 0.58 & 0.04 / 0.91 \\
+    \bottomrule
+  \end{tabular}}
+\end{table}
+
+\paragraph{Crowding is the trigger.}
+Setting $\gamma=0$ in \textsf{C0} removes the collapse altogether: the population grows past
+$2K_\gamma$ and the mean social state stays near 0.42; among adults it stays near 0.6 (\textsf{C1} with $\gamma=0$),
+since the mean over all animals includes the pups, born with $s\le0.2$. The failure of socialisation under R2
+therefore needs crowding damage to start. Calhoun's emphasis on the social, rather than purely numerical,
+consequences of density is consistent with this division of labour~\cite{Calhoun1973}.
+
+\paragraph{The transplant control constrains the attraction.}
+With $\alpha=6$ the control transplants (healthy phase-B animals) fail to found a colony in 60\% of the
+trials: strong aggregation of eight animals in one cell deteriorates them. This makes O12 not applicable,
+and is why $\alpha=4$ was preferred to $\alpha=6$.
+
+\subsection{Local sensitivity of \textsf{C0}}
+\label{sec:calib-sensitivity}
+
+Table~\ref{tab:calib-oat} varies each parameter of \textsf{C0} in turn. O4, O5, O6, O7, O10 and O11 remain
+at $\ge0.93$ in every variation. The bottleneck is O13: the isolated fraction sits only about 0.02 above
+its threshold of 0.1. Two variations break it:
+\begin{itemize}
+  \item faster learning ($r=0.15$), which shortens the time the young spend deteriorated;
+  \item a weaker selectivity of the aversion ($p=2$), which also repels moderately healthy individuals.
+\end{itemize}
+Both homogenise the occupancy. \textsf{C0} therefore lies inside the robust region but close to its
+border in $r$ and $\kappa$. This is consistent with the narrow band of Fig.~\ref{fig:model-schematic}(c),
+where $n^*=1/\kappa-1/\alpha$ must stay between about 5.5 and 10.
+
+With refuges the robust region is wider. In the production planes around \textsf{C1}
+(Section~\ref{sec:res-robustness}):
+\begin{itemize}
+  \item the primary outcome stays at $\ge0.83$ for $w\le0.3$ and $r\le0.10$, and falls through O11 at $w\ge0.5$
+    and $r\ge0.2$;
+  \item it stays at $\ge0.8$ at 34 of the 48 points of the $(\alpha,\kappa)$ plane with $\alpha\ge2$, and fails
+    where the free space required by the primary O4 is lost.
+\end{itemize}
+This local robustness contrasts with the small Calhoun-like fraction of the global Latin hypercube, 2.0\% of the
+points with the primary evaluator. That fraction is dominated by the refuge geometry and by thresholds that also
+enter the definitions of the classes, and it depends on the sampling box.
+
+\begin{table}[t]
+  \centering
+  \caption{One-at-a-time sensitivity of \textsf{C0} (30 replicates per row). O17 = fraction of
+  Calhoun-like runs with 95\% Wilson interval. In every row the other essential patterns stay at $\ge0.93$.}
+  \label{tab:calib-oat}
+  \small
+  \begin{tabular}{@{}lcc@{\qquad}lcc@{}}
+    \toprule
+    Variation & O13 & O17 & Variation & O13 & O17 \\
+    \midrule
+    \textsf{C0} & 0.97 & 0.97 [0.83, 0.99] & $a_{\max}=90$ & 1.00 & 0.93 [0.79, 0.98] \\
+    $\alpha=3$ & 0.70 & 0.70 [0.52, 0.83] & $a_{\max}=150$ & 0.97 & 0.93 [0.79, 0.98] \\
+    $\alpha=5$ & 1.00 & 1.00 [0.89, 1] & $\gamma=0.07$ & 0.80 & 0.80 [0.63, 0.90] \\
+    $\kappa=0.125$ & 1.00 & 0.97 [0.83, 0.99] & $\gamma=0.15$ & 0.97 & 0.90 [0.74, 0.97] \\
+    $\kappa=0.175$ & 0.70 & 0.67 [0.49, 0.81] & $w=0.1$ & 0.97 & 0.97 [0.83, 0.99] \\
+    $p=2$ & 0.10 & 0.10 [0.03, 0.26] & $w=0.3$ & 0.90 & 0.87 [0.70, 0.95] \\
+    $p=8$ & 0.93 & 0.93 [0.79, 0.98] & $a_w=8$ & 0.97 & 0.93 [0.79, 0.98] \\
+    $r=0.07$ & 1.00 & 1.00 [0.89, 1] & $a_w=16$ & 0.87 & 0.87 [0.70, 0.95] \\
+    $r=0.15$ & 0.17 & 0.17 [0.07, 0.34] & & & \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Deteriorated classes: persistence and cohort structure}
+\label{sec:calib-classes}
+
+\paragraph{\textsf{C0} reproduces O13 only instantaneously.}
+In \textsf{C0} the criterion O13 is met: 12\% of the adults are isolated ($m\le2$) and 14\% crowded
+($m>m_c$). But the two groups are snapshots of a single, homogeneously deteriorated population whose
+occupancy is overdispersed.
+\begin{itemize}
+  \item Only 0.6\% of the adults stay isolated for four consecutive weeks.
+  \item The weekly autocorrelation of the occupancy experienced by an individual is 0.23.
+  \item Isolated and crowded adults do not differ in age (46 versus 46 weeks), sex, social state or total
+    affinity (132 versus 145).
+\end{itemize}
+Changing the affinity memory or formation rate, adding male territoriality, strengthening the aversion
+or restricting bond formation to competent pairs does not produce persistence (four-week isolated
+fraction $\le0.012$ in every case). At a density of three to four animals per cell every individual
+touches neighbours almost every week, and no region is empty enough to stay in.
+
+\paragraph{Refuges.}
+Refuge cells of limited capacity, without a preference, remain essentially empty: they hold at most 5\%
+of the population and leave the four-week isolated fraction unchanged. A deteriorated animal surrounded by
+acquaintances always prefers an occupied neighbouring cell.
+
+With a preference, two conditions are needed:
+\begin{itemize}
+  \item \emph{The capacity must be hard.} With soft capacity, simultaneous moves produce stampedes into
+    the same refuge: the mean crowding reaches 30--60 and the isolated class shrinks.
+  \item \emph{The refuges must hold enough animals.} The persistent isolated fraction is bounded by the
+    refuge capacity relative to the adult population, $\phi_R=f_Rc_R|G|/N_{\rm ad}$. A class of 10\%
+    therefore needs $f_Rc_R\gtrsim0.3$.
+\end{itemize}
+With $f_R=0.3$, $c_R=2$ and $\pi=100$ (\textsf{C1}), 15\% of the adults form a persistent isolated
+class. 95\% of them are in refuges and they remain isolated for 15--16 consecutive weeks on average.
+They receive no crowding damage and no social mortality, which matches the ``physically healthy''
+beautiful ones of~\cite{Calhoun1973}. Persistent O13 holds in 60/60 runs, and O17 in 60/60
+(Table~\ref{tab:calib-dev}).
+
+\paragraph{Cohort structure.}
+In \textsf{C1} the persistent isolated animals are of the same age as the crowded ones (51 versus 51
+weeks at the peak). They are refugees of the early boom, not a late, unsocialised cohort, and the
+pattern O13b fails in every run ($\Delta b=-0.02\,t_{\rm pk}$). Between $t_{\rm pk}$ and $t_{\rm pk}+20$, 17\% of them
+are founders, 58--60\% belong to the first generation and 22--27\% to later ones. Most entered the refuges as pups:
+62--67\% first entered a refuge before the age of 12 weeks, and 15--20\% before 3 weeks (8 exploratory runs, with
+the single-pass and with the exact hard capacity). Pups are independent agents from birth and, being born with $s\le0.2$, are
+strongly attracted to refuges; a nest period, in which pups stay in their mother's cell, is a reported
+variant (Section~\ref{sec:res-robustness}).
+
+Basing the retreat on the competence reached at the end of the critical window does not help. Under R2
+almost every cohort after the first ends the window with $s<0.1$, so there is no gradient between
+cohorts. Basing it on the competence of the mother at birth (\textsf{C2}) does create the gradient.
+\begin{itemize}
+  \item The persistent isolated class is 11 weeks younger than the crowded class (51 versus 63 weeks).
+  \item It has 28\% fewer bonds (total affinity 97 versus 136) and a slightly higher social state.
+  \item It belongs to the second half of all births in 58/60 runs.
+  \item $\Delta b=+0.13\,t_{\rm pk}$, Mann--Whitney $p\approx10^{-46}$.
+\end{itemize}
+This is the structure Calhoun describes, in which the beautiful ones came from ``the last half of the
+population born''~\cite{Calhoun1973}. The price is a broader age distribution in phase~D, which breaks
+the senescent rise of the mean age required by O8 (Table~\ref{tab:calib-dev}).
+
+\paragraph{Why O13b cannot pass with its current threshold.}
+O13b also requires that half of the isolated class be born after $0.8\,t_{\rm pk}$. With $N_0=400$ this
+is out of reach for any retreat mechanism, because of when births happen.
+\begin{itemize}
+  \item The median birth time of the whole population is $0.18$--$0.24\,t_{\rm pk}$.
+  \item Ninety percent of all births occur before $0.44\,t_{\rm pk}$.
+  \item Only about 16 pups per run, 0.6\% of all births, are born after $0.8\,t_{\rm pk}$.
+\end{itemize}
+In Universe~25, by contrast, growth continued almost to the peak, and about half of all births occurred
+after $\approx0.8\,t_{\rm pk}$ (our estimate from the growth curve: $N$ reached half its peak around day 435). In the
+model the ``peak'' is the top of a plateau: natality dies at
+0.5--0.7\,$t_{\rm pk}$, and the colony, made of young adults, hardly changes until senescence. We
+therefore also report the cohort criterion relative to the distribution of births (``last half'' in
+Table~\ref{tab:calib-dev}). Under that reading \textsf{C2} passes and \textsf{C1} fails.
+
+\subsection{The founder protocol}
+\label{sec:calib-founders}
+
+Calhoun founded Universe~25 with four pairs of 48-day-old mice. We tested the corresponding protocol: four
+plus four individuals of age 7 weeks placed in the central cell. Table~\ref{tab:calib-founders}
+summarises the results.
+
+\paragraph{\textsf{C0} with founders.}
+The colony stays within about 10\% of the lattice and deteriorates locally, giving a trivial peak of
+$\rho_{\rm pk}\approx0.02$--$0.03$. Under weaker aggregation ($\alpha=1.4$, no R2) the colony grows as a
+slow front, at about $0.06$ cells per week. It takes $t_{\rm pk}\approx170$--$215$ weeks to peak, against
+a local deterioration time of 20--30 weeks: a Damköhler number $\mathrm{Da}\approx10$.
+
+\paragraph{More mobility.}
+Several Moore steps per week (\texttt{move\_substeps}) make things worse. Founders and their offspring
+disperse, males and females no longer meet in the same cell, and the colony fails by an encounter-limited
+Allee effect. With $N_0=400$, more mixing also homogenises the occupancy and destroys O13: O17 equals
+0.93, 0.80, 0.30 and 0 for 1, 2, 4 and 8 sub-steps.
+
+\paragraph{Mating in the Moore neighbourhood.}
+With \texttt{mate\_radius}${}=1$, two sub-steps and founders whose initial social state is reduced to
+$0.3$ (a stand-in for the adaptation after transfer, phase~A), O1--O3 become applicable and are
+frequently reproduced. However, the protocol is not yet robust:
+\begin{itemize}
+  \item O17 is only 0.17 [0.09, 0.28];
+  \item O5 and O13 fail in a third to a half of the runs;
+  \item the peak comes too late relative to the life span ($t_{\rm pk}/a_{\max}\approx1.4$, against 0.7
+    in Universe~25), so the senescent decline is too short and O8 fails.
+\end{itemize}
+The production plane of this protocol (initial social state $\times$ sub-steps $\times$ $a_{\max}$, 30 runs
+per point, Appendix~\ref{app:res-p4p6}) does not change the conclusion. Its best point ($s_0=0.2$, one
+sub-step, $a_{\max}=200$) reproduces O1--O3 jointly with O17p in 0.43 [0.27, 0.61] of the runs, and with the preset
+longevity $a_{\max}=120$ no point exceeds 0.13.
+
+\begin{table}[t]
+  \centering
+  \caption{Founder protocol (four pairs of 7-week-old animals in one cell). Fractions of PASS runs, with
+  95\% Wilson intervals where $n\ge30$; counts for the exploratory row with $n=8$. ``No latency'' founders
+  start with $s=1$; ``adaptation'' founders start with $s=0.3$. Same-cell rows use $s=1$.}
+  \label{tab:calib-founders}
+  \small
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{@{}lcccccccc@{}}
+    \toprule
+    Variant & $n$ & $\rho_{\rm pk}$ & O1 & O2 & O3 & O5 & O13 & O17 \\
+    \midrule
+    \textsf{C0}, same-cell mating, 1 sub-step & 30 & 0.02 & 0.43 & 0.33 & 1.00 & 0.83 & 0.55 & 0.13 [0.05, 0.30] \\
+    \textsf{C0}, same-cell mating, 4 sub-steps & 30 & 0.01 & 0.10 & 1.00 & 1.00 & 0.33 & 0.00 & 0 [0, 0.11] \\
+    \textsf{C1}, Moore mating, 2 sub-steps, no latency & 8 & 0.27 & 0/8 & 8/8 & 8/8 & 5/8 & 5/8 & 0/8 \\
+    \textsf{C1}, Moore mating, 2 sub-steps, adaptation & 60 & 0.24 & 0.58 [0.46, 0.70] & 0.97 [0.88, 0.99] & 0.71 [0.59, 0.81] & 0.65 [0.52, 0.76] & 0.54 [0.42, 0.66] & 0.17 [0.09, 0.28] \\
+    \bottomrule
+  \end{tabular}}
+\end{table}
+
+\subsection{Generations and chronology}
+\label{app:calib-generations}
+
+Table~\ref{tab:calib-generations} follows every animal of \textsf{C1} by generation: the founders are F0, and a pup
+belongs to the generation of its mother plus one. The realised fecundity is counted over the whole life of each
+female. The table uses the 200 runs of the reference ensemble: the same parameters and seeds were run
+again with a register of generations, and every run reproduces the trajectory of the ensemble
+(\texttt{scripts/analysis/generaciones\_base.py}). Table~\ref{tab:calib-gen-variants} repeats the summary for the
+other members of the reference ensemble and for the variants of Section~\ref{sec:res-robustness}, re-running the first
+20 replicates of each production arm with the same seeds (\texttt{scripts/analysis/gamma\_v3.py}; every replicate
+reproduces the maximum population of its run). Table~\ref{tab:calib-gamma} gives the deterioration and generation
+times, and Table~\ref{tab:calib-chrono} compares the chronology with Universe~25.
+
+\begin{table}[t]
+  \centering
+  \caption{Generations in \textsf{C1} (reference ensemble, 200 runs). Births: mean over runs and share
+  of all births. $s_{\rm nb}$: social state at birth; $s(a_w)$: at the end of the critical window, after which $s$
+  can only decrease; $R_{\rm net}$: daughters per female of that generation; ``bred'': fraction of females with at
+  least one surviving pup. Founders are 400 animals of age 4 weeks with $s=1$. Later generations add 0.1\% of the
+  births.}
+  \label{tab:calib-generations}
+  \small
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{@{}lcccccccc@{}}
+    \toprule
+    Generation & Births & Share & Median birth week & $s_{\rm nb}$ & $s(a_w)$ & $s(a_w)\ge0.5$ & Pups per female & $R_{\rm net}$ (bred) \\
+    \midrule
+    F0 & 400 & -- & -- & 1 & 0.90 & 91\% & 7.6 & 3.82 (73\%) \\
+    F1 & 1529 & 69.2\% & 10 & 0.19 & 0.23 & 20\% & 0.80 & 0.40 (16\%) \\
+    F2 & 611 & 27.6\% & 19 & 0.14 & 0.13 & 6\% & 0.22 & 0.11 (6\%) \\
+    F3 & 67 & 3.0\% & 28 & 0.10 & 0.11 & 2\% & 0.11 & 0.05 (4\%) \\
+    F4 & 4 & 0.2\% & 38 & 0.07 & 0.08 & 0 & 0.06 & 0.03 (2\%) \\
+    \bottomrule
+  \end{tabular}}
+\end{table}
+
+\paragraph{A boom of one to two generations.}
+The founders deteriorate by crowding during their own adult life: they reach the end of the window with $s=0.90$,
+but have $s=0.20$ at 26 weeks of age (week 22). They produce 69\% of all births, about 6\% of their potential
+fecundity. Their offspring are born at $s_{\rm nb}=w\,s_f\simeq0.19$, below the deterioration threshold, and gain only
+$+0.04$ by the end of the window, because their teachers are already deteriorated; without crowding damage the mean
+adult state stays near 0.6. The net reproductive number falls by a factor of about ten in a single step, from 3.8 to
+0.40, and the third and later generations add 3.2\% of the births. The generational gradient is monotone
+($s_{\rm nb}$ 1, 0.19, 0.14, 0.10; $R_{\rm net}$ 3.8, 0.40, 0.11, 0.05), but it is almost complete between the
+founders and the first generation. The structure is the same in the other members of the reference ensemble and in
+every variant of Table~\ref{tab:calib-gen-variants}: the mean generation of the births is 1.2--1.6, and the first
+generation with $R_{\rm net}<1$ is always F1. It is therefore not an artefact of the synchronous cohort. The
+long-lived control without new rules has a \emph{deeper} boom (30 replicates of the null ensemble): 22\% of the births
+belong to the third and later generations, the mean generation is 1.95 [1.90, 1.99] against 1.34, and $R_{\rm net}$ of
+F1 is 1.21 [1.17, 1.25] against 0.40 (medians with bootstrap intervals; every run of the control has $R_{\rm net}>1$ in
+F1, none of \textsf{C1}). The long-lived control also differs from \textsf{C1} in $\alpha$, so the clean contrast is
+\textsf{C1} without its four rules (same $\alpha=4$ and crowding damage): mean generation 1.59 and $R_{\rm net}$ of F1
+0.66, against 1.34 and 0.40 (Table~\ref{tab:calib-gamma}). The rules, R2 in particular ($-$R2$^*$: 1.62), shorten the
+generational depth, because pups no longer inherit the competence of the few healthy mothers.
+
+\paragraph{Deterioration time and generation time.}
+Table~\ref{tab:calib-gamma} measures how long deterioration takes. Three means of $s$ are followed every week: over the
+adults (age $\ge a_{\min}=6$, the S$_{\rm adult}$ of O10), over the animals past the critical window (age $\ge a_w=12$)
+and over the founders. The adult mean is diluted: pups of the first generation are born with $s\le0.2$ and count as
+adults from the age of 6 weeks, while they are still inside the window. It falls below 0.5 in week 13, when the
+founders still have $\bar s=0.66$ and are 39\% of the adults. The animals past the window, which no longer learn and
+admit newborns only 12 weeks after their birth, and the founders, a closed cohort, cross 0.5 in week 16. We therefore
+define $t_{\rm det}=t_{1/2}-t_{\rm on}$ on the animals past the window: $t_{\rm det}\approx10$ weeks and
+$\Gamma=t_{\rm det}/T_{\rm gen}\approx1.1$ in \textsf{C1} (interquartile range over runs 1.0--1.29; founders 1.2),
+against 0.8 with the adult mean of the primary evaluator. Deterioration takes of the order of one generation time. The value
+depends on the definition of $T_{\rm gen}$: with overlapping cohorts the interval between median birth weeks is not a
+demographic generation time, and in the long-lived and rule-free null models it drops to 5 weeks (4 in some runs),
+below the age of first reproduction, which inflates their $\Gamma$. With the standard definition, the mean age of the
+mothers at birth ($T_{\rm gen}=14.3$ weeks in \textsf{C1}), $\Gamma\approx0.7$ (interquartile range 0.63--0.74) in
+\textsf{C1}, 0.60--0.66 in \textsf{C1}$'$, $-$R2$^*$ and the long-lived and rule-free null models, and 0.85 at
+$\gamma=0.02$ (30 and 20 runs, from the same per-run data); $\Gamma$ is of order one under either definition, and
+it does not order the depth of the boom under either.
+
+$\Gamma$ is not what keeps the boom shallow. Lowering the crowding damage from $\gamma=0.1$ to 0.02 raises $\Gamma$ from
+1.2 to 1.6 (founders 1.2 to 1.8), but the mean generation of the births moves only from 1.35 to 1.42 and $R_{\rm net}$
+of F1 from 0.39 to 0.52; the colonies still collapse and pass O17p in 17 of 20 runs. Pups born at
+$s_{\rm nb}\approx0.4$ ($s_0=0.25$) change the depth more at about the same $\Gamma$: 1.51 and $R_{\rm net}=0.62$ at
+$\gamma=0.1$, 1.64 and 0.84 at $\gamma=0.02$. Across the controls $\Gamma$ does not order the depth either: $-$R2$^*$, with
+full inheritance, has $\Gamma=1.2$ and a mean generation of 1.62; $\alpha=0$ has 2.4 and 1.57; the long-lived control
+1.6 and 1.95. The depth is set in the first
+step, F0$\to$F1: pups are born below the deterioration threshold, conception ($\propto s_fs_m$) and pup survival
+($\propto s_f$) fall with the parents' state, and, with R2, pups learn from neighbourhoods made mostly of other pups and
+of founders that are already deteriorating. $\Gamma$ remains a heuristic for the comparison with Universe~25
+(Section~\ref{sec:model-groups}).
+
+\begin{table}[t]
+  \centering
+  \caption{Deterioration time and generation time (medians over runs; $n$ runs). $t_{\rm on}$: first week with 5\% of
+  the individuals in cells with $m>m_c$. $t_{1/2}$: first week with mean $s<0.5$ over the adults (age $\ge a_{\min}=6$,
+  as in O10), over the animals past the critical window (age $\ge a_w=12$, the definition used in the text) and over
+  the founders (F0). $T_{\rm gen}$: interval between the median birth weeks of F1 and F2.
+  $\Gamma=(t_{1/2}-t_{\rm on})/T_{\rm gen}$, with medians of numerator and denominator; with the mean age of the
+  mothers at birth as $T_{\rm gen}$ (14.3 weeks in \textsf{C1}) $\Gamma\approx0.7$, 0.60--0.66 in \textsf{C1}$'$, $-$R2$^*$,
+  long-lived and no rules, and 0.85 at $\gamma=0.02$, $s_0=0$, so $\Gamma$ is of order one under either definition. $\langle g\rangle_B$: mean
+  generation of the births. Upper block: replicates of the reference ensemble and of the null ensemble (same seeds;
+  $-$R2$^*$: $w=1$ without social learning; none: \textsf{C1} without its four rules). Lower block: \textsf{C1} with
+  crowding damage $\gamma$ and newborn base $s_0$ varied (other seeds). Script: \texttt{scripts/analysis/gamma\_v3.py}.}
+  \label{tab:calib-gamma}
+  \small
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{@{}lccccccc@{}}
+    \toprule
+    Variant & $n$ & $t_{\rm on}$ & $t_{1/2}$: $a\ge a_{\min}$ / $a\ge a_w$ / F0 & $T_{\rm gen}$ & $\Gamma$: $a\ge a_{\min}$ / $a\ge a_w$ / F0 & $\langle g\rangle_B$; $R_{\rm net}$ F1 & O17p \\
+    \midrule
+    \textsf{C1} & 200 & 6 & 13 / 16 / 16 & 9 & 0.8 / 1.1 / 1.2 & 1.34; 0.40 & 0.995 \\
+    \textsf{C1}$'$ & 30 & 5.5 & 12 / 15 / 15 & 9 & 0.8 / 1.0 / 1.1 & 1.34; 0.36 & 0.87 \\
+    \textsf{C0} & 30 & 8 & 15 / 17 / 18 & 7 & 0.9 / 1.3 / 1.4 & 1.36; 0.45 & 0 \\
+    \textsf{C1}, $\alpha=0$ & 30 & 13 & 22 / 24 / 26 & 5 & 1.8 / 2.4 / 2.6 & 1.57; 0.89 & 0 \\
+    $-$R2$^*$ (null) & 30 & 7 & 14 / 15 / 15 & 6.5 & 1.1 / 1.2 / 1.2 & 1.62; 0.69 & 0 \\
+    Long-lived (null) & 30 & 11 & 19 / 19 / 20 & 5 & 1.6 / 1.6 / 1.8 & 1.95; 1.21 & 0 \\
+    No rules (null) & 30 & 8 & 15 / 15 / 15 & 5 & 1.4 / 1.6 / 1.6 & 1.59; 0.66 & 0 \\
+    \midrule
+    $\gamma=0.1$, $s_0=0$ & 20 & 6 & 13 / 16 / 16 & 8.5 & 0.9 / 1.2 / 1.2 & 1.35; 0.39 & 0.95 \\
+    $\gamma=0.05$, $s_0=0$ & 20 & 5 & 14 / 17 / 17.5 & 8 & 1.1 / 1.4 / 1.5 & 1.37; 0.43 & 1.00 \\
+    $\gamma=0.02$, $s_0=0$ & 20 & 6 & 15 / 18 / 20 & 8 & 1.3 / 1.6 / 1.8 & 1.42; 0.52 & 0.85 \\
+    $\gamma=0.1$, $s_0=0.25$ & 20 & 6 & 14 / 15 / 15 & 7 & 1.1 / 1.3 / 1.3 & 1.51; 0.62 & 0.05 \\
+    $\gamma=0.05$, $s_0=0.25$ & 20 & 6 & 14 / 15.5 / 16 & 7 & 1.1 / 1.4 / 1.4 & 1.54; 0.66 & 0 \\
+    $\gamma=0.02$, $s_0=0.25$ & 20 & 6 & 16 / 17 / 17.5 & 7 & 1.3 / 1.6 / 1.6 & 1.64; 0.84 & 0 \\
+    \bottomrule
+  \end{tabular}}
+\end{table}
+
+\begin{table}[t]
+  \centering
+  \caption{Generational structure (medians over runs; $n$ runs). Share of births of F1, F2 and later generations;
+  mean generation of the births $\langle g\rangle_B$; net reproductive number of the founders and of F1;
+  $t_{1/2}$: first week with mean $s<0.5$ over the adults ($a\ge a_{\min}$) and over the animals past the window
+  ($a\ge a_w$; Table~\ref{tab:calib-gamma}); plateau: weeks with $N\ge0.98N_{\rm pk}$. Upper block: the reference
+  ensemble ($t_{1/2}$ for $a\ge a_w$ from 30 replicates for \textsf{C1}$'$, \textsf{C0} and $\alpha=0$).
+  Lower block: the first 20 replicates of each production arm of Section~\ref{sec:res-robustness} (30 for the
+  long-lived null model), re-run with the same seeds and a register of generations; their O17p over $n=200$ is in
+  that section.}
+  \label{tab:calib-gen-variants}
+  \small
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{@{}lccccccc@{}}
+    \toprule
+    Variant & $n$ & F1 / F2 / F3+ (\%) & $\langle g\rangle_B$ & $R_{\rm net}$ F0 / F1 & $t_{1/2}$: $a\ge a_{\min}$ / $a\ge a_w$ & Plateau \\
+    \midrule
+    \textsf{C1} & 200 & 69 / 28 / 3.2 & 1.34 & 3.8 / 0.40 & 13 / 16 & 51 \\
+    \textsf{C1}$'$ & 200 & 70 / 26 / 4.0 & 1.34 & 3.4 / 0.37 & 12 / 15 & 50 \\
+    \textsf{C0} & 200 & 68 / 29 / 3.1 & 1.35 & 4.4 / 0.44 & 15 / 17 & 54 \\
+    \textsf{C1}, $\alpha=0$ & 200 & 50 / 44 / 6.2 & 1.56 & 5.9 / 0.87 & 22 / 24 & 59 \\
+    \midrule
+    \textsf{C1}, initial ages 4--52 weeks & 20 & 68 / 29 / 3.5 & 1.36 & 3.8 / 0.42 & 12 / 14.5 & 28.5 \\
+    \textsf{C1}, initial ages 4--80 weeks & 20 & 62 / 33 / 4.9 & 1.43 & 3.4 / 0.52 & 12.5 / 15 & 22 \\
+    \textsf{C1}, nest period of 3 weeks & 20 & 79 / 19 / 1.1 & 1.22 & 3.7 / 0.25 & 12 / 15 & 51.5 \\
+    \textsf{C1}, $\mu_{\rm bg}=0.003$ per week & 20 & 68 / 28 / 3.3 & 1.36 & 3.8 / 0.41 & 13 / 16 & 19 \\
+    \textsf{C1}, $\mu_{\rm bg}=0.008$ per week & 20 & 65 / 30 / 5.0 & 1.40 & 3.7 / 0.48 & 14 / 17 & 11 \\
+    \textsf{C1}, asynchronous update & 20 & 67 / 29 / 3.0 & 1.36 & 4.5 / 0.45 & 14 / 16 & 57 \\
+    \textsf{C1}, $s_0=0.25$ & 20 & 58 / 34 / 7.6 & 1.51 & 3.7 / 0.60 & 14 / 15 & 52 \\
+    \textsf{C1}, $s_0=0.5$ & 20 & 52 / 38 / 11 & 1.60 & 3.6 / 0.72 & 14 / 15 & 54 \\
+    Long-lived, no new rules (null) & 30 & 35 / 42 / 22 & 1.95 & 4.9 / 1.21 & 19 / 19 & 45.5 \\
+    \bottomrule
+  \end{tabular}}
+\end{table}
+
+\begin{table}[t]
+  \centering
+  \caption{Chronology of \textsf{C1} (reference ensemble, 200 runs; medians, interquartile range in
+  brackets) and of Universe~25 (day/7; \cite{Calhoun1973}). $t'_{\rm pk}$: first week with $N\ge0.98N_{\rm pk}$.
+  ``Functional B'': growth while the animals past the critical window ($a\ge a_w$), which newborns do not dilute,
+  keep a mean $s\ge0.5$ (Table~\ref{tab:calib-gamma}); the founders cross 0.5 in the same week. The adult mean
+  ($a\ge a_{\min}$, as in O10) crosses 0.5 three weeks earlier because pups count as adults while still inside the
+  window.}
+  \label{tab:calib-chrono}
+  \small
+  \begin{tabular}{@{}lcccc@{}}
+    \toprule
+    Event & \textsf{C1} (week) & $/t_{\rm pk}$ & Universe~25 (week) & $/t_{\rm pk}$ \\
+    \midrule
+    First litters (end of A) & 3 [0] & 0.06 & 15 & 0.19 \\
+    Mean $s<0.5$, adults $a\ge a_{\min}$ & 13 [1] & 0.24 & -- & -- \\
+    Mean $s<0.5$, $a\ge a_w$ (end of functional B) & 16 [1] & 0.28 & 45 (end of B) & 0.56 \\
+    Half of all births & 13 [1] & 0.23 & $\approx62$ (our estimate) & $\approx0.8$ \\
+    90\% / 99\% of all births & 25 [2] / 40 [5] & 0.45 / 0.75 & -- & -- \\
+    Start of the plateau, $t'_{\rm pk}$ & 34 [4] & 0.63 & no plateau & -- \\
+    $t_{\rm pk}=\arg\max N$ & 55 [10] & 1 & 80 & 1 \\
+    Last surviving birth & 59 [16] & 1.00 & 86 & 1.07 \\
+    Last conception & 61 [16] & 1.02 & 131 & 1.64 \\
+    End of the plateau (first deaths) & 86 [1] & 1.54 & -- & -- \\
+    Extinction & 169 [15] & 3.07 & 254 (projected) & 3.18 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{The phases are compressed.}
+In terms of Calhoun's phases (Table~\ref{tab:calib-chrono}), the model has a growth with competent adults
+(functional B) from week 3 to week 16: 13 weeks, about two doublings (from 400 to about 1900 animals) and two thirds of
+all births. In Universe~25 phase~B lasted 30 weeks and about five doublings, and most births came later, in phase~C.
+Measured with the adult mean of the primary evaluator, which pups dilute, functional B would end in week 13. Growth with
+deteriorated adults (C) lasts from week 16 to the start of the plateau at week 34; then the population neither
+grows nor declines for about 51 weeks, and the senescent decline (D) lasts from week 86 to week 169. The sequence
+A--B--C--D appears in the right order, but B and C are compressed, natality is front-loaded, and a plateau without
+births or deaths, absent from Universe~25, is inserted before D. O10b, which asks for a functional growth phase of
+half the time to the peak, passes in 2\% of the runs with the adult mean of the primary evaluator
+(Section~\ref{sec:res-production}). Part of that failure is the same dilution that affected the preregistered O10. Measured
+on the animals past the window, the functional growth lasts $0.46\,t'_{\rm pk}$ (median), and O10b passes in 24\% of the
+200 runs and is MARGINAL in the rest (founders: 38\%). It still falls short of Calhoun's phase~B, which lasted
+$0.56\,t_{\rm pk}$ and 30 weeks. Measured on these animals O10 is unchanged: it passes in every run of \textsf{C1} and, as
+with the adult mean, in three of the four null models ($-$R2$^*$, long-lived and no rules, 30 replicates each), so it remains
+generic. The same holds for the founders' mean.
+
+\paragraph{Non-synchronous initial condition.}
+In the production stage ($n=200$, primary evaluator), initial ages drawn uniformly over 4--52 weeks give
+O17p $=0.93$ [0.89, 0.96], and ages over 4--80 weeks, which include post-reproductive founders, give 0.63 [0.56,
+0.69] (0.68 and 0.31 in \textsf{C1}$'$). Only O5 changes, and it becomes MARGINAL rather than failing: 14 MARGINAL
+and no FAIL with 4--52 weeks, 73 MARGINAL and one FAIL with 4--80 weeks. Its level clause is always met:
+$\nu_5=N(t_{B99})/N_{\rm pk}$ has a median of 0.997 and a minimum of 0.97 over the 200 runs of 4--80 weeks, so natality
+still ends at the population maximum. What fails is the timing clause. The older founders die earlier (plateau of 28
+and 22 weeks), their deaths balance the last births, and the plateau starts earlier ($t'_{\rm pk}$ 30 and 29 weeks,
+against 34), while the last 1\% of the births still comes at weeks 38--41. Hence
+$\Delta_5=(t_{B99}-t'_{\rm pk})/t'_{\rm pk}$ rises from 0.17 to a median of 0.22 and 0.42, and lies between 0.52 and 0.97
+in the MARGINAL runs (series of the production ensembles). The classes, O11, the low peak and the generational
+structure (Table~\ref{tab:calib-gen-variants}) do not change: O11, O13 and O13p pass in every run of both arms. The
+primary outcome therefore depends on the initial condition only through the timing of O5 relative to $t'_{\rm pk}$, a
+generic criterion that carries no evidence for the rules (Section~\ref{sec:res-robustness}).
+
+\paragraph{Pups born above the deterioration threshold.}
+With $w=0.2$ and $s_0=0$ every pup is born with $s\le0.2$, which makes part of O11 definitional. With $s_0=0.25$ or
+$0.5$ pups are born at $s_{\rm nb}\approx0.4$ or $0.6$. In the production stage ($n=200$) extinction,
+the low peak ($\rho_{\rm pk}=0.40$ and 0.44), the two classes and O5 still hold, but O11 passes in 8\% and 0\% of the
+runs, and so O17p is 0.08 and 0.00 (0.64 and 0.36 with the preregistered O11; Section~\ref{sec:res-robustness}). O11
+reads the state at the age of maturity, 6 weeks, when these pups still have $s\approx0.36$--0.47 (exploratory runs).
+At the end of the window crowding has brought them down: in 8 exploratory runs per value the last half of the births
+reaches $s(a_w)\approx0.12$, and only 7\% of its females breed. The failure of the crowded-born cohorts as O11 measures
+it is therefore largely definitional, tied to $s_0=0$; measured at the end of the window it survives, but it is then
+produced by crowding damage, as in the long-lived control, and not by birth below the threshold. The boom remains
+shallow: the mean generation of the births is 1.51 and 1.60, and $R_{\rm net}$ of F1 is 0.60 and 0.72 (20 replicates
+of each arm; Table~\ref{tab:calib-gen-variants}).
+
+\subsection{Scales and the mapping to Universe~25}
+\label{app:calib-scales}
+
+Table~\ref{tab:calib-scales} lists the scales of \textsf{C1} with their counterparts in Universe~25 and states which
+were calibrated. The mapping is the one of Section~\ref{sec:model-rules}: a cell is a resting site, $m_c$ the
+comfortable occupancy, and the refuges are the high, less preferred nest boxes.
+
+\begin{table}[t]
+  \centering
+  \caption{Scales of \textsf{C1} and of Universe~25 \cite{Calhoun1973}. Last column: calibrated in this work (C),
+  taken from Calhoun (U), a modelling choice of the core model (M), or emergent (E). $D_{\rm eff}$ in cells$^2$ per week. $^\dagger$Our estimate. $^\ddagger$$f_R$ and $\pi$
+  are calibrated; $c_R=2$ is the isolation threshold of O13, not the capacity of a nest box. $^\S$Used informally in
+  the calibration and part of the primary O4 ($f_0\ge0.10$; Section~\ref{sec:circularity}). The model's
+  $t_{\rm det}$ is measured on the animals past the critical window (Table~\ref{tab:calib-gamma}); for Universe~25 it is
+  the duration of phase~C, a different operational definition, so the two values of $\Gamma$ compare only in order of
+  magnitude.}
+  \label{tab:calib-scales}
+  \small
+  \begin{tabular}{@{}llll@{}}
+    \toprule
+    Quantity & Model (\textsf{C1}) & Universe~25 & \\
+    \midrule
+    Time step & 1 week & -- & M \\
+    Resting sites & 900 cells & 256 nest boxes & M \\
+    Comfortable occupancy & $m_c=8$ & 15 per box & M \\
+    $K_\gamma$ (sites $\times$ occupancy) & 7200 (5580 with refuges) & 3840 & -- \\
+    Isolation sites & 270 refuges, 540 places & high boxes, 25--50\%$^\dagger$ & C$^\ddagger$ \\
+    Initial population & 400, age 4 weeks & 8, age 7 weeks & M \\
+    Peak; $N_{\rm pk}/K_\gamma$ & 2600; 0.36 & 2200; 0.57 & E \\
+    Occupancy per site at the peak & 2.9 & 8.6 & E \\
+    Empty sites at the peak & 16\% & 20\% & E$^\S$ \\
+    Movement & $\le1$ cell/week; $D_{\rm eff}\approx0.13$ & enclosure crossed daily & C ($\alpha$) \\
+    Contact neighbourhood & $3\times3$ cells & cell (0.36\,m$^2$), whole floor & M \\
+    Maturity / menopause / life & 6 / 80 / 120 weeks & 6--7 / 80 / 114 weeks & U \\
+    Litter; interval between litters & 6.55; $\ge3.3$ weeks & 6--8; 3--4 weeks$^\dagger$ & M \\
+    Gestation; weaning & none; none & 3 weeks; 3 weeks & -- \\
+    Critical window & 12 weeks & youth & C \\
+    Doubling time during growth & 6--6.5 weeks & 4.7--7.9 (B), 21 (C) weeks & E \\
+    Generation time $T_{\rm gen}$ & $\approx9$ weeks & $\approx10$ weeks$^\dagger$ & E \\
+    Deterioration time $t_{\rm det}$ ($a\ge a_w$) & 10 weeks & $\approx35$ weeks (phase C)$^\dagger$ & E \\
+    $\mathrm{Da}=t_{\rm mix}/t_{\rm det}$ & $\approx1.7\times10^2$ & $\lesssim4\times10^{-3}$ & E \\
+    $\Gamma=t_{\rm det}/T_{\rm gen}$ & 1.1 & $\approx3.5^\dagger$ & E \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{The extinction time as an extreme-value statistic}
+\label{app:calib-evs}
+
+Without mortality before senescence the colony dies when its last member dies, $T_{\rm ext}=\max_i(b_i+\ell_i)$,
+with $b_i$ the birth time and $\ell_i$ the lifetime of animal $i$. Table~\ref{tab:calib-evs} decomposes it as
+$T_{\rm ext}=t_{\rm last}+(T_{\rm ext}-t_{\rm last})$, where $t_{\rm last}$ is the last surviving birth.
+\begin{itemize}
+  \item The second term, the longest residual lifetime, is about 110 weeks in every model, with an interquartile
+    range of 5--6 weeks: of the order of the inverse slope of the logistic hazard, $1/k\approx7$ weeks.
+  \item The spread of $T_{\rm ext}$ is therefore that of $t_{\rm last}$ (correlation 0.89--0.98). That spread is set
+    by how abruptly natality stops, measured by the e-folding time of the tail of births,
+    $\tau_B=(t_{B99}-t_{B90})/\ln10$.
+  \item The relative spread is small for two trivial reasons: the median contains a nearly deterministic lifetime of
+    110 weeks, and the numerator is set by $\tau_B$. Without attraction ($\alpha=0$) natality stops more abruptly
+    ($\tau_B=2.6$ weeks) and $T_{\rm ext}$ is \emph{more} reproducible than in \textsf{C1}; without AV (\textsf{C1}$'$)
+    the tail of births is longer ($\tau_B=8.7$) and so is the spread.
+\end{itemize}
+
+\begin{table}[t]
+  \centering
+  \caption{Decomposition of the extinction time (reference ensemble, 200 runs per model; medians,
+  interquartile range in brackets; one run of \textsf{C1}$'$ is censored).}
+  \label{tab:calib-evs}
+  \small
+  \begin{tabular}{@{}lcccccc@{}}
+    \toprule
+    Model & $T_{\rm ext}$ & IQR/median & $t_{\rm last}$ & $T_{\rm ext}-t_{\rm last}$ & corr$(T_{\rm ext},t_{\rm last})$ & $\tau_B$ \\
+    \midrule
+    \textsf{C1} & 169 [15] & 0.089 & 59 [16] & 111 [5] & 0.91 & 6.9 \\
+    \textsf{C1}$'$ & 182 [22] & 0.121 & 71 [22] & 110 [6] & 0.98 & 8.7 \\
+    \textsf{C0} & 166 [14] & 0.084 & 56 [13] & 111 [5] & 0.92 & 6.1 \\
+    \textsf{C1}, $\alpha=0$ & 155 [7] & 0.045 & 45 [10] & 111 [6] & 0.89 & 2.6 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Dependence on the size of the system.}
+Table~\ref{tab:res-size} runs \textsf{C1} at fixed density on lattices from $L=15$ to $L=60$ ($N_0\propto L^2$, 60
+runs each; production stage). The median of $T_{\rm ext}$ grows with the logarithm of the size, by about 6
+weeks per unit of $\ln L^2$ (from 162 to 184 weeks), and so does $t_{\rm last}$; the residual lifetime
+$T_{\rm ext}-t_{\rm last}$ stays at 110--112 weeks. The relative spread is 0.15 for $L\le20$ and about 0.08 for
+$L\ge30$; with 60 runs the intervals at $L\ge30$ overlap, and the slow decrease expected for the maximum of many
+events is within them (exploratory runs give 0.05 at $L=84$). The value 0.089 of the reference ensemble is therefore a
+value for $L=30$. The peak density (0.35--0.37) and the persistent fraction (0.17--0.18) barely change; the empty
+fraction falls from 0.18 to 0.15, an effect of the walls, and O17p rises from 0.82 at $L=15$ to 1.00 at $L\ge45$, so
+small lattices fail more often. In exploratory runs up to $L=84$ (30 per size, single-pass refuge admission) no colony recovers
+(A2 cleared in all 150 runs, up to about 21\,000 animals): we find no healthy pockets that could reseed a large colony.
+

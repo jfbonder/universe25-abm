@@ -1,0 +1,218 @@
+\section{Discussion}
+\label{sec:discussion}
+
+\paragraph{The envelope is generic; the rules add the classes.}
+The main lesson of the production runs is a negative one.
+A long-lived demography alone, without any of the new rules, drives nearly every colony to extinction (98/100 in the long-lived control, 199/200 in the corresponding null model run from the initial condition of \textsf{C1}).
+Once natality stops, the colony simply ages out, and the phase-D law Q4 is a consistency check of that demography.
+Extinction is therefore \emph{not} a result of the rules, and neither is the rest of the envelope: with crowding
+damage and the calibrated attraction $\alpha=4$, the candidate without its four rules has a low peak with free space,
+an end of natality near the maximum and no rebound (Table~\ref{tab:res-null}), and, scored at the end of the
+plasticity window, late-born cohorts that fail to acquire social competence.
+We distinguish what the rules encode, what they add, and what the demography and the initial condition set.
+
+\paragraph{Consistency checks of the design.}
+Several patterns follow from the rules by construction; they verify the implementation, but they are not findings.
+\begin{itemize}
+\item \emph{Transplants (O12, O12b, Q1).} Under R1 an adult cannot recover, and conception and pup survival scale
+  with the social state of the parents. Phase-D animals have $s\approx0$ (median 0.000 in every arm with R1;
+  Table~\ref{tab:res-trans-s}), so they cannot found a colony, with healthy partners or without them (0/60 and 0/120
+  in \textsf{C1}). R1 was motivated by Marsden's transplants \cite{Calhoun1973}, and the cross-transplant arm only
+  shows that removing the ratchet restores recovery. The non-trivial part is upstream: that the colony drives
+  essentially every adult to $s\approx0$, which O10 and O11 measure and which crowding damage alone largely
+  achieves. Adults of intermediate social state
+  ($0.2\le s\le0.5$, which exist only around weeks 8--20) found a colony in 5 of 60 trials under R1, against 57 of
+  60 without R1 and R2: the ratchet also blocks them, through their fecundity, but where they do found a colony
+  their offspring settle at the parents' level ($\bar s\approx0.3$--0.4) and the lineage does not collapse
+  (Appendix~\ref{sec:res-transplant}).
+\item \emph{Persistence of the isolated class (O13p).} R7 was designed after the first candidate produced only a
+  transient isolated class, and its capacity $c_R=2$ equals the isolation threshold of O13.
+\item \emph{Senescent decline and no social deaths (O8, A4).} Social mortality is off in every preset.
+\end{itemize}
+Table~\ref{tab:res-null} gives the pass rate of each essential pattern in the null models; the patterns above are
+marked $^\ddagger$ in Table~\ref{tab:observations}, whose caption names the rule that implies each of them.
+
+\paragraph{What the rules add.}
+Of the eight essential criteria of Table~\ref{tab:res-null}, five (O4, O5, O6, O7 and O10) pass in at least two of
+the four null models and carry no evidence for the rules: they verify that the model has a boom, an end of natality
+and an extinction. In particular the low peak with free space is generic: the candidate without its four rules
+passes the primary O4 in 200 of 200 runs ($\rho_{\rm pk}=N_{\rm pk}/K_\gamma=0.45$, $f_0=0.74$), and the long-lived
+control fails it only through its high peak ($\rho_{\rm pk}=0.85$), not through a lack of free space ($f_0=0.59$).
+$K_\gamma=m_c|G|$ is the population at which every cell would sit at the damage threshold, not a physical capacity.
+What the rules add, and the null models lack, is two patterns:
+\begin{itemize}
+\item \emph{Coexisting crowded and isolated deteriorated classes} (O13). They are absent in the long-lived control,
+  without crowding damage and without the rules, and present with crowd aversion or refuges alone (1.00 in
+  \textsf{C1}$'$, 0.92 in \textsf{C0}); full inheritance without social learning also has them. This is a
+  calibrated property, obtained in a nearly sessile regime (below), and it is lost with more movement sub-steps.
+\item \emph{The persistence of the isolated class} (O13p), which discriminates against three of the four null models
+  but holds by design ($c_R=2$ equals the isolation threshold).
+\end{itemize}
+The failure of the cohorts born during the boom (O11) is not among them. Scored at sexual maturity (six weeks), as
+in the primary evaluator, O11 passes in 1.00 of the \textsf{C1} runs against 0.00 in each null model and needs R1
+and R2 (0.71 of the applicable runs and 0.00 without each), but that separation was partly definitional: pups are born with
+$s\le w\,s_f\le0.2$, the threshold that O11 uses, and at six weeks they are still inside the plasticity window, so
+with pups born above the threshold ($s_{\rm base}=0.25$ or 0.5) O11 failed and O17p dropped to 0.08 and 0.00.
+Scored at the end of the window ($a_w=12$ weeks) on the same runs, \textsf{C1} still passes (O11 0.995, O17p 0.990),
+the dependence on $s_{\rm base}$ disappears (O17p 0.965 and 0.76), and O11 also passes in 0.81 of the long-lived runs
+and in 0.755 of the runs without rules, whose late cohorts fall below 0.2 through accumulated crowding damage. Only
+against full inheritance without social learning does it still separate in part (0.21). The failure of the late
+cohorts is therefore mostly the crowding damage of the envelope, not a contribution of the rules. Against the
+long-lived control and the model without rules, the evidence that the primary outcome O17p carries for the rules
+rests on O13, with O13p as a design property; against full inheritance without social learning it rests on O11 at
+six weeks and is weaker at the end of the window. Crowd aversion is not needed for either pattern (\textsf{C1}$'$
+passes them), and it does not supply the free space at the peak: it reduces it ($f_0=0.16$ with AV, 0.52 without).
+
+\paragraph{The central limitation: demography and initial condition.}
+The model has no mortality before senescence, and its default initial condition is a synchronous cohort of 400
+healthy four-week-old animals. Both matter for the primary outcome. Without background mortality nobody dies until
+old age, so the population sits on a plateau of about 51 weeks and $t_{\rm pk}$ is an arbitrary point of it; the ratio
+$(T_{\rm ext}-t_{\rm pk})/t_{\rm pk}$ is 2.1, close to Calhoun's 1.84--2.2, with $t_{\rm pk}=\arg\max N$, but 4.0
+from the start of the plateau, so we do not count it as agreement. Calhoun recorded adult deaths during phases B and
+C. With a background hazard of 0.003 per week at all ages the plateau shrinks to 17 weeks and O17p falls from 0.995
+to 0.55; with 0.008 per week, to 0.06. With initial ages spread over 4--52 weeks O17p is 0.93, but over 4--80 weeks it
+is 0.63 (Section~\ref{sec:res-robustness}). In every case the only criterion that fails is O5, and it fails by its
+timing clause, not by its level clause. Natality still ends with the population near its maximum (at the 99th
+percentile of the births the population is about $0.99\,N_{\rm pk}$), but the deaths bring the start of the plateau
+forward ($t'_{\rm pk}$ moves from 34 to 29 weeks at 0.003 per week, medians over 200 runs) while the end of natality
+hardly moves (40 to 43 weeks), so $(t_{B99}-t'_{\rm pk})/t'_{\rm pk}$ crosses 0.5 and O5 becomes MARGINAL. This is
+the case in 83 of the 90 failing runs at 0.003 per week and in 73 of the 74 failing runs with ages over 4--80 weeks;
+the remaining ones, and the 70 runs that fail O5 at 0.008 per week, exceed the timing clause by more than a factor
+two. O5 is generic, and the patterns that the rules add (O13 and O13p), as well as O11, pass in every run of these
+arms. The
+dependence on the demography and on the initial condition is therefore a dependence of the timing of the end of
+natality relative to the start of the plateau, a quantity that also rests on the post hoc choice of $t'_{\rm pk}$.
+It is not evidence against what the rules add, nor for it, since O5 discriminates against no null model; but it
+does mean that O17p $=0.995$ overstates how robustly the full conjunction of patterns is reproduced. A nest period
+of three weeks (0.835, borderline) and a random sequential update (1.00) preserve the primary outcome.
+
+\paragraph{The dynamics is a boom and its senescence, a compressed sequence of phases.}
+The time course of \textsf{C1} is essentially one transient (Tables~\ref{tab:calib-generations}
+and~\ref{tab:calib-chrono}; reference ensemble, 200 runs). The founders deteriorate by crowding during their own adult
+life, from $s=0.90$ at the end of the plasticity window to 0.20 at 26 weeks of age. Their offspring, about 70\% of
+all births, are born below the deterioration threshold and fail to acquire competence, because competent adults have
+become scarce. The net reproductive number falls from 3.8 in the founders to 0.40 in their daughters, so natality
+stops within about one generation, and the third and later generations add 3.2\% of the births. The null
+models without the rules have a \emph{deeper} boom: with the same attraction and crowding damage, \textsf{C1}
+without its four rules has a mean generation of the births of 1.59 against 1.34 and a net reproductive number of 0.66
+in the first generation against 0.40, and the long-lived control 1.95 and 1.2 (30 runs each;
+Table~\ref{tab:calib-gamma}). The rules, R2 in particular ($-$R2$^*$ gives 1.62), shorten the generational depth
+rather than create a long cascade.
+The shallowness of the boom is set by how pups are born and socialised: they are born below the deterioration
+threshold ($w=0.2$, $s_{\rm base}=0$), conception and pup survival scale with the parents' social state, and social
+learning (R2) draws on adults who are already deteriorating, so the net reproductive number drops in the first
+generation. A ratio of time scales gives a heuristic comparison with Universe~25, not the cause. Measured on animals
+past the plasticity window, so that newborns do not dilute it, $\Gamma=t_{\rm det}/T_{\rm gen}$ is
+$\approx1.1$ (1.2 on the founders; about 0.7 if $T_{\rm gen}$ is taken as the mean age of the mothers at birth,
+14.3 weeks, so it is of order one under either definition); in Universe~25 the ``death of societal organization'' took the whole of phase~C, about 35
+weeks, with a generation time of about 10 weeks, so $\Gamma\approx3.5$, an order of magnitude with a different
+operational definition. The model has a growth phase with
+socially competent adults, but it is about half as long as Calhoun's phase~B (13 against 30 weeks), although it holds two thirds
+of the births, and O10b, which asks for it, passes in 0.28 of the runs when the adult mean is replaced by that of the animals
+past the window (0.02 with the adult mean, which the newborns dilute). The phases appear in Calhoun's order, but B
+and C are compressed and an artificial plateau precedes D.
+Within this transient, crowding damage is the trigger (without it colonies explode), social learning (R2) the
+amplifier, the plasticity window (R1) the ratchet and the refuges (R7) make the isolated class persistent. The
+ratchet matters because of the refuges: they are pockets of low density in which, without R1, deteriorated animals
+recover and breed again (natality resumes and O17p falls to 0.21), whereas without refuges the collapse stays
+irreversible in most runs even without R1. R1 is what lets a persistent isolated class coexist with an irreversible
+collapse (Section~\ref{sec:model-rules}). Only where
+socialisation is subcritical does the learning cascade propagate over several generations and kill a colony without
+crowding (Q7), and those colonies first overshoot the crowding threshold, so this is not Calhoun's collapse.
+
+\paragraph{The timing of extinction is extreme-value statistics.}
+A post hoc analysis of the runs of the preregistered design suggested that crowd aversion makes the extinction time
+more reproducible. It is not a
+signature of the mechanism. Without social mortality $T_{\rm ext}\approx t_{\rm last}+\ell_{\max}$, the last birth
+plus the longest residual lifetime (Appendix~\ref{app:calib-evs}). The second term, about 110 weeks, fluctuates only
+on the scale of the inverse slope of the senescent hazard, as expected for the maximum of many lifetimes
+\cite{Gumbel1958,Coles2001}, so the spread of $T_{\rm ext}$ is that of the last birth (correlation 0.92), set by how
+abruptly natality stops. Without attraction the spread is 0.04, smaller than in \textsf{C1}, and it falls with the
+size of the lattice (0.14 at $L=20$, 0.08 at $L=30$--60; Table~\ref{tab:res-size}).
+
+\paragraph{What ``minimal'' means here.}
+``Minimal'' does not mean few parameters: the core model has more than a dozen, and the added rules about ten (R1: $a_w$;
+R2: $\lambda$, $w$, $s_{\rm base}$; AV: $\kappa$, $p$; R7: $f_R$, $c_R$, $\pi$, $q$, $b$ and the hard capacity), all
+fixed by qualitative calibration against the evaluated patterns. It means that every added rule is local, has a
+neutral value that recovers the core model and is motivated by an observation in Calhoun's report; that rules
+found unnecessary were removed (long-range jumps, state-dependent attraction, territorial exclusion, social
+mortality); and that each rule of the minimal set is necessary by ablation \emph{at the evaluation thresholds used}:
+a class threshold of 10\%, isolation at $m\le2$, persistence of four weeks and an ensemble threshold of 0.8.
+The necessity of R7 is necessity for O13p, a criterion added together with R7; for O6, O7 and O11 removing R7 changes
+nothing, whereas R1 and R2 remain needed (O11 in 0.71 of the applicable runs and 0.00 without each).
+The preregistered necessity test Q2 is rejected with the primary criteria ($p_{\rm Holm}=2.2\times10^{-7}$) but not
+with the preregistered criteria ($p_{\rm Holm}=0.067$); the rejection comes only from the post hoc choice of $t_{B99}$ in
+O5, a generic criterion (Table~\ref{tab:deviations}). Removing AV lowers the primary outcome by 0.20 [0.13, 0.28] in
+the factorial. The predicted size of the effect, however, fails: without AV the primary outcome was to fall to at
+most 0.5, and it is 0.79 [0.71, 0.85]. AV therefore contributes but is not necessary in the preregistered sense; we
+do not use the observed power of the test, which cannot explain a decision \cite{HoenigHeisey2001}.
+At these thresholds the minimal set for the primary outcome is \textsf{C1}$'$ (R1, R2 and R7): 0.835 [0.78, 0.88] of
+200 runs, borderline because the lower bound is below 0.8, against 0.995 for \textsf{C1} (not preregistered). It falls
+to 0.33 at a class threshold of 15\%, and that of
+\textsf{C2} from 0.70 to 0.01 at 12.5\% (Fig.~\ref{fig:res-theta}), so minimality is not a property of the rules
+alone. Adding AV makes O5 more reliable and the decline senescent (O8 in 0.62 against 0.21), and reduces the free
+space at the peak ($f_0=0.16$ against 0.52); partial inheritance is not necessary
+($w=0$ with $r=0.15$ gives 1.00). Making the list of required patterns and their thresholds explicit, and testable
+run by run, is in our view the main methodological contribution of this work.
+
+\subsection{Limitations and circularity}
+\label{sec:limitations}
+
+\paragraph{Circularity between the patterns and the calibration.}
+The same patterns and evaluator were used to \emph{choose} the rules and to \emph{report} them; no pattern was held
+out. The refuge capacity $c_R=2$ coincides with the isolation threshold of O13 (with $c_R=3$, O17p is zero at every
+point of the sensitivity designs); the persistence criterion O13p was added after \textsf{C0}, and R7 was designed to
+satisfy it; $m_c$ is both the damage threshold and, in the preregistered evaluator, the boundary of the crowded class (with a fixed
+threshold $m>8$ the Calhoun-like fraction of the hypercubes is 2.0\%, against 2.5\% with $m>m_c$). The empty fraction
+at the peak was used informally to discard candidates and is a condition of the
+primary O4; O12 was used to choose $\alpha=4$ (Section~\ref{sec:circularity}).
+The fulfilment of the patterns by \textsf{C1} therefore shows that they are \emph{possible} under local rules, not
+that they were predicted. Among the preregistered tests, Q1 and Q4 are consistency checks, the contrast of Q3 is
+confounded by the demography, the prediction of Q6 is not supported (with the primary O11 the window has little or no
+effect on the boundary), and Q7 establishes an endogenous collapse without crowding, not the form of its boundary. All deviations from the plan are listed in Table~\ref{tab:deviations}.
+
+\paragraph{Robustness.}
+Against stochasticity robustness is high: O17p is 0.995 [0.97, 1.00] over 200 runs, independent ensembles replicate
+it, eight refuge layouts gave no difference, and exploratory runs on lattices up to $L=84$ at fixed
+density (30 runs per size, single-pass refuge admission) give the same peak density and persistent class, with no healthy pocket reseeding the colony. Locally it holds over most of
+the phase planes, whose boundaries are estimated from 30 runs per point. Globally it is limited and relative to the
+sampled box: over two 15-factor Latin hypercubes the mean primary outcome is 0.040 [0.026, 0.059] and 2.0\%
+[0.7, 3.6] of the points are Calhoun-like (7.2\% with the preregistered criteria). Part of this is definitional ($c_R=3$,
+large $m_c$) and part is mechanism (a total refuge capacity $f_Rc_R\ge0.3$ and a strong preference $\pi\ge100$); even
+with the four restrictions together, chosen after the runs, 33 of 37 points fail. The Sobol' indices are conditional
+on the factors fixed after screening. Demographically, the primary outcome depends on the timing of the end of natality, as discussed above, while the
+patterns that the rules add do not.
+
+\paragraph{Scales and the comparison with Universe~25.}
+With at most one Moore step per week, the Damköhler number $t_{\rm mix}/t_{\rm det}$ is about $1.7\times10^2$ in
+\textsf{C1} (about 10 for founder colonies), against $\lesssim4\times10^{-3}$ in Universe~25, whose mice crossed the
+enclosure every day (Table~\ref{tab:calib-scales}). The spatial structure of the model is that of animals almost
+sessile on the scale of the deterioration, and with more movement sub-steps the coexistence of classes is lost. The
+model lacks the separation $t_{\rm mix}\ll T_{\rm gen}\ll t_{\rm det}$ of Universe~25. We map a cell to a nest box, $m_c$ to its comfortable occupancy (``fifteen
+mice could comfortably rest in a single nest box'' \cite{Calhoun1973}), $K_\gamma$ to Calhoun's 3840 places and the
+refuges to the little-preferred high nests; $c_R=2$ is the isolation threshold, not the capacity of a nest. With this
+mapping $f_0$ and $\rho_{\rm pk}$ have the same definitions as Calhoun's 20\% of empty nest boxes and 0.57, but $|G|$
+and $m_c$ were not calibrated and $\rho_{\rm pk}$ depends on the seeding density, so they agree only in sign. R7 was
+calibrated with synchronous moves; the exact hard capacity leaves the primary outcome unchanged, and with a random
+sequential update a soft capacity suffices ($\rho_{\rm pk}=0.43$).
+
+\paragraph{What is not reproduced.}
+The founder phase (O1--O3): from four founding pairs a colony spreads as a slow front, and no point of an exploratory
+founder plane is Calhoun-like (O17p at most 0.37). The beautiful ones (O13b): the persistent isolated class of
+\textsf{C1} is made of refugees of the early boom, most of whom entered the refuges as pups, not of a late-born
+cohort; the variant \textsf{C2} produces a later-born class at a demographic cost. Total infant mortality (O15) and the
+sex bias of the remnant (O9) are not reproduced, because conception and pup survival decline together and there is no
+sex-specific mortality. Details, the refuted coexistence band (Q5) and the comparison with
+\cite{GwizdallaDus2026} are in Appendix~\ref{app:discussion}. That model reproduces the founder phase and the timing
+of the curve, which ours does not; ours shows that local rules, without population-level switches, produce
+coexisting classes of deteriorated animals, one of them persistent, on top of an envelope (a low peak with free
+space, an end of natality and the failure of the late-born cohorts) that crowding damage and the demography already
+give. Both agree that replicate variability is large and that Calhoun's trajectory is one admissible outcome among
+many. We make no claim about human populations.
+
+\paragraph{Future work.}
+A founder protocol with realistic mobility and an explicit adaptation phase; patterns held out from the calibration;
+gestation, lactation and background mortality, so that births spread up to the peak, which is the condition for a
+late-born isolated cohort and for natality to end at high population without a synchronous start; decoupling
+conception from pup survival and adding sex-specific risks; and a closer comparison with maternal-effect theories of
+population cycles \cite{GinzburgTaneyhill1994,InchaustiGinzburg1998}.

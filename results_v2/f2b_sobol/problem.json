@@ -1,0 +1,95 @@
+{
+ "kind": "sobol",
+ "problem": {
+  "names": [
+   "inherit_weight",
+   "rec",
+   "plast_age_max",
+   "m_c",
+   "crowd_aversion",
+   "alpha",
+   "refuge_capacity",
+   "gamma",
+   "eta",
+   "crowd_power",
+   "p0"
+  ],
+  "bounds": [
+   [
+    0.0,
+    0.6
+   ],
+   [
+    0.03,
+    0.3
+   ],
+   [
+    4.0,
+    24.0
+   ],
+   [
+    4,
+    16
+   ],
+   [
+    0.05,
+    0.3
+   ],
+   [
+    2.0,
+    8.0
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    0.03,
+    0.3
+   ],
+   [
+    0.05,
+    0.5
+   ],
+   [
+    1.0,
+    8.0
+   ],
+   [
+    0.15,
+    0.45
+   ]
+  ],
+  "scale": [
+   "lin",
+   "log",
+   "log",
+   "lin",
+   "lin",
+   "lin",
+   "lin",
+   "log",
+   "lin",
+   "log",
+   "lin"
+  ],
+  "type": [
+   "float",
+   "float",
+   "float",
+   "int",
+   "float",
+   "float",
+   "int",
+   "float",
+   "float",
+   "float",
+   "float"
+  ],
+  "fixed": {}
+ },
+ "n_points": 3328,
+ "N": 256,
+ "calc_second_order": false,
+ "seed": 4
+}

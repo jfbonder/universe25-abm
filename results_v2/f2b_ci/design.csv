@@ -1,0 +1,5 @@
+point,initial_age_dist,initial_age,initial_age_hi,crowd_aversion
+0,uniform,4,52,0.15
+1,uniform,4,80,0.15
+2,uniform,4,52,0.0
+3,uniform,4,80,0.0

@@ -1,0 +1,5 @@
+point,gamma,social_rec_lambda,inherit_weight,s_newborn_base,rec,alpha,crowd_aversion,crowd_power,plast_age_max,plast_outside_rec,refuge_capacity,refuge_frac,refuge_hard,refuge_pref
+0,0.0,1.0,0.2,0.0,0.1,4.0,0.15,4.0,12.0,0.0,2,0.3,strict,100.0
+1,0.1,0.0,1.0,1.0,0.01,4.0,0.15,4.0,12.0,0.0,2,0.3,strict,100.0
+2,0.1,0.0,1.0,1.0,0.01,1.4,0.0,1.0,,1.0,1,0.0,False,0.0
+3,0.1,0.0,1.0,1.0,0.01,4.0,0.0,4.0,,1.0,2,0.0,False,0.0

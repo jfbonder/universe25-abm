@@ -1,0 +1,27 @@
+{
+ "stage": "c1c2",
+ "kind": "sweep",
+ "reps": 200,
+ "T": 700,
+ "crn": false,
+ "series_every": 0,
+ "full_series": false,
+ "preset": null,
+ "priority": 0,
+ "c_cpu": 1.05,
+ "analysis": "c1c2",
+ "q": "QC",
+ "base_seed": 25318,
+ "alt": "calhoun_C2",
+ "n_points": 2,
+ "runs": 400,
+ "columns": [
+  "refuge_pref",
+  "refuge_pref_basis",
+  "refuge_pref_power"
+ ],
+ "preset_main": "calhoun_C1",
+ "tag": "C1",
+ "primary": "O17p",
+ "reps_run": 200
+}

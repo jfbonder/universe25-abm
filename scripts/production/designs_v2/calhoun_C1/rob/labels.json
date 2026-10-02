@@ -1,0 +1,18 @@
+[
+"C1 R7 legacy (v1)",
+"C1 mu_bg=0.003",
+"C1 mu_bg=0.008",
+"C1 nido=3",
+"C1 async",
+"C1 async blanda",
+"C1 s0=0.25",
+"C1 s0=0.5",
+"C1p R7 legacy (v1)",
+"C1p mu_bg=0.003",
+"C1p mu_bg=0.008",
+"C1p nido=3",
+"C1p async",
+"C1p async blanda",
+"C1p s0=0.25",
+"C1p s0=0.5"
+]

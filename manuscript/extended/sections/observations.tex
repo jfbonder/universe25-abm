@@ -1,0 +1,117 @@
+\section{Observations to reproduce}
+\label{sec:observations}
+
+Because Universe~25 is a single realization, we do not fit the population curve.
+Instead we extract from Calhoun's report \cite{Calhoun1973} a set of qualitative, falsifiable patterns and evaluate
+each of them as a \emph{distribution over stochastic replicates}, in the spirit of pattern-oriented modelling
+\cite{Grimm2005}.
+Every pattern is translated into an operational criterion on simulated time series.
+The criterion returns PASS, MARGINAL, FAIL or NOT APPLICABLE for each run.
+For an ensemble we report the fraction of PASS runs with a 95\% Wilson interval.
+An essential (E) pattern is considered reproduced if this fraction is at least $0.8$; a desirable (D) pattern if it is
+at least $0.5$.
+A criterion is informative only if it can fail. For every essential pattern we therefore also report its pass rate in
+four null models run from the same initial condition: no crowding damage ($\gamma=0$), full inheritance without social
+learning ($-$R2$^*$), the long-lived demography without new rules, and the calibrated candidate without its four
+rules; and in two partial ablations, no attraction ($\alpha=0$) and the candidate without refuges (\textsf{C0})
+(Table~\ref{tab:res-null}, Section~\ref{sec:res-null}). A pattern that passes in at least two of the four null models is
+\emph{generic} and is not counted as evidence. The preregistered forms of O4, O10 and O11 pass in null
+models, and the primary evaluator, which is not preregistered, redefines them (marked $^\S$ in
+Table~\ref{tab:observations}): O10 is measured on adults, because pups are born with $s\le w\,s_f\le0.2$ and dilute
+the mean in any growing colony; O11 does not pass when no animal is born in its window; and O4 also requires free
+space at the peak. O4 and O10 remain generic. O11, scored at sexual
+maturity (six weeks), discriminates against every null model, but in part because pups are born below its
+threshold; scored at the end of the plasticity window it also passes in most runs of the long-lived and rule-free
+null models (0.81 and 0.755; Section~\ref{sec:res-null}), so the failure of the late cohorts is mostly crowding damage. The free-space condition of O4, $f_0\ge0.10$, turns into a criterion what had been an informal
+target of the calibration, used to discard candidates (Section~\ref{sec:circularity}). An additional desirable pattern,
+O10b, asks for a growth phase with socially competent adults, as in Calhoun's phase B. These redefinitions were made
+after seeing the data and are listed among the deviations from the preregistered plan (Table~\ref{tab:deviations}).
+Patterns that follow from the rules by construction are marked $^\ddagger$ and reported as consistency checks.
+One model step is one week.
+Calhoun's dates are converted to weeks and enter only through dimensionless ratios: $t_{\rm pk}$ is the time of the
+population peak, $N_{\rm pk}$ the peak size, and $t_{B0}$ the time at which surviving births cease. The table states
+the criteria with these symbols; the primary evaluator replaces $t_{\rm pk}$ by the start of the plateau $t'_{\rm pk}$
+(the first week with $N\ge0.98\,N_{\rm max}$) and, in O5, $t_{B0}$ by the week $t_{B99}$ at which 99\% of the births
+have occurred (Section~\ref{sec:stats}, Table~\ref{tab:deviations}).
+Table~\ref{tab:observations} lists the patterns, and Table~\ref{tab:calhoun-numbers} the numbers taken from the
+original report.
+Page numbers refer to \cite{Calhoun1973}.
+
+{\small
+\begin{longtable}{@{}p{0.06\textwidth}p{0.04\textwidth}p{0.47\textwidth}p{0.35\textwidth}@{}}
+\caption{Qualitative patterns (O) and anti-patterns (A). E = essential, D = desirable, X = exploratory.
+$^\dagger$O13p is not preregistered (defined after calibration) and enters the primary outcome O17p $=$ O17 $\wedge$
+O13p (Section~\ref{sec:limitations}). O17p is strict: a not-applicable essential pattern counts as a failure (except
+O1--O3 when $N_0>20$, which are excluded by design), and an evaluation error is never a pass. O17 alone counts
+not-applicable patterns as passes, so we do not cite it. $^\ddagger$Consistency check of the design: the pattern follows from the rules
+by construction (O12 from R1 and $p_{\rm conc}\propto s_fs_m$; O13p from R7 with $c_R=2$; O8 and A4 from $\mu_s=0$)
+and is reported as a check, not as a finding (Section~\ref{sec:discussion}). $^\S$Not preregistered: the
+preregistered form also passes in null models (Table~\ref{tab:res-null-v1}); in the primary form O4 and O10 are
+still generic. Primary evaluator: $t_{\rm pk}\to t'_{\rm pk}$ in every criterion, $t_{B0}\to t_{B99}$ in O5, $f_0$
+measured at $t'_{\rm pk}$, crowded class at $m>8$. $K_\gamma=m_c|G|$ is the population at
+which every cell would sit at the damage threshold; it is not a physical capacity. Full operational definitions are
+in the supplementary specification.}\label{tab:observations}\\
+\toprule
+ID & & Observation in Universe~25 (page in \cite{Calhoun1973}) & Operational criterion \\
+\midrule
+\endfirsthead
+\toprule
+ID & & Observation (cont.) & Criterion \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+O1 & E & 104 days of ``considerable social turmoil'' before the first litters (p.~82) & founder scenario only: $t_{\rm lag}/t_{\rm pk}\in[0.10,0.35]$ (Calhoun $0.19$) \\
+O2 & E & Exponential growth, doubling time ``about 55 days'' (p.~83) & $R^2\ge 0.90$ for $\log N$ in the growth window \\
+O3 & E & Doubling time rises to ${\approx}145$ days from $N=620$ (pp.~83--84) & $r_B/r_C\ge 2$, phase C lasting $\ge 0.1\,t_{\rm pk}$ \\
+O4 & E$^\S$ & Peak of 2200 versus shelter for 3840, food for 9500 and water for 6144; 20\% of nest boxes empty at the peak (p.~82) & $N_{\rm pk}/K_\gamma\le 0.8$ and empty fraction of cells at the peak $f_0\ge0.10$ \\
+O5 & E & Growth ``abruptly ceased'' on day 560; last young surviving weaning born around day 600 (p.~85) & $N(t_{B0})/N_{\rm pk}\ge 0.7$ and $(t_{B0}-t_{\rm pk})/t_{\rm pk}\le 0.5$ \\
+O6 & E & No recovery; the demise ``contradicts prior knowledge'' that remnant groups reinitiate growth (p.~85) & no rebound of $\ge 0.1N_{\rm pk}$, including slow regrowth still rising at censoring; birth-rate hysteresis $A_H\le 0.1$ \\
+O7 & E & Total demise; last male projected dead on day 1780 (p.~85) & run: extinct by $T$; ensemble: $P_{\rm ext}(T)\ge 0.9$ (Kaplan--Meier) \\
+O8 & D$^\ddagger$ & Decline through senescence; mean age of survivors 776 days (p.~85) & $(T_{\rm ext}-t_{\rm pk})/t_{\rm pk}\ge 1$ (Calhoun $\ge 1.84$ observed, $2.2$ projected) \\
+O8b & D & Slow initial decline: $N=2056$ on day 736 (p.~83) & $N(1.31\,t_{\rm pk})/N_{\rm pk}\ge 0.8$ (Calhoun $0.93$) \\
+O9 & D & 27 survivors (23 F, 4 M), all older than 987 days (p.~83) & no young in the remnant; female fraction $>0.5$ \\
+O10 & E$^\S$ & ``death of societal organization by the end of Phase C'' (p.~85) & adult mean social state falls below 0.5 before the peak and stays below it at the peak: $t(\bar s_{\rm ad}<0.5)<t_{\rm pk}$, $\bar s_{\rm ad}(t_{\rm pk})<0.5$ \\
+O10b & D$^\S$ & Phase B: 14 functional social groups during growth (days 104--315; pp.~83--84) & adults socially competent during growth: $t(\bar s_{\rm ad}<0.5)\ge 0.5\,t_{\rm pk}$ \\
+O11 & E$^\S$ & From mid-phase C young ``prematurely rejected by their mothers''; complex behaviours fail to mature (p.~85) & social state at maturity decreasing across cohorts, and $<0.2$ for the cohorts born in the second half of natality; not applicable with fewer than 30 such animals (counts as failure in O17p) \\
+O11b & D & Only 18\% of 148 late-phase-C females had ever conceived (p.~85) & fraction ever conceived $\le 0.3$ \\
+O12 & E$^\ddagger$ & Small groups moved to uncrowded universes in mid-phase D failed to reproduce, even with partners raised without crowding (pp.~85--86) & transplant in silico: $P_T(D)\le 0.1$, $P_T(B)\ge 0.5$ \\
+O13 & E & Withdrawn males pooled at the centre, wounded by other withdrawn males; ``beautiful ones'' unwounded, never courting or fighting (pp.~84--85, 88) & instantaneous coexistence of crowded ($m>m_c$) and isolated ($m\le2$) deteriorated classes, each $\ge 10\%$ of adults \\
+O13p & E$^{\dagger\ddagger}$ & As O13, with a class that persists & isolated class persistent ($\ge4$ consecutive weeks) \\
+O13b & D & Beautiful ones are a late, unsocialized cohort, ``the last half of the population born'' (p.~85) & isolated class born later than crowded class; $\ge 50\%$ born after $0.8\,t_{\rm pk}$ (post hoc variant: after the median birth time) \\
+O14 & D & ``Behavioural sink'' on some hoppers (p.~81); births from 13 to 111 per brood group (pp.~83--84) & dispersion index $\ge 2$ at the peak; birth Gini above the $\alpha=0$ control \\
+O15 & D & Conception declined, foetal resorption and pre-weaning loss increased; no surviving young after day 600 (p.~85) & infant mortality increasing, $\ge 0.9$ after $t_{B0}$ \\
+O15b & D & Conceptions continued until about day 920 (p.~85) & $(t_{C0}-t_{B0})/t_{\rm pk}\ge 0.1$ (Calhoun $0.57$) \\
+O16 & X & Nursing females aggressive towards own young; withdrawn males attack each other (pp.~84--85) & only with aggression rules \\
+O17 & -- & Robustness criterion, not an observation. Motivated by the single realization: ``it was historical'' (p.~88) & run is Calhoun-like: all applicable E patterns pass, no anti-pattern; ensemble fraction $\ge 0.8$. Reported only through the strict primary outcome O17p \\
+\midrule
+A1 & & Logistic saturation at capacity & plateau within 10\% of $N_{\rm pk}$ for $\ge 100$ weeks \\
+A2 & & Cycles with recovery of births & births resume to $\ge 10\%$ of maximum, or $\ge 2$ rebounds \\
+A3 & & Demographic collapse before social collapse & per-capita fecundity halves only after $t_{\rm pk}$ \\
+A4 & $^\ddagger$ & Adult death from deterioration as main cause & social share of deaths $\ge 0.5$ \\
+\end{longtable}
+}
+
+\begin{table}[t]
+\centering\small
+\caption{Numbers reported in \cite{Calhoun1973} (days after colonization, DAC) and their conversion to weeks.
+The model has no weaning period: ``last young surviving weaning'' is compared with the end of surviving births in the model
+($t_{B0}$, pups that survive birth), which is an earlier event in the life of a pup.}
+\label{tab:calhoun-numbers}
+\begin{tabular}{@{}lrrl@{}}
+\toprule
+Event & DAC & weeks & page \\
+\midrule
+4 pairs of 48-day-old BALB/c mice introduced (9 July 1968) & 0 & 0 & 82 \\
+First litters (end of phase A) & 104 & 14.9 & 82 \\
+End of phase B: 620 weaned (150 adults in 14 groups, 470 juveniles) & 315 & 45 & 83--84 \\
+Peak, $N=2200$ & 560 & 80 & 83, 85 \\
+Last young surviving weaning & ${\sim}600$ & 85.7 & 83, 85 \\
+$N=2056$ & 736 & 105 & 83 \\
+Last conception & ${\sim}920$ & 131 & 85 \\
+122 survivors (22 M, 100 F) & 1444 & 206 & 85 \\
+27 survivors (23 F, 4 M), all older than 987 days & 1588 & 227 & 83 \\
+Projected death of last male & 1780 & 254 & 85 \\
+\bottomrule
+\end{tabular}
+\end{table}

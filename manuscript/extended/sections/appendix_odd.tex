@@ -1,0 +1,252 @@
+\section{Model description following the ODD protocol}
+\label{app:odd}
+
+We follow the second update of the ODD protocol \cite{Grimm2020}.
+Parameter names refer to the \texttt{Params} class of the \texttt{u25} package.
+
+\subsection{Purpose and patterns}
+The purpose is to identify a minimal set of \emph{local} rules that, with unlimited resources and without thresholds
+on the total population, generates the qualitative sequence reported for Universe~25 \cite{Calhoun1973}:
+\begin{enumerate}
+\item latency;
+\item exponential growth;
+\item deceleration with social deterioration;
+\item cessation of surviving births near the peak;
+\item decline without recovery to extinction;
+\item differentiated classes of deteriorated animals.
+\end{enumerate}
+The model is evaluated against the patterns of Table~\ref{tab:observations} and, for each pattern, against null
+models (Section~\ref{sec:res-null}). With the default initial condition only items 3--6 are testable, and the model
+reproduces them as a boom of one or two generations followed by extinction by senescence; of these items, the
+crowding damage and the demography already give the end of natality and the decline, and the rules add the
+classes of item~6 (Section~\ref{sec:discussion}).
+
+\subsection{Entities, state variables and scales}
+\begin{description}
+\item[Agents (mice).] Each agent $i$ carries:
+  \begin{itemize}
+  \item an identifier;
+  \item sex $\sigma_i\in\{M,F\}$, fixed at birth;
+  \item a cell $(x_i,y_i)$ on an $L\times L$ lattice;
+  \item an age $a_i$ in weeks;
+  \item a social state $s_i\in[0,1]$, where $1$ means full social competence;
+  \item optionally, a refractory counter and the maternal social state at birth $h_i$ (used by \textsf{C2}).
+  \end{itemize}
+\item[Pairs.] Each pair carries a symmetric affinity $F_{ij}\in[0,1]$, stored sparsely: only pairs with
+  $F_{ij}\ge\varepsilon$ are kept.
+\item[Cells.] A cell has its occupancy $n_c$, which is derived. Ordinary cells have no occupancy limit. A fixed
+  random fraction $f_R$ of cells are \emph{refuges} with capacity $c_R$. The layout is drawn once with its own random
+  generator (\texttt{refuge\_seed}${}=0$) and is the same in every run of every stage, so all intervals are
+  conditional on it; eight alternative layouts gave no detectable
+  difference.
+\end{description}
+\textbf{Scales.}
+\begin{itemize}
+\item One time step is one week.
+\item The lattice has $L=30$ and hard walls.
+\item A cell is an abstract meeting place, not a metric distance.
+\item Mapping: a cell corresponds to a resting place (a nest box of Universe~25 \cite{Calhoun1973}), the damage
+  threshold $m_c$ to its comfortable occupancy, and $K_\gamma=L^2 m_c=7200$, the population at which every cell would
+  sit at the damage threshold, to Calhoun's 3840 places. $K_\gamma$ is a reference for the peak density, not a
+  physical capacity, because cells have no occupancy limit, and $|G|$ and $m_c$ were not calibrated: model densities
+  are compared with Calhoun's only in sign. The refuges correspond to the little-preferred high nests; their capacity
+  $c_R=2$ is the isolation threshold of O13, not the capacity of a nest (Table~\ref{tab:calib-scales}).
+\item Mobility is at most one Moore step per week. Crossing the lattice of $L=30$ cells takes at least 29 weeks in a
+  straight line and about $1.7\times10^3$ weeks by the observed diffusion, whereas real mice crossed the enclosure
+  daily. The ratio of the mixing time to the deterioration time (a Damköhler number) is about $1.7\times10^2$ in
+  \textsf{C1} and about 10 for founder colonies, against $\lesssim4\times10^{-3}$ in Universe~25
+  (Section~\ref{sec:model-groups}).
+\end{itemize}
+
+\subsection{Process overview and scheduling}
+Each week the following steps are executed in order:
+\begin{enumerate}
+\item movement. This is simultaneous, with weights evaluated on the pre-move snapshot, repeated
+  \texttt{move\_substeps} times. Refuge capacity is enforced after each sub-step (see Movement below). An asynchronous
+  variant, in which agents move one at a time in random order on the current occupancy, is available
+  (\texttt{async\_move}) and reported as a robustness check;
+\item affinity update;
+\item occupancy $m_i$ after movement, including $i$ itself;
+\item social-state update;
+\item reproduction;
+\item ageing;
+\item mortality;
+\item recording of observables.
+\end{enumerate}
+Updates within each submodel are synchronous, except movement in the asynchronous variant.
+
+\subsection{Design concepts}
+\begin{description}
+\item[Basic principles.] The model rests on three ideas:
+  \begin{itemize}
+  \item social stress from crowding reduces reproduction and offspring survival
+    \cite{Christian1950,Southwick1955};
+  \item maternal transmission of individual quality \cite{GinzburgTaneyhill1994,InchaustiGinzburg1998};
+  \item the behavioural sink: attraction to familiar individuals produces aggregation despite free space
+    \cite{Calhoun1962}. In Universe~25 this appears as ``the learned need for proximity to others \ldots gains
+    dominance over the primary need'' \cite{Calhoun1973}.
+  \end{itemize}
+\item[Emergence.] The following are not imposed by any rule:
+  \begin{itemize}
+  \item the population trajectory;
+  \item spatial aggregation;
+  \item the effective deterioration threshold;
+  \item the classes of crowded and isolated deteriorated animals.
+  \end{itemize}
+  The following are imposed by design and are therefore consistency checks, not emergent properties
+  (Section~\ref{sec:discussion}): the irreversibility of adults, which is R1, and with it the failure of transplanted
+  late-phase animals; the persistence of the isolated class in refuges of capacity $c_R=2$, equal to the isolation
+  threshold; and the absence of social deaths and the senescent decline, since social mortality is off.
+\item[Adaptation, objectives, learning, prediction.] Agents do not optimise anything. ``Social learning'' (R2) is a
+  contagion rule.
+\item[Sensing.] Agents sense only their Moore neighbourhood: their affinities with the occupants of each neighbouring
+  cell, the occupancy of those cells, the mean social state of neighbours, and whether a cell is a refuge and is
+  full. No rule uses the total population size.
+\item[Interaction.] Interactions are co-presence (affinity), mating within the cell (or the Moore neighbourhood if
+  \texttt{mate\_radius}${}=1$), social learning, and crowding.
+\item[Stochasticity.] The following are random:
+  \begin{itemize}
+  \item destination choice;
+  \item mate choice, conception, litter size, neonatal survival and sex;
+  \item death;
+  \item the order of entry into full refuges;
+  \item the non-refuge cell to which a pup, a founder or a transplanted animal is moved when a refuge is full;
+  \item in the asynchronous variant, the order in which agents move;
+  \item in the non-synchronous variant, the initial ages.
+  \end{itemize}
+  The refuge layout is fixed (see Cells).
+  The state $N=0$ is absorbing.
+\item[Observation.] Per-step time series, per-run summaries, and the automatic pattern evaluator
+  (Section~\ref{sec:observations}).
+\end{description}
+
+\subsection{Initialization}
+\begin{itemize}
+\item \emph{Default:} 200 males and 200 females aged 4 weeks with $s=1$, placed uniformly at random, with no
+  affinities. This is a synchronous cohort; a non-synchronous initial condition is reported as a robustness
+  check: integer ages drawn uniformly between 4 and 52 weeks, or between 4 and 80 weeks
+  (\texttt{initial\_age\_dist="uniform"}, \texttt{initial\_age\_hi}).
+\item \emph{Founders} (presets \texttt{founders}, \texttt{founders\_longevo}): 4 males and 4 females aged 7 weeks with
+  $s=1$ in the central cell. This mimics Calhoun's four pairs of 48-day-old mice \cite{Calhoun1973}.
+\item \emph{Transplant:} 4 males and 4 females of reproductive age are taken from a donor run in phase B or D, keep
+  their $s$, and are placed in the central cell of an empty lattice.
+\end{itemize}
+
+\subsection{Input data}
+None. The environment is constant: no resource limitation, no predation, no emigration.
+
+\subsection{Submodels}
+\paragraph{Movement.}
+Agent $i$ chooses a destination $y$ in its Moore neighbourhood $V(i)$, which includes its own cell, with weight
+\[
+w_i(y)=\bigl[1+\alpha A_i(y)\bigr]\,
+e^{-\kappa(1-s_i)^{p}n_y}\,
+\bigl[1+\pi\,(1-b_i)^{q}\,\mathbf 1_{\mathcal R}(y)\bigr],
+\qquad A_i(y)=\sum_{j\in y,\,j\ne i}F_{ij}.
+\]
+The terms are:
+\begin{itemize}
+\item $n_y$ is the occupancy of $y$ excluding $i$;
+\item $\mathbf 1_{\mathcal R}(y)=1$ if $y$ is a non-full refuge ($n_y<c_R$) and 0 otherwise, $\mathcal R$ being the set of
+  non-full refuges;
+\item $\kappa$ is \texttt{crowd\_aversion} and $p$ is \texttt{crowd\_power} (rule AV);
+\item $\pi$ is \texttt{refuge\_pref} and $q$ is \texttt{refuge\_pref\_power} (rule R7);
+\item $b_i=s_i$ in \textsf{C1} and $b_i=h_i$ in \textsf{C2} (\texttt{refuge\_pref\_basis}).
+\end{itemize}
+Full refuges cannot be entered. With hard capacity, the agents already inside have priority, the entering agents are
+drawn in random order, and rejected agents return to their previous cell. Admission (\texttt{refuge\_hard="strict"}) is iterated to a fixed
+point: a rejected agent returning to a refuge it had left counts as a resident, and whoever took its place is
+rejected in turn. Pups that would put a refuge
+above capacity are placed in a uniformly chosen non-refuge cell of the nearest Chebyshev ring around the mother's
+cell that contains one (her Moore neighbourhood, unless all its cells are refuges, which happens mostly at corners of
+the lattice), and founders and transplanted animals are placed in the same way. A test checks that no refuge ever exceeds its capacity in real
+runs of \textsf{C1}, \textsf{C1}$'$ and \textsf{C2}. A single-pass variant, \texttt{refuge\_hard="legacy"}, is
+reported as a robustness check: it does not count a rejected agent returning to a refuge it had left, nor pups born in
+a refuge, so refuges can exceed their capacity (up to 11 occupants with $c_R=2$). If all the weights of an agent are zero, it stays in its cell; such events are
+counted (\texttt{n\_zero\_weight\_tot}).
+
+\paragraph{Affinity.}
+If $i$ and $j$ are at Chebyshev distance $\le1$ after movement, $F_{ij}\leftarrow(1-\eta)F_{ij}+\eta$.
+Otherwise $F_{ij}\leftarrow(1-\delta)F_{ij}$.
+Pairs with $F_{ij}<\varepsilon$ are pruned.
+
+\paragraph{Social state.}
+\[
+s_i\leftarrow\Pi_{[0,1]}\Bigl(s_i+r\,\mathbf 1_{a_i\le a_w}\bigl[(1-\lambda)+\lambda\,\bar s_{V(i)}\bigr]
+-\gamma\,(m_i-m_c)_+\Bigr),
+\]
+where:
+\begin{itemize}
+\item $r$ is the recovery (learning) rate (\texttt{rec});
+\item $\bar s_{V(i)}$ is the mean social state of the \emph{other} agents in $V(i)$, and is $0$ if there are none;
+\item $a_w$ is the plasticity window (rule R1: \texttt{plast\_age\_max}${}=a_w$, \texttt{plast\_outside\_rec}${}=0$);
+\item $\lambda$ is the social-learning weight (rule R2: \texttt{social\_rec\_lambda}).
+\end{itemize}
+The neutral values $a_w=\infty$ and $\lambda=0$ (with $w=1$ and $r=0.01$) recover the core model.
+
+\paragraph{Reproduction.}
+\begin{enumerate}
+\item Each reproductive, non-refractory female ($a_{\min}\le a\le a_{\rm rep}$) that shares her cell with at least one
+  reproductive male chooses one uniformly at random.
+\item She conceives with probability $p_0 s_f s_m$.
+\item The litter size $L$ is drawn from the empirical distribution (mean $6.55$), and Binomial$(L,q_0 s_f)$ pups
+  survive, with $q_0=0.95$.
+\item Pups are born in the mother's cell at age $0$, with sex ratio $1/2$, and social state
+  $s=w\,s_f+(1-w)\,s_{\rm base}$. With $w=0.2$ and $s_{\rm base}=0$, every pup is born with $s\le0.2$. Pups are
+  independent agents from birth: they move and add to local crowding. A variant with a nest period, in which pups stay
+  in the maternal cell and do not add to crowding until weaning, is reported as a robustness check (\texttt{nest\_period}${}=3$
+  weeks). Nest-bound pups count towards refuge capacity and form affinities.
+\end{enumerate}
+
+\paragraph{Mortality.}
+After ageing, each agent dies with probability $1/(1+e^{-k(a-a_{\max})})$.
+Two optional social terms exist, an additive social hazard and the factor $\mu_s$ of
+Eq.~\eqref{eq:model-mort} (\texttt{social\_mortality\_factor}, applied with \texttt{social\_mortality\_form="shift"}),
+but both are zero in all presets: in Universe~25 adults died of old
+age and the beautiful ones were ``physically healthy'' \cite{Calhoun1973}. There is no mortality before senescence in
+the presets; a background hazard $\mu_{\rm bg}$ (up to 0.01 per week) is reported as a robustness check
+(\texttt{mu\_bg}). It applies at all ages, pups included, combines with the senescent hazard as
+$1-(1-p_{\rm age})(1-\mu_{\rm bg})$, is independent of the social state and is not counted as social mortality.
+
+\subsection{Parameters}
+{\small
+\begin{longtable}{@{}p{0.27\textwidth}p{0.10\textwidth}p{0.13\textwidth}p{0.42\textwidth}@{}}
+\caption{Parameters of the short-lived control (SL), values in \textsf{C1}, and justification (complements
+Table~\ref{tab:params}, which also gives the long-lived control). [E] empirical, [O] order of
+magnitude, [M] modelling choice, [C] calibrated qualitatively.}\label{tab:odd-params}\\
+\toprule
+Parameter & SL & \textsf{C1} & Justification \\
+\midrule
+\endfirsthead
+\toprule
+Parameter & SL & \textsf{C1} & Justification \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\texttt{grid\_size} $L$ & 30 & 30 & [M] abstract space; Calhoun had 16 cells, 256 nest boxes \\
+$N_0$ & 200+200 & 200+200 & [M]; founders 4+4 as in \cite{Calhoun1973} \\
+\texttt{initial\_age} & 4 & 4 & [M]; 7 for founders (48 days) \\
+$\eta$, $\delta$, $\varepsilon$ & 0.2, 0.01, $10^{-6}$ & same & [M] bond formation $\sim$5 weeks, memory $\sim$100 weeks \\
+$\alpha$ & 1.4 & 4 & [C] attraction to familiar individuals (behavioural sink) \\
+$m_c$ & 8 & 8 & [M/O] ``Fifteen mice could comfortably rest in a single nest box''; groups of ``over 10 individuals'' \cite{Calhoun1973} \\
+$r$ (\texttt{rec}) & 0.01 & 0.1 & [M/C] recovery/learning rate \\
+$\gamma$ & 0.1 & 0.1 & [M] \\
+$p_0$ & 0.3 & 0.3 & [O] weekly conception probability given an encounter \\
+$q_0$ & 0.95 & 0.95 & [M] \\
+$a_{\min}$ & 6 & 6 & [O] sexual maturity $\approx$6 weeks \\
+$a_{\rm rep}$ & 50 & 80 & [E] menopause at ``about 560 days'' $\approx$80 weeks \cite{Calhoun1973} \\
+litter sizes & 3--10, mean 6.55 & same & [O] mean 6.12 in \cite{GwizdallaDus2026}'s source \\
+$a_{\max}$, $k$ & 60, 0.15 & 120, 0.15 & [E] ``large numbers'' lived to 800 days; last survivors $>987$ days \cite{Calhoun1973} \\
+$a_w$ (R1) & $\infty$ & 12 & [C] juvenile plasticity window \\
+$\lambda$ (R2) & 0 & 1 & [C] social learning \\
+$w$, $s_{\rm base}$ & 1, 1 & 0.2, 0 & [C] partial maternal inheritance \\
+$\kappa$, $p$ (AV) & 0, 1 & 0.15, 4 & [C] crowd aversion of deteriorated animals \\
+refuge fraction, capacity & 0, -- & 0.3, 2 (hard) & [C] R7; layout \texttt{refuge\_seed}${}=0$ \\
+$\pi$, $q$, basis (R7) & 0 & 100, 4, current & [C]; \textsf{C2}: 1000, 1, maternal \\
+\texttt{max\_pop} & 60000 & 15000 & numerical safeguard \\
+\end{longtable}
+}
+Values checked against the four presets \texttt{calhoun\_C0}, \texttt{calhoun\_C1p}, \texttt{calhoun\_C1} and
+\texttt{calhoun\_C2} of \texttt{u25/params.py} (Table~\ref{tab:params}). \textsf{C1}$'$ (\texttt{calhoun\_C1p}) is
+\textsf{C1} with $\kappa=0$. In all four presets \texttt{move\_substeps}${}=1$ and \texttt{mate\_radius}${}=0$.

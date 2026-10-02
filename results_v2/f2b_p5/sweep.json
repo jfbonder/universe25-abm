@@ -1,0 +1,17 @@
+{
+ "design_hash": "f8a66ed284192556",
+ "T": 600,
+ "base_seed": 25311,
+ "crn": false,
+ "series_every": 0,
+ "evaluate": true,
+ "model_cls": "f2b_model_v2.U2v2",
+ "eval_kw": {
+  "peak_time": "plateau_start",
+  "o5_birth_ref": "B99",
+  "o4_version": "v2",
+  "crowd_class_threshold": 8
+ },
+ "reps": 30,
+ "n_points": 50
+}

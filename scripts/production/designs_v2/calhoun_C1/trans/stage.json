@@ -1,0 +1,43 @@
+{
+ "stage": "trans",
+ "kind": "transplant2",
+ "reps": 60,
+ "T": 300,
+ "crn": false,
+ "series_every": 0,
+ "full_series": false,
+ "preset": null,
+ "priority": 0,
+ "c_cpu": 3.5,
+ "analysis": "trans",
+ "q": "Q1",
+ "base_seed": 25306,
+ "T_main": 300,
+ "T_after": 150,
+ "T_fix": 95,
+ "band": [
+  0.2,
+  0.5
+ ],
+ "cont_after": 40,
+ "n_points": 8,
+ "runs": 480,
+ "columns": [
+  "plast_age_max",
+  "plast_outside_rec",
+  "social_rec_lambda",
+  "inherit_weight",
+  "s_newborn_base",
+  "rec",
+  "refuge_capacity",
+  "refuge_frac",
+  "refuge_hard",
+  "refuge_pref",
+  "refuge_pref_basis",
+  "refuge_pref_power",
+  "crowd_aversion"
+ ],
+ "preset_main": "calhoun_C1",
+ "tag": "C1",
+ "primary": "O17p"
+}

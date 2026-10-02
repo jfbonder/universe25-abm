@@ -1,0 +1,17 @@
+point,refuge_hard,mu_bg,nest_period,async_move,s_newborn_base,crowd_aversion
+0,legacy,0.0,0,False,0.0,0.15
+1,strict,0.003,0,False,0.0,0.15
+2,strict,0.008,0,False,0.0,0.15
+3,strict,0.0,3,False,0.0,0.15
+4,strict,0.0,0,True,0.0,0.15
+5,False,0.0,0,True,0.0,0.15
+6,strict,0.0,0,False,0.25,0.15
+7,strict,0.0,0,False,0.5,0.15
+8,legacy,0.0,0,False,0.0,0.0
+9,strict,0.003,0,False,0.0,0.0
+10,strict,0.008,0,False,0.0,0.0
+11,strict,0.0,3,False,0.0,0.0
+12,strict,0.0,0,True,0.0,0.0
+13,False,0.0,0,True,0.0,0.0
+14,strict,0.0,0,False,0.25,0.0
+15,strict,0.0,0,False,0.5,0.0

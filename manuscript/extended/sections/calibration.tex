@@ -1,0 +1,199 @@
+\section{Calibration of the candidates}
+\label{sec:calib}
+
+The rules of Section~\ref{sec:model} were not fitted to a population curve. They were selected, and their
+parameters set, by maximising the number of qualitative patterns of Table~\ref{tab:observations} reproduced
+across stochastic replicates, with the smallest set of rules. This section summarises that process. The
+development ensembles, the local sensitivity analysis, the diagnosis of the deteriorated classes and the
+founder protocol are in Appendix~\ref{app:calib}.
+
+\paragraph{Calibration is not validation.}
+\label{sec:circularity}
+The rules and parameters were chosen with the same evaluator and the same patterns that are later reported
+as reproduced. The production ensembles are statistically independent, but no pattern was held out.
+Several modelling choices also mirror the operational definitions of the patterns:
+\begin{itemize}
+  \item the refuge capacity $c_R=2$ equals the isolation threshold $m\le2$ of O13;
+  \item the persistence requirement of O13 was adopted after \textsf{C0} had been found to produce only
+    transient isolation, and the refuges were then designed to satisfy it;
+  \item $m_c$ is both the damage threshold and the threshold that defines the crowded class;
+  \item the fraction of empty cells at the peak was used informally to discard candidates that left most of the
+    lattice empty, and it is part of a criterion of the primary evaluator: the primary O4 requires $f_0\ge0.10$,
+    so O4 tests a quantity that was an informal target of the calibration.
+\end{itemize}
+Reproducing O13 with refuges therefore shows that a persistent isolated class is \emph{possible} under local
+rules; it is not a prediction. Several further patterns hold by construction and are consistency checks of the
+design, not results:
+\begin{itemize}
+  \item the failure of phase-D transplants (O12, Q1): under R1 an adult cannot recover, and conception scales as
+    $s_fs_m$, so animals with $s\simeq0$ cannot found a colony whatever their partners;
+  \item the persistence of the isolated class (O13p), through $c_R=2$;
+  \item the absence of social mortality (A4) and the senescent decline (O8), through $\mu_s=0$;
+  \item the coincidence of the end of natality with the peak (O5) when the peak time is $\arg\max N$, because without
+    mortality before senescence $t_{\rm pk}$ falls on the last birth before the first death
+    (Section~\ref{sec:model-baseline}); measured from the start of the plateau, as in the primary evaluator, O5 is not
+    automatic but generic: it passes in four of the null models (Table~\ref{tab:res-null});
+  \item the life-table law of phase~D (Q4), which follows from the demography.
+\end{itemize}
+The tests that do not depend on the calibration targets are the relative weight of window and learning rate (Q6),
+the endogenous collapse without crowding (Q7), both with the restrictions of Section~\ref{sec:res-Q}, and the
+comparison with null models, in which a pattern that also passes carries no evidence (Section~\ref{sec:results}).
+Agreements of magnitudes normalised by $t_{\rm pk}$, such as $(T_{\rm ext}-t_{\rm pk})/t_{\rm pk}\approx2.1$
+(Calhoun: 2.2 projected), are not tests: they depend on where $t_{\rm pk}$ falls on the plateau
+(Section~\ref{sec:model-groups}).
+
+\paragraph{Procedure.}
+\label{sec:calib-procedure}
+Each run is scored by the evaluator of Section~\ref{sec:observations}. MARGINAL counts as not passing, and
+ensemble fractions carry 95\% Wilson intervals. The calibration proceeded in five stages, with independent
+seeds and a horizon of $T=600$ weeks:
+\begin{enumerate}
+  \item screening of rule families (47 points $\times$ 10 replicates);
+  \item ablations of the selected rules (10 points $\times$ 40);
+  \item one-at-a-time sensitivity (17 points $\times$ 30);
+  \item development ensembles of the candidates, with 60--120 replicates and transplants;
+  \item tests of the founder protocol.
+\end{enumerate}
+It used about 45~min on four cores. The transplant protocol and the stages are detailed in
+Appendix~\ref{app:calib-procedure}.
+
+\subsection{The candidates}
+\label{sec:calib-candidates}
+
+Table~\ref{tab:calib-candidates} lists the essential patterns of the four candidates of Table~\ref{tab:params} in
+the production ensembles, with the exact hard capacity and the primary evaluator (the start of the
+plateau $t'_{\rm pk}$ as peak time, O5 measured with the end of effective natality $t_{B99}$, the primary O4, O10
+and O11, and the crowded class $m>8$). With the dispersed initial condition ($N_0=400$ at random positions), every
+applicable essential pattern passes in at least 80\% of the runs of every candidate:
+\begin{itemize}
+  \item a low peak with free space (O4);
+  \item natality ending at high $N$ (O5);
+  \item no rebound (O6);
+  \item extinction (O7);
+  \item deterioration of the adults before the peak (O10);
+  \item failure of the crowded-born cohorts (O11);
+  \item failure of phase-D transplants (O12);
+  \item two deteriorated classes (O13).
+\end{itemize}
+Only the candidates with refuges make the isolated class persistent (O13p) and thus pass the primary outcome
+O17p. O1--O3 apply only to founder colonies (Appendix~\ref{sec:calib-founders}). Not all of these patterns carry the
+same weight. O12 is a consistency check of R1 (see above). Against the null models of Table~\ref{tab:res-null}
+only O13 and O13p discriminate, against three of the four (not against full inheritance without social learning).
+O11 discriminates against all four only when scored at six weeks: at the end of the plasticity window it also passes
+in 0.81 of the long-lived runs and in 0.755 of the runs without rules, so the failure of the late cohorts is mostly
+crowding damage. O4, O5, O6, O7 and O10 pass in at least two null models and are generic. In particular the low peak with free space (O4) also passes in \textsf{C1} without its four
+rules ($\rho_{\rm pk}=0.45$, $f_0=0.74$): it comes from the attraction $\alpha=4$ with crowding damage, not from the
+rules. The development ensembles of Appendix~\ref{app:calib-dev} agree qualitatively.
+
+\begin{table}[t]
+  \centering
+  \caption{Essential patterns of the four candidates in the production ensembles ($n=200$ each; exact
+  hard capacity; primary evaluator; \textsf{C0}, \textsf{C1}$'$ and \textsf{C1} from the reference ensemble, \textsf{C2}
+  from its contrast ensemble; Section~\ref{sec:res-production}, where the controls are also given). Fractions of
+  passing runs. The 95\% Wilson half-width is at most 0.07, and at most 0.02 for fractions of 0 or 1. O17 uses the
+  instantaneous O13; O17p, the primary outcome, also requires a persistent isolated class (O13p). O12: founding
+  transplants of phase-D animals (taken at $1.75\,t'_{\rm pk}$) over trials (60 per candidate); with $s\simeq0$ it is a
+  consistency check of R1. $\rho_{\rm pk}=N_{\rm pk}/K_\gamma$, with $K_\gamma=m_c|G|$ the damage-threshold capacity
+  (not a physical capacity; Universe~25: 2200/3840 $=0.57$), and $f_0$, the median fraction of empty cells at the
+  peak (Universe~25: about 20\% of nest boxes); both are comparable with Calhoun's only in sign.}
+  \label{tab:calib-candidates}
+  \small
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{@{}lccccccccccc@{}}
+    \toprule
+    Candidate & O4 & O5 & O6 & O7 & O10 & O11 & O12 & O13 & O17 & O17p [95\% CI] & $\rho_{\rm pk}$ / $f_0$ \\
+    \midrule
+    \textsf{C0} (R1, R2, AV) & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 0/60 & 0.92 & 0.92 & 0.00 [0.00, 0.02] & 0.41 / 0.18 \\
+    \textsf{C1}$'$ (R1, R2, R7) & 1.00 & 0.855 & 1.00 & 0.995 & 1.00 & 0.975 & 0/60 & 1.00 & 0.835 & 0.835 [0.78, 0.88] & 0.33 / 0.52 \\
+    \textsf{C1} (R1, R2, AV, R7) & 1.00 & 0.995 & 1.00 & 1.00 & 1.00 & 1.00 & 0/60 & 1.00 & 0.995 & 0.995 [0.97, 1.00] & 0.36 / 0.16 \\
+    \textsf{C2} (\textsf{C1}, maternal $b$) & 0.90 & 0.815 & 0.98 & 0.98 & 1.00 & 0.995 & 0/60 & 1.00 & 0.725 & 0.705 [0.64, 0.76] & 0.42 / 0.11 \\
+    \bottomrule
+  \end{tabular}}
+\end{table}
+
+\subsection{Necessity of the rules}
+\label{sec:calib-ablations}
+
+Whether a rule is necessary depends on the others. Single ablations are in Table~\ref{tab:calib-ablations}
+for \textsf{C0} and in Section~\ref{sec:res-ablations} for \textsf{C1} and \textsf{C1}$'$.
+
+\paragraph{Without refuges (\textsf{C0}).} R1, R2 and AV are each necessary:
+\begin{itemize}
+  \item without R2, O11 and O13 are never reproduced (O17 0/40). Viable pups come from the healthiest
+    mothers and inherit their competence;
+  \item without AV, deteriorated animals collapse into a few pools, 76\% of the lattice is empty and the
+    isolated class disappears;
+  \item without R1, adults recover when the colony thins, and O17 falls to 0.40.
+\end{itemize}
+
+\paragraph{With refuges.} R7 supplies the isolated class, and AV is no longer necessary for the primary
+outcome. The rules necessary for O17p are R1, R2 and R7: the single ablations of \textsf{C1}$'$ give O17p of 0 in
+every case (40 runs each). AV is not: \textsf{C1}$'$, which is \textsf{C1} without AV, passes O17p in
+0.835 [0.78, 0.88], against 0.995 [0.97, 1.00] for \textsf{C1}. This necessity is conditional on the thresholds of
+the classes and of the ensemble (Section~\ref{sec:res-ablations}). What AV controls is the use of space, and it
+\emph{reduces} the free space rather than supplying it: without AV the deteriorated animals gather in a few pools
+and half of the lattice is empty at the peak ($f_0=0.52$), with AV $f_0=0.16$ (Universe~25: about 20\% of nest
+boxes). It also controls the senescent decline, with O8 at 0.21 against 0.625. Partial inheritance is not necessary either:
+\textsf{C1} with $w=0$ and $r=0.15$ passes O17p in all 120 runs. The essential part of R2 is social learning.
+
+\paragraph{Crowding is the trigger.} Without crowding damage ($\gamma=0$) no colony collapses, and the mean
+adult social state stays near 0.6. With the calibrated socialisation, the failure of socialisation under R2 needs
+crowding to start (Q7): crowding deteriorates the founders, the only competent teachers, within about one
+generation time ($\Gamma\approx1.1$; Section~\ref{sec:model-groups} and Appendix~\ref{app:calib-generations}).
+
+\subsection{What the calibration does not achieve}
+\label{sec:calib-limits}
+
+\begin{enumerate}
+  \item \emph{Founder colonies (O1--O3).} No candidate reproduces latency, exponential growth and
+    deceleration robustly from four pairs. The best point of the founder plane reproduces O1--O3 jointly with O17p
+    in 0.43 [0.27, 0.61] of the runs, and only with $a_{\max}=200$, outside the preset
+    (Appendix~\ref{sec:calib-founders}).
+  \item \emph{Initial condition.} The low peak ($N_{\rm pk}/K_\gamma\approx0.4$) holds for the
+    dispersed initial condition. With \textsf{C0}, the peak density falls with the seeding
+    density, from 0.40 at $N_0=400$ to 0.12 at $N_0=50$. With initial ages spread uniformly over 4--52 or 4--80
+    weeks the classes, the peak density, O11 and the generational structure are unchanged, but O17p falls to 0.93
+    and 0.63, through O5 alone. O5 then becomes MARGINAL, not FAIL (73 MARGINAL and one FAIL among the 74 runs
+    that do not pass with 4--80 weeks). Natality still ends at the population maximum ($N(t_{B99})\ge0.97\,N_{\rm pk}$
+    in every run); with older founders the first deaths come earlier and balance the last births, so the plateau
+    starts earlier and the last 1\% of the births falls more than $0.5\,t'_{\rm pk}$ after its start. The patterns
+    that discriminate against the null models (O13, O13p) pass in every run, and so does O11. O5 is generic and carries no
+    evidence for the rules with any initial condition (Section~\ref{sec:res-robustness};
+    Appendix~\ref{app:calib-generations}).
+  \item \emph{A boom of one to two generations.} The colony does not go through a cascade over many generations.
+    About 70\% of all births are offspring of the founders and 96\% belong to the first two generations, the net
+    reproductive number falls from 3.8 (founders) to 0.4 (first generation), and the phases B and C of Calhoun appear
+    compressed: growth with competent adults lasts 13 weeks and two doublings, against 30 weeks and about five in
+    Universe~25 (Appendix~\ref{app:calib-generations}; reference ensemble). It also holds, in 20 replicates of each
+    production arm, with a non-synchronous initial condition, a nest period, background mortality and the
+    asynchronous update (mean generation of the births 1.22--1.43), and with five times less crowding damage. It is
+    not caused by fast deterioration: deterioration takes of the order of one generation time ($\Gamma\approx1.1$; 0.7 with the mean age of the mothers at birth as generation time), and slowing
+    it barely deepens the boom (Section~\ref{sec:model-groups}).
+  \item \emph{Late cohort (O13b).} Births are front-loaded: 90\% occur before $0.45\,t_{\rm pk}$. Hence no
+    retreat mechanism can make half of the isolated class be born after $0.8\,t_{\rm pk}$. Basing the
+    retreat on maternal socialisation (\textsf{C2}) makes the isolated class younger than the crowded one,
+    but only reaches MARGINAL, and at the cost of the senescent decline and of O17p (0.705;
+    Appendix~\ref{sec:calib-classes}).
+  \item \emph{Fertility (O15, O15b) and sex bias (O9).} Conception ($\propto s_fs_m$) and pup survival
+    ($\propto s_f$) collapse together, and the model has no sex-specific mortality.
+  \item \emph{Update scheme.} The candidates were calibrated with synchronous moves, with which refuges with a
+    preference require a hard capacity, because a soft one produces stampedes. With a random sequential update a
+    soft capacity also gives a persistent isolated class, but a higher peak density (O17p 1.00 and 0.995 with hard
+    and soft capacity, $\rho_{\rm pk}=0.43$ against 0.36; Section~\ref{sec:res-robustness}). The hard capacity is
+    therefore a remedy for the collisions of the synchronous update, not a mechanism of its own.
+  \item \emph{A plateau, not a peak.} After natality dies, the young adult population barely changes until
+    senescence, because there is no mortality before senescence. $t_{\rm pk}=\arg\max N$ thus lies on a plateau,
+    and it coincides with the last birth in 69\% of the runs, which makes O5 nearly automatic when it is measured
+    from $\arg\max N$. Every criterion normalised by $t_{\rm pk}$ inherits this ambiguity; the primary evaluator
+    uses the start of the plateau, $t'_{\rm pk}$, and measures the end of natality by $t_{B99}$ instead of
+    the last, extreme birth. With a background mortality of 0.003 and 0.008 per week the plateau shrinks from 51 to
+    17 and 10 weeks, and the primary outcome falls to 0.55 and 0.06, through O5 alone. With 0.003 the failing runs
+    are almost all MARGINAL (83 of 90): natality still ends at $N\approx0.99\,N_{\rm pk}$, but $t'_{\rm pk}$ comes
+    earlier and the clause on $(t_{B99}-t'_{\rm pk})/t'_{\rm pk}$ is not met. With 0.008 O5 fails outright in 70 of
+    200 runs. In both arms O11, O13 and O13p pass in every run, so what background mortality removes is the
+    coincidence of the end of natality with the start of the plateau, a generic pattern, and not the classes (O13,
+    O13p) that discriminate against the null models (Section~\ref{sec:res-robustness}).
+  \item \emph{Mobility.} Mixing is slow compared with deterioration ($\mathrm{Da}\approx1.7\times10^2$, against
+    $\mathrm{Da}\ll1$ in Universe~25; Section~\ref{sec:model-groups}). With more movement sub-steps the coexistence of
+    classes is lost (Appendix~\ref{sec:calib-founders}).
+\end{enumerate}

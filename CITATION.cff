@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use this software, data or text, please cite it as below."
+title: "An Agent-Based Model for the Social Collapse of Calhoun's Universe 25 Experiment"
+abstract: >-
+  Code, simulation outputs and manuscripts of a minimal agent-based model that reproduces,
+  qualitatively, the observations of J. B. Calhoun's Universe 25 experiment (1973): growth,
+  stagnation, social withdrawal ("beautiful ones") and extinction with unlimited resources.
+type: software
+authors:
+  - family-names: "Fernández Bonder"
+    given-names: "Julián"
+    email: jfbonder@dm.uba.ar
+    affiliation: "Departamento de Matemática, FCEN, Universidad de Buenos Aires, and Instituto de Cálculo, UBA–CONICET"
+year: 2026
+version: "2.0.0"
+license: MIT
+repository-code: "https://github.com/jfbonder/universe25-abm"
+url: "https://github.com/jfbonder/universe25-abm"
+keywords:
+  - agent-based model
+  - Universe 25
+  - John B. Calhoun
+  - population dynamics
+  - social collapse

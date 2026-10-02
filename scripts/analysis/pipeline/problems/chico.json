@@ -1,0 +1,7 @@
+{
+ "names": ["alpha", "rec", "gamma", "m_c"],
+ "bounds": [[0.5, 2.5], [0.005, 0.03], [0.05, 0.2], [6, 12]],
+ "scale": ["lin", "log", "log", "lin"],
+ "type": ["float", "float", "float", "int"],
+ "fixed": {}
+}

@@ -1,0 +1,227 @@
+
+\section{Mean-field derivations and numerical details}
+\label{app:meanfield}
+
+\subsection{Demography}
+\label{app:demo}
+
+With $h(a)=[1+e^{-k(a-a_{\max})}]^{-1}$, $k=0.15$, $a_{\max}=60$, the survival
+function $\mathcal S(a)=\prod_{0\le a'<a}[1-h(a')]$ (the probability of reaching age $a$) gives
+$\mathcal S(40)=0.74$, $\mathcal S(50)=0.27$, $\mathcal S(60)=0.006$, a life expectancy
+$\mathrm{LE}=\sum_{a\ge0}\mathcal S(a)=44.8$ weeks and
+$\sum_{a=6}^{50}\mathcal S(a)=38.0$ expected fertile weeks per newborn. The
+stationary fraction of reproductive individuals is $\phi=0.85$, so
+$\phi_F=\phi_M=0.42$; $\mu=1/\mathrm{LE}=0.0223$ per week. The litter law has
+$\bar L=6.55$, $\mathbb E L^2=45.5$. The maximal per-capita birth rate is
+$b_{\max}=\phi_F p_0\bar L q_0=0.79$ per week. With the long-lived demography of the candidates ($a_{\max}=120$,
+fertility up to 80 weeks) $R_0=70$ and $s_v=R_0^{-1/3}=0.24$. The fractions $\phi_M$ and $\phi_F$ are those of the
+stationary age distribution; Eq.~\eqref{eq:allee} applies them during growth, when the population is younger, as an
+approximation.
+
+\subsection{Occupancy statistics}
+\label{app:occ}
+
+For Poisson occupancy $D(\nu)=\sum_{k\ge m_c}(k-m_c+1)e^{-\nu}\nu^k/k!$;
+the balance $D(\nu^*)=r/\gamma=0.1$ gives $\nu^*=4.13$. For a negative
+binomial of mean $\nu$ and size $\xi$ (variance $\nu+\nu^2/\xi$,
+index of dispersion $1+\nu/\xi$) the same balance gives
+$N^*=2840,\,2225,\,1718$ for $\xi=5,2,1$. In the fast ABM with $\alpha=0$
+the effective $\xi$ fitted from the index of dispersion is $1.4$ during
+growth (many fresh litters) and $3.9$ during decline. In the short-lived control
+($\alpha=1.4$) the index of dispersion is $29$ at the peak and $21$ in the
+quasi-stationary regime; Lloyd's mean crowding $m^*=\sum_c n_c^2/\sum_c n_c-1$
+is $34$ and $21$ respectively, while $43\%$ of the individuals sit in cells with
+$m\le m_c$: the distribution of experienced crowding is strongly bimodal.
+
+\subsection{Two-variable model: linearisation and first integral}
+\label{app:ode}
+
+At the equilibrium of~\eqref{eq:mf2},
+\[
+J=\begin{pmatrix} N^*b'(N^*)S^{*3} & 3N^*b(N^*)S^{*2}\\[2pt]
+-\gamma D'(\nu^*)/|G| & 0\end{pmatrix},\qquad
+\operatorname{tr}J=\mu\,\frac{\phi_M\nu^*e^{-\phi_M\nu^*}}{1-e^{-\phi_M\nu^*}}>0 .
+\]
+For Poisson occupancy $N^*=3717$, $S^*=0.324$, eigenvalues
+$0.00411\pm0.1034\,i$; integrating the unclamped system from $1.1N^*$ the
+successive maxima grow as $e^{0.00409t}$. With $b$ frozen at its saturation
+value the maxima are constant to $10^{-5}$, verifying the first integral.
+For the clamped system, Table~\ref{tab:ode} lists the limit cycle.
+
+\begin{table}[h]
+\centering\small
+\begin{tabular}{lcccccc}
+\toprule
+occupancy & $N^*$ & $S^*$ & first peak & later peaks & trough & period (weeks)\\
+\midrule
+Poisson & 3717 & 0.324 & 11185 & 5841 & 1679 & 96\\
+neg.\ binomial $\xi=5$ & 2840 & 0.337 & 10024 & 5043 & 1182 & 107\\
+neg.\ binomial $\xi=2$ & 2225 & 0.352 & 8805 & 4482 & 854 & 119\\
+neg.\ binomial $\xi=1$ & 1718 & 0.370 & 7496 & 4052 & 598 & 133\\
+ABM $\alpha=0$ (40 runs) & -- & -- & $6954\pm413$ & 5528 & median 700 & $113.5\pm10$\\
+\bottomrule
+\end{tabular}
+\caption{Limit cycle of the clamped two-variable mean field from
+$(N_0,S_0)=(80,1)$, compared with the fast ABM
+started from the same 80 animals.}
+\label{tab:ode}
+\end{table}
+
+\subsection{Age-structured mean field}
+\label{app:age}
+
+Weekly cohorts $n_a$, $s_a$ ($a\le130$): $s_a\leftarrow\Pi_{[0,1]}(s_a+r-\gamma
+D(\nu))$; births
+\[
+B=\sum_a \tfrac12 n_a\mathbf 1_{6\le a\le 50}\,(1-e^{-n_M/|G|})\,p_0 s_a\bar s_M\,\bar Lq_0 s_a,
+\]
+with $\bar s_M$ the fecundity-weighted male state, newborn state $s_{\rm new}=\sum_a B_a s_a/B$;
+ageing and logistic survival. A class of healthy-pocket individuals, of fraction
+$\rho$, experiences a reduced density $f_P\nu$ (healthy pockets are uncrowded cells of
+the core model without the rules, unrelated to the refuges of R7). With $f_P=0$ the bifurcation to sustained
+oscillation is at $\rho_c=0.0216$ (Poisson) and $0.0286$ ($\xi=2$); just
+above $\rho_c$ the trough is $N_{\min}\approx77\approx N_A$ and the period is
+$\approx170$ weeks. The well-mixed ABM (uniform relocation each week) gives
+$N_{\max}=8860\pm80$, $t_{\rm ext}=160\pm12$ weeks over 40 seeds, a
+regression test with tight tolerances for any reimplementation.
+
+\subsection{Kinetic mean field with persistent cell disorder}
+\label{app:kin}
+
+Individuals carry age, sex and $s$; cells carry fixed weights
+$w_c\sim\Gamma(\xi_c,1/\xi_c)$, so occupancy is Poisson--Gamma with index
+of dispersion $1+\nu/\xi_c$. Each week an individual relocates with
+probability $1/\tau_F$ to a cell drawn with probability $\propto w_c$; pups are
+born in their mother's cell; R1 and R2 act as in the ABM (R2 uses the mean $s$
+of the other occupants of the cell). Calibrated to the quasi-stationary
+regime of the short-lived control ($N\approx1735$, $S\approx0.23$): $\xi_c=0.5$,
+$\tau_F=8$ gives $N_{\rm QS}\approx1450$, $S\approx0.29$, $56\%$ with $s<0.2$;
+$\xi_c=1$, $\tau_F=5$ gives $N_{\rm QS}\approx2330$. Frozen disorder does not
+reproduce the initial overshoot ($N_{\max}\approx5500$) because clusters in
+the ABM form on the affinity time scale $1/\eta$, after phase B; that regime is
+covered by the homogeneous models above. Each run costs $0.5$--$1.5$ s.
+
+\begin{table}[h]
+\centering\small
+\begin{tabular}{llcccccc}
+\toprule
+scenario & $r$ & $a_w=6$ & 12 & 24 & 48 & $\infty$\\
+\midrule
+$\xi_c=0.5,\tau_F=8$, short life & 0.01 & 0.3 & 0.2 & 0.0 & 0.0 & 0.0\\
+ & 0.03 & 0.1 & 0.0 & 0.0 & 0.0 & 0.0\\
+$\xi_c=1,\tau_F=5$, short life & 0.01 & 1.0 & 0.7 & 0.4 & 0.0 & 0.0\\
+ & 0.03 & 0.6 & 0.7 & 0.0 & 0.0 & 0.0\\
+$\xi_c=0.5,\tau_F=8$, long-lived & 0.01 & 1.0 & 1.0 & 1.0 & 1.0 & 0.0\\
+ & 0.03 & 1.0 & 1.0 & 1.0 & 0.0 & 0.0\\
+\midrule
+ & & $\lambda=0$ & 0.3 & 0.5 & 0.7 & 0.9 & 1.0\\
+\midrule
+$\xi_c=0.5,\tau_F=8$, short life & 0.01 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.3\\
+ & 0.03 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0\\
+$\xi_c=1,\tau_F=5$, short life & 0.01 & 0.0 & 0.1 & 0.1 & 0.2 & 0.8 & 0.8\\
+ & 0.03 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.6\\
+$\xi_c=0.5,\tau_F=8$, long-lived & 0.01 & 0.0 & 0.8 & 1.0 & 1.0 & 1.0 & 1.0\\
+ & 0.03 & 0.0 & 0.0 & 0.0 & 0.0 & 1.0 & 1.0\\
+$\xi_c=1,\tau_F=5$, long-lived & 0.03 & 0.0 & 0.0 & 0.0 & 1.0 & 1.0 & 1.0\\
+\bottomrule
+\end{tabular}
+\caption{Extinction probability (10 seeds, 1500 weeks; 10/10 has a Wilson interval of $[0.72,1]$) in the kinetic
+mean field under R1 (top, columns $a_w$) and R2 (bottom, columns $\lambda$), for the two recovery rates tested.
+The long-lived scenario has $a_{\max}=120$ and fertility up to 80 weeks; with
+$\xi_c=1,\tau_F=5$ the long-lived control itself goes extinct for
+$r=0.01$.}
+\label{tab:thr}
+\end{table}
+
+\subsection{Lineage criterion for R1}
+\label{app:lineage}
+
+A lineage that starts from $s_0$ accumulates $\prod_g R_0(s_g)$ expected descendants before it reaches viability
+$s_v$, with $R_0(s)=R_0s^3$ when the partner is equally deteriorated (conception $\propto s_fs_m$, neonatal survival
+$\propto s_f$) and $R_0s^2$ in the first generation when the partner is healthy. Between generations, competence
+grows additively without R2 (full inheritance and individual recovery during the window, $s_{g+1}=s_g+\Delta$,
+$\Delta=ra_w$) and multiplicatively with R2 ($\lambda=1$, inheritance $w$, learning from neighbours of competence
+$\varphi S$: $s_{g+1}=(w+\varphi\Lambda)s_g$). This is the expected value of a branching process without crowding and
+without learning from neighbours outside the lineage, so it is a heuristic bound, not a prediction
+(\texttt{scripts/analysis/mf\_lineage\_v2.py}).
+
+\begin{table}[h]
+\centering\small
+\begin{tabular}{llcccc}
+\toprule
+demography, map & partner & $s_0=0.02$ & 0.05 & 0.10 & 0.20\\
+\midrule
+short-lived ($R_0=35$, $s_v=0.31$), $\Delta=0.12$ & deteriorated & $2\cdot10^{-5}$ & $6\cdot10^{-4}$ & 0.013 & 0.28\\
+ & healthy & $8\cdot10^{-4}$ & 0.013 & 0.13 & 1.4\\
+long-lived ($R_0=70$, $s_v=0.24$), $\Delta=0.12$ & deteriorated & $1\cdot10^{-4}$ & $3\cdot10^{-3}$ & 0.052 & 0.56\\
+ & healthy & $5\cdot10^{-3}$ & 0.060 & 0.52 & 2.8\\
+long-lived, $\Delta=0.36$ & deteriorated & $6\cdot10^{-4}$ & $9\cdot10^{-3}$ & 0.070 & 0.56\\
+ & healthy & 0.028 & 0.17 & 0.70 & 2.8\\
+long-lived, R2 with $w+\varphi\Lambda=1.4$ & deteriorated & $2\cdot10^{-14}$ & $1\cdot10^{-6}$ & 0.007 & 0.56\\
+ & healthy & $9\cdot10^{-13}$ & $3\cdot10^{-5}$ & 0.071 & 2.8\\
+long-lived, R2 with $w+\varphi\Lambda=0.8$ & either & 0 & 0 & 0 & 0\\
+\bottomrule
+\end{tabular}
+\caption{Expected number of descendants accumulated by a lineage before it reaches viability from $s_0$, without
+further crowding. The \textsf{C1} values are $w=0.2$ and $\Lambda=ra_w=1.2$; $\varphi=1$ gives the supercritical
+factor 1.4 and $\varphi=0.5$ a subcritical 0.8, for which the lineage never reaches $s_v$. For $s_0\le0.05$ the
+expected number is at most $10^{-2}$ in every row with a deteriorated partner and at most 0.17 with a healthy one;
+for $s_0=0.1$ it is 0.01--0.07 with a deteriorated partner and up to 0.7 with a healthy one.}
+\label{tab:lineage}
+\end{table}
+
+The erosion of healthy adults under R1 is $\gamma D(\nu_{\rm loc})$ per week
+(permanent): with $\xi=2$, a local density of $2$, $2.5$ and $3$ per cell
+removes $0.19$, $0.46$ and $0.89$ over 44 fertile weeks, against an individual
+regeneration without R1 of $r\cdot44=0.44$--$1.3$.
+
+\subsection{Recovery time under R2 and critical $\lambda$}
+\label{app:r2}
+
+From~\eqref{eq:trec} with $s_v=0.31$ (weeks):
+\begin{center}\small
+\begin{tabular}{lcccccc}
+\toprule
+$r$, $S_0$ & $\lambda=0$ & 0.3 & 0.5 & 0.7 & 0.9 & 1.0\\
+\midrule
+0.01, 0.02 & 29 & 39 & 50 & 71 & 130 & 274\\
+0.01, 0.10 & 21 & 28 & 35 & 48 & 77 & 113\\
+0.03, 0.02 & 10 & 13 & 17 & 24 & 43 & 91\\
+0.03, 0.10 & 7 & 9 & 12 & 16 & 26 & 38\\
+\bottomrule
+\end{tabular}
+\end{center}
+Solving $T_{\rm rec}(\lambda_c)=\tau_{\rm disp}$ with $S_0=0.02$:
+$\lambda_c=0.04,\,0.50$ for $r=0.01$ and $\tau_{\rm disp}=30,\,50$;
+$\lambda_c=0.61,\,0.80,\,0.93$ for $r=0.03$ and $\tau_{\rm disp}=20,\,30,\,50$. These values are consistent with
+the kinetic thresholds of Table~\ref{tab:thr} for the long-lived demography: below 0.3 at $r=0.01$ and in
+$(0.7,0.9)$ at $r=0.03$, or $(0.5,0.7)$ with faster mixing.
+
+\subsection{Hysteresis and transplant}
+\label{app:hyst}
+
+Hysteresis area $A_H=\int|b_{\downarrow}-b_{\uparrow}|\,d\log N/\int
+b_{\uparrow}\,d\log N$ of the per-capita birth rate over the first cycle
+(deterministic age-structured mean field): short-lived control $0.932$ ($r=0.01$),
+$0.916$ ($r=0.03$), long-lived control $0.969$; R1 ($a_w=12$) and R2
+($\lambda=1$) $1.000$. Transplant of four pairs ($s=0.02$, ages 6--30, local
+neighbourhood of 25 cells, 50 replicas): short-lived control $P_T=0.00$ ($r=0.01$),
+$0.36$ ($r=0.03$), $0.64$ and $1.00$ long-lived; R1 ($a_w=12$) $0.00$ in all
+cases; R2 $\lambda=1$: $0.00$; R2 $\lambda=0.7$: $0.02$ (short life),
+$0.78$ (long-lived); healthy controls $0.94$.
+
+\subsection{Statistical methods}
+\label{app:stats}
+
+Extinction times are right-censored at the horizon; we report Kaplan--Meier
+estimates with Greenwood log-log bands, Wilson intervals for $P_{\rm ext}(T)$,
+Nelson--Aalen cumulative hazards, piecewise-constant hazards with likelihood
+ratio tests, and maximum-likelihood exponential, Weibull and lognormal fits on
+the conditional tail with parametric-bootstrap goodness of fit. Peak drift is
+measured as the slope of $\log N_{\rm peak}$ versus cycle index (peaks with
+prominence $\ge10\%$ of $N_{\max}$, first peak excluded), with Mann--Kendall
+tests per run, a Wilcoxon test of the per-run slopes and a within-run
+regression with cluster-robust errors. Global sensitivity uses Morris
+elementary effects and Sobol indices (Saltelli sampling) on replicate-averaged
+metrics, with bootstrap confidence intervals and Holm or Benjamini--Hochberg
+corrections.

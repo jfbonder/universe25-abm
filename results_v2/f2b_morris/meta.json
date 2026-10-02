@@ -1,0 +1,41 @@
+{
+ "n_reps": 10,
+ "T": 400,
+ "base_seed": 25307,
+ "n_jobs": 4,
+ "crn": true,
+ "n_points": 320,
+ "design_columns": [
+  "alpha",
+  "crowd_aversion",
+  "crowd_power",
+  "rec",
+  "inherit_weight",
+  "plast_age_max",
+  "gamma",
+  "a_max",
+  "p0",
+  "delta",
+  "m_c",
+  "eta",
+  "refuge_frac",
+  "refuge_pref",
+  "refuge_capacity",
+  "repro_age_max"
+ ],
+ "ties": {},
+ "series_every": 0,
+ "record_every": 1,
+ "runner": "u25.sweep",
+ "model_cls": "f2b_model_v2.U2v2",
+ "u25_version": 2,
+ "refuge_hard_modes": [
+  "strict"
+ ],
+ "eval_kw": {
+  "peak_time": "plateau_start",
+  "o5_birth_ref": "B99",
+  "o4_version": "v2",
+  "crowd_class_threshold": 8
+ }
+}

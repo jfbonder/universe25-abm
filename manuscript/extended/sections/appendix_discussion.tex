@@ -1,0 +1,70 @@
+\section{Supplementary discussion}
+\label{app:discussion}
+
+\paragraph{Pups born above the deterioration threshold.}
+With $w=0.2$ and $s_{\rm base}=0$ every pup is born with $s\le0.2$, the threshold that the criteria use for
+``deteriorated''. This is why the preregistered forms of O10 and O11 pass in colonies that never deteriorate, and why
+the primary evaluator scores them on adults and on the late cohorts. With $s_{\rm base}=0.25$ or 0.5, O17p is 0.08 and 0.00 with the
+primary O11 ($n=200$; 0.64 and 0.36 with the preregistered O11), entirely through O11, which the primary evaluator
+scores at sexual maturity (six weeks), when these pups are still above 0.2. At six weeks, then, the pass of O11 in
+\textsf{C1} was partly definitional. Scored at the end of the plasticity window ($a_w=12$ weeks) on the same runs,
+the late cohorts are below 0.2 whatever their birth state (O11 in 0.975 and 0.785, O17p in 0.965 and 0.76), so the
+definitional part disappears; but O11 then also passes in 0.81 of the long-lived runs and in 0.755 of the runs
+without rules. The late cohorts deteriorate by crowding damage during the window, with or without the rules, and
+their failure is not a contribution of the rules (Section~\ref{sec:discussion}).
+
+\paragraph{Pups and refuges.}
+Pups count towards local crowding and, born with a low social state, are strongly attracted to refuges: in weeks
+8--16 between 77\% and 89\% of the refuge occupants are younger than 12 weeks, and 62--67\% of the persistent
+isolated animals first entered a refuge before 12 weeks of age (Appendix~\ref{sec:calib-classes}). With a nest period
+of three weeks, during which pups stay in their natal cell and neither move nor add to crowding, the boom becomes even
+shorter (83\% of the births are to the founders), O17p is 0.835 [0.78, 0.88], borderline, and
+$\rho_{\rm pk}=0.31$. Because conception and birth
+coincide, conceptions without viable young (O15b) cannot be separated from infant mortality (O15).
+
+\paragraph{The founder phase (O1--O3).}
+With 400 initial animals, latency, early exponential growth and deceleration are not testable. From Calhoun's four
+founding pairs a colony on the lattice spreads as a slow front, because of the slow mobility, and either stays
+confined (a trivial peak) or peaks far too late relative to the life span. An exploratory founder plane (stage p6, 12
+points of 30 runs; Section~\ref{sec:calib-founders}) uses Moore mating, a reduced initial social state as a stand-in
+for Calhoun's ``social turmoil'' of phase~A, and up to two movement sub-steps. It makes O1--O3 testable, and they pass
+at some points (O1 in up to 0.90, O2 in 0.83--1.00, O3 in up to 1.00), but no founder point is Calhoun-like: O17p is
+at most 0.37 [0.22, 0.54], and only with a life span of 200 weeks, outside every preset.
+
+\paragraph{The persistent isolated class is not the beautiful ones (O13b).}
+In \textsf{C1} the persistent isolated animals carry no crowding damage, but they are refugees of the early boom:
+they do not differ in age or birth cohort from the crowded ones, about 60\% are offspring of the founders, and most
+entered the refuges as pups. Calhoun's beautiful ones were a late, unsocialised cohort, ``the last half of the
+population born'' \cite{Calhoun1973}. We therefore call the class of \textsf{C1} a ``persistent isolated class'' and
+reserve ``beautiful ones'' for the cohort-structured class of \textsf{C2}, which ties the retreat to maternal
+socialisation. Its isolated class is born later than the crowded class, and O13b reaches PASS or MARGINAL in every
+run. The preregistered window (born after $0.8\,t_{\rm pk}$) still fails, because births in the model are
+front-loaded (median birth time about $0.24\,t_{\rm pk}$); read literally, Calhoun's phrase refers to the second half
+of the births, and a post hoc reading relative to the median birth time passes in 58 of 60 development runs of
+\textsf{C2} and in 0 of 60 of \textsf{C1}. \textsf{C2} pays a demographic price: O8 fails in every run, O9 falls from
+0.40 to 0.30, and the Calhoun-like fraction drops from 0.98 to 0.70. No candidate reproduces at the same time the
+cohort structure of the beautiful ones and the demographic patterns.
+
+\paragraph{The coexistence band is refuted (Q5).}
+We predicted that crowded and isolated classes coexist only when the preferred occupancy of a deteriorated animal,
+$n^*=1/\kappa-1/\alpha$, is close to $m_c$. This held in the calibration of \textsf{C0}, which has no refuges, and the
+prediction did not anticipate that refuges decouple the classes. In \textsf{C1} the instantaneous criterion is
+saturated over almost the whole $(\alpha,\kappa)$ plane, and the fitted dependence on $\log n^*$ is convex.
+
+\paragraph{Fertility, infant mortality and sex bias (O15, O15b, O9).}
+Conception and neonatal survival are both proportional to the mother's social state, so they decline together. Total
+infant mortality (O15) is reproduced in 0.5\% of the runs; conceptions without viable young (O15b) in 58\%, whereas
+Calhoun reported about 320 days of them; and the female-biased remnant (O9) in 45\%, because the model has no
+sex-specific mortality.
+
+\paragraph{Comparison with Gwizdałła and Duś.}
+All comparisons with Universe~25 are qualitative and distributional, and some of Calhoun's numbers were projected
+rather than observed, among them the extinction date. The agent-based model of \cite{GwizdallaDus2026} is
+quantitative: it uses a daily step and fitted life tables, calibrates the growth phase against the total and adult
+numbers on day 315, and produces the decline through deviation factors that switch on when the \emph{total}
+population exceeds critical values (best fits around 300--400 animals), together with prescribed probabilities of
+litter abandonment and of becoming a ``beautiful one''. Our model has no global threshold, treats deterioration and
+its transmission as state variables, validates against many patterns over ensembles with their discriminating power
+against null models, and backs its claims with preregistered tests, ablations and global sensitivity analysis. The
+irreversibility of the individual is an assumption of our model (R1), consistent with Marsden's transplants, not a
+result.

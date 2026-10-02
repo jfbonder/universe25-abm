@@ -1,0 +1,95 @@
+\section{Statistical design}
+\label{sec:stats}
+
+\paragraph{Unit of analysis and primary outcome.}
+The unit of analysis is the independent stochastic replicate; seeds are derived as
+\texttt{SeedSequence([base\_seed, point, replicate])}, and common random numbers are used across design points in the
+screening and variance-based designs. Each run is scored by the automatic evaluator of
+Section~\ref{sec:observations}. The primary per-run outcome is \emph{O17p}: the run is Calhoun-like, meaning that
+every applicable essential pattern passes and no anti-pattern is triggered, \emph{and} its isolated class of O13 is
+persistent. With the default initial condition ($N_0=400$), O1--O3 are not applicable and are excluded from O17p;
+they are studied separately with the founder protocol. Every other essential pattern must pass: a pattern that
+cannot be evaluated in a run (NA) counts as a failure of O17p, so that no pattern is passed vacuously.
+The primary evaluator, which is not preregistered, differs from the preregistered one: it takes the peak time at the start of the plateau ($t'_{\rm pk}$, first
+week within 2\% of the maximum), the end of natality at 99\% of the births ($t_{B99}$), O4 with free space at the
+peak, O10 on the adults, O11 on the cohorts born in the second half of the natality and the crowded class at $m>8$;
+every run is also scored with the preregistered evaluator and with each option changed separately
+(Appendix~\ref{app:res-rescoring}). Some patterns are defined for an ensemble and scored per run: the per-run
+version of O7 is ``extinct before the horizon $T$'', its ensemble version is $P_{\rm ext}(T)\ge0.9$ estimated by
+Kaplan--Meier, and the fraction of runs that pass O7 is the binomial estimate of the latter.
+
+\paragraph{Presets and stages.}
+All designs are expressed relative to the reference candidate \textsf{C1} (Table~\ref{tab:params}). The controls
+are \textsf{C0} (\textsf{C1} without R7), \textsf{C1} with $\alpha=0$, and the short-lived and long-lived controls
+(the core model with the four rules switched off, $\alpha=1.4$, and $a_{\max}=60$ or 120;
+Section~\ref{sec:model-candidates}); the confirmatory contrast is \textsf{C2}; the null models
+(Section~\ref{sec:res-null}) are run from the initial condition of \textsf{C1}. Rule ablations switch a rule off by
+setting its parameters to their neutral values (for R2, full inheritance and individual recovery at the core
+rate $r=0.01$). The design has six kinds of stages: production ensembles of the candidates, controls and null models, with
+one reference ensemble for \textsf{C1}, \textsf{C1}$'$, \textsf{C0} and the $\alpha=0$ control; a $2^4$ factorial
+ablation with implementation variants; transplant experiments (paired cross-transplant, mixed transplants with
+healthy partners, sampling at a common absolute time, transplants of adults of intermediate social state); phase
+planes in the socialisation, space and refuge parameters, a seeding-density plane and a founder plane; robustness
+variants (background mortality, nest period, asynchronous update, pups born above the deterioration threshold,
+non-synchronous initial condition, lattice size at fixed density); and global sensitivity analysis in three steps:
+Morris elementary effects over 15 factors (20 trajectories, 10 runs per point), two independent 15-factor Latin
+hypercubes (200 points, 10 runs each, plus 40 runs at the points near the boundary), and Sobol' indices with the
+Saltelli design and Jansen estimators \cite{Saltelli2010} for 11 factors (the 8 retained by the screening plus $w$,
+$r$ and $a_w$), with $N=256$ and 3 runs per point, extended to 6 \cite{tenBroeke2016}.
+Morris and Sobol' indices are descriptive, not tests; they are reported with bootstrap intervals and with an
+\emph{empirical noise floor}, the same estimators applied to the split-half contrast of the replicate means at each
+design point (Appendix~\ref{sec:res-sensitivity}).
+
+\paragraph{Confirmatory hypotheses.}
+Seven hypotheses were fixed before the production runs, each with a quantitative prediction derived from the
+mean-field analysis or the calibration. The plan, with designs and predictions, was fixed on 1 October 2026, 22:02 UTC, before the launch of the production
+runs, and is reproduced in \texttt{docs/preregistered\_plan.md} of the code repository; the primary evaluator, the stages not in that plan and
+their decision rules are not preregistered, but were fixed (\texttt{docs/production\_plan.md}, 2 October 2026, 05:34 UTC) after exploratory runs
+with the primary evaluator (smoke tests on the data of the preregistered design and on two replicates per point) and
+before the production runs. One option of the primary evaluator, the birth reference $t_{B99}$ of O5, was chosen after
+those exploratory runs had shown that the alternative fails O5 in most \textsf{C1} runs; it is the only option on
+which a confirmatory decision (Q2) depends, and both are reported (Table~\ref{tab:deviations}).
+They form one family with Holm correction at $\alpha=0.05$: Q1, structural irreversibility (the same phase-D
+animals transplanted to a \textsf{C1} enclosure and to one without R1 and R2; exact one-sided McNemar test); Q2, each
+rule is necessary (intersection--union test over the four single-rule ablations, one-sided Fisher tests, $n=120$ per
+arm); Q3, near-deterministic collapse versus the short-lived control (Fisher test on $P_{\rm ext}$ and the coefficient of
+variation of $T_{\rm ext}$); Q4, the phase-D law, $T_{\rm ext}-t_{\rm last}$ one-to-one with $a_{\max}$ (TOST with
+margins $[0.8,1.25]$); Q5, the coexistence band of O13 centred at $n^*\approx m_c$ (Firth regression on $\log n^*$);
+Q6, the plasticity window weighs less than the learning rate (profile likelihood of $\theta$ in
+$\log r+\theta\log a_w$, $\theta<1$; quasi-binomial $p$); Q7, endogenous collapse without crowding damage in the
+subcritical corner (Fisher).
+A second confirmatory family compares \textsf{C1} and \textsf{C2} on every pattern and on six continuous magnitudes
+($n=200$ per arm; two-sided Fisher and Mann--Whitney tests, log-rank for $T_{\rm ext}$, Holm correction over 29 rows,
+which hold 27 distinct tests because O6, O7 and A2 are decided by the same four \textsf{C2} colonies; nine rows are constant in both arms
+and enter with $p=1$, so the correction is conservative). One confirmatory test is not preregistered but was fixed before the production runs: the equivalence of the exponent of $a_w$ with that of $r$ at $\gamma=0$ (TOST with margins
+$[2/3,3/2]$), with a likelihood ratio for $\theta=1$; its design turned out to lack the resolution for that test
+(the logistic model is separated), so the stage is reported non-parametrically (Section~\ref{sec:res-Q}). Rejection
+of a null hypothesis and fulfilment of the quantitative prediction are
+reported separately. A Holm-adjusted $p$ rejects if it is at most the level, and adjusted values within 0.01 of
+the level are given with four digits. Q2 is an intersection--union test: it rejects only if every component test
+rejects at the full level, so the four component tests are not corrected among themselves. Exploratory contrasts
+are grouped into families and controlled with Benjamini--Hochberg at 10\%. The rules for the stages not in the preregistered plan were also fixed before the runs: a criterion is \emph{generic} if it passes in at least two of the four null models, a
+robustness variant \emph{preserves} the result if O17p $\ge0.8$, and the feasible fraction of the hypercubes is
+reported with the empirical-Bayes estimator of Appendix~\ref{sec:res-sensitivity}.
+
+\paragraph{Intervals, survival and budget.}
+Unless stated otherwise, intervals are 95\% intervals: Wilson for proportions; Newcombe for differences of two
+proportions; percentile bootstrap, resampling runs or design points, for the coefficient of variation and the
+spread of extinction times, for the Calhoun-like fraction of the hypercubes and for sensitivity indices; profile
+likelihood for the exponents $\hat\theta$, quasi-binomial when stated; Greenwood log--log for Kaplan--Meier curves
+and medians. Extinction times are right-censored at the horizon $T$, and means over extinct runs only are never
+reported: we use Kaplan--Meier estimates, $P_{\rm ext}(T)$ with Wilson intervals, log-rank comparisons, Weibull fits
+and a cure model with an escaping fraction where a fraction of the colonies survives \cite{Ovaskainen2010}; the
+spread of the extinction time is the interquartile range over the median of the Kaplan--Meier estimate.
+The 95\% Wilson half-width at $p=0.5$ is $\pm0.17$, $\pm0.12$, $\pm0.09$ and $\pm0.07$ for $n=30$, $60$, $120$ and
+$200$; production, contrast, null-model and robustness ensembles have 200 runs (100 for the short-lived and long-lived
+controls, 60 for the background-mortality curve and the lattice sizes), single ablations 120, multiple ablations 40,
+transplant arms 60 replicates, phase-plane points 30 (100 at the 40 points nearest to a boundary), Morris and
+hypercube points 10 \cite{Lorscheid2012}. No power analysis was done after the runs: observed
+power is a monotone function of the $p$-value and cannot explain a non-rejection \cite{HoenigHeisey2001}, so we
+report effect sizes with their intervals instead. The production program comprises 51\,828 simulations and 960
+transplant replicates in 26 stages, about 4.4 hours of logged wall time on four cores, 1.8 of them for the Sobol'
+design (Table~\ref{tab:res-ensembles}); a run of \textsf{C1} or one of its variants costs 0.5--2.6\,s of CPU time.
+Table~\ref{tab:deviations} (Appendix~\ref{app:res-deviations}) lists every deviation from the
+preregistered plan, including the redefinition of the primary evaluator; analyses not fixed before the production runs are labelled
+post hoc wherever they are reported.

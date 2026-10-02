@@ -1,0 +1,14 @@
+[
+"C1 -R1 -R2",
+"C1 -R1 -AV",
+"C1 -R1 -R7",
+"C1 -R2 -AV",
+"C1 -R2 -R7",
+"C1 -AV -R7",
+"C1 -R1 -R2 -AV",
+"C1 -R1 -R2 -R7",
+"C1 -R1 -AV -R7",
+"C1 -R2 -AV -R7",
+"C1 -R1 -R2 -AV -R7",
+"C1 gamma=0 (sin hacinamiento)"
+]

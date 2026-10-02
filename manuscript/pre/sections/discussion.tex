@@ -1,0 +1,71 @@
+\section{Discussion}
+\label{sec:discussion}
+
+\paragraph*{The envelope is generic; the rules add the classes.}
+The main lesson of the production runs is a negative one. A long-lived demography alone, without any of the new
+rules, drives 199 of 200 colonies to extinction: once natality stops, the colony simply ages out. Neither extinction
+nor the rest of the envelope is a result of the rules. With crowding damage and the calibrated attraction, the
+candidate without its four rules has a low peak with free space (the primary O4 passes in 200 of 200 runs, with a
+peak at 0.45 of the damage-threshold capacity and 74\% of the cells empty), an end of natality and no rebound;
+scored at the end of the plasticity window, its late-born cohorts also fail to acquire social competence (O11 in
+0.755 of the runs, and 0.81 in the long-lived control), through accumulated crowding damage. Of the eight essential
+criteria, five (O4, O5, O6, O7 and O10) pass in at least two of the four null models and carry no evidence for the
+rules. What the rules add is the coexistence of crowded and isolated deteriorated classes (O13). It is absent in the
+long-lived control, without crowding damage and without the rules, and present with refuges alone (1.00 in
+\textsf{C1}$'$) or crowd aversion alone (0.92); full inheritance without social learning also produces it. Other
+patterns hold by construction and only verify the implementation: the isolated class is persistent (O13p) because
+the refuge capacity equals the isolation threshold, and transplanted late-phase animals never found a colony (O12)
+because under R1 an adult cannot recover and conception scales with the social state of both partners. The
+non-trivial part is upstream: the colony drives essentially every adult to $s\approx0$, and crowding damage alone
+largely achieves it.
+
+\paragraph*{A boom of one or two generations.}
+The founders deteriorate by crowding during their own adult life; their offspring, about 70\% of all births, are
+born below the deterioration threshold and learn from adults who have already deteriorated. The net reproductive
+number falls from 3.8 in the founders to 0.40 in their daughters, so natality stops within about one generation.
+The null models have a \emph{deeper} boom (mean generation of the births 1.59 without the four rules, 1.34 in
+\textsf{C1}): the rules, R2 in particular, shorten the generational depth rather than create a long cascade. The
+phases appear in Calhoun's order, but B and C are compressed and an artificial plateau precedes D. The ratio of the
+deterioration time to the generation time, $\Gamma\approx1.1$ against about 3.5 in Universe~25 with a different
+operational definition, is a heuristic comparison of time scales, not the cause of the shallow boom. Within this
+transient, crowding damage is the trigger, social learning the amplifier, the plasticity window the ratchet, and the
+refuges make the isolated class persistent; without R1 the refuges become pockets of low density where deteriorated
+animals recover and breed again (the primary outcome falls to 0.21).
+
+\paragraph*{The central limitation: demography and initial condition.}
+The model has no mortality before senescence, and its initial condition is a synchronous cohort of 400 healthy
+four-week-old animals. With a background hazard of 0.003 per week at all ages the primary outcome falls from 0.995
+to 0.55 (0.06 at 0.008 per week), and with initial ages spread over 4--52 or 4--80 weeks it is 0.93 and 0.63. In
+every case the only criterion that fails is O5, by its timing clause. Natality still ends with the population near
+its maximum, but the deaths bring the start of the plateau forward (from 34 to 29 weeks at 0.003 per week) while the
+end of natality hardly moves (40 to 43 weeks), so O5 becomes marginal, as in 83 of the 90 failing runs at 0.003 per
+week and 73 of the 74 with ages over 4--80 weeks. O13, O13p and O11 pass in every run of these arms. The dependence
+is thus on the timing of the end of natality relative to the start of the plateau, a generic criterion that
+discriminates against no null model and rests on a post hoc choice of that start. It is neither evidence against
+what the rules add nor for it, but the primary outcome of 0.995 overstates how robustly the full conjunction of
+patterns is reproduced.
+
+\paragraph*{Circularity, scope and minimality.}
+The same patterns were used to \emph{choose} the rules and to \emph{report} them, with no pattern held out, so their
+fulfilment shows that they are \emph{possible} under local rules, not that they were predicted. Global robustness
+is limited and relative to the sampled box: over two 15-factor Latin hypercubes the mean primary outcome is 0.040
+[0.026, 0.059], and 2.0\% of the points are Calhoun-like. With at most one lattice step per week the animals are
+almost sessile on the scale of the deterioration, unlike Calhoun's mice, and the coexistence of classes is lost with
+more movement sub-steps. Minimality is conditional on the thresholds: the minimal set R1, R2 and R7 (\textsf{C1}$'$)
+gives the primary outcome in 0.835 [0.78, 0.88] of 200 runs, borderline, and in 0.33 with a class threshold of 15\%
+instead of 10\%; crowd aversion contributes but is not necessary in the preregistered sense.
+
+\paragraph*{What is not reproduced.}
+From four founding pairs a colony spreads as a slow front, and no point of an exploratory founder plane is
+Calhoun-like (primary outcome at most 0.37). The persistent isolated class is made of refugees of the early boom,
+most of whom entered the refuges as pups, not of a late-born cohort like Calhoun's beautiful ones. Total infant
+mortality and the female bias of the remnant are not reproduced, because conception and pup survival decline
+together and there is no sex-specific mortality. The model of Gwizdałła and Duś \cite{GwizdallaDus2026} reproduces
+the founder phase and the timing of the curve, which ours does not, with a daily step, fitted life tables and
+deviation factors triggered by the total population. Ours shows that local rules, without population-level
+switches, produce coexisting classes of deteriorated animals, one of them persistent, on top of an envelope that
+crowding damage and the demography already give. Both agree that replicate variability is large and that Calhoun's
+trajectory is one admissible outcome among many. Making the required patterns and their thresholds explicit and
+testable run by run against null models is, in our view, the main methodological contribution of this work;
+background mortality, gestation, a founder protocol with realistic mobility and held-out patterns are the natural
+next steps. We make no claim about human populations.

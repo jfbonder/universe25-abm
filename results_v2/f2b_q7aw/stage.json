@@ -1,0 +1,32 @@
+{
+ "stage": "q7aw",
+ "kind": "sweep",
+ "reps": 20,
+ "T": 600,
+ "crn": false,
+ "series_every": 0,
+ "full_series": false,
+ "preset": null,
+ "priority": 1,
+ "c_cpu": 3.5,
+ "analysis": "q7aw",
+ "q": "V2-Q7aw",
+ "base_seed": 25335,
+ "axes": [
+  "rec",
+  "inherit_weight"
+ ],
+ "layer": "plast_age_max",
+ "n_points": 54,
+ "runs": 1080,
+ "columns": [
+  "gamma",
+  "plast_age_max",
+  "rec",
+  "inherit_weight"
+ ],
+ "preset_main": "calhoun_C1",
+ "tag": "C1",
+ "primary": "O17p",
+ "reps_run": 20
+}
