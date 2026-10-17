@@ -41,3 +41,4 @@ results_v2/**/series/
 results*/**/runner.log
 results*/f2b_estado*/
 results_new/
+results/movies/cache/
