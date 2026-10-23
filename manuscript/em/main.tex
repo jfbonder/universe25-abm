@@ -1,0 +1,46 @@
+% Manuscript for Ecological Modelling (Elsevier, research paper).
+% Figures and tables: see README.md (make em-figs, make em-tables); numbers: results_em/em_figs_numbers.json.
+% Build with ./build.sh (supplement first, so that the SM cross-references resolve through xr-hyper).
+\documentclass[preprint,12pt,authoryear]{elsarticle}
+
+\input{preamble}
+\externaldocument[SM-]{supplement}
+
+\journal{Ecological Modelling}
+
+\begin{document}
+
+\begin{frontmatter}
+
+\title{Simple interaction rules qualitatively reproduce Calhoun's Universe~25: a pattern-oriented agent-based model
+of population collapse}
+
+\author{Juli\'an Fern\'andez Bonder}
+\ead{jfbonder@dm.uba.ar}
+\affiliation{organization={Departamento de Matemática, FCEN, Universidad de Buenos Aires, and Instituto de
+Cálculo, UBA--CONICET},
+  city={Buenos Aires},
+  country={Argentina}}
+
+\input{sections/abstract}
+
+\begin{keyword}
+agent-based model \sep pattern-oriented modelling \sep density dependence \sep social learning \sep reproductive
+suppression \sep population collapse \sep Universe~25
+\end{keyword}
+
+\end{frontmatter}
+
+\linenumbers
+\input{sections/intro}
+\input{sections/methods}
+\input{sections/results}
+\input{sections/discussion}
+\input{sections/conclusions}
+
+\input{sections/declarations}
+
+\bibliographystyle{elsarticle-harv}
+\bibliography{refs}
+
+\end{document}

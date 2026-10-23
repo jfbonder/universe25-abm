@@ -1,0 +1,250 @@
+% ===========================================================================
+% Self-contained SM section, placed after "Robustness" (supp:robustness) and before "Supplementary videos".
+% The tables tab_sm_*.tex are written by scripts/em/f9_sm_tablas.py (make em-tables) from results_em/.
+\section{Adult recovery, mate search and colony size}
+\label{supp:recovery}\label{sec:recovery}
+
+This section gives, from archived runs, the numbers on which the
+conditions of the mechanism rest (main text, Sections~3.2 and~4.2): the extinction probability as a function of adult
+recovery, its dependence on colony size, the effect of removing non-breeders, of background mortality and of
+protecting the juveniles, the test of a mate-finding Allee effect, the scaling of the extinction
+time, the cohort-by-cohort account of the mechanism in the well-mixed limit, and the held-out patterns of the
+reversible branch. Every count is reproduced by
+\texttt{scripts/em/f9\_sm\_tablas.py} in the code repository.
+
+\paragraph{Design}
+The adult recovery factor $\eadult\in[0,1]$ multiplies the gain of an individual outside the window: an adult gains
+$\eadult\,r[(1-\lambda)+\lambda\bar s_V]$ per week, so that with $\lambda<1$ a non-breeding adult recovers on its own
+at rate $\eadult r(1-\lambda)$, and with $\lambda=1$ only from competent neighbours. \Cone\ is $\eadult=0$, $\lambda=1$.
+We ran $\eadult\in\{0,0.01,0.02,0.05,0.1,0.2,0.3,0.4,0.5,0.6,0.8,1\}$ and $\lambda\in\{0,0.5,0.8,0.9,0.95,1\}$, with
+all other rules of \Cone, at $L=15$ (20 replicates), $L=30$ (20) and $L=60$ (10; nine values of $\eadult$ and a
+subset of $\lambda$), in space (with retreat sites) and well mixed (without retreat sites; father drawn in the
+female's cell, in her $3\times3$ block or in the whole arena): $12\,870$ colonies in all, with the founders and the
+seeding density of \Cone. The response is the probability of extinction by week $1\,000$, with $95\%$ Wilson
+intervals \citep{Wilson1927}; for an ensemble in which every colony goes extinct the interval is $[0.84,1]$ with 20
+replicates and $[0.72,1]$ with 10. The threshold $\eadult^c(\lambda,L)$ is the midpoint of a binomial
+maximum-likelihood logistic fit of the extinction probability against $\eadult$.
+
+\paragraph{Small adult recovery does not prevent the collapse}
+With $\eadult\le0.02$ every colony went extinct: $2\,880$ of $2\,880$ at $L=15$ and $30$, in space and well mixed,
+under the three mating rules and for every $\lambda$ (Table~\ref{tab:sm-pext}); with $\eadult=0$, every one of the
+$1\,110$ colonies at $L=15$--$60$. The collapse is therefore not an artefact of the edge $\eadult=0$. It is lost
+when adults recover fast enough on their own (Table~\ref{tab:sm-epsc}). At the size of the experiment ($L=30$)
+the threshold is $0.085$ in space with individual recovery ($\lambda=0$) and $0.73$ in space with purely social
+recovery ($\lambda=1$); well mixed it is $0.70$ for $\lambda=0$ and exceeds $1$ for $\lambda\ge0.5$ (at $\lambda=1$
+every colony goes extinct even with $\eadult=1$): without competent demonstrators an adult whose recovery is social
+never recovers. The relevant condition is thus that
+adults do not recover \emph{asocially}, that is, that $\eadult(1-\lambda)$ is small, and in space that the pockets of
+competent animals that survive the crowded phase are too few to teach the adults around them.
+
+\begin{table}[ht]
+\centering
+\caption{Probability that a colony of \Cone\ with adult recovery factor $\eadult$ is extinct by week $1\,000$, for
+purely social ($\lambda=1$) and purely individual ($\lambda=0$) learning and recovery, in space (with retreat sites)
+and well mixed (no retreat sites, mating in the cell), at $L=15$, $30$ and $60$. $n$: replicates per cell of the
+table. --: not simulated. 95\% Wilson intervals: $[0.84,1]$ for $20/20$, $[0.72,1]$ for $10/10$, at most $\pm0.22$
+otherwise. Source: \texttt{results\_em/adult\_recovery/summary.csv}.}
+\label{tab:sm-pext}
+\scriptsize
+\setlength{\tabcolsep}{2.6pt}
+\begin{tabular}{@{}lcrr*{12}{c}@{}}
+\toprule
+& & & & \multicolumn{12}{c}{$\eadult$} \\
+\cmidrule(l){5-16}
+Structure & $\lambda$ & $L$ & $n$ & 0 & .01 & .02 & .05 & .1 & .2 & .3 & .4 & .5 & .6 & .8 & 1 \\
+\midrule
+\input{tables/tab_sm_pext}
+\end{tabular}
+\end{table}
+
+\begin{table}[ht]
+\centering
+\caption{Threshold of adult recovery $\eadult^c(\lambda,L)$ above which the colony persists: midpoint of the logistic
+fit of the extinction probability by week $1\,000$ against $\eadult$. In brackets, where computed, the
+profile-likelihood 95\% interval of the midpoint (width of the sigmoid profiled out; $>1$: beyond the grid).
+$^\ast$Only one value of $\eadult$ gives an intermediate extinction fraction, so the width of the transition is not
+identified. $^\dagger$No intermediate value: the threshold lies between the last $\eadult$ at which every colony goes
+extinct and the first at which none does. $>1$: every colony goes extinct even with $\eadult=1$, or the fitted
+midpoint exceeds 1. n.s.: not simulated. In space with retreat sites; well mixed without them. Sources:
+\texttt{results\_em/adult\_recovery/transicion.csv} and
+\texttt{results\_em/robustness\_checks/epsc\_profile.csv}.}
+\label{tab:sm-epsc}
+\footnotesize
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Structure and mating & $\lambda$ & $L=15$ & $L=30$ & $L=60$ \\
+\midrule
+\input{tables/tab_sm_epsc}
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+\paragraph{The tolerated recovery decreases with colony size}
+In space the threshold decreases with $L$ for every $\lambda$, with no sign of saturation between $L=15$ and $60$:
+with $\lambda=0$ it is $0.133$ [$0.113$, $0.157$], $0.085$ [$0.073$, $0.099$] and $0.050$ [$0.037$, $0.063$] at $L=15$,
+30 and 60, and with $\lambda=1$ it is $0.97$ [$0.88$, $>1$], $0.73$ [$0.67$, $0.81$] and $0.53$ [$0.46$, $0.62$]
+(profile-likelihood 95\% intervals of the midpoint of a binomial logistic fit; for $\lambda=0$ and $1$ the intervals
+for different $L$ do not overlap; for $\lambda=0.9$ those for $L=30$ and $60$, $[0.347, 0.420]$ and $[0.273, 0.349]$,
+overlap by $0.002$; likelihood-ratio $p\le0.008$ for every pair of sizes, also for $\lambda=0.9$). The width of the transition is not
+identified at $L=60$, where only one or two values of $\eadult$ give an intermediate extinction fraction, and a
+common width for the three sizes is not rejected ($p=0.26$, $0.11$ and $0.12$ for $\lambda=0$, $0.9$ and $1$), so the
+data do not show whether the transition sharpens. Three sizes do not determine the limit of the threshold as
+$L\to\infty$, which may be zero.
+For any $\eadult>0$ the spatial collapse may therefore be a finite-size effect; only the edge $\eadult=0$ is
+supported at every size simulated ($270$ of $270$ spatial colonies at $L=15$--$60$). Well mixed with mating in the
+cell the series ($0.80$, between $0.6$ and $0.8$, and $0.60$ for $\lambda=0$) is resolved only to the grid of
+$\eadult$ (likelihood-ratio $p=0.16$ and $1.0$ for the pairs of sizes); it is compatible with the value of the
+deterministic limit, $0.585$, at which the deterministic orbit acquires an attracting invariant curve, but does not
+show convergence to it. With global mating it decreases fast ($0.81$, $0.51$, $0.30$, non-overlapping intervals) and
+that limit is close to zero. The conclusion of the main text is
+conditional on the scale of the experiment for this reason: a much larger closed colony would need an even less
+reversible non-breeding state.
+
+\paragraph{A measurable indicator of the outcome}
+Late breeding, the fraction of adults of breeding age that conceive from 30 weeks after the end of natality, is at
+most $0.008$ in 90\% of the 819 spatial colonies that die out and at least $0.087$ in 90\% of the 621 that persist
+(area under the ROC curve $0.97$; $0.99$ for $\lambda=1$; well mixed $0.99$, with a 10th percentile of $0.017$ in the
+42 colonies that persist), over the sweep of $\eadult\times\lambda$ at $L=30$. Source:
+\texttt{results\_em/operational\_indicators/tabla\_auc.csv}.
+
+\paragraph{Held-out patterns of the reversible branch}
+The two patterns of earlier confined colonies scored on the reversible-suppression null (main text, Section~3.2) were
+defined after the production runs. The null ($\eadult=0.8$, $\lambda=0.9$, $L=30$, 200 runs) and \Cone\ were re-run
+bit for bit with the archived seeds to record every litter. Each run is split into four windows: \emph{growth}, from
+week 10 to the entry into the plateau; \emph{plateau}, the weeks with $N\ge0.9\,N_{\max}$ contiguous to the maximum
+(median weeks 34 to about 100); \emph{decline}, from the end of the plateau to the following trough (median week
+141); and \emph{late}, weeks $\ge300$. \emph{Litter loss}: a litter fails when none of its pups survives; the
+fraction of failed litters is computed exactly from the litter record in each window. The weekly births per
+reproductive female factor exactly as $B=C\,\bar\ell\,\varphi$ (conception rate, mean litter size at conception, a constant of the model, and
+mean pup survival), so the fall of natality from growth to plateau splits additively on a logarithmic scale; the share of
+conception is $\ln(C_{\rm g}/C_{\rm p})/[\ln(C_{\rm g}/C_{\rm p})+\ln(\varphi_{\rm g}/\varphi_{\rm p})]$. The null gives failed litters $0.048$ [$0.046$, $0.050$] during growth, $0.243$ [$0.239$, $0.248$] on
+the plateau, $0.073$ [$0.067$, $0.079$] in the decline and $0.102$ [$0.101$, $0.102$] late (\Cone: $0.026$ and $0.087$
+during growth and on the plateau); conception falls $8.4$-fold and pup survival $2.15$-fold, a conception share of
+$0.73$ [$0.73$, $0.74$]. \emph{Females that never breed}: the fraction of the females born in a window that do not
+conceive by 48 weeks of age, those that die earlier counting as never breeding (the definition of O11b). It is
+$0.889$ [$0.885$, $0.893$] for females born on the plateau of the null ($41\,202$ females) against $0.961$ [$0.958$,
+$0.964$] in \Cone, $0.366$ [$0.356$, $0.376$] for those born in the decline and $0.719$ [$0.718$, $0.720$] for those born
+from week 300 (to $T-48$); in \Cone\ no female is born after the plateau. Means over runs with bootstrap 95\%
+intervals. Source: \texttt{results\_em/robustness\_checks/h2h3.json}, from
+\texttt{\{rev1000,c1x\}\_\{litters,cohorts\}.csv} (scripts \texttt{f10\_reversible.py} and \texttt{f10\_h2h3.py}).
+
+\paragraph{Removal of non-breeders, background mortality and protection of juveniles}
+These experiments use \Cone\ at $L=30$, in space with retreat sites and well mixed without them, with a horizon of
+$1\,500$ weeks (removal) or $1\,000$ weeks (mortality). \emph{Single removal.} At week $t_r$ a fraction $f$ of the
+adults with $s<s_v$ is removed at random ($f\in\{0.25,0.5,0.75,0.9,1\}$; $t_r$ from 20 to 100 weeks in space and from
+15 to 50 well mixed; 20 replicates per cell). It delays extinction but does not prevent it: $12$ of $1\,000$ spatial
+colonies (all with $f\ge0.9$ and $t_r=30$--$60$) and $0$ of $900$ well-mixed ones were alive at week $1\,500$; the
+median extinction time rises at most from $163$ to $761$ weeks in space and from $148.5$ to $272$ well mixed. Removing
+instead the adults that did not breed in the previous 8 weeks, once, gives $3$ survivors of $240$. \emph{Sustained
+removal.} Removing $25\%$ or $50\%$ of the non-breeders every four weeks from $t_r=30$ keeps $20$ of $20$ spatial colonies
+alive at week $1\,500$; well mixed, removing $50\%$ from $t_r=20$, 25 or 30 does the same, and $25\%$ rescues $10$--$11$
+of $20$ from $t_r=20$--$25$ and none from $t_r=30$. Starting later rescues fewer ($t_r=50$ in space: $4$ and $15$ of
+$20$). If the removal stops after 52, 104 or 208 weeks the colony collapses again: $2$ of $60$ spatial and $0$ of $60$
+well-mixed colonies were alive at week $1\,500$. \emph{Background mortality.} An extra weekly mortality $\mu_{\rm bg}$,
+independent of age and state, does not rescue \Cone: $10$ of $10$ colonies went extinct at each
+$\mu_{\rm bg}\in\{0.005,0.01,0.02,0.03,0.05\}$, in space and well mixed. It rescues only when competence can
+regenerate: with asocial learning ($\lambda=0$, $\eadult=0$) from $\mu_{\rm bg}=0.02$ in space ($10$ of $10$ alive) and
+$0.05$ well mixed, and with $\lambda=0.9$, $\eadult=0.3$ from $0.01$ in space and $0.03$ well mixed. \emph{Protection
+of juveniles.} From week $t_1\in\{15,20,25,30,40\}$, for 12, 26 or 52 weeks or permanently, the juveniles in their
+window either learned from perfect demonstrators ($\bar s_V:=1$) or suffered no crowding damage (a crowding-free
+nursery); 10 replicates per cell. Of the $800$ manipulated colonies $798$ went extinct; the two survivors had perfect
+demonstrators permanently from week 30 or 40, in space. The median extinction time moved by at most $159$ weeks in
+space and $12$ well mixed. Sources: \texttt{results\_em/hydra\_removal/summary.csv},
+\texttt{results\_em/background\_mortality/summary.csv} and \texttt{results\_em/juvenile\_protection/tabla\_p3.csv}.
+
+\paragraph{Not a mate-finding Allee effect}
+In the reference model a female conceives only with a male of her own cell. Well mixed, with $\lambda=1$ and
+$\eadult=0$, \Cone\ went extinct in every colony under the three mating rules, $50$ of $50$ under each
+(Table~\ref{tab:sm-mate}); global mating makes the collapse earlier, not rarer. The short-lived control (SL), whose
+competence regenerates individually, also dies out well mixed with mating in the cell or in the block, but with
+global mating it persists for $L\ge45$ (none of $60$ colonies extinct by week $3\,000$, and no late extinction in $1.6\cdot10^5$
+colony-weeks). Under perfect mate search the well-mixed variant therefore separates the two
+models: the social collapse of \Cone\ does not depend on mate finding, whereas the extinction of the well-mixed SL with
+local mating does.
+
+\begin{table}[ht]
+\centering
+\caption{Well-mixed \Cone\ ($\lambda=1$, $\eadult=0$, no retreat sites; horizon $2\,000$ weeks) and the short-lived
+control SL (horizon $3\,000$ weeks) with the father drawn in the female's cell, in her $3\times3$ block or in the
+whole arena. Extinct/replicates at each $L$ (\Cone: $L=15$, $30$, $60$; SL: $L=10$, 15, 20, 30, 45, 60, 90, and 120
+with global mating), the pooled count with its $95\%$ Wilson interval when every colony went extinct, the probability
+of extinction by week 300 at each $L$, and the range of the median extinction time over $L$ (weeks). Source:
+\texttt{results\_em/mate\_search/tabla\_mate.csv}.}
+\label{tab:sm-mate}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{@{}llllllc@{}}
+\toprule
+Model & Mating & $L$ & Extinct / replicates & Pooled & $P(\text{extinct by }300)$ & median $T_{\rm ext}$ \\
+\midrule
+\input{tables/tab_sm_mate}
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+\paragraph{Extinction is certain; its scaling distinguishes collapse from persistence}
+Competence is updated before reproduction and the damage $\gamma(m_i-m_c)_+$ exceeds $1+r$ above an occupancy
+$\bar m=m_c+(1+r)/\gamma$, so no animal in a cell with more than $\bar m$ occupants can breed; a pigeonhole argument
+then bounds the females that can conceive in a week by a multiple of $|G|$. With no immigration, extinction of a closed
+colony is certain for every variant with $\gamma>0$ (a standard argument for a population with an absorbing empty
+state and a bounded number of breeders). The
+fact that \Cone\ goes extinct in 200 of 200 runs is therefore informative only through the time scale. A collapse
+has an extinction time that grows like $\ln|G|$; a metastable colony one that grows like $e^{c|G|}$. Both behaviours
+are observed. With $\eadult=0$ the median extinction time of \Cone\ grows by $1$--$2$ weeks per unit of $\ln|G|$ well
+mixed (all mating rules) and by about $6$ ($\lambda=0$) and $11$ ($\lambda=1$) weeks in space, with noisier values
+between, where the last pockets die later in larger arenas (\texttt{escaleo.csv}); over the well-mixed ensembles of $L=10$--$250$ the slope is $1.25$ [$1.16$, $1.33$] weeks per
+unit of $\ln N_0$, and the median residual time from the last birth to extinction is $115$--$118$ weeks at every size
+(\texttt{results\_em/wellmixed\_size\_scaling/tabla\_wm.csv}). On the persistent side of the threshold the extinction probability falls with size
+(space, $\lambda=1$, $\eadult=1$: $0.55$, $0.05$ and $0$ at $L=15$, $30$ and $60$), and the spatial SL is metastable,
+with a late extinction rate that decreases like $e^{-c|G|}$, $c\approx0.005$ per cell. The answer to ``is the collapse
+a consequence of the small size of the colony?'' is thus negative for $\eadult=0$, where the time to extinction grows
+only logarithmically with size, and open for $\eadult>0$ in space, where the tolerated recovery decreases with size.
+
+\paragraph{The mechanism cohort by cohort in the well-mixed limit}
+As $|G|\to\infty$ at fixed density the well-mixed model approaches a deterministic kinetic equation for the
+density of individuals by age and competence: at $L=90$ the largest difference between its density and the mean of the
+simulations is $0.19\%$ of the peak (\texttt{results\_em/kinetic/resumen\_kin\_vs\_abm\_L90.csv}).
+Along its orbit for \Cone\ the density $\nu$ of other individuals per cell exceeds $\nu^*=6.92$, the occupancy at which
+the expected damage $\gamma\,\mathrm{E}(\mathrm{Poisson}(\nu)+1-m_c)_+$ equals the maximal gain $r$, from week 25 to
+week 108. Table~\ref{tab:sm-cohorts} follows five cohorts. Their competence at the end of the window, relative to
+that of their mothers, collapses between the cohorts of weeks 12 and 22, while the mean proportion $\bar\theta$ of
+neighbours with $s>0$ during their window is still above the transmission threshold $\theta^*=(1-w)/(ra_w)=2/3$ for
+all but the last, and while a gain bound that ignores damage would still predict ratios of $0.63$--$0.90$. The cohorts
+thus fail through damage inside the window, not through a lack of demonstrators. That a sustained density above
+$\nu^*$ \emph{implies} the collapse is a conjecture, verified at every point of the bifurcation diagram of the kinetic
+equation but not proved. This account holds for the well-mixed model. In space the
+mean crowding is far below $\nu^*$ (2.9 animals per cell at the peak), the crowding experienced by juveniles exceeds
+the maximal gain only during the growth phase, and the colony collapses because the adults, damaged during the
+aggregated growth and unable to recover, become non-breeding: an adult ratchet, which is why adult recovery decides
+the outcome.
+
+\begin{table}[ht]
+\centering
+\caption{Cohorts of the kinetic (well-mixed, deterministic) limit of \Cone. $b$: week of birth. Ratio: mean competence
+of the cohort at the end of its window ($a=13$) over that of its mothers. $\bar\theta$: mean, over the window weeks
+$b+1,\dots,b+12$, of the proportion of neighbours with $s>0$. Bound without damage: the ratio that the mean-field gain
+alone would give. Last column: $\bar\theta\ge\theta^*=2/3$. Source:
+\texttt{results\_em/kinetic/cohortes\_C1.csv}.}
+\label{tab:sm-cohorts}
+\footnotesize
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+$b$ & ratio & $\bar\theta$ & bound without damage & $\bar\theta\ge\theta^*$ \\
+\midrule
+\input{tables/tab_sm_cohorts}
+\end{tabular}
+\end{table}
+
+\paragraph{Status of the claims}
+The claims of the main text about the mechanism have different status. Definitions: $\nu^*=6.92$ and $\theta^*=2/3$,
+computed exactly. Short argument: extinction of a closed colony is certain for $\gamma>0$ (see above; uninformative
+about time scales). Conjectural: that a density above $\nu^*$ during the window implies the collapse (verified
+numerically in the kinetic equation). Simulated: the level of the peak, $0.36\Kg$; growth to the numerical cap without
+crowding damage (200 of 200 spatial runs); the collapse for $\eadult\le0.02$ and the threshold $\eadult^c(L)$, whose
+limit $L\to\infty$ is not determined (Tables~\ref{tab:sm-pext}--\ref{tab:sm-epsc}); the effects of removing
+non-breeders, of background mortality and of protecting the juveniles; the absence of a mate-finding Allee effect,
+well mixed (Table~\ref{tab:sm-mate}); the logarithmic growth of the extinction time; the crossing of $\theta^*$
+before the end of natality, also in colonies that persist; and the spatial mechanism, an adult ratchet during the
+aggregated growth.

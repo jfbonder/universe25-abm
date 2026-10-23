@@ -1,0 +1,57 @@
+{
+ "em_series_C1_spatial.parquet": {
+  "source": "results_v2/f2b_base/series.parquet",
+  "points": [
+   0
+  ],
+  "rows": 34351,
+  "runs": 200,
+  "columns": [
+   "point",
+   "rep",
+   "t",
+   "N",
+   "births",
+   "pups",
+   "conceptions",
+   "S_adult",
+   "mean_age",
+   "N_adult",
+   "frac_withdrawn",
+   "frac_crowded_low",
+   "phi_BO",
+   "low_s_frac",
+   "phi_w",
+   "coh_f_born",
+   "coh_f_ever_conceived"
+  ],
+  "bytes": 1071404
+ },
+ "em_series_C1_wellmixed.parquet": {
+  "source": "results_em/wellmixed_c1/series.parquet",
+  "points": [
+   0,
+   1
+  ],
+  "rows": 59559,
+  "runs": 400,
+  "columns": [
+   "point",
+   "rep",
+   "t",
+   "N",
+   "births",
+   "conceptions",
+   "S_adult",
+   "mean_age",
+   "N_adult",
+   "frac_withdrawn",
+   "frac_crowded_low",
+   "phi_BO",
+   "phi_w",
+   "coh_f_born",
+   "coh_f_ever_conceived"
+  ],
+  "bytes": 1238344
+ }
+}

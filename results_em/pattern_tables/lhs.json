@@ -1,0 +1,56 @@
+{
+ "n_points": 400,
+ "runs_per_point": 10,
+ "T": 400,
+ "rule": "point reproduces X if k/n >= 0.8 of its runs",
+ "rows": {
+  "O7 (extinction by T = 400)": {
+   "k": 394,
+   "n": 400,
+   "f": 0.985,
+   "lo": 0.9725,
+   "hi": 0.995,
+   "run_frac": 0.98575
+  },
+  "collapse envelope (O5, O6, O7, O10; A1-A4 clear)": {
+   "k": 353,
+   "n": 400,
+   "f": 0.8825,
+   "lo": 0.85,
+   "hi": 0.9125,
+   "run_frac": 0.9065
+  },
+  "envelope + O11": {
+   "k": 168,
+   "n": 400,
+   "f": 0.42,
+   "lo": 0.3725,
+   "hi": 0.47,
+   "run_frac": 0.4805
+  },
+  "envelope + O11 + O4 + O14": {
+   "k": 67,
+   "n": 400,
+   "f": 0.1675,
+   "lo": 0.1325,
+   "hi": 0.20256249999999967,
+   "run_frac": 0.21275
+  },
+  "envelope + O11 + O4 + O14 + O13": {
+   "k": 41,
+   "n": 400,
+   "f": 0.1025,
+   "lo": 0.0725,
+   "hi": 0.1325,
+   "run_frac": 0.13375
+  },
+  "O17p (all essential patterns)": {
+   "k": 9,
+   "n": 400,
+   "f": 0.0225,
+   "lo": 0.01,
+   "hi": 0.0375,
+   "run_frac": 0.0405
+  }
+ }
+}

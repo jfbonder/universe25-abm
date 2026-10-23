@@ -38,6 +38,9 @@ The paper comes in two versions, both built from the same data:
 | `results/` | Auxiliary inputs: `fisico_v3/` (Γ re-runs: `gamma_v3.parquet`, `gamma_v3_series.parquet`, `fig2c_series.csv`), `fisico_v2/` (generation register of the reference ensemble), `meanfield/` (fast-ABM ensemble and kinetic mean-field sweeps) and `baseline_alpha14/` (baseline of the original model and its survival analysis) |
 | `manuscript/extended/` | LaTeX sources of the extended version (`main.tex`, `sections/`, `tables/`, `figs/`, `refs.bib`, `build.sh`) and `main.pdf` |
 | `manuscript/pre/` | LaTeX sources of the PRE version (`main.tex`, `supplement.tex`, `sections/`, `tables/`, `figs/`, `refs.bib`, `build.sh`), `main.pdf` and `supplement.pdf` |
+| `scripts/em/` | Scripts of the *Ecological Modelling* paper (see the section below): `em_figs.py` (figures), the runners of the ensembles added for that paper (`em_wm_run.py`, `em_snapshots.py`, `em_f9_runs.py`, `f10_runs.py`, `f7_sweep.py`), their analyses (`em_f9_analysis.py`, `f10_*.py`, `f7_aggregate.py`, `f7_analyze_*.py`, `analyze_wm.py`, `f9_sm_tablas.py`) and the well-mixed model and kinetic equation they use (`wm_abm.py`, `f7_common.py`, `kinetic.py`, `kinetic_f7.py`, `dicotomia_checks.py`, `cohort_kappa.py`, `compare_kinetic.py`) |
+| `results_em/` | Summaries of the ensembles of the *Ecological Modelling* paper and the derived tables (about 13 MB; the raw series are not versioned, see below) |
+| `manuscript/em/` | LaTeX sources of the *Ecological Modelling* paper and its Supplementary Material (`main.tex`, `supplement.tex`, `sm_recovery.tex`, `sections/`, `tables/`, `figs/`, `refs.bib`, `highlights.txt`, `build.sh`), with `main.pdf` and `supplement.pdf` |
 | `docs/` | `preregistered_plan.md`: the preregistered statistical plan (1 October 2026, 22:02 UTC); `production_plan.md`: the stages, decision rules and primary evaluator fixed before the production runs (2 October 2026, 05:34 UTC). Both verbatim, with a header giving their date and the equivalence of paths |
 
 Code comments, log messages and some column labels of the outputs are in Spanish. The preset `notebook` and
@@ -106,6 +109,58 @@ runs, in order:
 
 The PDFs are reproducible byte for byte: the Makefile fixes `SOURCE_DATE_EPOCH`, which matplotlib uses as the
 creation date. Run on a clean clone, `make figs` leaves the working tree unchanged.
+
+## Paper for *Ecological Modelling* (v1.1)
+
+`manuscript/em/` holds a third version of the paper: the applied one, for *Ecological Modelling* (main text and
+Supplementary Material). Everything it cites as available in the repository can be regenerated from here.
+
+```bash
+make data          # restores results_v2/**/summary.csv, params.json and the series of f2b_base (as for make figs)
+make em-figs       # the 12 figures of manuscript/em/figs, fig_em_s_occupancy.pdf and fig_causal.pdf (~1 min)
+make em-tables     # tab_sm_*.tex into results_em/sm_tables/ (see the note on tab_sm_epsc.tex)
+bash manuscript/em/build.sh   # supplement.pdf and main.pdf (pdflatex + bibtex; needs elsarticle and xr-hyper)
+make em-runs       # optional: re-runs the raw ensembles of results_em/ from the recorded seeds (hours with 4 cores)
+```
+
+| Figure | Script (all in `scripts/em/`) | Data |
+|---|---|---|
+| `fig_causal.pdf` (Fig. 1) | TikZ source `manuscript/em/figs/fig_causal.tex`, `fig_causal_body.tex` | none |
+| `fig_em_trajectory.pdf` (Fig. 2) | `em_figs.py trajectory` | `results_em/series_deposit/`, `results_em/kinetic/traj_C1_exact.csv`, `results_v2/f2b_base/` |
+| `fig_em_recovery.pdf` (Fig. 3) | `em_figs.py recovery` | `results_em/adult_recovery/{summary,transicion}.csv` |
+| `fig_em_wellmixed.pdf` (Fig. 4) | `em_figs.py wellmixed` | `results_em/series_deposit/`, `wellmixed_c1/`, `wellmixed_cell_reference/`, `wellmixed_global_mating/`, `spatial_reversible_null_T1000/` |
+| `fig_em_patterns.pdf` (Fig. 5) | `em_figs.py patterns` | `results_em/pattern_tables/{matrix.csv,matrix_layout.json}` |
+| `fig_em_behaviour.pdf` (Fig. 6) | `em_figs.py behaviour` | `results_em/series_deposit/`, `results_v2/f2b_trans/analisis/` |
+| `fig_em_robustness.pdf`, `fig_em_s_ablations.pdf` (SM) | `em_figs.py robustness`, `ablations` | `results_v2/f2b_{abl1,abl2,sobol}/`, `results_v2/results_numbers.json`, `results_em/pattern_tables/ablations.csv` |
+| `fig_em_s_snapshots.pdf` (SM) | `em_figs.py snapshots` | `results_em/wellmixed_c1/snapshots_seed1.npz` |
+| `fig_em_s_occupancy.pdf` (SM) | `f10_occupancy.py` | `results_em/wellmixed_c1/snapshots_seed1.npz`, `results_em/spatial_c1_rerun/series_occupancy.parquet` |
+| `fig_em_mechanism.pdf`, `fig_em_s_recovery.pdf` | `em_figs.py mechanism`, `conditions` (alternative scheme and a one-panel summary; not cited in the text) | |
+
+`em_figs.py` also writes the numbers quoted in the captions to `results_em/em_figs_numbers.json`. The PDFs are
+reproducible (the Makefile fixes `SOURCE_DATE_EPOCH`) and match, drawing for drawing, the ones submitted.
+
+**Data (`results_em/`).** Each directory holds the per-run `summary.csv` (and `params.json`, `meta.json`) of an
+ensemble, or the table derived from it; the names of the old working directories do not appear anywhere.
+
+| Directory | Contents | Produced by |
+|---|---|---|
+| `wellmixed_c1/` | canonical well-mixed C1 (200 runs x 2 points, T = 600); `snapshots_seed1.npz` (maps of one run) | `em_wm_run.py`, `em_snapshots.py` |
+| `wellmixed_cell_reference/`, `wellmixed_cell_rerun/`, `wellmixed_global_mating/` | well mixed with mating in the cell (original and bit-for-bit re-run) and with global mating | `em_f9_runs.py wm wmcell` |
+| `spatial_reversible_null/`, `..._T1000/`, `spatial_nulls_rerun/`, `spatial_c1_rerun/` | reversible-suppression null, short-lived control, re-runs of `f2b_nulos` and `f2b_base` that store the series | `em_f9_runs.py sp sp1000 nulos base` |
+| `pattern_tables/` | `matrix.csv`, `ablations.csv`, `survival.csv`, `lhs.json`, `series_scores.csv` | `em_f9_analysis.py` |
+| `series_deposit/` | reduced time series behind Figs. 2, 4 (a-d) and 6 (a-d), 2.3 MB | `em_f9_analysis.py deposit` |
+| `adult_recovery/`, `mate_search/`, `operational_indicators/`, `hydra_removal/`, `background_mortality/`, `juvenile_protection/` | adult-recovery sweep, mate search, operational indicators, removal of non-breeders, background mortality, protection of juveniles | `f7_sweep.py`, `f7_aggregate.py`, `f7_analyze_{e1,mate,op,hyd,p3}.py` |
+| `wellmixed_size_scaling/`, `kinetic/` | extinction time against colony size; kinetic-equation orbits and cohorts | `analyze_wm.py`; `compare_kinetic.py`, `dicotomia_checks.py`, `cohort_kappa.py` |
+| `robustness_checks/`, `reversible_null_T1000/`, `c1_litters/`, `refractory_check*/`, `reversible_ages*/` | oscillations, litters and cohorts, profile intervals of eps^c, occupancy at the peak | `f10_runs.py`, `f10_reversible.py`, `f10_h2h3.py`, `f10_damping.py`, `f10_epsc_profile.py`, `f10_occupancy.py` |
+
+**What is not versioned.** The raw series of the new ensembles (tens of MB) and the per-run `.npz` files of the
+`f7_sweep.py` runs (hundreds of MB) are not in the repository. The figures, the SM tables and the profile-likelihood,
+H2/H3 and occupancy analyses regenerate from what is. The steps that need the raw series
+(`em_f9_analysis.py scores` and `deposit`, `f10_reversible.py`, `f10_damping.py`, `f7_aggregate.py`,
+`f7_analyze_op.py`, `analyze_wm.py`) need the runners first (`make em-runs`; they are resumable and deterministic given
+the seeds); until then they stop with a message and leave the deposited tables untouched.
+`tab_sm_epsc.tex` of the manuscript was composed by hand from `results_em/robustness_checks/epsc_profile.csv`
+(`make em-tables` writes the earlier version of that table to `results_em/sm_tables/`).
 
 ## Running the production simulations from scratch
 

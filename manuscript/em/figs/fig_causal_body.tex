@@ -1,0 +1,37 @@
+% Causal scheme of the collapse. Needs \usepackage{tikz} and
+% \usetikzlibrary{arrows.meta}. Included by fig_causal.tex (standalone) or, in the manuscript, inside
+% \resizebox{\linewidth}{!}{\input{fig_causal_body.tex}}.
+\begin{tikzpicture}[
+    font=\small,
+    box/.style={draw, rounded corners=2pt, align=center, text width=3.0cm, minimum height=1.3cm,
+                inner sep=3pt, fill=black!4},
+    key/.style={box, fill=black!13, very thick},
+    act/.style={draw, dashed, rounded corners=2pt, align=center, text width=3.0cm, minimum height=1.3cm,
+                inner sep=3pt},
+    arr/.style={-{Stealth[length=2.4mm]}, thick},
+    loop/.style={-{Stealth[length=2.6mm]}, very thick},
+    stop/.style={-{Bar[width=3.2mm]}, thick, dashed},
+    lab/.style={font=\footnotesize, align=center, fill=white, inner sep=1.5pt},
+  ]
+  % top row: founders and adults
+  \node[box] (B) at (0,0)     {\textbf{Boom}\\competent founders,\\no resource limit};
+  \node[box] (C) at (4.0,0)   {\textbf{Crowding}\\experienced\\occupancy $m>m_c$};
+  \node[box] (A) at (8.0,0)   {\textbf{Adults lose}\\\textbf{competence}\\no recovery after $a_w$};
+  \node[key] (O) at (12.0,0)  {\textbf{Non-breeding}\\\textbf{standing stock}\\long-lived adults};
+  \node[act] (R) at (16.0,0)  {\textbf{Rescue}\\adult recovery $>\epsilon^{c}_{\rm ad}$,\\or sustained removal\\of non-breeders};
+  % bottom row: juveniles and the end
+  \node[box] (J) at (8.0,-3.4)  {\textbf{Juveniles}\\in their learning\\window, $a\le a_w$};
+  \node[box] (K) at (12.0,-3.4) {\textbf{Cohorts mature}\\\textbf{incompetent}:\\competence not\\passed on};
+  \node[box] (E) at (16.0,-3.4) {\textbf{Natality stops}:\\the closed colony\\ages and dies out};
+  % edges
+  \draw[arr]  (B) -- (C);
+  \draw[loop] (C) -- (A);
+  \draw[loop] (A) -- (O);
+  \draw[loop] (O.north) to[out=155, in=25] node[lab, above]{keeps crowding high} (C.north);
+  \draw[loop] (C.south east) -- node[lab, fill=none, pos=0.55, text width=2.5cm, anchor=east, xshift=-6pt]{damage exceeds\\the maximal gain\\($\nu>\nu^*$)} (J.north west);
+  \draw[arr]  (O.south west) -- node[lab, fill=none, pos=0.5, text width=2.4cm, anchor=east, xshift=-8pt]{few competent\\demonstrators\\($\theta<\theta^*$)} (J.north east);
+  \draw[loop] (J) -- (K);
+  \draw[loop] (K) -- node[lab, right=2pt]{they join it} (O);
+  \draw[arr]  (K) -- (E);
+  \draw[stop] (R) -- (O);
+\end{tikzpicture}

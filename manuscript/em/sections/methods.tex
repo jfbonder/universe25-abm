@@ -1,0 +1,175 @@
+\section{Methods}
+\label{sec:methods}
+
+\subsection{Model}
+\label{sec:model}
+
+The model description follows the ODD protocol \citep{Grimm2020}; the full ODD and the code are
+in the Supplementary Material (SM, Section~\ref{SM-supp:odd}). The model is individual based and stochastic, with
+one time step per week. Individuals live in a closed arena of $|G|=L\times L$ cells ($L=30$). A cell stands for a
+nest site or local group: it is the unit at which crowding is experienced and mates are met. Each individual has an
+age $a$, a sex, a position and a \emph{reproductive competence} $s\in[0,1]$, a phenomenological scalar that summarises
+the capacity to breed, the capacity to rear young and the quality of the individual as a demonstrator for juveniles.
+There are no resources and no predators, and no individual knows the population size. The simple interaction rules
+of the title are all the rules below: the core processes, among them crowding damage and senescence, which suffice
+for the collapse (Section~\ref{sec:res-wm}), and four social rules, which add specific patterns.
+Table~\ref{tab:params} lists the key parameters.
+
+\paragraph{Core processes}
+\emph{Crowding damage.} Each week, after moving, competence is updated with the occupancy $m_i$ of the cell of $i$,
+itself included:
+\begin{equation}\label{eq:stress}
+  s_i\leftarrow\min\{1,\max[0,\;s_i+g_i-\gamma\,(m_i-m_c)_+]\},
+\end{equation}
+where $g_i$ is the weekly gain (below), $m_c$ the tolerated group size and $\gamma$ the damage per extra occupant. In
+Universe~25 social disruption arose while food and water were in excess \citep{Calhoun1973}, so the rule is
+interference without a resource. It responds to the crowding that an individual experiences, not to the density
+$N/|G|$.
+\emph{Competence gates breeding and care.} A reproductive female that shares her cell with a reproductive male
+(chosen at random) conceives with probability $p_0s_fs_m$; each pup survives birth with probability $q_0s_f$ and
+starts with a fraction $w$ of its mother's competence,
+\begin{equation}\label{eq:breed}
+  p_{\rm conc}=p_0\,s_f\,s_m,\qquad p_{\rm surv}=q_0\,s_f,\qquad s_{\rm pup}=w\,s_f.
+\end{equation}
+The last relation is a maternal effect \citep{GinzburgTaneyhill1994}, not inheritance; it is an
+assumption of \Cone, not an ingredient of the mechanism ($w=0$ with faster learning gives the same outcome,
+Section~\ref{sec:res-patterns}). The rule encodes the failures that Calhoun reported in the crowded phase: males that
+ceased courting, and mothers that abandoned their litters.
+\emph{Senescence and attraction.} Death is senescent, with weekly hazard $[1+e^{-k(a-a_{\max})}]^{-1}$, independent
+of $s$; females breed between $a_{\min}$ and $a_{\rm rep}$ weeks of age. These values follow Universe~25: menopause at
+about $560$ days, many mice alive at about $800$ days, and withdrawn animals that were ``physically healthy''
+\citep{Calhoun1973}. Each week every individual moves to a cell $y$ of its $3\times3$ neighbourhood (own cell
+included) with probability proportional to
+\begin{equation}\label{eq:move}
+  W_i(y)=\bigl[1+\alpha\,\chi_i(y)\bigr]\;e^{-\kappa(1-s_i)^{p}n_y}\;\bigl[1+\pi(1-s_i)^{q}\,\mathbf 1_{\mathcal R}(y)\bigr],
+\end{equation}
+where $n_y$ is the number of other individuals in $y$ and $\chi_i(y)$ the summed affinity of $i$ for them; affinities
+grow by proximity and decay with a memory of about 100 weeks. The first factor, attraction to acquaintances,
+aggregates the colony, in the spirit of Calhoun's ``behavioural sink'' \citep{Calhoun1962}.
+
+\paragraph{Four social rules}
+The four social rules are labelled as in the code and in the figures.
+\emph{Sensitive window (R1).} Competence can be gained only up to age $a_w$, a window that spans weaning and
+maturity ($g_i=0$ for $a_i>a_w$), while crowding damage acts at every age. Mice removed from a declining companion
+colony bred very poorly in uncrowded enclosures: after two months without reproduction, half of the females
+conceived with normal males and 5 of about 100 pups survived \citep{Marsden1972}. The rule is the standard form of a
+developmental sensitive window \citep{FawcettFrankenhuis2015}. Of all the assumptions, adult irreversibility has the
+least empirical support and the largest effect; a variant multiplies the adult gain by a factor $\eadult\in[0,1]$,
+the adult recovery factor (\Cone: $\eadult=0$).
+\emph{Social learning of competence (R2).} Inside the window the gain is set by the neighbours,
+\begin{equation}\label{eq:learning}
+  g_i=r\bigl[(1-\lambda)+\lambda\,\bar s_{V(i)}\bigr]\qquad(a_i\le a_w),
+\end{equation}
+where $\bar s_{V(i)}$ is the mean competence of the other individuals of the $3\times3$ block around $i$ (zero if
+there are none); \Cone\ has $\lambda=1$, purely social learning. A pup starts at $ws_f\le0.2$ and can gain at most
+$ra_w=1.2$, but only among competent demonstrators. The rule follows Calhoun's observation that ``by midway in
+phase~C essentially all young were prematurely rejected by their mothers''; it is consistent with the non-genomic
+transmission of maternal care in rats \citep{Francis1999} and the social learning of pup retrieval in mice
+\citep{Carcea2021}, which support the social transmission of maternal care, not of male sexual competence, which
+the model extends by hypothesis.
+\emph{Crowd aversion (AV) and retreat sites (R7).} The second factor of Eq.~\eqref{eq:move} makes deteriorated
+animals ($s\lesssim0.3$) avoid crowded cells, and the third makes them prefer retreat sites, a fraction $f_R$ of the
+cells that hold at most $c_R$ individuals. They follow Calhoun's descriptions of withdrawn males that pooled in the
+centre, ``beautiful ones'' that never fought, and withdrawn females that retreated to the high, less-preferred nest
+boxes \citep{Calhoun1973}.
+
+\begin{table}[!tp]
+\centering
+\caption{Key parameters of the reference model \Cone\ (SM, Table~\ref{SM-tab:odd-params}, for all parameters and
+their justification). The short-lived control differs in $a_{\max}=60$, $a_{\rm rep}=50$, $r=0.01$, $\lambda=0$,
+$a_w=\infty$, $w=1$, $\alpha=1.4$ and has neither crowd aversion nor retreat sites.}
+\label{tab:params}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{@{}llp{4.0cm}llp{4.0cm}@{}}
+\toprule
+Symbol & Value & Meaning & Symbol & Value & Meaning \\
+\midrule
+$L$ & 30 & side of the arena ($|G|=900$ cells) & $r$ & 0.1 & maximal weekly gain of competence \\
+$N_0$ & 200+200 & founders, age 4 weeks, $s=1$ & $a_w$ & 12 weeks & sensitive window (R1) \\
+$m_c$ & 8 & tolerated occupancy & $\lambda$ & 1 & weight of social learning (R2) \\
+$\gamma$ & 0.1 & damage per extra occupant & $\eadult$ & 0 & adult recovery factor \\
+$p_0$ & 0.3 & weekly conception probability & $w$ & 0.2 & maternal transmission \\
+$q_0$ & 0.95 & pup survival at $s_f=1$ & $\alpha$ & 4 & attraction to acquaintances \\
+litter & 3--10, mean 6.55 & litter size & $\kappa$, $p$ & 0.15, 4 & crowd aversion (AV) \\
+$a_{\min}$, $a_{\rm rep}$ & 6, 80 weeks & reproductive ages of females & $f_R$, $c_R$ & 0.3, 2 & retreat sites (R7) \\
+$a_{\max}$, $k$ & 120 weeks, 0.15 & senescence & $\pi$, $q$ & 100, 4 & preference for retreat sites (R7) \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+\paragraph{Order of processes and demography}
+Each week, in this order: every individual moves (Eq.~\ref{eq:move}, simultaneously, with the capacity of the
+retreat sites enforced); affinities are updated; occupancies are counted; competence is updated
+(Eqs.~\ref{eq:stress} and~\ref{eq:learning}); females mate in their cell, conceive and give birth to the pups that
+survive, which are placed in the mother's cell; individuals age and die; observables are recorded. The founders,
+$200$ females and $200$ males of age 4 weeks with $s=1$, are placed at random. Four simplifications of mouse
+demography have measured effects (SM, Fig.~\ref{SM-fig:robustness}). There is no gestation or interbirth interval:
+conception and birth occur in the same weekly step, with a ceiling of about two pups per female and week; with a
+refractory period of three weeks after each birth \Cone\ still collapses (60 of 60 runs extinct with either of two seed
+sets; joint outcome 59 of 60 with an independent seed and 60 of 60 with the production seeds), and the extinction
+time changes by $+1.0$ [$-2.6$, $4.6$] weeks (paired with the production seeds). Pups move
+and add to crowding from birth; keeping them in the maternal cell for three weeks lowers the joint outcome (below) to
+0.83. The founders form a synchronous cohort, and 69\% of all births are theirs; initial ages spread over 4--80 weeks
+give 0.63. There is no mortality before senescence; a background mortality of 0.003 per week lowers the joint
+outcome to 0.55 and 0.008 to 0.06, in both cases through the timing of the end of natality, while up to 0.05 per
+week does not rescue the colony (SM, Section~\ref{SM-supp:recovery}). Longevity is part of the mechanism, not a detail
+(Section~\ref{sec:res-mechanism}).
+
+\paragraph{Model structures compared}
+The reference model \Cone\ has the core processes and the four social rules. The \emph{core model} keeps the core
+processes but replaces the four social rules by neutral values: no window, individual recovery at a slow rate ($r=0.01$) at every age,
+full maternal transmission ($w=1$), no crowd aversion and no retreat sites. A null model has no crowding damage
+($\gamma=0$). The \emph{short-lived control} (Table~\ref{tab:params}) regenerates competence individually; in space 89
+of its 200 colonies are still alive at week $1\,000$, cycling with a period of 162 [155, 170] weeks. The
+\emph{reversible-suppression null} is \Cone\ with the two recovery parameters changed: adults recover at a fraction
+$\eadult=0.8$ of the juvenile rate, and $\lambda=0.9$ instead of 1 keeps social learning but lets them recover partly
+on their own, at the asocial rate $\eadult(1-\lambda)=0.08$ of the juvenile rate. With $\lambda=1$, $\eadult=0.8$
+lies inside the transition (10 of 20 colonies die out at $L=30$); the null lies above the rescue threshold at every
+size simulated (Section~\ref{sec:res-recovery}). The parameters that set the form of the rules were chosen to reproduce the most
+qualitative patterns with the fewest rules; they were not fitted to Calhoun's curves. In the \emph{well-mixed}
+variants every individual moves each week to a uniformly random cell, so that attraction, aversion and the
+preference for retreat sites have no effect and the retreat sites act only as a capacity; cell occupancies are
+Poisson with mean $N/|G|$. A female then mates either within her cell, as in space (\emph{local mating}), or with a
+reproductive male drawn from the whole arena (\emph{global mating}), which removes any difficulty of finding a mate.
+
+\subsection{Patterns, evaluation and statistical design}
+\label{sec:patterns}
+
+From Calhoun's report we extracted seventeen qualitative, falsifiable patterns and four anti-patterns, each
+translated into an operational criterion on simulated time series (SM, Table~\ref{SM-tab:observations-full}; codes
+in parentheses). Growth: latency, exponential growth and deceleration (O1--O3, scored only with a separate founder
+protocol from four pairs), and a socially functional growth phase (O10b). Peak: a peak far below capacity with empty
+nest sites (O4), adults that deteriorate before it (O10), aggregation with free space (O14), and coexisting crowded
+and withdrawn non-breeders (O13), with a persistent withdrawn class (O13p) born late (O13b). Decline: late-born
+cohorts that fail to mature (O11) and rarely conceive (O11b), natality that ceases near the peak (O5), no recovery of
+natality (O6), extinction (O7), a long senescent decline (O8) to an old, female-biased remnant (O9), total infant
+mortality (O15), and the failure of transplanted late animals to breed (O12). We call O5, O6, O7 and O10 the
+\emph{collapse envelope}. Calhoun's dates enter only through dimensionless ratios of the time and size of the peak.
+A criterion returns PASS, MARGINAL (one step from its threshold), FAIL or not applicable for each run, and an
+ensemble is summarised by the fraction of passing runs with a 95\% Wilson score interval. The joint
+outcome O17p requires every applicable essential pattern, no anti-pattern and a persistent withdrawn class. Every run
+was scored with the evaluator preregistered before the production runs (a time-stamped plan in the code repository,
+1 October 2026; SM, Section~\ref{SM-supp:evaluators}) and with a primary evaluator, fixed before those runs, that dates the peak at the start of the plateau rather than at $\arg\max N$; the two are reported side
+by side (SM, Table~\ref{SM-tab:res-rescoring}). One option, the end of natality in O5 at the week by which 99\% of the
+births have occurred, was chosen after exploratory runs had shown that the last sustained birth fails O5 in about
+half of the \Cone\ runs (with that reference O17p is 0.485, 97 of 200 production runs). Square brackets give 95\% intervals unless
+stated otherwise.
+
+The unit of analysis is the independent stochastic replicate. The design comprises production ensembles of the model
+structures ($n=200$ each), a factorial ablation of the rules, transplant experiments ($60$ replicates per arm), a
+sweep of the adult recovery factor at three arena sizes, robustness variants, lattice sizes, and a global
+sensitivity analysis (Morris screening, two Latin hypercubes and Sobol' indices); seven
+confirmatory hypotheses were tested with Holm correction, and extinction times are summarised by Kaplan--Meier
+estimates (SM, Sections~\ref{SM-supp:Q} and~\ref{SM-supp:ensembles}).
+
+\paragraph{Use of AI in the research}
+Starting from the author's preliminary implementation and draft rules, Claude (Anthropic) agents, used through Claude
+Code (v2.1; Claude Opus 5.5 and Claude Fable 5.1 for the research tasks, Claude Sonnet 5.5 for literature searches and
+auxiliary programming), reimplemented and extended the code, ran the simulations and the statistical analyses, and
+searched the literature. The author set the objectives, the qualitative targets and the interaction rules, decided
+every change of scope and approved each stage. The code has an automated test suite; scripts in the code repository
+regenerate every figure and number from the archived outputs; independent Claude agents reviewed the work, checking
+the code against the text and reproducing key results; and the history is kept under version control.

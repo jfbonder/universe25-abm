@@ -12,7 +12,8 @@ authors:
     email: jfbonder@dm.uba.ar
     affiliation: "Departamento de Matemática, FCEN, Universidad de Buenos Aires, and Instituto de Cálculo, UBA–CONICET"
 year: 2026
-version: "1.0"
+version: "1.1"
+date-released: 2026-10-23
 doi: "10.5281/zenodo.23111283"
 license: MIT
 repository-code: "https://github.com/jfbonder/universe25-abm"

@@ -1,0 +1,187 @@
+{
+ "rows": [
+  [
+   "O10b",
+   "Socially functional growth",
+   "B",
+   ""
+  ],
+  [
+   "ceiling",
+   "Peak below $m_c|G|$ animals",
+   "C",
+   ""
+  ],
+  [
+   "O4",
+   "Peak below capacity, empty nests",
+   "C",
+   ""
+  ],
+  [
+   "O10",
+   "Adults deteriorate before peak",
+   "C",
+   ""
+  ],
+  [
+   "O14",
+   "Aggregation with free space",
+   "C",
+   ""
+  ],
+  [
+   "O13",
+   "Crowded and withdrawn coexist",
+   "C",
+   ""
+  ],
+  [
+   "O13p",
+   "Withdrawn class persists",
+   "C",
+   "constr"
+  ],
+  [
+   "O13b",
+   "Withdrawn class born late",
+   "C",
+   ""
+  ],
+  [
+   "phC",
+   "Gradual stagnation phase",
+   "C",
+   "post"
+  ],
+  [
+   "O11",
+   "Late cohorts fail (age 6 wk)",
+   "C\u2013D",
+   ""
+  ],
+  [
+   "O11aw",
+   "Late cohorts fail (age $a_w$)",
+   "C\u2013D",
+   "post"
+  ],
+  [
+   "O5",
+   "Natality ceases near peak",
+   "D",
+   ""
+  ],
+  [
+   "O6",
+   "No recovery of natality",
+   "D",
+   ""
+  ],
+  [
+   "O7",
+   "Extinction",
+   "D",
+   ""
+  ],
+  [
+   "O8",
+   "Long senescent decline",
+   "D",
+   ""
+  ],
+  [
+   "O9",
+   "Old female-biased remnant",
+   "D",
+   ""
+  ],
+  [
+   "O15",
+   "Total infant mortality",
+   "D",
+   ""
+  ],
+  [
+   "O17p",
+   "All essential patterns",
+   "all",
+   ""
+  ]
+ ],
+ "cols": [
+  [
+   "g0_sp",
+   "space",
+   "$\\gamma=0$\u2020",
+   "f9_nulos p0 (= f2b_nulos p0, bit a bit)"
+  ],
+  [
+   "core_sp",
+   "space",
+   "core",
+   "f9_nulos p3 (= f2b_nulos p3)"
+  ],
+  [
+   "SL_sp",
+   "space",
+   "short-\nlived",
+   "f9_sp p1 (par\u00e1metros de f2b_ref p0)"
+  ],
+  [
+   "rev_sp",
+   "space",
+   "C1, adults\nrecover",
+   "f9_sp p0 (eps_ad = 0.8, lambda = 0.9)"
+  ],
+  [
+   "C1_sp",
+   "space",
+   "C1",
+   "f2b_base p0"
+  ],
+  [
+   "core_wmc",
+   "well mixed, local mating",
+   "core",
+   "f9_wmcell WM_none (= wellmixed_cell_reference, bit a bit)"
+  ],
+  [
+   "SL_wmc",
+   "well mixed, local mating",
+   "short-\nlived",
+   "f9_wmcell WM_SL (= wellmixed_cell_reference)"
+  ],
+  [
+   "C1_wmc",
+   "well mixed, local mating",
+   "C1",
+   "wellmixed_c1 p0 (can\u00f3nico)"
+  ],
+  [
+   "core_wmg",
+   "well mixed, global mating",
+   "core",
+   "f9_wmglobal core L30"
+  ],
+  [
+   "SL_wmg",
+   "well mixed, global mating",
+   "short-\nlived",
+   "f9_wmglobal SL L30"
+  ],
+  [
+   "C1_wmg",
+   "well mixed, global mating",
+   "C1",
+   "f9_wmglobal C1_ref L30"
+  ]
+ ],
+ "trunc_ok": [
+  "O10",
+  "O10b",
+  "O14",
+  "O4",
+  "ceiling"
+ ]
+}

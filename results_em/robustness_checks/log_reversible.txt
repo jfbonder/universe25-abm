@@ -1,0 +1,434 @@
+scripts/em/f10_reversible.py:144: RuntimeWarning: Mean of empty slice
+  x = N[m] - N[m].mean()
+/usr/local/lib/python3.11/dist-packages/numpy/_core/_methods.py:142: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)
+scripts/em/f10_reversible.py:231: Pandas4Warning: Starting with pandas version 4.0 all arguments of all will be keyword-only.
+  okb = int((mine.loc[s1000.index, cols].astype(str) == s1000[cols].astype(str)).all(1).sum())
+rev1000 vs f9_sp1000: 200 / 200 ; prefijo 600 vs f9_sp: 200
+
+== descriptores del ecólogo (anal.py) rev1000
+  births_min_rel: media 0.001 [IC95 0.001, 0.002]; mediana 0.001 [p10 0.000, p90 0.004] (n=200)
+  trough_rel: media 0.152 [IC95 0.148, 0.157]; mediana 0.149 [p10 0.110, p90 0.198] (n=200)
+  t_trough: media 142.590 [IC95 141.475, 144.390]; mediana 141.000 [p10 138.000, p90 146.000] (n=200)
+  late_mean_rel: media 0.625 [IC95 0.621, 0.628]; mediana 0.622 [p10 0.596, p90 0.658] (n=200)
+  late_cv: media 0.236 [IC95 0.228, 0.243]; mediana 0.245 [p10 0.167, p90 0.299] (n=200)
+  late_min_rel: media 0.352 [IC95 0.343, 0.362]; mediana 0.349 [p10 0.273, p90 0.435] (n=200)
+  late_max_rel: media 0.825 [IC95 0.818, 0.833]; mediana 0.830 [p10 0.761, p90 0.883] (n=200)
+  cv_300_1000: media 0.218 [IC95 0.211, 0.225]; mediana 0.224 [p10 0.164, p90 0.275] (n=200)
+  mean_300_1000: media 0.630 [IC95 0.627, 0.633]; mediana 0.629 [p10 0.603, p90 0.657] (n=200)
+  min_700_1000: media 0.403 [IC95 0.395, 0.411]; mediana 0.404 [p10 0.330, p90 0.477] (n=200)
+  max_700_1000: media 0.805 [IC95 0.798, 0.812]; mediana 0.805 [p10 0.744, p90 0.866] (n=200)
+
+== descriptores del ecólogo (anal.py) revages777
+  births_min_rel: media 0.004 [IC95 0.003, 0.005]; mediana 0.003 [p10 0.000, p90 0.010] (n=60)
+  trough_rel: media 0.229 [IC95 0.212, 0.245]; mediana 0.217 [p10 0.167, p90 0.311] (n=60)
+  t_trough: media 170.500 [IC95 150.115, 195.517]; mediana 140.000 [p10 135.000, p90 295.400] (n=60)
+  late_mean_rel: media 0.678 [IC95 0.670, 0.685]; mediana 0.677 [p10 0.642, p90 0.714] (n=60)
+  late_cv: media 0.245 [IC95 0.235, 0.255]; mediana 0.251 [p10 0.197, p90 0.296] (n=60)
+  late_min_rel: media 0.368 [IC95 0.356, 0.381]; mediana 0.373 [p10 0.303, p90 0.434] (n=60)
+  late_max_rel: media 0.905 [IC95 0.891, 0.919]; mediana 0.898 [p10 0.840, p90 0.976] (n=60)
+  cv_300_1000: media 0.226 [IC95 0.216, 0.236]; mediana 0.229 [p10 0.185, p90 0.274] (n=60)
+  mean_300_1000: media 0.683 [IC95 0.677, 0.690]; mediana 0.686 [p10 0.655, p90 0.711] (n=60)
+  min_700_1000: media 0.420 [IC95 0.402, 0.439]; mediana 0.419 [p10 0.313, p90 0.515] (n=60)
+  max_700_1000: media 0.869 [IC95 0.857, 0.881]; mediana 0.874 [p10 0.800, p90 0.923] (n=60)
+
+== descriptores del ecólogo (anal.py) revages
+  births_min_rel: media 0.004 [IC95 0.003, 0.006]; mediana 0.002 [p10 0.000, p90 0.012] (n=60)
+  trough_rel: media 0.227 [IC95 0.211, 0.244]; mediana 0.215 [p10 0.153, p90 0.314] (n=60)
+  t_trough: media 166.067 [IC95 150.066, 186.767]; mediana 141.000 [p10 136.900, p90 289.300] (n=60)
+  late_mean_rel: media 0.679 [IC95 0.672, 0.685]; mediana 0.683 [p10 0.637, p90 0.710] (n=60)
+  late_cv: media 0.256 [IC95 0.245, 0.267]; mediana 0.260 [p10 0.204, p90 0.306] (n=60)
+  late_min_rel: media 0.362 [IC95 0.348, 0.376]; mediana 0.370 [p10 0.291, p90 0.425] (n=60)
+  late_max_rel: media 0.912 [IC95 0.900, 0.925]; mediana 0.920 [p10 0.844, p90 0.969] (n=60)
+  cv_300_1000: media 0.236 [IC95 0.227, 0.246]; mediana 0.240 [p10 0.191, p90 0.279] (n=60)
+  mean_300_1000: media 0.685 [IC95 0.677, 0.692]; mediana 0.685 [p10 0.646, p90 0.725] (n=60)
+  min_700_1000: media 0.405 [IC95 0.391, 0.419]; mediana 0.410 [p10 0.328, p90 0.463] (n=60)
+  max_700_1000: media 0.878 [IC95 0.864, 0.892]; mediana 0.866 [p10 0.813, p90 0.944] (n=60)
+
+== descriptores del ecólogo (anal.py) rev600
+  births_min_rel: media 0.001 [IC95 0.001, 0.002]; mediana 0.001 [p10 0.000, p90 0.004] (n=200)
+  trough_rel: media 0.152 [IC95 0.147, 0.157]; mediana 0.149 [p10 0.110, p90 0.198] (n=200)
+  t_trough: media 142.590 [IC95 141.470, 144.440]; mediana 141.000 [p10 138.000, p90 146.000] (n=200)
+  late_mean_rel: media 0.625 [IC95 0.621, 0.628]; mediana 0.622 [p10 0.596, p90 0.658] (n=200)
+  late_cv: media 0.236 [IC95 0.228, 0.244]; mediana 0.245 [p10 0.167, p90 0.299] (n=200)
+  late_min_rel: media 0.352 [IC95 0.343, 0.362]; mediana 0.349 [p10 0.273, p90 0.435] (n=200)
+  late_max_rel: media 0.825 [IC95 0.818, 0.832]; mediana 0.830 [p10 0.761, p90 0.883] (n=200)
+c1litter vs f9_base: 200 / 200
+scripts/em/f10_reversible.py:144: RuntimeWarning: Mean of empty slice
+  x = N[m] - N[m].mean()
+/usr/local/lib/python3.11/dist-packages/numpy/_core/_methods.py:142: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)
+
+===== rev600 =====
+  conc_rate_grow: media 0.0176 [IC95 0.0172, 0.0180]; mediana 0.0174 [p10 0.0139, p90 0.0216] (n=200)
+  phi_grow: media 0.6794 [IC95 0.6758, 0.6831]; mediana 0.6813 [p10 0.6436, p90 0.7114] (n=200)
+  births_rate_grow: media 0.0785 [IC95 0.0763, 0.0805]; mediana 0.0769 [p10 0.0595, p90 0.0981] (n=200)
+  fail_lo_grow: media 0.0027 [IC95 0.0026, 0.0029]; mediana 0.0025 [p10 0.0017, p90 0.0041] (n=200)
+  fail_hi_grow: media 0.2849 [IC95 0.2809, 0.2889]; mediana 0.2828 [p10 0.2512, p90 0.3225] (n=200)
+  conc_rate_plat: media 0.0021 [IC95 0.0021, 0.0022]; mediana 0.0021 [p10 0.0019, p90 0.0023] (n=200)
+  phi_plat: media 0.3185 [IC95 0.3152, 0.3221]; mediana 0.3180 [p10 0.2915, p90 0.3433] (n=200)
+  births_rate_plat: media 0.0045 [IC95 0.0044, 0.0046]; mediana 0.0044 [p10 0.0040, p90 0.0049] (n=200)
+  fail_lo_plat: media 0.0995 [IC95 0.0969, 0.1020]; mediana 0.0982 [p10 0.0796, p90 0.1217] (n=200)
+  fail_hi_plat: media 0.6647 [IC95 0.6608, 0.6683]; mediana 0.6652 [p10 0.6386, p90 0.6932] (n=200)
+  conc_rate_decl: media 0.0056 [IC95 0.0054, 0.0058]; mediana 0.0055 [p10 0.0038, p90 0.0072] (n=200)
+  phi_decl: media 0.5749 [IC95 0.5652, 0.5848]; mediana 0.5729 [p10 0.4843, p90 0.6736] (n=200)
+  births_rate_decl: media 0.0210 [IC95 0.0202, 0.0218]; mediana 0.0207 [p10 0.0138, p90 0.0277] (n=200)
+  fail_lo_decl: media 0.0114 [IC95 0.0102, 0.0127]; mediana 0.0091 [p10 0.0028, p90 0.0225] (n=200)
+  fail_hi_decl: media 0.3949 [IC95 0.3846, 0.4048]; mediana 0.3970 [p10 0.2910, p90 0.4903] (n=200)
+  conc_rate_late: media 0.0079 [IC95 0.0078, 0.0079]; mediana 0.0079 [p10 0.0075, p90 0.0083] (n=200)
+  phi_late: media 0.5303 [IC95 0.5281, 0.5325]; mediana 0.5305 [p10 0.5097, p90 0.5516] (n=200)
+  births_rate_late: media 0.0273 [IC95 0.0272, 0.0274]; mediana 0.0273 [p10 0.0265, p90 0.0283] (n=200)
+  fail_lo_late: media 0.0144 [IC95 0.0141, 0.0148]; mediana 0.0142 [p10 0.0114, p90 0.0175] (n=200)
+  fail_hi_late: media 0.4418 [IC95 0.4396, 0.4441]; mediana 0.4415 [p10 0.4194, p90 0.4635] (n=200)
+  never_o11b: media 0.905 [IC95 0.895, 0.915]; mediana 0.920 [p10 0.799, p90 1.000] (n=200)
+  never_plat: media 0.889 [IC95 0.885, 0.893]; mediana 0.891 [p10 0.854, p90 0.923] (n=200)
+  never_decl: media 0.366 [IC95 0.356, 0.376]; mediana 0.366 [p10 0.270, p90 0.450] (n=200)
+  never_late: media 0.729 [IC95 0.727, 0.730]; mediana 0.729 [p10 0.717, p90 0.740] (n=200)
+  never_boom: media 0.792 [IC95 0.791, 0.794]; mediana 0.791 [p10 0.778, p90 0.805] (n=200)
+  n_peaks: media 3.980 [IC95 3.960, 3.995]; mediana 4.000 [p10 4.000, p90 4.000] (n=200)
+  n_troughs: media 3.020 [IC95 2.995, 3.050]; mediana 3.000 [p10 3.000, p90 3.000] (n=200)
+  period_peaks: media 151.243 [IC95 150.488, 152.158]; mediana 151.167 [p10 145.000, p90 156.667] (n=200)
+  period_troughs: media 157.034 [IC95 156.155, 157.972]; mediana 156.500 [p10 149.500, p90 165.000] (n=200)
+  period_late: media 148.810 [IC95 147.718, 150.215]; mediana 148.750 [p10 141.400, p90 155.050] (n=200)
+  period_acf: media 143.560 [IC95 142.550, 145.055]; mediana 142.000 [p10 138.000, p90 149.000] (n=200)
+  acf_at_period: media 0.494 [IC95 0.486, 0.501]; mediana 0.505 [p10 0.438, p90 0.543] (n=200)
+  min_300_600: media 0.352 [IC95 0.342, 0.361]; mediana 0.349 [p10 0.273, p90 0.435] (n=200)
+  max_300_600: media 0.825 [IC95 0.818, 0.833]; mediana 0.830 [p10 0.761, p90 0.883] (n=200)
+  cv_300_600: media 0.236 [IC95 0.228, 0.243]; mediana 0.245 [p10 0.167, p90 0.299] (n=200)
+  mean_300_600: media 0.624 [IC95 0.621, 0.627]; mediana 0.622 [p10 0.595, p90 0.657] (n=200)
+  amp_slope_per_100wk: media -0.093 [IC95 -0.126, -0.062]; mediana -0.081 [p10 -0.146, p90 -0.053] (n=6)
+  amp_ratio_last_first: media 0.775 [IC95 0.707, 0.843]; mediana 0.786 [p10 0.677, p90 0.861] (n=6)
+  n_amps: media 3.000 [IC95 3.000, 3.000]; mediana 3.000 [p10 3.000, p90 3.000] (n=6)
+  t_plat:  {'(np.int64(33), np.int64(100))': 16, '(np.int64(36), np.int64(100))': 16, '(np.int64(35), np.int64(100))': 15}
+  t_decl:  {'(np.int64(101), np.int64(139))': 18, '(np.int64(101), np.int64(144))': 16, '(np.int64(101), np.int64(140))': 15}
+  t_trough:  {'141': 31, '139': 26, '140': 20}
+  tpk2:  {'62': 18, '64': 18, '58': 18}
+  t_argmax:  {'79': 25, '80': 24, '78': 24}
+     n   t_tr  trough_med  trough_p10  trough_p90  peak_med  peak_p10  peak_p90   t_pk
+k                                                                                     
+1  200  141.0       0.149       0.110       0.198     0.866     0.798     0.918  234.5
+2  200  304.5       0.359       0.277       0.465     0.819     0.743     0.878  383.0
+3  198  455.0       0.392       0.311       0.476     0.807     0.723     0.860  531.5
+4    6  584.5       0.410       0.383       0.435       NaN       NaN       NaN    NaN
+
+===== c1 =====
+  conc_rate_grow: media 0.0266 [IC95 0.0261, 0.0271]; mediana 0.0262 [p10 0.0224, p90 0.0314] (n=200)
+  phi_grow: media 0.7281 [IC95 0.7249, 0.7314]; mediana 0.7274 [p10 0.6992, p90 0.7592] (n=200)
+  births_rate_grow: media 0.1268 [IC95 0.1243, 0.1294]; mediana 0.1253 [p10 0.1047, p90 0.1526] (n=200)
+  fail_lo_grow: media 0.0014 [IC95 0.0013, 0.0015]; mediana 0.0014 [p10 0.0008, p90 0.0020] (n=200)
+  fail_hi_grow: media 0.2336 [IC95 0.2299, 0.2370]; mediana 0.2343 [p10 0.2009, p90 0.2640] (n=200)
+  conc_rate_plat: media 0.0010 [IC95 0.0010, 0.0010]; mediana 0.0010 [p10 0.0009, p90 0.0011] (n=200)
+  phi_plat: media 0.5127 [IC95 0.5074, 0.5180]; mediana 0.5086 [p10 0.4682, p90 0.5588] (n=200)
+  births_rate_plat: media 0.0034 [IC95 0.0034, 0.0034]; mediana 0.0034 [p10 0.0032, p90 0.0037] (n=200)
+  fail_lo_plat: media 0.0181 [IC95 0.0172, 0.0190]; mediana 0.0177 [p10 0.0106, p90 0.0262] (n=200)
+  fail_hi_plat: media 0.4604 [IC95 0.4548, 0.4659]; mediana 0.4646 [p10 0.4118, p90 0.5072] (n=200)
+  conc_rate_decl: media 0.0000 [IC95 0.0000, 0.0000]; mediana 0.0000 [p10 0.0000, p90 0.0000] (n=200)
+  phi_decl: media 0.0000 [IC95 0.0000, 0.0000]; mediana 0.0000 [p10 0.0000, p90 0.0000] (n=1)
+  births_rate_decl: media 0.0000 [IC95 0.0000, 0.0000]; mediana 0.0000 [p10 0.0000, p90 0.0000] (n=200)
+  fail_lo_decl: media 1.0000 [IC95 1.0000, 1.0000]; mediana 1.0000 [p10 1.0000, p90 1.0000] (n=1)
+  fail_hi_decl: media 1.0000 [IC95 1.0000, 1.0000]; mediana 1.0000 [p10 1.0000, p90 1.0000] (n=1)
+  conc_rate_late: NA
+  phi_late: NA
+  births_rate_late: NA
+  fail_lo_late: NA
+  fail_hi_late: NA
+  never_o11b: media 0.961 [IC95 0.957, 0.965]; mediana 0.969 [p10 0.926, p90 0.991] (n=200)
+  never_plat: media 0.961 [IC95 0.958, 0.964]; mediana 0.962 [p10 0.933, p90 0.985] (n=200)
+  never_decl: NA
+  never_late: NA
+  never_boom: media 0.849 [IC95 0.847, 0.850]; mediana 0.848 [p10 0.835, p90 0.863] (n=200)
+  n_peaks: media 1.000 [IC95 1.000, 1.000]; mediana 1.000 [p10 1.000, p90 1.000] (n=200)
+  n_troughs: media 0.000 [IC95 0.000, 0.000]; mediana 0.000 [p10 0.000, p90 0.000] (n=200)
+  period_peaks: NA
+  period_troughs: NA
+  period_late: NA
+  t_plat:  {'(np.int64(24), np.int64(97))': 35, '(np.int64(23), np.int64(97))': 33, '(np.int64(22), np.int64(97))': 20}
+  t_decl:  {'(np.int64(98), np.int64(163))': 7, '(np.int64(98), np.int64(168))': 7, '(np.int64(98), np.int64(170))': 7}
+  t_trough:  {'163': 12, '168': 11, '173': 9}
+  tpk2:  {'32': 26, '35': 26, '33': 26}
+  t_argmax:  {'52': 13, '60': 12, '54': 11}
+
+===== rev1000 =====
+  conc_rate_grow: media 0.0176 [IC95 0.0172, 0.0180]; mediana 0.0174 [p10 0.0139, p90 0.0216] (n=200)
+  phi_grow: media 0.6794 [IC95 0.6757, 0.6828]; mediana 0.6813 [p10 0.6436, p90 0.7114] (n=200)
+  births_rate_grow: media 0.0785 [IC95 0.0764, 0.0806]; mediana 0.0769 [p10 0.0595, p90 0.0981] (n=200)
+  fail_lo_grow: media 0.0027 [IC95 0.0026, 0.0029]; mediana 0.0025 [p10 0.0017, p90 0.0041] (n=200)
+  fail_hi_grow: media 0.2849 [IC95 0.2813, 0.2887]; mediana 0.2828 [p10 0.2512, p90 0.3225] (n=200)
+  fail_exact_grow: media 0.0479 [IC95 0.0461, 0.0498]; mediana 0.0473 [p10 0.0322, p90 0.0652] (n=200)
+  phi_exact_grow: media 0.6794 [IC95 0.6759, 0.6829]; mediana 0.6793 [p10 0.6445, p90 0.7104] (n=200)
+  conc_rate_plat: media 0.0021 [IC95 0.0021, 0.0022]; mediana 0.0021 [p10 0.0019, p90 0.0023] (n=200)
+  phi_plat: media 0.3185 [IC95 0.3150, 0.3222]; mediana 0.3180 [p10 0.2915, p90 0.3433] (n=200)
+  births_rate_plat: media 0.0045 [IC95 0.0044, 0.0046]; mediana 0.0044 [p10 0.0040, p90 0.0049] (n=200)
+  fail_lo_plat: media 0.0995 [IC95 0.0970, 0.1020]; mediana 0.0982 [p10 0.0796, p90 0.1217] (n=200)
+  fail_hi_plat: media 0.6647 [IC95 0.6604, 0.6683]; mediana 0.6652 [p10 0.6386, p90 0.6932] (n=200)
+  fail_exact_plat: media 0.2433 [IC95 0.2390, 0.2475]; mediana 0.2463 [p10 0.1989, p90 0.2788] (n=200)
+  phi_exact_plat: media 0.3183 [IC95 0.3150, 0.3220]; mediana 0.3186 [p10 0.2934, p90 0.3405] (n=200)
+  conc_rate_decl: media 0.0056 [IC95 0.0054, 0.0058]; mediana 0.0055 [p10 0.0038, p90 0.0072] (n=200)
+  phi_decl: media 0.5749 [IC95 0.5653, 0.5847]; mediana 0.5729 [p10 0.4843, p90 0.6736] (n=200)
+  births_rate_decl: media 0.0210 [IC95 0.0202, 0.0218]; mediana 0.0207 [p10 0.0138, p90 0.0277] (n=200)
+  fail_lo_decl: media 0.0114 [IC95 0.0102, 0.0127]; mediana 0.0091 [p10 0.0028, p90 0.0225] (n=200)
+  fail_hi_decl: media 0.3949 [IC95 0.3846, 0.4052]; mediana 0.3970 [p10 0.2910, p90 0.4903] (n=200)
+  fail_exact_decl: media 0.0732 [IC95 0.0667, 0.0793]; mediana 0.0698 [p10 0.0195, p90 0.1353] (n=200)
+  phi_exact_decl: media 0.5752 [IC95 0.5658, 0.5849]; mediana 0.5722 [p10 0.4829, p90 0.6695] (n=200)
+  conc_rate_late: media 0.0079 [IC95 0.0079, 0.0079]; mediana 0.0079 [p10 0.0076, p90 0.0081] (n=200)
+  phi_late: media 0.5227 [IC95 0.5207, 0.5246]; mediana 0.5213 [p10 0.5059, p90 0.5405] (n=200)
+  births_rate_late: media 0.0270 [IC95 0.0270, 0.0271]; mediana 0.0270 [p10 0.0264, p90 0.0276] (n=200)
+  fail_lo_late: media 0.0155 [IC95 0.0152, 0.0158]; mediana 0.0156 [p10 0.0128, p90 0.0182] (n=200)
+  fail_hi_late: media 0.4498 [IC95 0.4479, 0.4519]; mediana 0.4512 [p10 0.4311, p90 0.4675] (n=200)
+  fail_exact_late: media 0.1017 [IC95 0.1010, 0.1025]; mediana 0.1020 [p10 0.0952, p90 0.1086] (n=200)
+  phi_exact_late: media 0.5228 [IC95 0.5209, 0.5246]; mediana 0.5216 [p10 0.5068, p90 0.5401] (n=200)
+  never_o11b: media 0.905 [IC95 0.895, 0.916]; mediana 0.920 [p10 0.799, p90 1.000] (n=200)
+  never_plat: media 0.889 [IC95 0.885, 0.893]; mediana 0.891 [p10 0.854, p90 0.923] (n=200)
+  never_decl: media 0.366 [IC95 0.356, 0.376]; mediana 0.366 [p10 0.270, p90 0.450] (n=200)
+  never_late: media 0.719 [IC95 0.718, 0.720]; mediana 0.719 [p10 0.711, p90 0.726] (n=200)
+  never_boom: media 0.792 [IC95 0.790, 0.794]; mediana 0.791 [p10 0.778, p90 0.805] (n=200)
+  n_peaks: media 6.435 [IC95 6.365, 6.505]; mediana 6.000 [p10 6.000, p90 7.000] (n=200)
+  n_troughs: media 5.985 [IC95 5.970, 6.000]; mediana 6.000 [p10 6.000, p90 6.000] (n=200)
+  period_peaks: media 149.620 [IC95 148.861, 150.489]; mediana 148.917 [p10 145.317, p90 153.400] (n=200)
+  period_troughs: media 151.556 [IC95 150.813, 152.404]; mediana 151.200 [p10 147.000, p90 155.020] (n=200)
+  period_late: media 148.152 [IC95 147.277, 149.097]; mediana 147.775 [p10 142.800, p90 152.250] (n=200)
+  period_acf: media 146.255 [IC95 145.820, 146.685]; mediana 146.000 [p10 142.000, p90 150.000] (n=200)
+  acf_at_period: media 0.714 [IC95 0.703, 0.723]; mediana 0.730 [p10 0.636, p90 0.778] (n=200)
+  min_300_600: media 0.352 [IC95 0.343, 0.361]; mediana 0.349 [p10 0.273, p90 0.435] (n=200)
+  max_300_600: media 0.825 [IC95 0.818, 0.833]; mediana 0.830 [p10 0.761, p90 0.883] (n=200)
+  cv_300_600: media 0.236 [IC95 0.228, 0.244]; mediana 0.245 [p10 0.167, p90 0.299] (n=200)
+  mean_300_600: media 0.624 [IC95 0.621, 0.627]; mediana 0.622 [p10 0.595, p90 0.657] (n=200)
+  min_600_1000: media 0.386 [IC95 0.379, 0.394]; mediana 0.388 [p10 0.309, p90 0.454] (n=200)
+  max_600_1000: media 0.815 [IC95 0.808, 0.822]; mediana 0.816 [p10 0.760, p90 0.872] (n=200)
+  cv_600_1000: media 0.201 [IC95 0.194, 0.207]; mediana 0.201 [p10 0.141, p90 0.265] (n=200)
+  mean_600_1000: media 0.633 [IC95 0.630, 0.637]; mediana 0.634 [p10 0.605, p90 0.662] (n=200)
+  min_700_1000: media 0.403 [IC95 0.395, 0.411]; mediana 0.404 [p10 0.330, p90 0.477] (n=200)
+  max_700_1000: media 0.805 [IC95 0.798, 0.812]; mediana 0.805 [p10 0.744, p90 0.866] (n=200)
+  cv_700_1000: media 0.197 [IC95 0.190, 0.204]; mediana 0.200 [p10 0.134, p90 0.259] (n=200)
+  mean_700_1000: media 0.629 [IC95 0.626, 0.632]; mediana 0.629 [p10 0.602, p90 0.654] (n=200)
+  min_300_1000: media 0.343 [IC95 0.334, 0.351]; mediana 0.341 [p10 0.273, p90 0.422] (n=200)
+  max_300_1000: media 0.837 [IC95 0.830, 0.843]; mediana 0.841 [p10 0.779, p90 0.895] (n=200)
+  cv_300_1000: media 0.218 [IC95 0.211, 0.225]; mediana 0.224 [p10 0.164, p90 0.275] (n=200)
+  mean_300_1000: media 0.630 [IC95 0.627, 0.633]; mediana 0.629 [p10 0.603, p90 0.657] (n=200)
+  amp_slope_per_100wk: media -0.054 [IC95 -0.061, -0.046]; mediana -0.052 [p10 -0.127, p90 0.015] (n=200)
+  amp_ratio_last_first: media 0.756 [IC95 0.725, 0.790]; mediana 0.713 [p10 0.496, p90 1.060] (n=200)
+  n_amps: media 4.985 [IC95 4.965, 5.000]; mediana 5.000 [p10 5.000, p90 5.000] (n=200)
+  t_plat:  {'(np.int64(33), np.int64(100))': 16, '(np.int64(36), np.int64(100))': 16, '(np.int64(35), np.int64(100))': 15}
+  t_decl:  {'(np.int64(101), np.int64(139))': 18, '(np.int64(101), np.int64(144))': 16, '(np.int64(101), np.int64(140))': 15}
+  t_trough:  {'141': 31, '139': 26, '140': 20}
+  tpk2:  {'62': 18, '64': 18, '58': 18}
+  t_argmax:  {'79': 25, '80': 24, '78': 24}
+     n   t_tr  trough_med  trough_p10  trough_p90  peak_med  peak_p10  peak_p90   t_pk
+k                                                                                     
+1  200  141.0       0.149       0.110       0.198     0.866     0.798     0.918  235.0
+2  200  304.0       0.359       0.277       0.465     0.819     0.743     0.878  383.0
+3  200  455.0       0.392       0.312       0.481     0.806     0.719     0.859  532.0
+4  200  603.5       0.406       0.327       0.485     0.796     0.725     0.854  679.0
+5  200  751.0       0.424       0.345       0.492     0.785     0.719     0.854  825.0
+6  197  896.0       0.423       0.349       0.502     0.799     0.719     0.855  961.0
+
+===== revages777 =====
+  conc_rate_grow: media 0.0209 [IC95 0.0200, 0.0218]; mediana 0.0205 [p10 0.0159, p90 0.0256] (n=60)
+  phi_grow: media 0.6882 [IC95 0.6806, 0.6958]; mediana 0.6922 [p10 0.6509, p90 0.7271] (n=60)
+  births_rate_grow: media 0.0946 [IC95 0.0899, 0.0997]; mediana 0.0941 [p10 0.0694, p90 0.1204] (n=60)
+  fail_lo_grow: media 0.0025 [IC95 0.0022, 0.0028]; mediana 0.0022 [p10 0.0014, p90 0.0037] (n=60)
+  fail_hi_grow: media 0.2756 [IC95 0.2677, 0.2839]; mediana 0.2714 [p10 0.2346, p90 0.3148] (n=60)
+  fail_exact_grow: media 0.0422 [IC95 0.0389, 0.0458]; mediana 0.0413 [p10 0.0250, p90 0.0586] (n=60)
+  phi_exact_grow: media 0.6876 [IC95 0.6801, 0.6947]; mediana 0.6908 [p10 0.6516, p90 0.7222] (n=60)
+  conc_rate_plat: media 0.0033 [IC95 0.0031, 0.0036]; mediana 0.0030 [p10 0.0026, p90 0.0057] (n=60)
+  phi_plat: media 0.3821 [IC95 0.3683, 0.3972]; mediana 0.3629 [p10 0.3400, p90 0.4997] (n=60)
+  births_rate_plat: media 0.0087 [IC95 0.0076, 0.0101]; mediana 0.0071 [p10 0.0064, p90 0.0191] (n=60)
+  fail_lo_plat: media 0.0623 [IC95 0.0571, 0.0673]; mediana 0.0674 [p10 0.0194, p90 0.0819] (n=60)
+  fail_hi_plat: media 0.5977 [IC95 0.5823, 0.6117]; mediana 0.6180 [p10 0.4740, p90 0.6422] (n=60)
+  fail_exact_plat: media 0.1974 [IC95 0.1882, 0.2054]; mediana 0.2053 [p10 0.1276, p90 0.2321] (n=60)
+  phi_exact_plat: media 0.3817 [IC95 0.3683, 0.3973]; mediana 0.3629 [p10 0.3398, p90 0.4981] (n=60)
+  conc_rate_decl: media 0.0061 [IC95 0.0057, 0.0064]; mediana 0.0060 [p10 0.0046, p90 0.0080] (n=60)
+  phi_decl: media 0.5377 [IC95 0.5216, 0.5544]; mediana 0.5286 [p10 0.4623, p90 0.6159] (n=60)
+  births_rate_decl: media 0.0213 [IC95 0.0200, 0.0226]; mediana 0.0204 [p10 0.0156, p90 0.0287] (n=60)
+  fail_lo_decl: media 0.0157 [IC95 0.0134, 0.0183]; mediana 0.0145 [p10 0.0057, p90 0.0277] (n=60)
+  fail_hi_decl: media 0.4340 [IC95 0.4164, 0.4513]; mediana 0.4436 [p10 0.3517, p90 0.5134] (n=60)
+  fail_exact_decl: media 0.0821 [IC95 0.0723, 0.0927]; mediana 0.0825 [p10 0.0333, p90 0.1253] (n=60)
+  phi_exact_decl: media 0.5358 [IC95 0.5207, 0.5518]; mediana 0.5387 [p10 0.4599, p90 0.6051] (n=60)
+  conc_rate_late: media 0.0078 [IC95 0.0078, 0.0079]; mediana 0.0078 [p10 0.0076, p90 0.0080] (n=60)
+  phi_late: media 0.5231 [IC95 0.5201, 0.5261]; mediana 0.5244 [p10 0.5073, p90 0.5398] (n=60)
+  births_rate_late: media 0.0267 [IC95 0.0266, 0.0269]; mediana 0.0268 [p10 0.0261, p90 0.0273] (n=60)
+  fail_lo_late: media 0.0154 [IC95 0.0150, 0.0159]; mediana 0.0151 [p10 0.0129, p90 0.0180] (n=60)
+  fail_hi_late: media 0.4494 [IC95 0.4463, 0.4526]; mediana 0.4480 [p10 0.4318, p90 0.4661] (n=60)
+  fail_exact_late: media 0.1019 [IC95 0.1006, 0.1032]; mediana 0.1016 [p10 0.0961, p90 0.1083] (n=60)
+  phi_exact_late: media 0.5232 [IC95 0.5201, 0.5261]; mediana 0.5240 [p10 0.5086, p90 0.5390] (n=60)
+  never_o11b: media 0.885 [IC95 0.873, 0.898]; mediana 0.887 [p10 0.828, p90 0.943] (n=60)
+  never_plat: media 0.851 [IC95 0.838, 0.863]; mediana 0.863 [p10 0.740, p90 0.896] (n=60)
+  never_decl: media 0.397 [IC95 0.376, 0.417]; mediana 0.407 [p10 0.267, p90 0.494] (n=60)
+  never_late: media 0.722 [IC95 0.720, 0.723]; mediana 0.722 [p10 0.714, p90 0.728] (n=60)
+  never_boom: media 0.764 [IC95 0.760, 0.768]; mediana 0.766 [p10 0.746, p90 0.781] (n=60)
+  n_peaks: media 6.617 [IC95 6.483, 6.733]; mediana 7.000 [p10 6.000, p90 7.000] (n=60)
+  n_troughs: media 6.000 [IC95 6.000, 6.000]; mediana 6.000 [p10 6.000, p90 6.000] (n=60)
+  period_peaks: media 149.867 [IC95 148.903, 150.870]; mediana 149.583 [p10 144.500, p90 154.840] (n=60)
+  period_troughs: media 150.107 [IC95 149.490, 150.693]; mediana 150.600 [p10 146.380, p90 152.800] (n=60)
+  period_late: media 147.183 [IC95 146.417, 148.014]; mediana 147.000 [p10 143.105, p90 151.500] (n=60)
+  period_acf: media 145.983 [IC95 145.216, 146.700]; mediana 146.000 [p10 142.000, p90 149.100] (n=60)
+  acf_at_period: media 0.722 [IC95 0.709, 0.733]; mediana 0.734 [p10 0.661, p90 0.766] (n=60)
+  min_300_600: media 0.368 [IC95 0.355, 0.381]; mediana 0.373 [p10 0.303, p90 0.434] (n=60)
+  max_300_600: media 0.905 [IC95 0.892, 0.919]; mediana 0.898 [p10 0.840, p90 0.976] (n=60)
+  cv_300_600: media 0.246 [IC95 0.235, 0.256]; mediana 0.251 [p10 0.197, p90 0.297] (n=60)
+  mean_300_600: media 0.677 [IC95 0.670, 0.684]; mediana 0.677 [p10 0.641, p90 0.714] (n=60)
+  min_600_1000: media 0.406 [IC95 0.389, 0.422]; mediana 0.410 [p10 0.307, p90 0.480] (n=60)
+  max_600_1000: media 0.887 [IC95 0.875, 0.898]; mediana 0.897 [p10 0.827, p90 0.936] (n=60)
+  cv_600_1000: media 0.207 [IC95 0.196, 0.219]; mediana 0.205 [p10 0.150, p90 0.270] (n=60)
+  mean_600_1000: media 0.688 [IC95 0.681, 0.694]; mediana 0.689 [p10 0.658, p90 0.715] (n=60)
+  min_700_1000: media 0.420 [IC95 0.402, 0.439]; mediana 0.419 [p10 0.313, p90 0.515] (n=60)
+  max_700_1000: media 0.869 [IC95 0.856, 0.881]; mediana 0.874 [p10 0.800, p90 0.923] (n=60)
+  cv_700_1000: media 0.210 [IC95 0.196, 0.223]; mediana 0.214 [p10 0.145, p90 0.288] (n=60)
+  mean_700_1000: media 0.674 [IC95 0.668, 0.681]; mediana 0.672 [p10 0.644, p90 0.704] (n=60)
+  min_300_1000: media 0.359 [IC95 0.346, 0.372]; mediana 0.357 [p10 0.298, p90 0.428] (n=60)
+  max_300_1000: media 0.915 [IC95 0.902, 0.928]; mediana 0.910 [p10 0.855, p90 0.980] (n=60)
+  cv_300_1000: media 0.226 [IC95 0.216, 0.235]; mediana 0.229 [p10 0.185, p90 0.274] (n=60)
+  mean_300_1000: media 0.683 [IC95 0.677, 0.690]; mediana 0.686 [p10 0.655, p90 0.711] (n=60)
+  amp_slope_per_100wk: media -0.058 [IC95 -0.071, -0.044]; mediana -0.058 [p10 -0.131, p90 0.012] (n=60)
+  amp_ratio_last_first: media 0.733 [IC95 0.679, 0.790]; mediana 0.710 [p10 0.482, p90 1.012] (n=60)
+  n_amps: media 5.000 [IC95 5.000, 5.000]; mediana 5.000 [p10 5.000, p90 5.000] (n=60)
+  t_plat:  {'(np.int64(26), np.int64(101))': 4, '(np.int64(29), np.int64(101))': 4, '(np.int64(27), np.int64(101))': 3}
+  t_decl:  {'(np.int64(102), np.int64(138))': 3, '(np.int64(103), np.int64(142))': 3, '(np.int64(103), np.int64(138))': 3}
+  t_trough:  {'138': 10, '140': 6, '142': 6}
+  tpk2:  {'42': 6, '55': 4, '43': 4}
+  t_argmax:  {'78': 4, '67': 4, '81': 3}
+    n   t_tr  trough_med  trough_p10  trough_p90  peak_med  peak_p10  peak_p90   t_pk
+k                                                                                    
+1  60  139.0       0.215       0.167       0.263     0.944     0.883     0.990  228.0
+2  60  297.0       0.357       0.307       0.467     0.890     0.811     0.976  376.5
+3  60  445.5       0.413       0.334       0.487     0.881     0.800     0.947  525.0
+4  60  594.5       0.428       0.360       0.503     0.874     0.789     0.926  672.5
+5  60  741.0       0.444       0.339       0.522     0.862     0.788     0.918  820.0
+6  60  891.0       0.454       0.358       0.523     0.854     0.780     0.910  958.0
+
+===== revages =====
+  conc_rate_grow: media 0.0216 [IC95 0.0207, 0.0225]; mediana 0.0213 [p10 0.0176, p90 0.0256] (n=60)
+  phi_grow: media 0.6969 [IC95 0.6890, 0.7051]; mediana 0.6968 [p10 0.6566, p90 0.7378] (n=60)
+  births_rate_grow: media 0.0992 [IC95 0.0945, 0.1042]; mediana 0.0993 [p10 0.0794, p90 0.1173] (n=60)
+  fail_lo_grow: media 0.0022 [IC95 0.0020, 0.0025]; mediana 0.0021 [p10 0.0012, p90 0.0035] (n=60)
+  fail_hi_grow: media 0.2664 [IC95 0.2582, 0.2753]; mediana 0.2666 [p10 0.2234, p90 0.3089] (n=60)
+  fail_exact_grow: media 0.0403 [IC95 0.0370, 0.0437]; mediana 0.0390 [p10 0.0239, p90 0.0567] (n=60)
+  phi_exact_grow: media 0.6952 [IC95 0.6879, 0.7027]; mediana 0.6939 [p10 0.6596, p90 0.7311] (n=60)
+  conc_rate_plat: media 0.0033 [IC95 0.0031, 0.0036]; mediana 0.0030 [p10 0.0027, p90 0.0055] (n=60)
+  phi_plat: media 0.3811 [IC95 0.3672, 0.3979]; mediana 0.3620 [p10 0.3373, p90 0.5145] (n=60)
+  births_rate_plat: media 0.0086 [IC95 0.0076, 0.0098]; mediana 0.0070 [p10 0.0064, p90 0.0186] (n=60)
+  fail_lo_plat: media 0.0631 [IC95 0.0575, 0.0680]; mediana 0.0679 [p10 0.0167, p90 0.0837] (n=60)
+  fail_hi_plat: media 0.5988 [IC95 0.5826, 0.6139]; mediana 0.6189 [p10 0.4585, p90 0.6450] (n=60)
+  fail_exact_plat: media 0.1918 [IC95 0.1824, 0.2008]; mediana 0.1985 [p10 0.1250, p90 0.2316] (n=60)
+  phi_exact_plat: media 0.3816 [IC95 0.3684, 0.3965]; mediana 0.3647 [p10 0.3370, p90 0.5129] (n=60)
+  conc_rate_decl: media 0.0064 [IC95 0.0061, 0.0067]; mediana 0.0064 [p10 0.0045, p90 0.0083] (n=60)
+  phi_decl: media 0.5456 [IC95 0.5316, 0.5591]; mediana 0.5442 [p10 0.4723, p90 0.6180] (n=60)
+  births_rate_decl: media 0.0230 [IC95 0.0216, 0.0246]; mediana 0.0224 [p10 0.0161, p90 0.0321] (n=60)
+  fail_lo_decl: media 0.0141 [IC95 0.0120, 0.0163]; mediana 0.0124 [p10 0.0055, p90 0.0252] (n=60)
+  fail_hi_decl: media 0.4257 [IC95 0.4104, 0.4401]; mediana 0.4271 [p10 0.3495, p90 0.5029] (n=60)
+  fail_exact_decl: media 0.0810 [IC95 0.0717, 0.0903]; mediana 0.0886 [p10 0.0312, p90 0.1271] (n=60)
+  phi_exact_decl: media 0.5490 [IC95 0.5338, 0.5626]; mediana 0.5473 [p10 0.4736, p90 0.6220] (n=60)
+  conc_rate_late: media 0.0077 [IC95 0.0077, 0.0078]; mediana 0.0077 [p10 0.0075, p90 0.0080] (n=60)
+  phi_late: media 0.5272 [IC95 0.5237, 0.5305]; mediana 0.5274 [p10 0.5086, p90 0.5441] (n=60)
+  births_rate_late: media 0.0267 [IC95 0.0266, 0.0268]; mediana 0.0268 [p10 0.0261, p90 0.0275] (n=60)
+  fail_lo_late: media 0.0148 [IC95 0.0144, 0.0154]; mediana 0.0147 [p10 0.0124, p90 0.0177] (n=60)
+  fail_hi_late: media 0.4451 [IC95 0.4417, 0.4485]; mediana 0.4449 [p10 0.4273, p90 0.4646] (n=60)
+  fail_exact_late: media 0.1009 [IC95 0.0997, 0.1021]; mediana 0.1012 [p10 0.0941, p90 0.1070] (n=60)
+  phi_exact_late: media 0.5268 [IC95 0.5236, 0.5301]; mediana 0.5278 [p10 0.5082, p90 0.5433] (n=60)
+  never_o11b: media 0.883 [IC95 0.872, 0.894]; mediana 0.885 [p10 0.825, p90 0.940] (n=60)
+  never_plat: media 0.850 [IC95 0.839, 0.862]; mediana 0.866 [p10 0.752, p90 0.895] (n=60)
+  never_decl: media 0.418 [IC95 0.401, 0.435]; mediana 0.407 [p10 0.338, p90 0.510] (n=60)
+  never_late: media 0.723 [IC95 0.721, 0.724]; mediana 0.722 [p10 0.716, p90 0.731] (n=60)
+  never_boom: media 0.763 [IC95 0.760, 0.766]; mediana 0.764 [p10 0.747, p90 0.778] (n=60)
+  n_peaks: media 6.533 [IC95 6.400, 6.667]; mediana 7.000 [p10 6.000, p90 7.000] (n=60)
+  n_troughs: media 6.000 [IC95 6.000, 6.000]; mediana 6.000 [p10 6.000, p90 6.000] (n=60)
+  period_peaks: media 150.613 [IC95 149.642, 151.603]; mediana 150.267 [p10 146.767, p90 155.280] (n=60)
+  period_troughs: media 150.213 [IC95 149.550, 150.870]; mediana 150.500 [p10 146.780, p90 153.220] (n=60)
+  period_late: media 147.899 [IC95 147.050, 148.785]; mediana 148.200 [p10 143.560, p90 153.250] (n=60)
+  period_acf: media 146.450 [IC95 145.633, 147.283]; mediana 146.000 [p10 142.000, p90 151.000] (n=60)
+  acf_at_period: media 0.730 [IC95 0.720, 0.739]; mediana 0.734 [p10 0.671, p90 0.779] (n=60)
+  min_300_600: media 0.362 [IC95 0.349, 0.376]; mediana 0.369 [p10 0.285, p90 0.425] (n=60)
+  max_300_600: media 0.912 [IC95 0.898, 0.925]; mediana 0.920 [p10 0.844, p90 0.969] (n=60)
+  cv_300_600: media 0.257 [IC95 0.246, 0.267]; mediana 0.260 [p10 0.204, p90 0.307] (n=60)
+  mean_300_600: media 0.678 [IC95 0.671, 0.685]; mediana 0.682 [p10 0.636, p90 0.710] (n=60)
+  min_600_1000: media 0.388 [IC95 0.373, 0.401]; mediana 0.390 [p10 0.315, p90 0.454] (n=60)
+  max_600_1000: media 0.892 [IC95 0.878, 0.905]; mediana 0.888 [p10 0.834, p90 0.954] (n=60)
+  cv_600_1000: media 0.218 [IC95 0.209, 0.227]; mediana 0.214 [p10 0.169, p90 0.268] (n=60)
+  mean_600_1000: media 0.689 [IC95 0.682, 0.697]; mediana 0.689 [p10 0.650, p90 0.736] (n=60)
+  min_700_1000: media 0.405 [IC95 0.391, 0.420]; mediana 0.410 [p10 0.328, p90 0.463] (n=60)
+  max_700_1000: media 0.878 [IC95 0.864, 0.892]; mediana 0.866 [p10 0.813, p90 0.944] (n=60)
+  cv_700_1000: media 0.217 [IC95 0.207, 0.228]; mediana 0.214 [p10 0.165, p90 0.278] (n=60)
+  mean_700_1000: media 0.678 [IC95 0.671, 0.685]; mediana 0.675 [p10 0.640, p90 0.718] (n=60)
+  min_300_1000: media 0.353 [IC95 0.339, 0.366]; mediana 0.359 [p10 0.285, p90 0.415] (n=60)
+  max_300_1000: media 0.924 [IC95 0.910, 0.937]; mediana 0.935 [p10 0.847, p90 0.983] (n=60)
+  cv_300_1000: media 0.236 [IC95 0.227, 0.245]; mediana 0.240 [p10 0.191, p90 0.279] (n=60)
+  mean_300_1000: media 0.685 [IC95 0.678, 0.692]; mediana 0.685 [p10 0.646, p90 0.725] (n=60)
+  amp_slope_per_100wk: media -0.052 [IC95 -0.063, -0.041]; mediana -0.050 [p10 -0.118, p90 0.004] (n=60)
+  amp_ratio_last_first: media 0.749 [IC95 0.704, 0.798]; mediana 0.748 [p10 0.484, p90 0.991] (n=60)
+  n_amps: media 5.000 [IC95 5.000, 5.000]; mediana 5.000 [p10 5.000, p90 5.000] (n=60)
+  t_plat:  {'(np.int64(28), np.int64(101))': 4, '(np.int64(28), np.int64(100))': 4, '(np.int64(28), np.int64(102))': 4}
+  t_decl:  {'(np.int64(101), np.int64(142))': 5, '(np.int64(102), np.int64(139))': 4, '(np.int64(102), np.int64(140))': 3}
+  t_trough:  {'142': 10, '139': 9, '140': 6}
+  tpk2:  {'48': 6, '51': 5, '46': 4}
+  t_argmax:  {'63': 5, '75': 4, '67': 4}
+    n   t_tr  trough_med  trough_p10  trough_p90  peak_med  peak_p10  peak_p90   t_pk
+k                                                                                    
+1  60  140.0       0.211       0.153       0.267     0.943     0.867     0.995  229.0
+2  60  298.0       0.377       0.306       0.439     0.914     0.824     0.967  376.0
+3  60  448.0       0.401       0.306       0.485     0.874     0.814     0.946  526.5
+4  60  597.5       0.410       0.334       0.467     0.861     0.812     0.943  675.5
+5  60  742.5       0.430       0.351       0.501     0.857     0.785     0.939  822.0
+6  60  893.5       0.445       0.348       0.513     0.867     0.815     0.943  958.5
+
+===== c1x =====
+  conc_rate_grow: media 0.0266 [IC95 0.0260, 0.0271]; mediana 0.0262 [p10 0.0224, p90 0.0314] (n=200)
+  phi_grow: media 0.7281 [IC95 0.7246, 0.7316]; mediana 0.7274 [p10 0.6992, p90 0.7592] (n=200)
+  births_rate_grow: media 0.1268 [IC95 0.1242, 0.1295]; mediana 0.1253 [p10 0.1047, p90 0.1526] (n=200)
+  fail_lo_grow: media 0.0014 [IC95 0.0013, 0.0015]; mediana 0.0014 [p10 0.0008, p90 0.0020] (n=200)
+  fail_hi_grow: media 0.2336 [IC95 0.2303, 0.2371]; mediana 0.2343 [p10 0.2009, p90 0.2640] (n=200)
+  fail_exact_grow: media 0.0257 [IC95 0.0243, 0.0272]; mediana 0.0241 [p10 0.0134, p90 0.0384] (n=200)
+  phi_exact_grow: media 0.7279 [IC95 0.7250, 0.7308]; mediana 0.7282 [p10 0.6997, p90 0.7530] (n=200)
+  conc_rate_plat: media 0.0010 [IC95 0.0010, 0.0010]; mediana 0.0010 [p10 0.0009, p90 0.0011] (n=200)
+  phi_plat: media 0.5127 [IC95 0.5076, 0.5182]; mediana 0.5086 [p10 0.4682, p90 0.5588] (n=200)
+  births_rate_plat: media 0.0034 [IC95 0.0034, 0.0034]; mediana 0.0034 [p10 0.0032, p90 0.0037] (n=200)
+  fail_lo_plat: media 0.0181 [IC95 0.0171, 0.0190]; mediana 0.0177 [p10 0.0106, p90 0.0262] (n=200)
+  fail_hi_plat: media 0.4604 [IC95 0.4547, 0.4657]; mediana 0.4646 [p10 0.4118, p90 0.5072] (n=200)
+  fail_exact_plat: media 0.0866 [IC95 0.0823, 0.0910]; mediana 0.0851 [p10 0.0505, p90 0.1296] (n=200)
+  phi_exact_plat: media 0.5116 [IC95 0.5069, 0.5166]; mediana 0.5110 [p10 0.4705, p90 0.5495] (n=200)
+  conc_rate_decl: media 0.0000 [IC95 0.0000, 0.0000]; mediana 0.0000 [p10 0.0000, p90 0.0000] (n=200)
+  phi_decl: media 0.0000 [IC95 0.0000, 0.0000]; mediana 0.0000 [p10 0.0000, p90 0.0000] (n=1)
+  births_rate_decl: media 0.0000 [IC95 0.0000, 0.0000]; mediana 0.0000 [p10 0.0000, p90 0.0000] (n=200)
+  fail_lo_decl: media 1.0000 [IC95 1.0000, 1.0000]; mediana 1.0000 [p10 1.0000, p90 1.0000] (n=1)
+  fail_hi_decl: media 1.0000 [IC95 1.0000, 1.0000]; mediana 1.0000 [p10 1.0000, p90 1.0000] (n=1)
+  fail_exact_decl: media 1.0000 [IC95 1.0000, 1.0000]; mediana 1.0000 [p10 1.0000, p90 1.0000] (n=1)
+  phi_exact_decl: media 0.0000 [IC95 0.0000, 0.0000]; mediana 0.0000 [p10 0.0000, p90 0.0000] (n=1)
+  conc_rate_late: NA
+  phi_late: NA
+  births_rate_late: NA
+  fail_lo_late: NA
+  fail_hi_late: NA
+  fail_exact_late: NA
+  phi_exact_late: NA
+  never_o11b: media 0.961 [IC95 0.958, 0.965]; mediana 0.969 [p10 0.926, p90 0.991] (n=200)
+  never_plat: media 0.961 [IC95 0.958, 0.964]; mediana 0.962 [p10 0.933, p90 0.985] (n=200)
+  never_decl: NA
+  never_late: NA
+  never_boom: media 0.849 [IC95 0.847, 0.850]; mediana 0.848 [p10 0.835, p90 0.863] (n=200)
+  n_peaks: media 1.000 [IC95 1.000, 1.000]; mediana 1.000 [p10 1.000, p90 1.000] (n=200)
+  n_troughs: media 0.000 [IC95 0.000, 0.000]; mediana 0.000 [p10 0.000, p90 0.000] (n=200)
+  period_peaks: NA
+  period_troughs: NA
+  period_late: NA
+  t_plat:  {'(np.int64(24), np.int64(97))': 35, '(np.int64(23), np.int64(97))': 33, '(np.int64(22), np.int64(97))': 20}
+  t_decl:  {'(np.int64(98), np.int64(170))': 7, '(np.int64(98), np.int64(173))': 7, '(np.int64(98), np.int64(163))': 7}
+  t_trough:  {'163': 12, '168': 11, '166': 9}
+  tpk2:  {'32': 26, '35': 26, '33': 26}
+  t_argmax:  {'52': 13, '60': 12, '54': 11}
+
+== f9_sp1000 rev: corridas con >=2 picos 200/200, extintas 0
+  n_peaks: media 6.435 [IC95 6.360, 6.505]; mediana 6.000 [p10 6.000, p90 7.000] (n=200)
+  period: media 149.620 [IC95 148.867, 150.464]; mediana 148.917 [p10 145.317, p90 153.400] (n=200)
+  period_first: media 156.235 [IC95 155.070, 157.445]; mediana 155.000 [p10 146.000, p90 166.100] (n=200)
+  period_rest: media 148.152 [IC95 147.306, 149.094]; mediana 147.775 [p10 142.800, p90 152.250] (n=200)
+  peak2: media 0.862 [IC95 0.855, 0.869]; mediana 0.866 [p10 0.798, p90 0.918] (n=200)
+  peak_last: media 0.789 [IC95 0.782, 0.796]; mediana 0.792 [p10 0.716, p90 0.854] (n=200)
+  peak_slope_per_100wk: media -0.010 [IC95 -0.011, -0.009]; mediana -0.011 [p10 -0.020, p90 -0.000] (n=200)
+
+== f9_sp1000 SL: corridas con >=2 picos 94/200, extintas 111
+  n_peaks: media 5.872 [IC95 5.638, 6.117]; mediana 6.000 [p10 5.000, p90 7.000] (n=94)
+  period: media 174.846 [IC95 168.211, 181.769]; mediana 170.500 [p10 133.171, p90 224.800] (n=94)
+  period_first: media 217.798 [IC95 205.508, 229.968]; mediana 214.000 [p10 147.200, p90 293.000] (n=94)
+  period_rest: media 162.222 [IC95 154.690, 170.292]; mediana 151.000 [p10 124.120, p90 210.067] (n=93)
+  peak2: media 0.457 [IC95 0.437, 0.475]; mediana 0.461 [p10 0.346, p90 0.590] (n=94)
+  peak_last: media 0.497 [IC95 0.481, 0.512]; mediana 0.490 [p10 0.404, p90 0.592] (n=94)
+  peak_slope_per_100wk: media 0.004 [IC95 0.001, 0.008]; mediana 0.005 [p10 -0.019, p90 0.027] (n=91)

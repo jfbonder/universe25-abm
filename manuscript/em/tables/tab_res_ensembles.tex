@@ -1,0 +1,37 @@
+\texttt{base} & reference ensemble: C1, C1$'$, C0, $\alpha=0$ & 4 & 200 & 800 & 600 & 25301 & production \\
+\texttt{c1c2} & C1 and C2 & 2 & 200 & 400 & 700 & 25318 & QC \\
+\texttt{ref} & short-lived and long-lived controls & 2 & 100 & 200 & 1000 & 25302 & Q3, controls \\
+\texttt{nulos} & four null models & 4 & 200 & 800 & 600 & 25330 & discrimination \\
+\texttt{abl1} & single ablations and variants & 9 & 120 & 1080 & 600 & 25303 & Q2 \\
+\texttt{abl2} & double to quadruple ablations, $\gamma=0$ & 12 & 40 & 480 & 600 & 25304 & ablations \\
+\texttt{trans} & 8 transplant arms, 11 phases & 8 & 60 & 480 & 300 & 25306 & Q1, O12 \\
+\texttt{amax} & $a_{\max}\in\{90,\dots,150\}$ & 5 & 60 & 300 & 600 & 25305 & Q4 \\
+\texttt{rob} & demographic and update variants & 16 & 200 & 3200 & 700 & 25331 & robustness \\
+\texttt{ci} & non-synchronous initial condition & 4 & 200 & 800 & 700 & 25333 & robustness \\
+\texttt{size} & $L\in\{15,\dots,60\}$ at fixed density & 5 & 60 & 300 & 600 & 25334 & size \\
+\texttt{q7aw} & $a_w$ varied at $\gamma=0$ & 54 & 20 & 1080 & 600 & 25335 & Q7 \\
+\texttt{p1} & plane $(r,w)\times\gamma$ & 112 & 30 & 3360 & 600 & 25309 & Q7, P1 \\
+\texttt{p1aw} & plane $(r,a_w)$ & 56 & 30 & 1680 & 600 & 25310 & Q6 \\
+\texttt{p2} & plane $(\alpha,\kappa)$, $p$ & 72 & 30 & 2160 & 600 & 25308 & Q5, P2 \\
+\texttt{p5} & refuge plane & 50 & 30 & 1500 & 600 & 25311 & P5 \\
+\texttt{lhs} & Latin hypercube 1 & 200 & 10 & 2000 & 400 & 25312 & global \\
+\texttt{lhs2} & Latin hypercube 2 & 200 & 10 & 2000 & 400 & 25313 & global \\
+\texttt{lhsx} & boundary points of the hypercubes & 18 & 40 & 720 & 400 & 25336 & global \\
+\texttt{morris} & Morris screening & 320 & 10 & 3200 & 400 & 25307 & global \\
+\texttt{sobol} & Saltelli design, 11 factors & 3328 & 6 & 19968 & 400 & 25314 & global \\
+\texttt{robmu} & $\mu_{\rm bg}$ curve & 12 & 60 & 720 & 700 & 25332 & robustness \\
+\texttt{p4} & seeding density and lattice & 24 & 30 & 720 & 600 & 25315 & P4 \\
+\texttt{trgrid} & transplants on $(\alpha,\kappa)$ & 12 & 40 & 480 & 300 & 25316 & O12 \\
+\texttt{refine} & 40 boundary points of the planes & 40 & 100 & 4000 & 600 & 25317 & planes \\
+\texttt{p6} & founder protocol & 12 & 30 & 360 & 900 & 25319 & O1--O3 \\
+\midrule
+\multicolumn{8}{@{}l}{\emph{Added for this paper (base seed 20261017)}}\\
+\texttt{wellmixed\_c1} & C1 well mixed: retreat sites as capacity; no retreat sites & 2 & 200 & 400 & 600 & 20261017 & Figs.~4--6 \\
+\texttt{wellmixed\_cell\_reference} & well mixed: core model, C1 (with and without retreat sites), $\gamma=0$, short-lived & 5 & 200 & 1000 & 600 & 20261017 & Figs.~4--5 \\
+\texttt{spatial\_reversible\_null} & reversible-suppression null; short-lived control & 2 & 200 & 400 & 600; 1000 & 20261018 & Figs.~4--5 \\
+\texttt{wellmixed\_global\_mating} & well mixed, global mating: C1, C1 without retreat sites, core, SL ($L=30$); C1, core, SL ($L=45$, 60) & 10 & 200 & 2000 & 600; 1000 & 20261018 & Figs.~4--5 \\
+\texttt{spatial\_nulls\_rerun}, \texttt{spatial\_c1\_rerun}, \texttt{wellmixed\_cell\_rerun} & bit-for-bit re-runs of \texttt{nulos} (2 points), \texttt{base} (C1) and \texttt{wellmixed\_cell\_reference}, storing series & -- & 200 & -- & 600 & as source & Fig.~5 \\
+\texttt{adult\_recovery} & adult recovery factor $\times\lambda\times L$, space and well mixed (three mating rules) & -- & 10--20 & 12870 & 1000 & -- & Fig.~3, Sec.~\ref{supp:recovery} \\
+\texttt{mate\_search} & well-mixed C1 and SL under three mating rules, $L=10$--120 & -- & 10--30 & -- & 2000--3000 & -- & Sec.~\ref{supp:recovery} \\
+\texttt{robustness\_checks}, \texttt{reversible\_null\_T1000}, \texttt{c1\_litters}, \texttt{refractory\_check*}, \texttt{reversible\_ages*} & bit-for-bit re-runs of the reversible null ($T=1000$) and of C1 recording every litter; C1 with a refractory period of 3 weeks; reversible null with initial ages U\{4..80\} & -- & 60--200 & -- & 600; 1000 & as source; 777 & Secs.~2.1, 3.2 \\
+\bottomrule

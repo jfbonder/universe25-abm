@@ -1,11 +1,12 @@
 # Universe 25 ABM: common tasks. See README.md.
 PY ?= python3
 NJOBS ?= 4
-export PYTHONPATH := $(CURDIR):$(CURDIR)/scripts/production:$(CURDIR)/scripts/analysis:$(CURDIR)/scripts/figures
+export PYTHONPATH := $(CURDIR):$(CURDIR)/scripts/production:$(CURDIR)/scripts/analysis:$(CURDIR)/scripts/figures:$(CURDIR)/scripts/em
 # Reproducible PDFs: matplotlib uses SOURCE_DATE_EPOCH as the creation date in the PDF metadata
 export SOURCE_DATE_EPOCH ?= 1790899200
 
-.PHONY: help install test test-fast data fig-inputs figs figs-clean-check paper paper-extended paper-pre check-latex \
+
+.PHONY: help install test test-fast data fig-inputs figs em-figs em-tables em-runs figs-clean-check paper paper-extended paper-pre check-latex \
         sweep sweep-smoke o11-aw gamma meanfield baseline all clean-pyc clean-tex
 
 help:
@@ -14,6 +15,9 @@ help:
 	@echo "make figs             regenerate every figure, table and results_v2/results_numbers.json from the"
 	@echo "                      versioned outputs (no simulation; ~3 min)"
 	@echo "make figs-clean-check clone HEAD into a temporary directory, run make figs there and check that nothing changes"
+	@echo "make em-figs          regenerate the figures of the Ecological Modelling paper (manuscript/em/figs, ~3 min; needs make data)"
+	@echo "make em-tables        regenerate the SM tables tab_sm_*.tex of that paper into results_em/sm_tables/"
+	@echo "make em-runs          re-run the raw ensembles of that paper (hours; optional, the summaries are versioned in results_em/)"
 	@echo "make paper            build manuscript/extended/main.pdf, manuscript/pre/main.pdf and supplement.pdf (pdflatex + bibtex)"
 	@echo "make sweep            production runs from scratch into RES (default results_new/; ~51 800 runs, ~4.5-5 h with 4 cores)"
 	@echo "make sweep-smoke      smoke test of the production pipeline (2 replicates per point, T <= 250; a few minutes)"
@@ -41,6 +45,23 @@ figs: fig-inputs
 	$(PY) scripts/figures/figs_results.py
 	$(PY) scripts/figures/fig_model_schematic_pre.py
 	$(PY) scripts/figures/figs_pre.py
+
+# Ecological Modelling paper (manuscript/em): figures from the versioned data in results_em/ and results_v2/
+em-figs: fig-inputs
+	$(PY) scripts/em/em_figs.py
+	$(PY) scripts/em/f10_occupancy.py
+	cp results_em/robustness_checks/fig_occupancy_peak.pdf manuscript/em/figs/fig_em_s_occupancy.pdf
+	cd manuscript/em/figs && FORCE_SOURCE_DATE=1 pdflatex -interaction=nonstopmode -halt-on-error fig_causal.tex >/dev/null && rm -f fig_causal.aux fig_causal.log
+
+em-tables:
+	$(PY) scripts/em/f9_sm_tablas.py
+
+# Raw ensembles of the EM paper (about 35 min with 4 cores for the first block; the second block, hours; resumable)
+em-runs:
+	$(PY) scripts/em/em_wm_run.py && $(PY) scripts/em/em_snapshots.py
+	for g in nulos base sp sp1000 wm wmcell; do $(PY) scripts/em/em_f9_runs.py $$g || exit 1; done
+	for g in rev1000 c1base refr refr777 revages revages_prod; do $(PY) scripts/em/f10_runs.py $$g || exit 1; done
+	$(PY) scripts/em/em_f9_analysis.py
 
 # make figs from a clean clone of HEAD; fails if any versioned file changes (figures, tables, results_numbers.json)
 CLEAN_CLONE ?= $(or $(TMPDIR),/tmp)/u25_figs_clean_check

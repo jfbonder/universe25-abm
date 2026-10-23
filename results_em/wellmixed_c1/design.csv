@@ -1,0 +1,3 @@
+point,jump_prob,jump_mode,refuge_frac,refuge_capacity,refuge_pref,refuge_hard
+0,1.0,uniform,0.3,2,100.0,strict
+1,1.0,uniform,0.0,1,0.0,False
