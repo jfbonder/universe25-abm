@@ -1,6 +1,6 @@
 # Universe 25 ABM
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23111283.svg)](https://doi.org/10.5281/zenodo.23111283)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23602236.svg)](https://doi.org/10.5281/zenodo.23602236)
 
 Code, simulation outputs and manuscripts of
 
@@ -244,3 +244,5 @@ Every deviation from the preregistered plan is listed in the manuscripts.
 
 Release v1.0 is archived in Zenodo: Fernández Bonder, J. (2026). *An Agent-Based Model for the Social Collapse of
 Calhoun's Universe 25 Experiment* (v1.0). Zenodo. https://doi.org/10.5281/zenodo.23111283 (see also `CITATION.cff`).
+Release v1.1, which adds the data, scripts and manuscript of the Ecological Modelling article, is archived as
+https://doi.org/10.5281/zenodo.23602236.
