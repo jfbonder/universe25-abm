@@ -1,5 +1,5 @@
 """Fase 9a (A9): tablas del SM de EM con P_ext(eps_ad), umbral eps^c(L), apareamiento y cohortes, a partir de
-datos ya archivados. No corre simulaciones. Escribe results_em/sm_tables/tab_sm_*.tex (cohorts, mate y pext son idénticas a manuscript/em/tables/; tab_sm_epsc.tex del manuscrito es posterior: lleva los intervalos de verosimilitud perfilada de results_em/robustness_checks/epsc_profile.csv y se compuso a mano) e imprime los controles.
+datos ya archivados. No corre simulaciones. Escribe results_em/sm_tables/tab_sm_*.tex (cohorts, mate y pext son idénticas a manuscript/applied/tables/; tab_sm_epsc.tex del manuscrito es posterior: lleva los intervalos de verosimilitud perfilada de results_em/robustness_checks/epsc_profile.csv y se compuso a mano) e imprime los controles.
 
 Fuentes:
   results_em/adult_recovery/summary.csv     (barrido de recuperación adulta; P_ext a 1000 semanas, Wilson)

@@ -1,12 +1,12 @@
-"""Figures of the Ecological Modelling paper (manuscript/em/figs/), regenerated from the deposited data.
+"""Figures of the applied paper (manuscript/applied/figs/), regenerated from the deposited data.
 
     python3 scripts/em/em_figs.py [names]          # from the repository root; or: make em-figs
 
 No simulations are run: every figure is read from results_v2/ (production ensembles of the PRE paper, as in
-make figs) and from results_em/ (ensembles and summaries added for the Ecological Modelling paper; see README.md).
+make figs) and from results_em/ (ensembles and summaries added for the applied paper; see README.md).
 The figure sizes and the numbers quoted in the captions are written to results_em/em_figs_numbers.json.
 
-  mechanism    fig_em_mechanism    causal scheme (no data; the paper uses manuscript/em/figs/fig_causal.tex instead)
+  mechanism    fig_em_mechanism    causal scheme (no data; the paper uses manuscript/applied/figs/fig_causal.tex instead)
   trajectory   fig_em_trajectory   reference colony (spatial C1, n = 200) and Calhoun's (1973) censuses, phases A-D
   wellmixed    fig_em_wellmixed    spatial against well mixed (n = 200 each): same sequence and extinction
   snapshots    fig_em_s_snapshots  maps of one run, spatial and well mixed (SM; data: wellmixed_c1/snapshots_seed1.npz)
@@ -17,9 +17,9 @@ The figure sizes and the numbers quoted in the captions are written to results_e
   recovery     fig_em_recovery     adult-recovery sweep and threshold eps^c(L)
   ablations    fig_em_s_ablations  pattern that fails under each ablation (SM)
 
-Calhoun's censuses: Table S2 of the PRE supplement (manuscript/pre/supplement.tex, tab:calhoun-numbers).
+Calhoun's censuses: Table S2 of the PRE supplement (manuscript/short/supplement.tex, tab:calhoun-numbers).
 fig_em_s_occupancy.pdf (SM) comes from scripts/em/f10_occupancy.py, and fig_causal.pdf from the TikZ source
-manuscript/em/figs/fig_causal.tex (make em-figs builds both).
+manuscript/applied/figs/fig_causal.tex (make em-figs builds both).
 """
 from __future__ import annotations
 

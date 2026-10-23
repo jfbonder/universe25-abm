@@ -15,10 +15,10 @@ help:
 	@echo "make figs             regenerate every figure, table and results_v2/results_numbers.json from the"
 	@echo "                      versioned outputs (no simulation; ~3 min)"
 	@echo "make figs-clean-check clone HEAD into a temporary directory, run make figs there and check that nothing changes"
-	@echo "make em-figs          regenerate the figures of the Ecological Modelling paper (manuscript/em/figs, ~3 min; needs make data)"
+	@echo "make em-figs          regenerate the figures of the applied paper (manuscript/applied/figs, ~3 min; needs make data)"
 	@echo "make em-tables        regenerate the SM tables tab_sm_*.tex of that paper into results_em/sm_tables/"
 	@echo "make em-runs          re-run the raw ensembles of that paper (hours; optional, the summaries are versioned in results_em/)"
-	@echo "make paper            build manuscript/extended/main.pdf, manuscript/pre/main.pdf and supplement.pdf (pdflatex + bibtex)"
+	@echo "make paper            build manuscript/extended/main.pdf, manuscript/short/main.pdf and supplement.pdf (pdflatex + bibtex)"
 	@echo "make sweep            production runs from scratch into RES (default results_new/; ~51 800 runs, ~4.5-5 h with 4 cores)"
 	@echo "make sweep-smoke      smoke test of the production pipeline (2 replicates per point, T <= 250; a few minutes)"
 	@echo "make o11-aw           O11 at age a_w: re-runs f2b_base, f2b_nulos and the s0 arms of f2b_rob (~10 min)"
@@ -46,12 +46,12 @@ figs: fig-inputs
 	$(PY) scripts/figures/fig_model_schematic_pre.py
 	$(PY) scripts/figures/figs_pre.py
 
-# Ecological Modelling paper (manuscript/em): figures from the versioned data in results_em/ and results_v2/
+# applied paper (manuscript/applied): figures from the versioned data in results_em/ and results_v2/
 em-figs: fig-inputs
 	$(PY) scripts/em/em_figs.py
 	$(PY) scripts/em/f10_occupancy.py
-	cp results_em/robustness_checks/fig_occupancy_peak.pdf manuscript/em/figs/fig_em_s_occupancy.pdf
-	cd manuscript/em/figs && FORCE_SOURCE_DATE=1 pdflatex -interaction=nonstopmode -halt-on-error fig_causal.tex >/dev/null && rm -f fig_causal.aux fig_causal.log
+	cp results_em/robustness_checks/fig_occupancy_peak.pdf manuscript/applied/figs/fig_em_s_occupancy.pdf
+	cd manuscript/applied/figs && FORCE_SOURCE_DATE=1 pdflatex -interaction=nonstopmode -halt-on-error fig_causal.tex >/dev/null && rm -f fig_causal.aux fig_causal.log
 
 em-tables:
 	$(PY) scripts/em/f9_sm_tablas.py
@@ -81,7 +81,7 @@ paper-extended: check-latex
 	bash manuscript/extended/build.sh
 
 paper-pre: check-latex
-	bash manuscript/pre/build.sh
+	bash manuscript/short/build.sh
 
 # Production runs (all results_v2/f2b_* stages) from scratch. Resumable: re-running the same command continues.
 # RES=results_v2 re-runs into the versioned directory (run `make data` first so that finished stages are skipped).
@@ -118,4 +118,4 @@ clean-pyc:
 
 clean-tex:
 	cd manuscript/extended && rm -f *.aux *.bbl *.blg *.log *.out *.toc
-	cd manuscript/pre && rm -f *.aux *.bbl *.blg *.log *.out *Notes.bib
+	cd manuscript/short && rm -f *.aux *.bbl *.blg *.log *.out *Notes.bib

@@ -1,4 +1,4 @@
-% Manuscript for Ecological Modelling (Elsevier, research paper).
+% Manuscript: applied pattern-oriented study (elsarticle, preprint).
 % Figures and tables: see README.md (make em-figs, make em-tables); numbers: results_em/em_figs_numbers.json.
 % Build with ./build.sh (supplement first, so that the SM cross-references resolve through xr-hyper).
 \documentclass[preprint,12pt,authoryear]{elsarticle}
@@ -6,7 +6,8 @@
 \input{preamble}
 \externaldocument[SM-]{supplement}
 
-\journal{Ecological Modelling}
+\journal{}
+\makeatletter\def\ps@pprintTitle{\let\@oddhead\@empty\let\@evenhead\@empty\def\@oddfoot{\footnotesize\itshape Preprint \hfill\today}\let\@evenfoot\@oddfoot}\makeatother
 
 \begin{document}
 

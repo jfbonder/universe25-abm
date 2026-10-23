@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Build the reduced PRE version (manuscript/pre/main.pdf, and supplement.pdf if supplement.tex exists)
+# Build the reduced PRE version (manuscript/short/main.pdf, and supplement.pdf if supplement.tex exists)
 # with pdflatex + bibtex (REVTeX 4.2, apsrev4-2), and fail on undefined references or citations.
 #   usage: ./build.sh            (main.tex and, if present, supplement.tex)
 #          ./build.sh main       (only main.tex)
@@ -19,7 +19,7 @@ check_bib_keys() {
   local missing
   missing=$(comm -23 <(echo "$cited") <(echo "$have") || true)
   if [ -n "$missing" ]; then
-    echo "ERROR: cited keys missing from manuscript/pre/refs.bib:" >&2
+    echo "ERROR: cited keys missing from manuscript/short/refs.bib:" >&2
     for k in $missing; do
       if grep -q "^@[a-zA-Z]*{$k," ../extended/refs.bib 2>/dev/null; then
         echo "  $k  (copy the verified entry from manuscript/extended/refs.bib)" >&2

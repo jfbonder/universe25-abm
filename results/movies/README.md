@@ -1,6 +1,6 @@
 # Density movies and maps (supplementary material)
 
-Spatial density movies of single runs of the agent-based model (Universe 25 analogue), for the Ecological Modelling
+Spatial density movies of single runs of the agent-based model (Universe 25 analogue), for the applied
 article (Supplementary videos S1-S3) and the public repository. One run per model, 30 x 30 grid, **seed 1**
 (`rng = numpy.random.default_rng(SeedSequence([20261017, 1]))`, the same seed and generator as the single colony of
 manuscript Fig. 3f; peak withdrawn counts reproduce the figure: 416 spatial, 6 well-mixed).

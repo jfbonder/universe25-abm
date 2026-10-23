@@ -1,4 +1,4 @@
-"""Figuras de la versión reducida para Physical Review E (manuscript/pre/), a partir de los mismos datos que
+"""Figuras de la versión corta (manuscript/short/), a partir de los mismos datos que
 figs_results.py.
 
     # desde la raíz del repositorio
@@ -6,11 +6,11 @@ figs_results.py.
 
 Importa figs_results.py por sus utilidades y su carga de datos (results_v2/f2b_*/: summary.csv, series.parquet,
 analisis/*.csv) sin ejecutar sus figuras, y escribe
-  manuscript/pre/figs/fig_pre_*.pdf     cinco figuras: anchos 3.39 in (\\columnwidth, 8.6 cm) o 7.0 in
+  manuscript/short/figs/fig_pre_*.pdf     cinco figuras: anchos 3.39 in (\\columnwidth, 8.6 cm) o 7.0 in
                                         (\\textwidth, 17.8 cm) de REVTeX a dos columnas, fuente base 8 pt.
                                         Texto principal (sections/results.tex): trajectories (figure*), rules,
                                         transplant, robustness (figure*). Suplemento (supplement.tex, Fig. S1): global.
-  manuscript/pre/tables/tab_res_*.tex   copias de las tablas de manuscript/extended/tables/ que \\input-ea el suplemento
+  manuscript/short/tables/tab_res_*.tex   copias de las tablas de manuscript/extended/tables/ que \\input-ea el suplemento
 No corre simulaciones ni reescribe results_numbers.json. Las cifras de robustez (robmu, rob, size), de la región
 factible (lhs_decomp_*) y la paleta se toman de figs_results.py / results_numbers.json, para que coincidan con las
 del texto; la supervivencia, las trayectorias, las ablaciones, los transplantes y los índices de Sobol se leen de
@@ -332,7 +332,7 @@ SUPP_TABLES = ["tab_res_production_full", "tab_res_production_si", "tab_res_null
 
 
 def copy_tables():
-    """Copia a manuscript/pre/tables/ las tablas generadas por figs_results.py que el suplemento \\input-ea."""
+    """Copia a manuscript/short/tables/ las tablas generadas por figs_results.py que el suplemento \\input-ea."""
     for t in SUPP_TABLES:
         src = ROOT / "manuscript" / "extended" / "tables" / f"{t}.tex"
         shutil.copyfile(src, TABS / f"{t}.tex")

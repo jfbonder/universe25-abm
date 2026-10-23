@@ -1,6 +1,6 @@
-% Supplementary Material of the Ecological Modelling paper. The tables of evaluators, confirmatory tests and
-% ensembles are copies of manuscript/pre/tables/ (rows added to the ensembles); the pattern table and the deviations
-% come from manuscript/pre/supplement.tex; the ODD is adapted from manuscript/extended/. Figures: scripts/em/em_figs.py.
+% Supplementary Material of the applied paper. The tables of evaluators, confirmatory tests and
+% ensembles are copies of manuscript/short/tables/ (rows added to the ensembles); the pattern table and the deviations
+% come from manuscript/short/supplement.tex; the ODD is adapted from manuscript/extended/. Figures: scripts/em/em_figs.py.
 \documentclass[preprint,12pt,authoryear]{elsarticle}
 
 \input{preamble}
@@ -9,7 +9,8 @@
 \renewcommand{\thesection}{S\arabic{section}}
 \renewcommand{\theequation}{S\arabic{equation}}
 
-\journal{Ecological Modelling}
+\journal{}
+\makeatletter\def\ps@pprintTitle{\let\@oddhead\@empty\let\@evenhead\@empty\def\@oddfoot{\footnotesize\itshape Preprint \hfill\today}\let\@evenfoot\@oddfoot}\makeatother
 
 \begin{document}
 

@@ -1,4 +1,4 @@
-"""Density movies and snapshot maps per model (supplementary material, Ecological Modelling).
+"""Density movies and snapshot maps per model (supplementary material of the applied paper).
 
 Usage:  python scripts/figures/density_movies.py [--seed 1] [--fps 12] [--every 2] [--only C1,null] [--nosim]
 Simulates one run per model (30x30 grid; seed = SeedSequence([20261017, seed]), as in

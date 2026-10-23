@@ -23,7 +23,7 @@ The paper comes in two versions, both built from the same data:
 | Version | Files |
 |---|---|
 | Extended version (all analyses: calibration, mean field, complete results, full ODD description) | `manuscript/extended/main.pdf` |
-| Reduced version for *Physical Review E* | `manuscript/pre/main.pdf` and its Supplemental Material `manuscript/pre/supplement.pdf` |
+| Short version | `manuscript/short/main.pdf` and its Supplemental Material `manuscript/short/supplement.pdf` |
 
 ## Repository layout
 
@@ -33,14 +33,14 @@ The paper comes in two versions, both built from the same data:
 | `tests/` | pytest suite (127 tests): bit-for-bit fingerprints of the presets, exactness of the sparse affinities against a slow port of the original code, hard refuge capacity, the evaluator on synthetic series, determinism and resumption of sweeps |
 | `scripts/production/` | Production runs: orchestrator `run_2b_v2.sh`, runner `u25x.py`, model classes with the extra per-run observables (`f2b_model.py`, `f2b_model_v2.py`), transplant protocol `trans_v2.py`, design generators `gen_designs.py` / `gen_designs_v2.py`, evaluator settings `v2_api.json` and the designs of every stage (`designs_v2/calhoun_C1/`) |
 | `scripts/analysis/` | Statistical pipeline (`pipeline/`, run as `python -m pipeline`: survival, Holm/BH families, Morris/Sobol, null models, re-scoring), mean-field models (`mf_ode.py`, `mf_edad.py`, `mf_kin.py`, `mf_lineage_v2.py`, fast ABM `abm_rapido.py`, `ensamble_rapido.py`), generation register and Γ (`generaciones.py`, `generaciones_base.py`, `analiza_generaciones.py`, `gamma_v3.py`, `analiza_gamma.py`) and O11 at age a_w (`o11_aw.py`) |
-| `scripts/figures/` | Figures and tables: `figs_results.py` (results figures, all `tab_res_*.tex` tables and `results_numbers.json`), `figs_paper.py` (mean-field figures), `figs_pre.py` (figures of the PRE version), `fig_model_schematic.py` / `fig_model_schematic_pre.py` (model schematic) and `fig_inputs.py` (checks and restores the inputs of `make figs`) |
+| `scripts/figures/` | Figures and tables: `figs_results.py` (results figures, all `tab_res_*.tex` tables and `results_numbers.json`), `figs_paper.py` (mean-field figures), `figs_pre.py` (figures of the short version), `fig_model_schematic.py` / `fig_model_schematic_pre.py` (model schematic) and `fig_inputs.py` (checks and restores the inputs of `make figs`) |
 | `results_v2/` | Outputs of the production runs, from which every number, table and results figure of the paper is computed: 26 stages `f2b_<stage>/` (per stage: `summary.csv.gz` with one row per run, `params.json.gz`, `meta.json` with the base seed, `labels.json`, `stage.json`, `design.csv`, `progress.log` and the analysis files read by the figures), the confirmatory family and consolidated reports `f2b_final/`, O11 at age a_w `o11_aw/`, and `results_numbers.json` (every number quoted in the text, with its ensemble) |
 | `results/` | Auxiliary inputs: `fisico_v3/` (Γ re-runs: `gamma_v3.parquet`, `gamma_v3_series.parquet`, `fig2c_series.csv`), `fisico_v2/` (generation register of the reference ensemble), `meanfield/` (fast-ABM ensemble and kinetic mean-field sweeps) and `baseline_alpha14/` (baseline of the original model and its survival analysis) |
 | `manuscript/extended/` | LaTeX sources of the extended version (`main.tex`, `sections/`, `tables/`, `figs/`, `refs.bib`, `build.sh`) and `main.pdf` |
-| `manuscript/pre/` | LaTeX sources of the PRE version (`main.tex`, `supplement.tex`, `sections/`, `tables/`, `figs/`, `refs.bib`, `build.sh`), `main.pdf` and `supplement.pdf` |
-| `scripts/em/` | Scripts of the *Ecological Modelling* paper (see the section below): `em_figs.py` (figures), the runners of the ensembles added for that paper (`em_wm_run.py`, `em_snapshots.py`, `em_f9_runs.py`, `f10_runs.py`, `f7_sweep.py`), their analyses (`em_f9_analysis.py`, `f10_*.py`, `f7_aggregate.py`, `f7_analyze_*.py`, `analyze_wm.py`, `f9_sm_tablas.py`) and the well-mixed model and kinetic equation they use (`wm_abm.py`, `f7_common.py`, `kinetic.py`, `kinetic_f7.py`, `dicotomia_checks.py`, `cohort_kappa.py`, `compare_kinetic.py`) |
-| `results_em/` | Summaries of the ensembles of the *Ecological Modelling* paper and the derived tables (about 13 MB; the raw series are not versioned, see below) |
-| `manuscript/em/` | LaTeX sources of the *Ecological Modelling* paper and its Supplementary Material (`main.tex`, `supplement.tex`, `sm_recovery.tex`, `sections/`, `tables/`, `figs/`, `refs.bib`, `highlights.txt`, `build.sh`), with `main.pdf` and `supplement.pdf` |
+| `manuscript/short/` | LaTeX sources of the short version (`main.tex`, `supplement.tex`, `sections/`, `tables/`, `figs/`, `refs.bib`, `build.sh`), `main.pdf` and `supplement.pdf` |
+| `scripts/em/` | Scripts of the applied paper (see the section below): `em_figs.py` (figures), the runners of the ensembles added for that paper (`em_wm_run.py`, `em_snapshots.py`, `em_f9_runs.py`, `f10_runs.py`, `f7_sweep.py`), their analyses (`em_f9_analysis.py`, `f10_*.py`, `f7_aggregate.py`, `f7_analyze_*.py`, `analyze_wm.py`, `f9_sm_tablas.py`) and the well-mixed model and kinetic equation they use (`wm_abm.py`, `f7_common.py`, `kinetic.py`, `kinetic_f7.py`, `dicotomia_checks.py`, `cohort_kappa.py`, `compare_kinetic.py`) |
+| `results_em/` | Summaries of the ensembles of the applied paper and the derived tables (about 13 MB; the raw series are not versioned, see below) |
+| `manuscript/applied/` | LaTeX sources of the applied paper and its Supplementary Material (`main.tex`, `supplement.tex`, `sm_recovery.tex`, `sections/`, `tables/`, `figs/`, `refs.bib`, `highlights.txt`, `build.sh`), with `main.pdf` and `supplement.pdf` |
 | `docs/` | `preregistered_plan.md`: the preregistered statistical plan (1 October 2026, 22:02 UTC); `production_plan.md`: the stages, decision rules and primary evaluator fixed before the production runs (2 October 2026, 05:34 UTC). Both verbatim, with a header giving their date and the equivalence of paths |
 
 Code comments, log messages and some column labels of the outputs are in Spanish. The preset `notebook` and
@@ -89,7 +89,7 @@ Every parameter is documented in `u25/params.py`.
 
 ```bash
 make figs          # every figure, table and results_v2/results_numbers.json, from the versioned outputs (~3 min)
-make paper         # manuscript/extended/main.pdf, manuscript/pre/main.pdf and manuscript/pre/supplement.pdf (<1 min)
+make paper         # manuscript/extended/main.pdf, manuscript/short/main.pdf and manuscript/short/supplement.pdf (<1 min)
 make figs-clean-check   # clones HEAD into a temporary directory, runs make figs there and fails if any file changes
 ```
 
@@ -104,28 +104,28 @@ runs, in order:
 3. `fig_model_schematic.py`: the model schematic;
 4. `figs_results.py`: the results figures `fig_res_*.pdf`, the 19 tables `tab_res_*.tex` of the extended version and
    `results_v2/results_numbers.json`; if any output fails, the JSON is not rewritten and the script exits with 1;
-5. `fig_model_schematic_pre.py` and `figs_pre.py`: the figures of the PRE version and the copies of the tables
+5. `fig_model_schematic_pre.py` and `figs_pre.py`: the figures of the short version and the copies of the tables
    that its supplement includes.
 
 The PDFs are reproducible byte for byte: the Makefile fixes `SOURCE_DATE_EPOCH`, which matplotlib uses as the
 creation date. Run on a clean clone, `make figs` leaves the working tree unchanged.
 
-## Paper for *Ecological Modelling* (v1.1)
+## Applied pattern-oriented paper (v1.1)
 
-`manuscript/em/` holds a third version of the paper: the applied one, for *Ecological Modelling* (main text and
+`manuscript/applied/` holds a third version of the paper: the applied, pattern-oriented one (main text and
 Supplementary Material). Everything it cites as available in the repository can be regenerated from here.
 
 ```bash
 make data          # restores results_v2/**/summary.csv, params.json and the series of f2b_base (as for make figs)
-make em-figs       # the 12 figures of manuscript/em/figs, fig_em_s_occupancy.pdf and fig_causal.pdf (~1 min)
+make em-figs       # the 12 figures of manuscript/applied/figs, fig_em_s_occupancy.pdf and fig_causal.pdf (~1 min)
 make em-tables     # tab_sm_*.tex into results_em/sm_tables/ (see the note on tab_sm_epsc.tex)
-bash manuscript/em/build.sh   # supplement.pdf and main.pdf (pdflatex + bibtex; needs elsarticle and xr-hyper)
+bash manuscript/applied/build.sh   # supplement.pdf and main.pdf (pdflatex + bibtex; needs elsarticle and xr-hyper)
 make em-runs       # optional: re-runs the raw ensembles of results_em/ from the recorded seeds (hours with 4 cores)
 ```
 
 | Figure | Script (all in `scripts/em/`) | Data |
 |---|---|---|
-| `fig_causal.pdf` (Fig. 1) | TikZ source `manuscript/em/figs/fig_causal.tex`, `fig_causal_body.tex` | none |
+| `fig_causal.pdf` (Fig. 1) | TikZ source `manuscript/applied/figs/fig_causal.tex`, `fig_causal_body.tex` | none |
 | `fig_em_trajectory.pdf` (Fig. 2) | `em_figs.py trajectory` | `results_em/series_deposit/`, `results_em/kinetic/traj_C1_exact.csv`, `results_v2/f2b_base/` |
 | `fig_em_recovery.pdf` (Fig. 3) | `em_figs.py recovery` | `results_em/adult_recovery/{summary,transicion}.csv` |
 | `fig_em_wellmixed.pdf` (Fig. 4) | `em_figs.py wellmixed` | `results_em/series_deposit/`, `wellmixed_c1/`, `wellmixed_cell_reference/`, `wellmixed_global_mating/`, `spatial_reversible_null_T1000/` |
@@ -137,7 +137,7 @@ make em-runs       # optional: re-runs the raw ensembles of results_em/ from the
 | `fig_em_mechanism.pdf`, `fig_em_s_recovery.pdf` | `em_figs.py mechanism`, `conditions` (alternative scheme and a one-panel summary; not cited in the text) | |
 
 `em_figs.py` also writes the numbers quoted in the captions to `results_em/em_figs_numbers.json`. The PDFs are
-reproducible (the Makefile fixes `SOURCE_DATE_EPOCH`) and match, drawing for drawing, the ones submitted.
+reproducible (the Makefile fixes `SOURCE_DATE_EPOCH`) and match, drawing for drawing, the ones in the manuscript.
 
 **Data (`results_em/`).** Each directory holds the per-run `summary.csv` (and `params.json`, `meta.json`) of an
 ensemble, or the table derived from it; the names of the old working directories do not appear anywhere.
@@ -244,5 +244,5 @@ Every deviation from the preregistered plan is listed in the manuscripts.
 
 Release v1.0 is archived in Zenodo: Fernández Bonder, J. (2026). *An Agent-Based Model for the Social Collapse of
 Calhoun's Universe 25 Experiment* (v1.0). Zenodo. https://doi.org/10.5281/zenodo.23111283 (see also `CITATION.cff`).
-Release v1.1, which adds the data, scripts and manuscript of the Ecological Modelling article, is archived as
+Release v1.1, which adds the data, scripts and manuscript of the applied paper, is archived as
 https://doi.org/10.5281/zenodo.23602236.

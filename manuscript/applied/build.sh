@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Build the Ecological Modelling manuscript (main.pdf) and its Supplementary Material (supplement.pdf) with
+# Build the applied manuscript (main.pdf) and its Supplementary Material (supplement.pdf) with
 # pdflatex + bibtex (elsarticle, elsarticle-harv). The supplement is built first, because main.tex reads its labels
 # through xr-hyper (\externaldocument[SM-]{supplement}). Fails on undefined references or citations, on missing
 # BibTeX entries and on "??" in the output.

@@ -1,5 +1,5 @@
 """Figura esquemática del modelo, versión a una columna para la versión PRE
-(manuscript/pre/figs/model_schematic_pre.pdf; ancho \\columnwidth = 8.6 cm).
+(manuscript/short/figs/model_schematic_pre.pdf; ancho \\columnwidth = 8.6 cm).
 
 Adapta scripts/figures/fig_model_schematic.py (figura a dos columnas de la versión extendida, que no se toca):
 (a) grilla: movimiento con afinidad, pool hacinado y refugios de capacidad 2, con el peso de movimiento
