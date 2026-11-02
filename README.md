@@ -18,12 +18,13 @@ the rules add coexisting crowded and isolated deteriorated classes. The simulate
 generations rather than Calhoun's multi-generational sequence. The paper evaluates seventeen observed patterns run
 by run against null models and tests seven preregistered hypotheses on about 51 800 production runs.
 
-The paper comes in two versions, both built from the same data:
+The paper comes in three versions, all built from the same production runs:
 
 | Version | Files |
 |---|---|
 | Extended version (all analyses: calibration, mean field, complete results, full ODD description) | `manuscript/extended/main.pdf` |
 | Short version | `manuscript/short/main.pdf` and its Supplemental Material `manuscript/short/supplement.pdf` |
+| Applied, pattern-oriented version (release v1.1; main text and Supplementary Material) | `manuscript/applied/main.pdf` and `manuscript/applied/supplement.pdf`; see the section "Applied pattern-oriented paper (v1.1)" below |
 
 ## Repository layout
 
